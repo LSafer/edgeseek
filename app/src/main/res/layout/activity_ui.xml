@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:background="?android:colorPrimaryDark"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<TextView style="@style/kroov_titlex"
+		android:text="User Interface"/>
+	
+	<View style="@style/kroov_split"/>
+	
+	<TextView style="@style/kroov_separator"
+		android:text="General"/>
+	
+	<LinearLayout style="@style/kroov_box"
+		android:onClick="_theme">
+		<LinearLayout style="@style/kroov_drawer">
+			<TextView style="@style/kroov_name"
+				android:text="Theme"/>
+			<TextView style="@style/kroov_description"
+				android:text="The overall style of the application"/>
+		</LinearLayout>
+		
+		<TextView
+			android:id="@+id/theme"
+			style="@style/kroov_quarter"
+			android:text="Dark"/>
+	</LinearLayout>
+	
+	<View style="@style/kroov_split"/>
+</LinearLayout>

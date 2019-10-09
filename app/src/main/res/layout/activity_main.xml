@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	android:layout_height="match_parent"
+	android:background="?android:colorPrimaryDark"
+	tools:context=".activity.MainActivity">
+	
+	<LinearLayout style="@style/kroov_head">
+		<TextView style="@style/kroov_title"
+			android:layout_weight="1"
+			android:text="@string/app_name"/>
+		
+		<Switch style="@style/kroov_quarter"
+			android:id="@+id/power"
+			android:onClick="_power"
+			android:checked="true"/>
+	</LinearLayout>
+	
+	<View style="@style/kroov_split"/>
+	
+	<TextView style="@style/kroov_separator"
+		android:text="General"/>
+	
+	<LinearLayout style="@style/kroov_drawerx"
+		android:onClick="_ui">
+		<TextView style="@style/kroov_name"
+			android:text="User Interface"/>
+		<TextView style="@style/kroov_description"
+			android:text="Set user interface perferance"/>
+	</LinearLayout>
+	
+	<View style="@style/kroov_split"/>
+	
+	<LinearLayout style="@style/kroov_drawerx"
+		android:onClick="_permissions">
+		<TextView style="@style/kroov_name"
+			android:text="Permissions"/>
+		<TextView style="@style/kroov_description"
+			android:text="Manage application permissions"/>
+	</LinearLayout>
+	
+	<View style="@style/kroov_split"/>
+	
+	<LinearLayout style="@style/kroov_drawerx"
+		android:onClick="_edges">
+		<TextView style="@style/kroov_name"
+			android:text="Edges"/>
+		<TextView style="@style/kroov_description"
+			android:text="Manage Edges"/>
+	</LinearLayout>
+	
+	<View style="@style/kroov_split"/>
+	
+	<LinearLayout style="@style/kroov_box"
+		android:onClick="_boot">
+		<LinearLayout style="@style/kroov_drawer">
+			<TextView style="@style/kroov_name"
+				android:text="Auto Boot"/>
+			<TextView style="@style/kroov_description"
+				android:text="Auto boot the service evrytime the device booted-up"/>
+		</LinearLayout>
+		<Switch style="@style/kroov_quarter"
+			android:onClick="_boot"
+			android:id="@+id/boot"/>
+	</LinearLayout>
+	
+	<View style="@style/kroov_split"/>
+	<LinearLayout style="@style/kroov_box"
+		android:onClick="_autoBrightness">
+		<LinearLayout style="@style/kroov_drawer">
+			<TextView style="@style/kroov_name"
+				android:text="Off-Screen Auto Brightness"/>
+			<TextView style="@style/kroov_description"
+				android:text="Turn auto-brightness mode on everytime the screen turned off"/>
+		</LinearLayout>
+		<Switch style="@style/kroov_quarter"
+			android:onClick="_autoBrightness"
+			android:id="@+id/autoBrightness"/>
+	</LinearLayout>
+	
+	<View style="@style/kroov_split"/>
+	
+</LinearLayout>

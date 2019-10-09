@@ -1,0 +1,94 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0" is_locked="false">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="ARCIssues" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AccessStaticViaInstance" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="AlphaUnsortedPropertiesFile" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUnusedIds" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="ArrayIssues" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="BridgeCastIssues" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="CannotResolve" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="ClangTidyInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="ConstExpressionRequired" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="ConstructionIsNotAllowed" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="DerivedFunctionsReturnTypeMismatch" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="DuplicateDeclarations" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="FieldMustBeInitialized" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="FunctionParameterCountMismatch" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="IncompatibleTypes" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="InitializationIssue" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="InitializerIssues" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="IntegerTypeRequired" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="TOP_LEVEL_CLASS_OPTIONS">
+        <value>
+          <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="package" />
+          <option name="REQUIRED_TAGS" value="@author@version@since@param" />
+        </value>
+      </option>
+      <option name="INNER_CLASS_OPTIONS">
+        <value>
+          <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="private" />
+          <option name="REQUIRED_TAGS" value="" />
+        </value>
+      </option>
+      <option name="METHOD_OPTIONS">
+        <value>
+          <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="private" />
+          <option name="REQUIRED_TAGS" value="@return@param@throws or @exception" />
+        </value>
+      </option>
+      <option name="FIELD_OPTIONS">
+        <value>
+          <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="private" />
+          <option name="REQUIRED_TAGS" value="" />
+        </value>
+      </option>
+      <option name="IGNORE_DEPRECATED" value="false" />
+      <option name="IGNORE_JAVADOC_PERIOD" value="false" />
+      <option name="IGNORE_DUPLICATED_THROWS" value="false" />
+      <option name="IGNORE_POINT_TO_ITSELF" value="false" />
+      <option name="myAdditionalJavadocTags" value="" />
+      <IGNORE_DUPLICATED_THROWS_TAGS value="false" />
+      <option name="MODULE_OPTIONS">
+        <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="public" />
+        <option name="REQUIRED_TAGS" value="@version@author@since" />
+      </option>
+      <option name="ACCESS_JAVADOC_REQUIRED_FOR" value="public" />
+      <option name="REQUIRED_TAGS" value="@author@since@version" />
+    </inspection_tool>
+    <inspection_tool class="JavadocReference" enabled="true" level="ERROR" enabled_by_default="true">
+      <option name="REPORT_INACCESSIBLE" value="false" />
+    </inspection_tool>
+    <inspection_tool class="MemberVisibility" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="MethodParameterCountMismatch" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="MissingPackageInfo" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="NoDefaultBaseConstructor" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="NotAssignable" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="OtherCpp" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="OtherObjC" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="PackageInfoWithoutPackage" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PointerTypeRequired" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="RedundantSuppression" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="IGNORE_ALL" value="true" />
+    </inspection_tool>
+    <inspection_tool class="ScalarTypeRequired" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="SpellCheckingInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="processCode" value="true" />
+      <option name="processLiterals" value="true" />
+      <option name="processComments" value="true" />
+    </inspection_tool>
+    <inspection_tool class="StaticnessMismatch" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="SuspiciousMethodCalls" enabled="true" level="INFORMATION" enabled_by_default="true">
+      <option name="REPORT_CONVERTIBLE_METHOD_CALLS" value="true" />
+    </inspection_tool>
+    <inspection_tool class="TemplateArgumentsIssues" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="UNCHECKED_WARNING" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="IGNORE_UNCHECKED_ASSIGNMENT" value="false" />
+      <option name="IGNORE_UNCHECKED_GENERICS_ARRAY_CREATION" value="false" />
+      <option name="IGNORE_UNCHECKED_CALL" value="false" />
+      <option name="IGNORE_UNCHECKED_CAST" value="true" />
+      <option name="IGNORE_UNCHECKED_OVERRIDING" value="false" />
+    </inspection_tool>
+  </profile>
+</component>

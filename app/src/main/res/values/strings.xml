@@ -1,0 +1,5 @@
+<resources>
+	<string name="app_name">Edge Seek</string>
+	<string name="txt__edges_hint">Click on an edge to customize it.\nLong click on an edge to split/merge it.</string>
+	
+</resources>

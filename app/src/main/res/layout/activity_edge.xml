@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	tools:context=".activity.EdgeActivity"
+	android:background="?android:colorPrimaryDark"
+	android:layout_height="match_parent">
+	
+	<LinearLayout style="@style/kroov_head">
+		
+		<TextView style="@style/kroov_title"
+			android:id="@+id/title"
+			android:layout_weight="1"
+			tools:text="Left-Top"/>
+		
+		<TextView style="@style/kroov_quarter"
+			android:onClick="_delete"
+			android:background="@null"
+			android:textColor="@color/kroovColorTriggered"
+			android:text="DELETE"/>
+	</LinearLayout>
+	
+	<View style="@style/kroov_split"/>
+	
+	<ScrollView android:layout_height="match_parent"
+		android:layout_width="match_parent">
+		
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:paddingBottom="100dp">
+			
+			<TextView style="@style/kroov_separator"
+				android:text="General"/>
+			
+			<LinearLayout
+				android:id="@+id/preference"
+				android:orientation="vertical"
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"/>
+			
+			<TextView style="@style/kroov_separator"
+				android:onClick="_advanced"
+				android:text="Advanced"/>
+			
+			<LinearLayout
+				android:visibility="gone"
+				android:id="@+id/preference_adv"
+				android:orientation="vertical"
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"/>
+		</LinearLayout>
+	</ScrollView>
+	
+</LinearLayout>

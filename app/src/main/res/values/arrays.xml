@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="edges">
+		<item>Bottom</item>
+		<item>Left</item>
+		<item>Top</item>
+		<item>Right</item>
+	</string-array>
+	<string-array name="tasks">
+		<item>Brightness</item>
+	</string-array>
+	
+	<string-array name="alpha">
+		<item>Alpha</item>
+		<item>Transparency of the edges</item>
+	</string-array>
+	<string-array name="rotate">
+		<item>Rotate</item>
+		<item>Is it allowed to rotate edges when the screen rotates</item>
+	</string-array>
+	<string-array name="position">
+		<item>Position</item>
+		<item>The position of the edge</item>
+	</string-array>
+	<string-array name="xposition">
+		<item>XPosition</item>
+		<item>The secondary position of this edge</item>
+	</string-array>
+	<string-array name="width">
+		<item>Width</item>
+		<item>The width of this edge</item>
+	</string-array>
+	<string-array name="sensitivity">
+		<item>Sensitivity</item>
+		<item>The sensitivity of this edge</item>
+	</string-array>
+	<string-array name="color">
+		<item>Color</item>
+		<item>The color of this edge</item>
+	</string-array>
+	<string-array name="task">
+		<item>Task</item>
+		<item>The task should be executed when the edge get touched</item>
+	</string-array>
+	<string-array name="vibration">
+		<item>Vibration</item>
+		<item>The vibration duration when the edge get touched</item>
+	</string-array>
+	<string-array name="maximum">
+		<item>Maximum</item>
+		<item>Maximum value allowed to be set</item>
+	</string-array>
+	<string-array name="minimum">
+		<item>Minimum</item>
+		<item>Minimum value allowed to be set</item>
+	</string-array>
+	<string-array name="undefined">
+		<item>#</item>
+		<item>#</item>
+	</string-array>
+</resources>
