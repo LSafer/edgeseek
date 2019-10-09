@@ -56,7 +56,7 @@ public class EdgesService extends Service {
 		}
 
 		this.startForeground(1, new NotificationCompat.Builder(this, CHANNEL_ID)
-				.setSmallIcon(R.drawable.ic_launcher_foreground)
+				.setSmallIcon(R.drawable.ic_launcher)
 				.setContentTitle("Edges")
 				.setContentText("Your screen's edges is ready to receive your finger touches!")
 				.setPriority(NotificationCompat.PRIORITY_MIN)
