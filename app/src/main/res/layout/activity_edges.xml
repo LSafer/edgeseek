@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
-	android:padding="15dp"
+	android:padding="30dp"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="?android:colorPrimaryDark"
 	tools:ignore="RtlHardcoded"
 	tools:context=".activity.EdgesActivity">
+	
 	
 	<View
 		android:id="@+id/mobile"
@@ -20,12 +22,127 @@
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintTop_toTopOf="parent" />
 	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30dp"
+		android:layout_marginRight="30dp"
+		app:layout_constraintLeft_toLeftOf="@id/mobile"
+		app:layout_constraintRight_toRightOf="@id/mobile"
+		app:layout_constraintBottom_toBottomOf="@id/mobile">
+		
+		<View
+			android:onClick="_new"
+			android:id="@+id/bottom_left1"
+			android:layout_marginRight="5dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="@dimen/edges_preview_width"
+			android:layout_width="match_parent"
+			android:layout_weight="1"/>
+		
+		<View
+			android:onClick="_new"
+			android:id="@+id/bottom_right1"
+			android:layout_marginLeft="5dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="@dimen/edges_preview_width"
+			android:layout_width="match_parent"
+			android:layout_weight="1"/>
+	</LinearLayout>
+	
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="30dp"
+		android:layout_marginRight="30dp"
+		app:layout_constraintLeft_toLeftOf="@id/mobile"
+		app:layout_constraintRight_toRightOf="@id/mobile"
+		app:layout_constraintTop_toTopOf="@id/mobile">
+		
+		<View
+			android:onClick="_new"
+			android:id="@+id/top_left1"
+			android:layout_marginRight="10dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="@dimen/edges_preview_width"
+			android:layout_width="match_parent"
+			android:layout_weight="1"/>
+		
+		<View
+			android:onClick="_new"
+			android:id="@+id/top_right1"
+			android:layout_marginLeft="5dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="@dimen/edges_preview_width"
+			android:layout_width="match_parent"
+			android:layout_weight="1"/>
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:layout_marginTop="30dp"
+		android:layout_marginBottom="30dp"
+		android:orientation="vertical"
+		app:layout_constraintTop_toTopOf="@id/mobile"
+		app:layout_constraintBottom_toBottomOf="@id/mobile"
+		app:layout_constraintLeft_toLeftOf="@id/mobile">
+		
+		<View
+			android:onClick="_new"
+			android:id="@+id/left_top1"
+			android:layout_marginBottom="5dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="match_parent"
+			android:layout_width="@dimen/edges_preview_width"
+			android:layout_weight="1"/>
+		
+		<View
+			android:onClick="_new"
+			android:id="@+id/left_bottom1"
+			android:layout_marginTop="5dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="match_parent"
+			android:layout_width="@dimen/edges_preview_width"
+			android:layout_weight="1"/>
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:layout_marginTop="30dp"
+		android:layout_marginBottom="30dp"
+		android:orientation="vertical"
+		app:layout_constraintTop_toTopOf="@id/mobile"
+		app:layout_constraintBottom_toBottomOf="@id/mobile"
+		app:layout_constraintRight_toRightOf="@id/mobile">
+		
+		<View
+			android:onClick="_new"
+			android:id="@+id/right_top1"
+			android:layout_marginBottom="5dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="match_parent"
+			android:layout_width="@dimen/edges_preview_width"
+			android:layout_weight="1"/>
+		
+		<View
+			android:onClick="_new"
+			android:id="@+id/right_bottom1"
+			android:layout_marginTop="5dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="match_parent"
+			android:layout_width="@dimen/edges_preview_width"
+			android:layout_weight="1"/>
+	</LinearLayout>
+	
 	<View
 		android:visibility="invisible"
 		android:id="@+id/bottom"
-		android:layout_height="10dp"
+		android:layout_height="@dimen/edges_preview_width"
 		android:layout_width="match_parent"
-		android:background="@color/kroovColorTriggered"
+		android:background="?colorKroovSilkDark"
 		android:layout_marginLeft="30dp"
 		android:layout_marginRight="30dp"
 		app:layout_constraintLeft_toLeftOf="@id/mobile"
@@ -35,9 +152,9 @@
 	<View
 		android:visibility="invisible"
 		android:id="@+id/top"
-		android:layout_height="10dp"
+		android:layout_height="@dimen/edges_preview_width"
 		android:layout_width="match_parent"
-		android:background="@color/kroovColorTriggered"
+		android:background="?colorKroovSilkDark"
 		android:layout_marginLeft="30dp"
 		android:layout_marginRight="30dp"
 		app:layout_constraintLeft_toLeftOf="@id/mobile"
@@ -47,9 +164,9 @@
 	<View
 		android:visibility="invisible"
 		android:id="@+id/left"
-		android:layout_width="10dp"
+		android:layout_width="@dimen/edges_preview_width"
 		android:layout_height="match_parent"
-		android:background="@color/kroovColorTriggered"
+		android:background="?colorKroovSilkDark"
 		android:layout_marginTop="30dp"
 		android:layout_marginBottom="30dp"
 		app:layout_constraintBottom_toBottomOf="@+id/mobile"
@@ -59,9 +176,9 @@
 	<View
 		android:visibility="invisible"
 		android:id="@+id/right"
-		android:layout_width="10dp"
+		android:layout_width="@dimen/edges_preview_width"
 		android:layout_height="match_parent"
-		android:background="@color/kroovColorTriggered"
+		android:background="?colorKroovSilkDark"
 		android:layout_marginTop="30dp"
 		android:layout_marginBottom="30dp"
 		app:layout_constraintBottom_toBottomOf="@+id/mobile"
@@ -69,7 +186,6 @@
 		app:layout_constraintRight_toRightOf="@id/mobile"/>
 	
 	<LinearLayout
-		android:id="@+id/bottoms"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="30dp"
@@ -82,8 +198,8 @@
 			android:visibility="invisible"
 			android:id="@+id/bottom_left"
 			android:layout_marginRight="5dp"
-			android:background="@color/kroovColorTriggered"
-			android:layout_height="10dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="@dimen/edges_preview_width"
 			android:layout_width="match_parent"
 			android:layout_weight="1"/>
 		
@@ -91,15 +207,14 @@
 			android:visibility="invisible"
 			android:id="@+id/bottom_right"
 			android:layout_marginLeft="5dp"
-			android:background="@color/kroovColorTriggered"
-			android:layout_height="10dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="@dimen/edges_preview_width"
 			android:layout_width="match_parent"
 			android:layout_weight="1"/>
 	</LinearLayout>
 	
 	<LinearLayout
 		android:orientation="horizontal"
-		android:id="@+id/tops"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="30dp"
@@ -112,8 +227,8 @@
 			android:visibility="invisible"
 			android:id="@+id/top_left"
 			android:layout_marginRight="10dp"
-			android:background="@color/kroovColorTriggered"
-			android:layout_height="10dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="@dimen/edges_preview_width"
 			android:layout_width="match_parent"
 			android:layout_weight="1"/>
 		
@@ -121,14 +236,13 @@
 			android:visibility="invisible"
 			android:id="@+id/top_right"
 			android:layout_marginLeft="5dp"
-			android:background="@color/kroovColorTriggered"
-			android:layout_height="10dp"
+			android:background="?colorKroovSilkDark"
+			android:layout_height="@dimen/edges_preview_width"
 			android:layout_width="match_parent"
 			android:layout_weight="1"/>
 	</LinearLayout>
 	
 	<LinearLayout
-		android:id="@+id/lefts"
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_marginTop="30dp"
@@ -142,23 +256,22 @@
 			android:visibility="invisible"
 			android:id="@+id/left_top"
 			android:layout_marginBottom="5dp"
-			android:background="@color/kroovColorTriggered"
+			android:background="?colorKroovSilkDark"
 			android:layout_height="match_parent"
-			android:layout_width="10dp"
+			android:layout_width="@dimen/edges_preview_width"
 			android:layout_weight="1"/>
 		
 		<View
 			android:visibility="invisible"
 			android:id="@+id/left_bottom"
 			android:layout_marginTop="5dp"
-			android:background="@color/kroovColorTriggered"
+			android:background="?colorKroovSilkDark"
 			android:layout_height="match_parent"
-			android:layout_width="10dp"
+			android:layout_width="@dimen/edges_preview_width"
 			android:layout_weight="1"/>
 	</LinearLayout>
 	
 	<LinearLayout
-		android:id="@+id/rights"
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_marginTop="30dp"
@@ -172,18 +285,18 @@
 			android:visibility="invisible"
 			android:id="@+id/right_top"
 			android:layout_marginBottom="5dp"
-			android:background="@color/kroovColorTriggered"
+			android:background="?colorKroovSilkDark"
 			android:layout_height="match_parent"
-			android:layout_width="10dp"
+			android:layout_width="@dimen/edges_preview_width"
 			android:layout_weight="1"/>
 		
 		<View
 			android:visibility="invisible"
 			android:id="@+id/right_bottom"
 			android:layout_marginTop="5dp"
-			android:background="@color/kroovColorTriggered"
+			android:background="?colorKroovSilkDark"
 			android:layout_height="match_parent"
-			android:layout_width="10dp"
+			android:layout_width="@dimen/edges_preview_width"
 			android:layout_weight="1"/>
 	</LinearLayout>
 	
@@ -194,36 +307,11 @@
 		android:text="@string/txt__edges_hint"
 		android:gravity="center"
 		android:fontFamily="serif-monospace"
-		android:padding="30dp"
+		android:textSize="24sp"
+		android:padding="50dp"
 		app:layout_constraintBottom_toBottomOf="@+id/mobile"
 		app:layout_constraintEnd_toEndOf="@+id/mobile"
 		app:layout_constraintStart_toStartOf="@+id/mobile"
 		app:layout_constraintTop_toTopOf="@+id/mobile" />
 	
-	<TextView
-		android:id="@+id/addEdge"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@drawable/kroov_round_silk_dark"
-		android:padding="10dp"
-		android:fontFamily="serif-monospace"
-		android:onClick="_new"
-		android:text="Add Edge"
-		app:layout_constraintEnd_toStartOf="@+id/rights"
-		app:layout_constraintStart_toEndOf="@+id/lefts"
-		app:layout_constraintTop_toBottomOf="@+id/instructions" />
-	
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:background="@drawable/kroov_round_silk_dark"
-		android:padding="10dp"
-		android:fontFamily="serif-monospace"
-		android:layout_marginTop="10dp"
-		android:onClick="_apply"
-		android:text="Apply"
-		app:layout_constraintEnd_toStartOf="@+id/addEdge"
-		app:layout_constraintStart_toEndOf="@+id/addEdge"
-		app:layout_constraintTop_toBottomOf="@+id/addEdge" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

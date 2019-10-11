@@ -8,7 +8,7 @@
  *  By adding a new header (at the bottom of this header)
  *  with the word "Editor" on top of it.
  */
-package lsafer.edge_seek.view.global.perference;
+package lsafer.edge_seek.view.edit_entry;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,20 +20,26 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 import lsafer.edge_seek.R;
-import lsafer.edge_seek.io.Edge;
+import lsafer.edge_seek.view.abst.EditEntry;
 import lsafer.json.JSON;
-import lsafer.util.Caster;
+import lsafer.util.JSObject;
 
 /**
  * @author LSaferSE
  * @version 1 alpha (08-Oct-19)
  * @since 08-Oct-19
  */
-@SuppressWarnings("JavaDoc")
-public class JsonEPVA extends EdgePerformanceViewAdapter<Object> {
-	public JsonEPVA(Context context, ViewGroup parent0, ViewGroup parent1, Class<?> type, Edge edge, Object key) {
-		super(context, parent0, parent1, type, edge, key);
+@SuppressWarnings({"WeakerAccess", "JavaDoc"})
+@EditEntry.Configurations(fieldConfig = EditJSON.FieldConfig.class)
+final public class EditJSON extends EditEntry<Object, EditJSON.FieldConfig> {
+	public EditJSON(Context context, ViewGroup[] parents, JSObject.Entry<Object, Object> entry) {
+		super(context, parents, entry);
 	}
 
 	@Override
@@ -42,11 +48,9 @@ public class JsonEPVA extends EdgePerformanceViewAdapter<Object> {
 		View view = inflater.inflate(R.layout.view_epva_json, null);
 		EditText value = view.findViewById(R.id.value);
 
-		view.<TextView>findViewById(R.id.title).setText(this.resources[0].equals("#") ? String.valueOf(this.key) : this.resources[0]);
-		view.<TextView>findViewById(R.id.description).setText(this.resources[1].equals("#") ? "Custom" : this.resources[1]);
-		view.<TextView>findViewById(R.id.type).setText("Type: " + this.type.getSimpleName());
+		view.<TextView>findViewById(R.id.type).setText("Type: " + (this.entry.field == null ? "Any" : this.entry.field.getType().getSimpleName()));
 
-		value.setText(String.valueOf(this.get()));
+		value.setText(JSON.instance.stringify(this.entry.getValue()));
 		value.addTextChangedListener(
 				new TextWatcher() {
 					@Override
@@ -61,7 +65,7 @@ public class JsonEPVA extends EdgePerformanceViewAdapter<Object> {
 					@Override
 					public void afterTextChanged(Editable editable) {
 						try {
-							JsonEPVA.this.set(Caster.Default.instance.cast(JsonEPVA.this.field.getType(), JSON.instance.parse(value.getText().toString())));
+							EditJSON.this.entry.setValue(JSON.instance.parse(value.getText().toString()));
 						} catch (Exception ignored) {
 						}
 					}
@@ -70,5 +74,10 @@ public class JsonEPVA extends EdgePerformanceViewAdapter<Object> {
 
 		parent.addView(view);
 		return view;
+	}
+
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface FieldConfig {
 	}
 }

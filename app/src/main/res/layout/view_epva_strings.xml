@@ -27,18 +27,16 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content">
 			
-			<EditText
+			<TextView
 				style="@style/kroov_name"
-				android:background="@drawable/kroov_round_silk_dark"
 				android:textColor="?android:colorAccent"
+				android:background="@drawable/kroov_round_silk_dark"
+				android:layout_height="wrap_content"
 				android:layout_marginTop="15dp"
 				android:padding="10dp"
-				android:layout_height="wrap_content"
 				android:id="@+id/value"
-				android:hint="@string/txt__json"
 				android:gravity="center"
-				android:inputType="text"
-				android:importantForAutofill="no" />
+				tools:text="Picked" />
 		</LinearLayout>
 	</LinearLayout>
 	

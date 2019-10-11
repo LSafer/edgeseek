@@ -11,7 +11,6 @@
 package lsafer.edge_seek.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Switch;
@@ -21,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import lsafer.edge_seek.R;
 import lsafer.edge_seek.io.App;
-import lsafer.edge_seek.service.EdgesService;
+import lsafer.edge_seek.service.MainService;
 import lsafer.view.Refreshable;
 
 /**
@@ -31,20 +30,20 @@ import lsafer.view.Refreshable;
  * @version 1
  * @since 4-oct-2019
  */
-@SuppressWarnings("JavaDoc")
-public class MainActivity extends AppCompatActivity implements Refreshable {
+final public class MainActivity extends AppCompatActivity implements Refreshable {
+	/**
+	 * The current theme res-id that this {@link MainActivity activity} is set to.
+	 */
 	@StyleRes
-	int theme;
+	private int theme;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setTheme(theme = App.load(this).ui.theme());
+		this.setTheme(theme = App.init(this).ui.<App.UI>load().theme());
 		this.setContentView(R.layout.activity_main);
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-			this.startForegroundService(new Intent(this, EdgesService.class));
-		else this.startService(new Intent(this, EdgesService.class));
+		MainService.start(this);
 	}
 
 	@Override
@@ -59,40 +58,49 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
 		}
 	}
 
-	public void _autoBrightness(View view) {
-		App.main.auto_brightness = !App.main.auto_brightness;
-		App.main.save();
-		this.refresh();
-	}
-
-	public void _boot(View view) {
-		App.main.boot = !App.main.boot;
-		App.main.save();
-		this.refresh();
-	}
-
+	/**
+	 * Start the activity {@link EdgesActivity}.
+	 *
+	 * @param view ignored
+	 */
 	public void _edges(View view) {
 		this.startActivity(new Intent(this, EdgesActivity.class));
 	}
 
+	/**
+	 * Start the activity {@link MiscActivity}.
+	 *
+	 * @param view ignored
+	 */
+	public void _misc(View view) {
+		this.startActivity(new Intent(this, MiscActivity.class));
+	}
+
+	/**
+	 * Start the activity {@link EdgesActivity}.
+	 * @param view ignored
+	 */
 	public void _permissions(View view) {
 		this.startActivity(new Intent(this, PermissionsActivity.class));
 	}
 
-	public void _power(View view) {
-		if(App.main.activated) {
-			this.stopService(new Intent(this, EdgesService.class));
-			App.main.activated = false;
-			App.main.save();
-		} else {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-				this.startForegroundService(new Intent(this, EdgesService.class));
-			else this.startService(new Intent(this, EdgesService.class));
-			App.main.activated = true;
-			App.main.save();
-		}
+	/**
+	 * Switch the activation status of this application.
+	 *
+	 * @param view ignored
+	 * @see App.Main#activated
+	 */
+	public void _activation(View view) {
+		App.main.activated = !App.main.activated;
+		MainService.start(this);
+		this.refresh();
 	}
 
+	/**
+	 * Start the activity {@link EdgesActivity}.
+	 *
+	 * @param view ignored
+	 */
 	public void _ui(View view) {
 		this.startActivity(new Intent(this, UIActivity.class));
 	}
@@ -100,7 +108,5 @@ public class MainActivity extends AppCompatActivity implements Refreshable {
 	@Override
 	public void refresh() {
 		this.<Switch>findViewById(R.id.power).setChecked(App.main.activated);
-		this.<Switch>findViewById(R.id.boot).setChecked(App.main.boot);
-		this.<Switch>findViewById(R.id.autoBrightness).setChecked(App.main.auto_brightness);
 	}
 }

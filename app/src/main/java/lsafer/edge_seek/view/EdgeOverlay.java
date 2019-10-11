@@ -8,18 +8,15 @@
  *  By adding a new header (at the bottom of this header)
  *  with the word "Editor" on top of it.
  */
-package lsafer.edge_seek.view.global;
+package lsafer.edge_seek.view;
 
 import android.annotation.SuppressLint;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.gesture.GestureOverlayView;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Build;
 import android.os.Vibrator;
-import android.provider.Settings;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -27,14 +24,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-
 import lsafer.edge_seek.R;
 import lsafer.edge_seek.io.Edge;
-import lsafer.edge_seek.util.Graphics;
+import lsafer.edge_seek.util.Common;
+import lsafer.edge_seek.util.abst.Task;
 import lsafer.io.File;
-import lsafer.view.Refreshable;
 
 /**
  * @author LSaferSE
@@ -43,23 +37,28 @@ import lsafer.view.Refreshable;
  */
 @SuppressLint("ViewConstructor")
 @SuppressWarnings({"JavaDoc", "unused"})
-public class EdgeOverlay extends GestureOverlayView implements Refreshable {
+public class EdgeOverlay extends GestureOverlayView {
 	final private WindowManager.LayoutParams params = new WindowManager.LayoutParams();
 
 	private boolean attached = false;
 	private File remote;
-	private int center = 0;
 	private OnGestureListener listener;
-	private Edge edge;
+	public Edge edge;
 	private boolean landscape;
+	private Task seek_task;
+	private Task double_click_task;
+	private int dci = 0;
+	private int clicks = 0;
+	private Integer ppo = null;
 
 	public EdgeOverlay(Context context, Edge edge){
 		super(context);
 		this.edge = edge;
+		this.seek_task = Task.newFor(edge.seek_task).attach(this);
+		this.double_click_task = Task.newFor(edge.double_click_task).attach(this);
 	}
 
-	@Override
-	public void refresh() {
+	public void build() {
 		WindowManager window = this.getContext().getSystemService(WindowManager.class);
 		assert window != null;
 		Display display = window.getDefaultDisplay();
@@ -67,12 +66,12 @@ public class EdgeOverlay extends GestureOverlayView implements Refreshable {
 		display.getSize(size);
 
 		int position = this.edge.rotate ? this.edge.position : Math.abs(display.getRotation() * 3 + this.edge.position) % 4;
-		int xposition = this.edge.xposition == -1 ? -1 :
+		int xposition = this.edge.xposition == 4 ? 4:
 						this.edge.rotate ? this.edge.xposition : Math.abs(display.getRotation() * 3 + this.edge.xposition) % 4;
 		this.landscape = position == 0 || position == 2;
-		int height = xposition == -1 ? LayoutParams.MATCH_PARENT : (this.landscape ? size.x : size.y) / 2;
+		int height = xposition == 4 ? LayoutParams.MATCH_PARENT : (this.landscape ? size.x : size.y) / 2;
 //		System.out.println("LALA_LAND o:" + display.getRotation() + " ep:"+this.edge.position+" exp:"+this.edge.xposition+" cp:"+this.position+" cxp:"+this.xposition);
-		this.params.gravity = Graphics.gravity(position) | (xposition == -1 ? 0 : Graphics.gravity(xposition));
+		this.params.gravity = Common.gravity(position) | (xposition == 4 ? 0 : Common.gravity(xposition));
 
 		this.params.alpha = this.edge.alpha;
 		this.params.width = this.landscape ? height : this.edge.width;
@@ -86,7 +85,7 @@ public class EdgeOverlay extends GestureOverlayView implements Refreshable {
 							WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS |
 							WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
 
-		this.setBackgroundColor(Color.parseColor(this.edge.color));
+		this.setBackgroundColor(this.edge.color());
 
 		if (this.listener == null)
 			this.addOnGestureListener(this.listener = new OnGestureListener() {
@@ -95,19 +94,21 @@ public class EdgeOverlay extends GestureOverlayView implements Refreshable {
 					Vibrator vibrator = EdgeOverlay.this.getContext().getSystemService(Vibrator.class);
 					assert vibrator != null;
 					vibrator.vibrate(EdgeOverlay.this.edge.vibration);
-					EdgeOverlay.this.center = (int) (EdgeOverlay.this.landscape ? event.getX() : event.getY());
+
+					EdgeOverlay.this.resolve_double_click();
 					view.clear(false);
 				}
 
 				@Override
 				public void onGesture(GestureOverlayView view, MotionEvent event) {
-					EdgeOverlay.this.run((int) (EdgeOverlay.this.landscape ? event.getX() : event.getY()));
+					EdgeOverlay.this.resolve_seek((int) (EdgeOverlay.this.landscape ? event.getX() : event.getY()));
 					view.clear(false);
 				}
 
 				@Override
 				public void onGestureEnded(GestureOverlayView view, MotionEvent event) {
 					view.clear(false);
+					EdgeOverlay.this.ppo = null;
 				}
 
 				@Override
@@ -116,24 +117,26 @@ public class EdgeOverlay extends GestureOverlayView implements Refreshable {
 					assert vibrator != null;
 					vibrator.vibrate(EdgeOverlay.this.edge.vibration);
 					view.clear(false);
+					EdgeOverlay.this.ppo = null;
 				}
 			});
 	}
 
-	public void show() {
+	public EdgeOverlay show() {
 		if (!this.attached)
 			try {
 				WindowManager window = this.getContext().getSystemService(WindowManager.class);
 				assert window != null;
-				this.refresh();
+				this.build();
 				window.addView(this, this.params);
 				this.attached = true;
 			} catch (Exception e){
 				e.printStackTrace();
 			}
+		return this;
 	}
 
-	public void dismiss(){
+	public EdgeOverlay dismiss(){
 		if (this.attached)
 			try {
 				WindowManager window = this.getContext().getSystemService(WindowManager.class);
@@ -144,16 +147,37 @@ public class EdgeOverlay extends GestureOverlayView implements Refreshable {
 			}
 
 		this.attached = false;
+		return this;
 	}
 
-	public void run(int integer) {
-		integer = (int) ((this.center - integer) * this.edge.sensitivity);
-		integer *= this.landscape && this.edge.position == 3 ? -1 : 1;
-		integer += this.tasksx[this.edge.task].apply(this.getContext());
-		integer = integer > this.edge.maximum ? this.edge.maximum : integer < this.edge.minimum ? this.edge.minimum : integer;
+	public void resolve_seek(int integer) {
+		Integer previous = ppo;
+		ppo = integer *= this.landscape && this.edge.position == 3 ? -1 : 1;
 
-		this.tasks[this.edge.task].accept(this.getContext(), integer);
-		this.toast(integer);
+		if (previous == null)
+			previous = integer;
+
+		integer = (int) ((float)(previous - integer) * this.edge.sensitivity);
+		System.out.println("LALA_LAND: "+ integer);
+		this.seek_task.accept(this.getContext(), integer);
+	}
+
+	public void resolve_double_click() {
+		int dci = ++this.dci;
+		this.clicks++;
+
+		if (this.clicks >= 2)
+			this.double_click_task.accept(this.getContext(), 0);
+
+		new Thread(()-> {
+			try {
+				Thread.sleep(1000);
+				if (this.dci == dci)
+					this.clicks = 0;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}).start();
 	}
 
 	@SuppressLint("InflateParams")
@@ -169,24 +193,4 @@ public class EdgeOverlay extends GestureOverlayView implements Refreshable {
 		this.dismiss();
 		this.show();
 	}
-
-	@SuppressWarnings("unchecked")
-	final private static BiConsumer<Context, Integer>[] tasks = new BiConsumer[]{
-			(BiConsumer<Context, Integer>)(context, integer) -> {
-				ContentResolver resolver = context.getContentResolver();
-				Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-				Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS, integer);
-			}
-	};
-
-	@SuppressWarnings("unchecked")
-	final private static Function<Context, Integer>[] tasksx = new Function[] {
-			(Function<Context, Integer>) (context) -> {
-				try {
-					return Settings.System.getInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
-				} catch (Settings.SettingNotFoundException e) {
-					throw new RuntimeException(e);
-				}
-			}
-	};
 }

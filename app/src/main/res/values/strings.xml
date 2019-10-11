@@ -1,5 +1,44 @@
 <resources>
 	<string name="app_name">Edge Seek</string>
-	<string name="txt__edges_hint">Click on an edge to customize it.\nLong click on an edge to split/merge it.</string>
 	
+	<string name="txt__edges_hint">
+		Click on an inactive edge to activate it.\n
+		Click on an active edge to customize it.\n
+		Long click on an edge to split/merge it.
+	</string>
+	<string name="txt__auto_boot">Auto boot the service every time the device booted-up</string>
+	<string name="txt__off_screen_auto_brightness">Turn auto-brightness mode on every time the screen turned off</string>
+	<string name="txt__json">{json}</string>
+	<string name="txt__theme">The overall style of the application</string>
+	<string name="txt__display_over_other_apps">Allow this application to draw views floating on your screen</string>
+	<string name="txt__ignore_battery_optimizations">Make this application free from the system battery optimizations</string>
+	<string name="txt__write_system_settings">Allow this application to edit settings</string>
+	<string name="txt__receive_screen_off">Allow this application to receive screen off broadcasts</string>
+	<string name="txt__foreground_service">Allow this application to start foreground services</string>
+	<string name="txt__edges">Manage Edges</string>
+	<string name="txt__interface">Set user interface preference</string>
+	<string name="txt__misc">Other misc preference</string>
+	<string name="txt__permissions">Manage application permissions</string>
+	
+	<string name="off_screen_auto_brightness">Off Screen Auto Brightness</string>
+	<string name="auto_boot">Auto Boot</string>
+	<string name="appearance">Appearance</string>
+	<string name="advanced">Advanced</string>
+	<string name="actions">Actions</string>
+	<string name="delete">Delete</string>
+	<string name="colors">Colors</string>
+	<string name="theme">Theme</string>
+	<string name="Interface">Interface</string>
+	<string name="needed">Needed</string>
+	<string name="permissions">Permissions</string>
+	<string name="display_over_other_apps">Display Over Other Apps</string>
+	<string name="write_system_settings">Write System Settings</string>
+	<string name="ignore_battery_optimizations">Ignore Battery Optimizations</string>
+	<string name="foreground_service">Foreground Service</string>
+	<string name="receive_screen_off">Receive Screen Off</string>
+	<string name="misc">Misc</string>
+	<string name="automation">Automation</string>
+	<string name="app">App</string>
+	<string name="edges">Edges</string>
+	<string name="other">Other</string>
 </resources>

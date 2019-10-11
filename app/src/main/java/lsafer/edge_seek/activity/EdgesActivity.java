@@ -11,12 +11,9 @@
 package lsafer.edge_seek.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -24,29 +21,36 @@ import java.util.ArrayList;
 import lsafer.edge_seek.R;
 import lsafer.edge_seek.io.App;
 import lsafer.edge_seek.io.Edge;
-import lsafer.edge_seek.service.EdgesService;
+import lsafer.edge_seek.service.MainService;
 import lsafer.edge_seek.util.Common;
 import lsafer.view.Refreshable;
 
 /**
+ * An activity to visualize to the user where the activated edges.
+ * And navigate hem/her to the edge he/she selects. And also provide.
+ * Some shortcut gestures.
+ *
  * @author LSaferSE
  * @version 1 alpha (08-Oct-19)
  * @since 08-Oct-19
  */
-@SuppressWarnings("JavaDoc")
-public class EdgesActivity extends AppCompatActivity implements Refreshable {
-	private static ArrayList<EdgeViewAdapter> adapters = new ArrayList<>();
+final public class EdgesActivity extends AppCompatActivity implements Refreshable {
+	/**
+	 * The {@link EdgeViewAdapter}s that currently viewing.
+	 */
+	final private ArrayList<EdgeViewAdapter> adapters = new ArrayList<>();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setTheme(App.load(this).ui.theme());
+		this.setTheme(App.init(this).ui.<App.UI>load().theme());
 		this.setContentView(R.layout.activity_edges);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		MainService.restart(this);
 		this.refresh();
 	}
 
@@ -54,72 +58,79 @@ public class EdgesActivity extends AppCompatActivity implements Refreshable {
 	public void refresh() {
 		App.edges.clear();
 		App.edges.load();
-		adapters.forEach(EdgeViewAdapter::dismiss);
-		adapters.clear();
+
+		this.adapters.forEach(EdgeViewAdapter::dismiss);
+		this.adapters.clear();
+
 		App.edges.forEach((k, v)-> {
 			if (v instanceof Edge)
-				adapters.add(new EdgeViewAdapter((Edge) v));
+				this.adapters.add(new EdgeViewAdapter((Edge) v));
 		});
 	}
 
-	public void _apply(View view) {
-		this.apply();
-	}
-
-	public void apply() {
-		this.stopService(new Intent(this, EdgesService.class));
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-			this.startForegroundService(new Intent(this, EdgesService.class));
-		else this.startService(new Intent(this, EdgesService.class));
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		this.apply();
-	}
-
+	/**
+	 * Create new edge depending on the id of the given view.
+	 *
+	 * @param view that have called this function
+	 */
 	public void _new(View view) {
-		new AlertDialog.Builder(this, R.style.KroovAlertDialogTheme)
-				.setItems(R.array.edges, (d, i) -> {
-					Edge edge = new Edge();
-					edge.remote(App.edges.remote().child(String.valueOf(i)));
-					edge.position = i;
-					edge.save();
-					this.refresh();
-				})
-				.show();
+		Edge edge = new Edge();
+		edge.position = Common.position(view.getId());
+		edge.xposition = Common.xposition(view.getId());
+		edge.remote(App.edges.remote().child(Common.positionName(edge.position) + " " + Common.positionName(edge.xposition)));
+		edge.save();
+		this.refresh();
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	public class EdgeViewAdapter {
+	/**
+	 * An adapter to manage the views. That defined in the xml layout file of this activity.
+	 * By hide/show or set listeners on them. All because. It's a little difficult to build views manually each time.
+	 */
+	private class EdgeViewAdapter {
+		/**
+		 * The edge data container.
+		 */
 		private Edge edge;
 
+		/**
+		 * The adapted view.
+		 */
 		private View view;
 
-		public EdgeViewAdapter(Edge edge) {
+		/**
+		 * Initialize this adapter with the given edge.
+		 * And find the view to be adapted automatically
+		 * From the data in the given edge.
+		 *
+		 * @param edge to get data from
+		 */
+		private EdgeViewAdapter(Edge edge) {
 			this.edge = edge;
-			this.view = EdgesActivity.this.findViewById(Common.positionId(edge));
+			this.view = EdgesActivity.this.findViewById(Common.positionId(edge.position, edge.xposition));
 
-			this.view.setOnClickListener(v -> EdgesActivity.this.startActivity(new Intent(EdgesActivity.this, EdgeActivity.class)
-					.putExtra("edge", this.edge).putExtra("file", this.edge.remote())));
+			this.view.setVisibility(View.VISIBLE);
+			this.view.setBackgroundColor(this.edge.color());
+			this.view.setOnClickListener(v -> {
+				Intent intent = new Intent(EdgesActivity.this, EdgeActivity.class);
+				intent.putExtra("edge", this.edge);
+				intent.putExtra("file", this.edge.remote());
+				EdgesActivity.this.startActivity(intent);
+			});
 			this.view.setOnLongClickListener(v -> {
-				if (this.edge.xposition == -1)
+				if (this.edge.xposition == 4)
 					this.edge.split();
 				else this.edge.merge();
 
 				EdgesActivity.this.refresh();
 				return true;
 			});
-
-			this.view.setBackgroundColor(Color.parseColor(this.edge.color));
-			this.show();
 		}
 
-		public void show(){
-			this.view.setVisibility(View.VISIBLE);
-		}
-		public void dismiss(){
+		/**
+		 * Hide the adapted view.
+		 */
+		@SuppressWarnings("UnusedReturnValue")
+		private void dismiss() {
 			this.view.setVisibility(View.INVISIBLE);
 		}
 	}

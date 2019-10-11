@@ -8,18 +8,23 @@
  *  By adding a new header (at the bottom of this header)
  *  with the word "Editor" on top of it.
  */
-package lsafer.edge_seek.view.global.perference;
+package lsafer.edge_seek.view.edit_entry;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.TextView;
+import android.widget.Switch;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 import lsafer.edge_seek.R;
-import lsafer.edge_seek.io.Edge;
+import lsafer.edge_seek.view.abst.EditEntry;
+import lsafer.util.JSObject;
 
 /**
  * @author LSaferSE
@@ -27,24 +32,27 @@ import lsafer.edge_seek.io.Edge;
  * @since 08-Oct-19
  */
 @SuppressWarnings({"unused", "JavaDoc"})
-public class BooleanEPVA extends EdgePerformanceViewAdapter<Boolean> {
-	public BooleanEPVA(Context context, ViewGroup parent0, ViewGroup parent1, Class<?> type, Edge edge, Object key) {
-		super(context, parent0, parent1, type, edge, key);
+@EditEntry.Configurations(fieldConfig = EditBoolean.FieldConfig.class)
+final public class EditBoolean extends EditEntry<Boolean, EditBoolean.FieldConfig> {
+	public EditBoolean(Context context, ViewGroup[] parents, JSObject.Entry<Object, Boolean> entry) {
+		super(context, parents, entry);
 	}
 
 	@SuppressLint("InflateParams")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent) {
 		View view = inflater.inflate(R.layout.view_epva_boolean, null);
-		CheckBox box = view.findViewById(R.id.value);
+		Switch box = view.findViewById(R.id.value);
 
-		view.<TextView>findViewById(R.id.title).setText(this.resources[0].equals("#") ? String.valueOf(this.key) : this.resources[0]);
-		view.<TextView>findViewById(R.id.description).setText(this.resources[1].equals("#") ? "Custom" : this.resources[1]);
-
-		box.setChecked(this.get());
-		box.setOnClickListener(v -> this.set(((CheckBox) v).isChecked()));
+		box.setChecked(this.entry.getValue());
+		box.setOnClickListener(v -> this.entry.setValue(((Switch) v).isChecked()));
 
 		parent.addView(view);
 		return view;
+	}
+
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface FieldConfig {
 	}
 }

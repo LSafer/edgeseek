@@ -10,31 +10,32 @@
  */
 package lsafer.edge_seek.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Switch;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import lsafer.edge_seek.R;
 import lsafer.edge_seek.io.App;
+import lsafer.edge_seek.service.MainService;
 import lsafer.view.Refreshable;
 
 /**
- * An activity to manage user interface preference.
+ * Misc preferences activity.
  *
  * @author LSaferSE
- * @version 1 alpha (05-Oct-19)
- * @since 05-Oct-19
+ * @version 1 (alpha 11-oct-2019)
+ * @since 11-oct-2019
  */
-final public class UIActivity extends AppCompatActivity implements Refreshable {
+public class MiscActivity extends AppCompatActivity implements Refreshable {
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.init(this).ui.<App.UI>load().theme());
-		this.setContentView(R.layout.activity_ui);
+		this.setContentView(R.layout.activity_misc);
 	}
 
 	@Override
@@ -45,21 +46,30 @@ final public class UIActivity extends AppCompatActivity implements Refreshable {
 
 	@Override
 	public void refresh() {
-		this.<TextView>findViewById(R.id.theme).setText(App.ui.theme);
+		this.<Switch>findViewById(R.id.boot).setChecked(App.main.boot);
+		this.<Switch>findViewById(R.id.autoBrightness).setChecked(App.main.auto_brightness);
 	}
 
 	/**
-	 * Toggle the theme of this application.
+	 * Toggle {@link App.Main#auto_brightness}.
 	 *
 	 * @param view ignored
-	 * @see App.UI#theme
-	 * @see App.UI#theme()
 	 */
-	public void _theme(View view) {
-		App.ui.theme = App.ui.theme.equals("dark") ? "light" : "dark";
-		App.ui.save();
+	public void _autoBrightness(View view) {
+		App.main.auto_brightness = !App.main.auto_brightness;
+		App.main.save();
+		MainService.restart(this);
+		this.refresh();
+	}
 
-		this.startActivity(new Intent(this, UIActivity.class));
-		this.finish();
+	/**
+	 * Toggle {@link App.Main#boot}
+	 *
+	 * @param view ignored
+	 */
+	public void _boot(View view) {
+		App.main.boot = !App.main.boot;
+		App.main.save();
+		this.refresh();
 	}
 }

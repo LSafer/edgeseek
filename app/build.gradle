@@ -26,8 +26,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.github.LSaferSE:LSafer:1.2.3-beta5'
-    implementation 'com.github.LSaferSE:LSafer-Android:1.2.1-fixed'
+    implementation 'com.github.LSaferSE:LSafer:1.2.3-beta9'
+    //noinspection GradleDependency
+    implementation 'com.github.LSaferSE:LSafer-Android:1.2.3-beta4'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

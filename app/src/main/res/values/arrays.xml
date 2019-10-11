@@ -1,61 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="edges">
-		<item>Bottom</item>
-		<item>Left</item>
-		<item>Top</item>
-		<item>Right</item>
-	</string-array>
-	<string-array name="tasks">
-		<item>Brightness</item>
-	</string-array>
-	
-	<string-array name="alpha">
+	<string-array name="alpha_d">
 		<item>Alpha</item>
-		<item>Transparency of the edges</item>
+		<item>Transparency of the edge</item>
 	</string-array>
-	<string-array name="rotate">
+	<string-array name="rotate_d">
 		<item>Rotate</item>
 		<item>Is it allowed to rotate edges when the screen rotates</item>
 	</string-array>
-	<string-array name="position">
+	<string-array name="position_d">
 		<item>Position</item>
 		<item>The position of the edge</item>
 	</string-array>
-	<string-array name="xposition">
+	<string-array name="xposition_d">
 		<item>XPosition</item>
 		<item>The secondary position of this edge</item>
 	</string-array>
-	<string-array name="width">
+	<string-array name="width_d">
 		<item>Width</item>
 		<item>The width of this edge</item>
 	</string-array>
-	<string-array name="sensitivity">
+	<string-array name="sensitivity_d">
 		<item>Sensitivity</item>
 		<item>The sensitivity of this edge</item>
 	</string-array>
-	<string-array name="color">
+	<string-array name="color_d">
 		<item>Color</item>
 		<item>The color of this edge</item>
 	</string-array>
-	<string-array name="task">
-		<item>Task</item>
+	<string-array name="seek_task_d">
+		<item>Seek Task</item>
 		<item>The task should be executed when the edge get touched</item>
 	</string-array>
-	<string-array name="vibration">
+	<string-array name="vibration_d">
 		<item>Vibration</item>
 		<item>The vibration duration when the edge get touched</item>
 	</string-array>
-	<string-array name="maximum">
+	<string-array name="maximum_d">
 		<item>Maximum</item>
 		<item>Maximum value allowed to be set</item>
 	</string-array>
-	<string-array name="minimum">
+	<string-array name="minimum_d">
 		<item>Minimum</item>
 		<item>Minimum value allowed to be set</item>
 	</string-array>
 	<string-array name="undefined">
 		<item>#</item>
 		<item>#</item>
+	</string-array>
+	<string-array name="stream_d">
+		<item>Stream</item>
+		<item>For audio task. To define what stream to be targeted</item>
+	</string-array>
+	<string-array name="double_click_task_d">
+		<item>Double Click Task</item>
+		<item>The task should be executed when the edge get double touched</item>
+	</string-array>
+	
+	<string-array name="streams">
+		<item>Voice Call</item>
+		<item>System</item>
+		<item>Ringtone</item>
+		<item>Music</item>
+		<item>Alarm</item>
+		<item>Notification</item>
+		<item>Bluetooth Voice Calls</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+	</string-array>
+	<string-array name="positions">
+		<item>Bottom</item> //0
+		<item>Left</item> //1
+		<item>Top</item> //2
+		<item>Right</item> //3
+		<item>Full</item> //4
+	</string-array>
+	<string-array name="seek_tasks">
+		<item>Nothing</item>
+		<item>Control Brightness</item>
+		<item>Control Audio</item>
+	</string-array>
+	<string-array name="double_click_tasks">
+		<item>Nothing</item>
+		<item>Expand Notification Bar</item>
 	</string-array>
 </resources>

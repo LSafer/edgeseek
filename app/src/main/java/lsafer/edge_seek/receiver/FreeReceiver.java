@@ -1,3 +1,5 @@
+package lsafer.edge_seek.receiver;
+
 /*
  * Copyright (c) 2019, LSafer, All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -8,26 +10,36 @@
  *  By adding a new header (at the bottom of this header)
  *  with the word "Editor" on top of it.
  */
-package lsafer.edge_seek.receiver;
-
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import lsafer.edge_seek.io.App;
-import lsafer.edge_seek.service.MainService;
-
 /**
- * A receiver to notify this application when the device finished booting up.
+ * A free receiver to be used on services.
  *
  * @author LSaferSE
- * @version 1 alpha (09-Oct-19)
- * @since 09-Oct-19
+ * @version 1 alpha (11-cct-2019)
+ * @since 11-oct-2019
  */
-final public class BootReceiver extends BroadcastReceiver {
+final public class FreeReceiver extends BroadcastReceiver {
+	/**
+	 * The code to run when this receiver receives an action.
+	 */
+	private Runnable runnable;
+
+	/**
+	 * Initialize this.
+	 *
+	 * @param runnable to be run when this receiver receives an action
+	 */
+	public FreeReceiver(Runnable runnable) {
+		this.runnable = runnable;
+	}
+
+	@SuppressLint("UnsafeProtectedBroadcastReceiver")
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		if (intent != null && intent.getAction() != null && intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED) && App.init(context).main.<App.Main>load().boot && App.main.activated)
-			MainService.start(context);
+		this.runnable.run();
 	}
 }

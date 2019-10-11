@@ -16,72 +16,72 @@
 		
 		<Switch style="@style/kroov_quarter"
 			android:id="@+id/power"
-			android:onClick="_power"
+			android:onClick="_activation"
 			android:checked="true"/>
 	</LinearLayout>
-	
 	<View style="@style/kroov_split"/>
 	
-	<TextView style="@style/kroov_separator"
-		android:text="General"/>
-	
-	<LinearLayout style="@style/kroov_drawerx"
-		android:onClick="_ui">
-		<TextView style="@style/kroov_name"
-			android:text="User Interface"/>
-		<TextView style="@style/kroov_description"
-			android:text="Set user interface perferance"/>
-	</LinearLayout>
-	
-	<View style="@style/kroov_split"/>
-	
-	<LinearLayout style="@style/kroov_drawerx"
-		android:onClick="_permissions">
-		<TextView style="@style/kroov_name"
-			android:text="Permissions"/>
-		<TextView style="@style/kroov_description"
-			android:text="Manage application permissions"/>
-	</LinearLayout>
-	
-	<View style="@style/kroov_split"/>
-	
-	<LinearLayout style="@style/kroov_drawerx"
-		android:onClick="_edges">
-		<TextView style="@style/kroov_name"
-			android:text="Edges"/>
-		<TextView style="@style/kroov_description"
-			android:text="Manage Edges"/>
-	</LinearLayout>
-	
-	<View style="@style/kroov_split"/>
-	
-	<LinearLayout style="@style/kroov_box"
-		android:onClick="_boot">
-		<LinearLayout style="@style/kroov_drawer">
-			<TextView style="@style/kroov_name"
-				android:text="Auto Boot"/>
-			<TextView style="@style/kroov_description"
-				android:text="Auto boot the service evrytime the device booted-up"/>
+	<ScrollView
+		android:layout_height="match_parent"
+		android:layout_width="match_parent">
+		
+		<LinearLayout
+			android:orientation="vertical"
+			android:paddingBottom="@dimen/linear_layout_bottom_gap"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			
+			<TextView style="@style/kroov_separator" android:text="@string/app"/>
+			
+			<LinearLayout style="@style/kroov_drawerx"
+				android:onClick="_edges">
+				<TextView style="@style/kroov_name"
+					android:text="@string/edges"/>
+				<TextView style="@style/kroov_description"
+					android:text="@string/txt__edges"/>
+			</LinearLayout>
+			
+			<View style="@style/kroov_split"/>
+			
+			<TextView style="@style/kroov_separator" android:text="@string/misc"/>
+			
+			<LinearLayout style="@style/kroov_drawerx"
+				android:onClick="_ui">
+				<TextView style="@style/kroov_name"
+					android:text="@string/Interface"/>
+				<TextView style="@style/kroov_description"
+					android:text="@string/txt__interface"/>
+			</LinearLayout>
+			
+			<View style="@style/kroov_split"/>
+			
+			<LinearLayout style="@style/kroov_drawerx"
+				android:onClick="_misc">
+				<TextView style="@style/kroov_name"
+					android:text="@string/misc"/>
+				<TextView style="@style/kroov_description"
+					android:text="@string/txt__misc"/>
+			</LinearLayout>
+			
+			<View style="@style/kroov_split"/>
+			
+			<TextView style="@style/kroov_separator" android:text="@string/other"/>
+			
+			<LinearLayout style="@style/kroov_drawerx"
+				android:onClick="_permissions">
+				<TextView style="@style/kroov_name"
+					android:text="@string/permissions"/>
+				<TextView style="@style/kroov_description"
+					android:text="@string/txt__permissions"/>
+			</LinearLayout>
+			
+			<View style="@style/kroov_split">
+			
+			</View>
+			
 		</LinearLayout>
-		<Switch style="@style/kroov_quarter"
-			android:onClick="_boot"
-			android:id="@+id/boot"/>
-	</LinearLayout>
+		
+	</ScrollView>
 	
-	<View style="@style/kroov_split"/>
-	<LinearLayout style="@style/kroov_box"
-		android:onClick="_autoBrightness">
-		<LinearLayout style="@style/kroov_drawer">
-			<TextView style="@style/kroov_name"
-				android:text="Off-Screen Auto Brightness"/>
-			<TextView style="@style/kroov_description"
-				android:text="Turn auto-brightness mode on everytime the screen turned off"/>
-		</LinearLayout>
-		<Switch style="@style/kroov_quarter"
-			android:onClick="_autoBrightness"
-			android:id="@+id/autoBrightness"/>
-	</LinearLayout>
-	
-	<View style="@style/kroov_split"/>
 	
 </LinearLayout>

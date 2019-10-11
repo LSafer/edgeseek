@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="edges_preview_width">15dp</dimen>
+	<dimen name="linear_layout_bottom_gap">100dp</dimen>
+	<dimen name="section_top_gap">50dp</dimen>
+</resources>

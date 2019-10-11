@@ -6,19 +6,18 @@
 	android:layout_height="match_parent">
 	
 	<TextView style="@style/kroov_titlex"
-		android:text="Permissions"/>
+		android:text="@string/permissions"/>
 	
 	<View style="@style/kroov_split"/>
 	
-	<TextView style="@style/kroov_separator"
-		android:text="Main"/>
+	<TextView style="@style/kroov_separator" android:text="@string/needed"/>
 
 	<LinearLayout style="@style/kroov_box">
 		<LinearLayout style="@style/kroov_drawer">
 			<TextView style="@style/kroov_name"
-				android:text="Display Over Other Apps"/>
+				android:text="@string/display_over_other_apps"/>
 			<TextView style="@style/kroov_description"
-				android:text="Allow this application to draw views floating on your screen"/>
+				android:text="@string/txt__display_over_other_apps"/>
 		</LinearLayout>
 		<CheckBox style="@style/kroov_quarter"
 			android:onClick="_request"
@@ -30,9 +29,9 @@
 	<LinearLayout style="@style/kroov_box">
 		<LinearLayout style="@style/kroov_drawer">
 			<TextView style="@style/kroov_name"
-				android:text="Write System Settings"/>
+				android:text="@string/write_system_settings"/>
 			<TextView style="@style/kroov_description"
-				android:text="Allow this application to edit settings"/>
+				android:text="@string/txt__write_system_settings"/>
 		</LinearLayout>
 		<CheckBox style="@style/kroov_quarter"
 			android:onClick="_request"
@@ -44,9 +43,9 @@
 	<LinearLayout style="@style/kroov_box">
 		<LinearLayout style="@style/kroov_drawer">
 			<TextView style="@style/kroov_name"
-				android:text="Ignore Battery Optimizations"/>
+				android:text="@string/ignore_battery_optimizations"/>
 			<TextView style="@style/kroov_description"
-				android:text="Make this application free from the system battery optimizations"/>
+				android:text="@string/txt__ignore_battery_optimizations"/>
 		</LinearLayout>
 		<CheckBox style="@style/kroov_quarter"
 			android:onClick="_request"
@@ -55,30 +54,31 @@
 	
 	<View style="@style/kroov_split"/>
 	
-	<LinearLayout style="@style/kroov_box">
+	<LinearLayout style="@style/kroov_box" android:visibility="gone">
 		<LinearLayout style="@style/kroov_drawer">
 			<TextView style="@style/kroov_name"
-				android:text="Foreground Service"/>
+				android:text="@string/foreground_service"/>
 			<TextView style="@style/kroov_description"
-				android:text="Allow this application to start foreground services"/>
+				android:text="@string/txt__foreground_service"/>
 		</LinearLayout>
 		<CheckBox style="@style/kroov_quarter"
 			android:onClick="_request"
 			android:id="@+id/foregroundService"/>
 	</LinearLayout>
 	
-	<View style="@style/kroov_split"/>
+	<View style="@style/kroov_split" android:visibility="gone"/>
 	
-	<LinearLayout style="@style/kroov_box">
+	<LinearLayout style="@style/kroov_box" android:visibility="gone">
 		<LinearLayout style="@style/kroov_drawer">
 			<TextView style="@style/kroov_name"
-				android:text="Receive Screen Off"/>
+				android:text="@string/receive_screen_off"/>
 			<TextView style="@style/kroov_description"
-				android:text="Allow this application to receive screen off broadcasts"/>
+				android:text="@string/txt__receive_screen_off"/>
 		</LinearLayout>
 		<CheckBox style="@style/kroov_quarter"
 			android:onClick="_request"
 			android:id="@+id/screenOff"/>
 	</LinearLayout>
-
+	
+	<View style="@style/kroov_split" android:visibility="gone"/>
 </LinearLayout>

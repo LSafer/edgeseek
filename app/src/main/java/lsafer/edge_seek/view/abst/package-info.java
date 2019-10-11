@@ -10,7 +10,7 @@
  */
 /**
  * @author LSaferSE
- * @version 1 alpha (08-Oct-19)
- * @since 08-Oct-19
+ * @version 1 alpha (11-Oct-19)
+ * @since 11-Oct-19
  */
-package lsafer.edge_seek.view.global.perference;
+package lsafer.edge_seek.view.abst;

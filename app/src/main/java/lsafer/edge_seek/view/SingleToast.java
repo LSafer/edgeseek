@@ -8,7 +8,7 @@
  *  By adding a new header (at the bottom of this header)
  *  with the word "Editor" on top of it.
  */
-package lsafer.edge_seek.view.global;
+package lsafer.edge_seek.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,7 +21,7 @@ import android.widget.Toast;
  * @since 08-Oct-19
  */
 @SuppressWarnings({"unused", "WeakerAccess", "JavaDoc"})
-public class SingleToast extends Toast {
+final public class SingleToast extends Toast {
 	private static SingleToast current;
 
 	@SuppressLint("InflateParams")

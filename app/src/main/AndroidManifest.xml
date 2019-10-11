@@ -11,6 +11,7 @@
 		tools:ignore="ProtectedPermissions" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 	
 	<application
 		android:allowBackup="true"
@@ -31,19 +32,14 @@
 		<activity android:name=".activity.PermissionsActivity" />
 		<activity android:name=".activity.EdgesActivity" />
 		<activity android:name=".activity.EdgeActivity" />
+		<activity android:name=".activity.MiscActivity" />
 		
-		<service android:name=".service.EdgesService" />
+		<service android:name=".service.MainService" />
 		
 		<receiver android:name=".receiver.BootReceiver">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED" />
 			</intent-filter>
 		</receiver>
-		<receiver android:name=".util.Common$FreeReceiver">
-			<intent-filter>
-				<action android:name="android.intent.action.SCREEN_OFF" />
-			</intent-filter>
-		</receiver>
 	</application>
-
 </manifest>

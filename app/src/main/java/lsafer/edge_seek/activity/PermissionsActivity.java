@@ -30,17 +30,18 @@ import lsafer.edge_seek.io.App;
 import lsafer.view.Refreshable;
 
 /**
+ * An activity to manage application permissions.
+ *
  * @author LSaferSE
  * @version 1 alpha (08-Oct-19)
  * @since 08-Oct-19
  */
-@SuppressWarnings("JavaDoc")
-public class PermissionsActivity extends AppCompatActivity implements Refreshable {
+final public class PermissionsActivity extends AppCompatActivity implements Refreshable {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setTheme(App.load(this).ui.theme());
+		this.setTheme(App.init(this).ui.<App.UI>load().theme());
 		super.setContentView(R.layout.activity_premissions);
 	}
 
@@ -48,10 +49,10 @@ public class PermissionsActivity extends AppCompatActivity implements Refreshabl
 	@Override
 	public void refresh() {
 		this.<CheckBox>findViewById(R.id.displayOverOtherApps).setChecked(
-				this.checkSelfPermission(Manifest.permission.SYSTEM_ALERT_WINDOW) == PackageManager.PERMISSION_GRANTED
+				Settings.canDrawOverlays(this)
 		);
 		this.<CheckBox>findViewById(R.id.writeSystemSettings).setChecked(
-				this.checkSelfPermission(Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED
+				Settings.System.canWrite(this)
 		);
 		this.<CheckBox>findViewById(R.id.ignoreBatteryOptimizations).setChecked(
 				this.getSystemService(PowerManager.class).isIgnoringBatteryOptimizations(this.getPackageName())
@@ -71,6 +72,11 @@ public class PermissionsActivity extends AppCompatActivity implements Refreshabl
 		this.refresh();
 	}
 
+	/**
+	 * Request a permission depending on the caller view.
+	 *
+	 * @param view that have called this method
+	 */
 	@SuppressLint("BatteryLife")
 	public void _request(View view) {
 		switch (view.getId()) {
@@ -92,6 +98,4 @@ public class PermissionsActivity extends AppCompatActivity implements Refreshabl
 				break;
 		}
 	}
-
-
 }
