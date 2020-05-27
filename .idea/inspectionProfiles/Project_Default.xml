@@ -10,9 +10,14 @@
     <inspection_tool class="CannotResolve" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="ClangTidyInspection" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ConstExpressionRequired" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="ConstantConditions" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="SUGGEST_NULLABLE_ANNOTATIONS" value="false" />
+      <option name="DONT_REPORT_TRUE_ASSERT_STATEMENTS" value="false" />
+    </inspection_tool>
     <inspection_tool class="ConstructionIsNotAllowed" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DerivedFunctionsReturnTypeMismatch" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="DuplicateDeclarations" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="FieldCanBeLocal" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="FieldMustBeInitialized" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="FunctionParameterCountMismatch" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="IncompatibleTypes" enabled="true" level="ERROR" enabled_by_default="true" />
@@ -83,12 +88,30 @@
       <option name="REPORT_CONVERTIBLE_METHOD_CALLS" value="true" />
     </inspection_tool>
     <inspection_tool class="TemplateArgumentsIssues" enabled="true" level="ERROR" enabled_by_default="true" />
-    <inspection_tool class="UNCHECKED_WARNING" enabled="true" level="WARNING" enabled_by_default="true">
+    <inspection_tool class="UNCHECKED_WARNING" enabled="false" level="WARNING" enabled_by_default="false">
       <option name="IGNORE_UNCHECKED_ASSIGNMENT" value="false" />
       <option name="IGNORE_UNCHECKED_GENERICS_ARRAY_CREATION" value="false" />
       <option name="IGNORE_UNCHECKED_CALL" value="false" />
       <option name="IGNORE_UNCHECKED_CAST" value="true" />
       <option name="IGNORE_UNCHECKED_OVERRIDING" value="false" />
+    </inspection_tool>
+    <inspection_tool class="UnusedReturnValue" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="WeakerAccess" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="SUGGEST_PACKAGE_LOCAL_FOR_MEMBERS" value="true" />
+      <option name="SUGGEST_PACKAGE_LOCAL_FOR_TOP_CLASSES" value="true" />
+      <option name="SUGGEST_PRIVATE_FOR_INNERS" value="false" />
+    </inspection_tool>
+    <inspection_tool class="unused" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="LOCAL_VARIABLE" value="true" />
+      <option name="FIELD" value="true" />
+      <option name="METHOD" value="true" />
+      <option name="CLASS" value="true" />
+      <option name="PARAMETER" value="true" />
+      <option name="REPORT_PARAMETER_FOR_PUBLIC_METHODS" value="true" />
+      <option name="ADD_MAINS_TO_ENTRIES" value="true" />
+      <option name="ADD_APPLET_TO_ENTRIES" value="true" />
+      <option name="ADD_SERVLET_TO_ENTRIES" value="true" />
+      <option name="ADD_NONJAVA_TO_ENTRIES" value="true" />
     </inspection_tool>
   </profile>
 </component>

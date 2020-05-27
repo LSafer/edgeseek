@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+	<scale android:toYScale="0"/>
+	<scale android:toYScale="5dp"/>
+	<scale android:toYScale="10dp"/>
+	<scale android:toYScale="30dp"/>
+	<scale android:toYScale="50dp"/>
+	<scale android:toYScale="100dp"/>
+	<scale android:toYScale="150dp"/>
+</set>

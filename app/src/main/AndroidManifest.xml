@@ -1,45 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	package="lsafer.edge_seek">
+	package="lsafer.edgeseek">
 	
-	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-	
-	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+	<uses-permission android:name="android.permission.SET_WALLPAPER" />
+	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 	<uses-permission android:name="android.permission.VIBRATE" />
-	<uses-permission android:name="android.permission.WRITE_SETTINGS"
+	<uses-permission
+		android:name="android.permission.WRITE_SETTINGS"
 		tools:ignore="ProtectedPermissions" />
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 	<uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 	
 	<application
+		android:name="lsafer.edgeseek.App"
 		android:allowBackup="true"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
-		android:supportsRtl="false"
-		android:theme="@style/KroovBlackAppTheme"
+		android:supportsRtl="true"
 		tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 		
-		<activity android:name=".activity.MainActivity">
+		<activity android:name="lsafer.edgeseek.activity.MainActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
-				
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-		<activity android:name=".activity.UIActivity" />
-		<activity android:name=".activity.PermissionsActivity" />
-		<activity android:name=".activity.EdgesActivity" />
 		<activity android:name=".activity.EdgeActivity" />
-		<activity android:name=".activity.MiscActivity" />
 		
-		<service android:name=".service.MainService" />
-		
-		<receiver android:name=".receiver.BootReceiver">
-			<intent-filter>
-				<action android:name="android.intent.action.BOOT_COMPLETED" />
-			</intent-filter>
-		</receiver>
+		<service android:name=".service.EdgeService" />
 	</application>
 </manifest>

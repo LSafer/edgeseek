@@ -1,0 +1,58 @@
+<resources>
+	<string name="txt__service_running_in_background">أطراف شاشتك جاهزة لتلقي لمسات أصابعك!.</string>
+	<string name="txt__need_permissions">هذا التطبيق يحتاج لبعض الصلاحيات لكي يعمل</string>
+	
+	<string name="des__permission_display_over_other_apps">السماح لهذا التطبيق بالعرض فوق التطبيقات الأخرى.</string>
+	<string name="des__permission_ignore_battery_optimizations">تحرير هذا التطبيق من تحسينات النظام للبطارية.</string>
+	<string name="des__permission_write_system_settings">السماح لهذا التطبيق بتعديل إعدادات النظام</string>
+	<string name="des__permission_receive_screen_off">السماح لهذا التطبيق بإلتقاط اشارة إقاف الشاشة</string>
+	<string name="des__permission_foreground_service">السماح لهذا التطبيق ببدأ خدمات بالواجهة.</string>
+	
+	<string name="des__setting_auto_boot">تشغيل الخدمة كل مرة يتم فيها تشغيل الجهاز.</string>
+	<string name="des__setting_edge">تعديل الحواف.</string>
+	<string name="des__setting_interface">تعديل تفضيلات الواجهة.</string>
+	<string name="des__setting_misc">تفضيلات أخرى.</string>
+	<string name="des__setting_permission">إدارة صلاحيات التطبيق</string>
+	<string name="des__setting_theme">المظهر العام للتطبيق.</string>
+	<string name="des__setting_off_screen_auto_brightness">تفعيل السطوع التلقائي عند إغلاق الشاشة.</string>
+	<string name="des__service_channel">إعلامك بأن الخدمة تعمل بالخلفية.</string>
+	
+	<string name="hlp__edges_activity">
+		إضغط على حافة غير مفعلة لتفعيلها.\n
+		إضغط على حافة مفعلة لتخصيصها.\n
+		إضغط مطولا على حافة مفعلة لقسمها أو دمجها.
+	</string>
+	
+	<string name="off_screen_auto_brightness">السطوع التلقائي عند إغلاق الشاشة</string>
+	<string name="auto_boot">تشغيل تلقائي</string>
+	<string name="appearance">المظهر</string>
+	<string name="advanced">متقدم</string>
+	<string name="actions">المهام</string>
+	<string name="delete">حذف</string>
+	<string name="colors">ألوان</string>
+	<string name="theme">الطابع</string>
+	<string name="Interface">الواجهة</string>
+	<string name="needed">إلزامية</string>
+	<string name="permissions">الصلاحيات</string>
+	<string name="display_over_other_apps">الظهور فوق التطبيقات الأخرى</string>
+	<string name="write_system_settings">تعديل إعدادات النظام</string>
+	<string name="ignore_battery_optimizations">تجاهل تحسينات البطارية</string>
+	<string name="foreground_service">خدمات الواجهة</string>
+	<string name="receive_screen_off">تلقي إغلاق الشاشة</string>
+	<string name="misc">أخرى</string>
+	<string name="automation">الأتمتة</string>
+	<string name="app">التطبيق</string>
+	<string name="edges">الحواف</string>
+	<string name="other">أخرى</string>
+	<string name="custom_property">صفة مخصصة</string>
+	<string name="service_status">حالة الخدمة</string>
+	<string name="running_in_background">يعمل بالخلفية</string>
+	<string name="cancel">إلغاء</string>
+	<string name="confirm">تأكيد</string>
+	<string name="black">أسود</string>
+	<string name="light">فاتح</string>
+	<string name="additional">إضافية</string>
+	
+	<string name="read_external_storage">قراءة الملفات الخارجية</string>
+	<string name="des__permission_read_external_storage">السماح لهذا التطبيق بقراءة الملفات العامة</string>
+</resources>

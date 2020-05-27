@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<SwitchPreference
+		android:key="activated"
+		android:summary="Toggle to activate/deactivate this edge"
+		android:title="Activation" />
+	
+	<PreferenceCategory android:title="Dimensions">
+		<SeekBarPreference
+			android:key="width"
+			android:max="100"
+			android:summary="The width of this edge"
+			android:title="Width" />
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="@string/appearance">
+		<com.rarepebble.colorpicker.ColorPreference
+			android:key="color"
+			android:summary="The color of the edge"
+			android:title="Color" />
+		<SeekBarPreference
+			android:key="alpha"
+			android:max="1"
+			android:summary="The transparency of the edge"
+			android:title="Transparency" />
+	</PreferenceCategory>
+</PreferenceScreen>

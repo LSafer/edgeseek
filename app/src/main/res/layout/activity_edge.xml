@@ -1,97 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	tools:context=".activity.EdgeActivity"
-	android:background="?android:colorPrimaryDark"
 	android:layout_height="match_parent">
-	
-	<LinearLayout style="@style/kroov_head">
-		
-		<TextView style="@style/kroov_title"
-			android:id="@+id/title"
-			android:layout_weight="1"
-			tools:text="Left-Top"
-			android:layout_width="0dp" />
-		
-		<TextView style="@style/kroov_quarter"
-			android:onClick="_delete"
-			android:background="@null"
-			android:textAllCaps="true"
-			android:textColor="@color/kroovColorTriggered"
-			android:text="@string/delete"/>
-	</LinearLayout>
-	
-	<View style="@style/kroov_split"/>
-	
-	<ScrollView android:layout_height="match_parent"
-		android:layout_width="match_parent">
-		
-		<LinearLayout
-			android:orientation="vertical"
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:paddingBottom="@dimen/linear_layout_bottom_gap">
-			
-			<TextView style="@style/kroov_separator"
-				android:gravity="center"
-				android:text="@string/actions"/>
-			
-			<LinearLayout
-				android:id="@+id/actions"
-				android:orientation="vertical"
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"/>
-			
-			<TextView style="@style/kroov_separator"
-				android:gravity="center"
-				android:layout_marginTop="@dimen/section_top_gap"
-				android:text="@string/appearance"/>
-			
-			<LinearLayout
-				android:id="@+id/appearance"
-				android:orientation="vertical"
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"/>
-			
-			<TextView style="@style/kroov_separator"
-				android:layout_marginTop="@dimen/section_top_gap"
-				android:gravity="center"
-				android:text="@string/misc"/>
-			
-			<LinearLayout
-				android:id="@+id/misc"
-				android:orientation="vertical"
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"/>
-			
-			<TextView style="@style/kroov_separator"
-				android:layout_marginTop="@dimen/section_top_gap"
-				android:gravity="center"
-				android:text="@string/advanced"/>
-			
-			<LinearLayout
-				android:id="@+id/advanced"
-				android:orientation="vertical"
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"/>
-			
-			<LinearLayout
-				android:layout_marginTop="50dp"
-				android:id="@+id/custom"
-				android:orientation="vertical"
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"/>
-			
-			<LinearLayout
-				android:visibility="gone"
-				android:layout_marginTop="50dp"
-				android:id="@+id/hidden"
-				android:orientation="vertical"
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"/>
-		</LinearLayout>
-	</ScrollView>
-	
-</LinearLayout>
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/fragment_edge"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+</ScrollView>
