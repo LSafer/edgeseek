@@ -15,18 +15,23 @@
  */
 package lsafer.edgeseek;
 
-import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Vibrator;
+import android.provider.Settings;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Objects;
 
 import lsafer.edgeseek.data.EdgeData;
+import lsafer.edgeseek.legacy.SingleToast;
 import lsafer.edgeseek.util.Util;
 
 import static android.view.WindowManager.LayoutParams;
@@ -43,6 +48,7 @@ public class Edge {
 	 * The data of this edge.
 	 */
 	final public EdgeData data;
+
 	/**
 	 * The context this edge is using.
 	 */
@@ -59,6 +65,10 @@ public class Edge {
 	 * The view to be displayed.
 	 */
 	final private View view;
+	/**
+	 * The view that shows the toast.
+	 */
+	final private TextView toast;
 	/**
 	 * True, if this edge have been built.
 	 */
@@ -83,7 +93,6 @@ public class Edge {
 	 * @param manager for this edge to attach to
 	 * @param data    to construct the edge from
 	 */
-	@SuppressLint("ClickableViewAccessibility")
 	public Edge(Context context, WindowManager manager, EdgeData data) {
 		Objects.requireNonNull(context, "context");
 		Objects.requireNonNull(manager, "manager");
@@ -94,6 +103,8 @@ public class Edge {
 
 		//------- initial build
 
+		this.toast = new TextView(context);
+
 		this.view = new View(context) {
 			@Override
 			protected void onConfigurationChanged(Configuration newConfig) {
@@ -101,10 +112,6 @@ public class Edge {
 				Edge.this.reattach();
 			}
 		};
-		this.view.setOnTouchListener((view, event) -> {
-			Toast.makeText(context, event.getX() + " | " + event.getY(), Toast.LENGTH_SHORT).show();
-			return true;
-		});
 
 		this.params.type = Build.VERSION.SDK_INT >= 26 ?
 						   WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY :
@@ -113,8 +120,6 @@ public class Edge {
 							WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
 							WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS |
 							WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
-
-		this.view.setBackgroundColor(Color.RED);
 	}
 
 	/**
@@ -143,21 +148,31 @@ public class Edge {
 	 * @return this
 	 */
 	public Edge build() {
+		//positioning
 		int d = this.manager.getDefaultDisplay().getRotation();
-		this.position = Util.position(this.data.position, true, this.manager.getDefaultDisplay().getRotation());
-		System.out.println("LALA_LAND origin: " + data.position + " display: " + d + " x: " + position);
-
+		this.position = Util.position(this.data.position, false, this.manager.getDefaultDisplay().getRotation());
 		this.landscape = this.position == 0 || this.position == 2;
-		this.params.gravity = Util.gravity(this.position);
+
+		//listeners
+		switch (this.data.seek) {
+			case "brightness":
+				this.view.setOnTouchListener(new BrightnessController());
+				break;
+			case "media":
+			case "ringtone":
+			case "alarm":
+			case "system":
+		}
 
 		//dimensions
+		this.params.gravity = Util.gravity(this.position);
 		this.params.width = this.landscape ? LayoutParams.MATCH_PARENT : this.data.width;
 		this.params.height = this.landscape ? this.data.width : LayoutParams.MATCH_PARENT;
 
 		//appearance
 		this.view.setBackgroundColor(this.data.color);
-		this.view.setAlpha(this.data.alpha);
-		this.params.alpha = this.data.alpha;
+		this.view.setAlpha(Color.alpha(this.data.color));
+		this.params.alpha = Color.alpha(this.data.color);
 
 		this.built = true;
 		return this;
@@ -217,5 +232,53 @@ public class Edge {
 		}
 
 		return this;
+	}
+
+
+	/**
+	 *
+	 */
+	private class BrightnessController implements View.OnTouchListener {
+		/**
+		 * The previous axis.
+		 */
+		Float axis;
+
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			switch (event.getAction()) {
+				case MotionEvent.ACTION_CANCEL:
+				case MotionEvent.ACTION_DOWN:
+					this.axis = null;
+				case MotionEvent.ACTION_UP:
+					Vibrator vibrator = Edge.this.context.getSystemService(Vibrator.class);
+					vibrator.vibrate(1);
+					break;
+				default:
+					float axis = Edge.this.landscape ? event.getX() : event.getY();
+					axis *= Edge.this.landscape && Edge.this.position == 3 ? -1 : 1;
+
+					if (this.axis == null)
+						this.axis = axis;
+
+					float change = (this.axis - axis) * ((float) Edge.this.data.sensitivity / 100);
+					this.axis = axis;
+
+					try {
+						ContentResolver resolver = Edge.this.context.getContentResolver();
+
+						float value = change + Settings.System.getInt(resolver, Settings.System.SCREEN_BRIGHTNESS);
+						value = value > 255f ? 255f : value < 0 ? 0 : value;
+
+						Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+						Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS, (int) value);
+
+						SingleToast.makeText(Edge.this.context, String.valueOf((int) value), Toast.LENGTH_SHORT).show();
+					} catch (Settings.SettingNotFoundException e) {
+						e.printStackTrace();
+					}
+			}
+			return true;
+		}
 	}
 }

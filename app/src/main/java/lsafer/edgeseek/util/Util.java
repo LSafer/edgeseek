@@ -65,6 +65,28 @@ final public class Util {
 	}
 
 	/**
+	 * Get the id from the given position.
+	 *
+	 * @param position to get the id from
+	 * @return an id from the given position
+	 */
+	@IdRes
+	public static int id(int position) {
+		switch (position) {
+			case 0:
+				return R.id.bottom;
+			case 1:
+				return R.id.left;
+			case 2:
+				return R.id.top;
+			case 3:
+				return R.id.right;
+			default:
+				throw new RuntimeException("position: " + position + " is not expected");
+		}
+	}
+
+	/**
 	 * Get the position from the given id-res.
 	 *
 	 * @param id to get position from
@@ -80,8 +102,8 @@ final public class Util {
 				return 2;
 			case R.id.right:
 				return 3;
+			default:
+				throw new RuntimeException("id: " + id + " is not expected");
 		}
-
-		throw new RuntimeException("id: " + id + " is not expected");
 	}
 }

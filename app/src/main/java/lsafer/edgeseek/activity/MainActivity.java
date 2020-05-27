@@ -27,6 +27,7 @@ import java.util.Objects;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.AppData;
+import lsafer.edgeseek.data.EdgeData;
 import lsafer.edgeseek.fragment.AppDataFragment;
 import lsafer.edgeseek.service.EdgeService;
 import lsafer.edgeseek.util.Util;
@@ -64,6 +65,18 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 			this.startForegroundService(new Intent(this, EdgeService.class));
 		} else {
 			this.startService(new Intent(this, EdgeService.class));
+		}
+
+		//style-em
+		for (int i = 0; i < 4; i++) {
+			View view = this.findViewById(Util.id(i));
+			EdgeData data = App.data.edges.get(i);
+
+			if (data.activated) {
+				view.setBackgroundColor(data.color);
+			} else {
+				view.setBackgroundColor(this.getColor(R.color.disabled_gray));
+			}
 		}
 	}
 

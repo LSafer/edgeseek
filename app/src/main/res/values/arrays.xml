@@ -83,6 +83,13 @@
 		<item>Control Brightness</item>
 		<item>Control Audio</item>
 	</string-array>
+	
+	<string-array name="seek_tasks_alias">
+		<item>non</item>
+		<item>brightness</item>
+		<item>audio</item>
+	</string-array>
+	
 	<string-array name="double_click_tasks">
 		<item>Nothing</item>
 		<item>Expand Statusbar</item>
@@ -107,11 +114,16 @@
 		<item>accessibility</item>
 	</string-array>
 	<string-array name="positions">
-		<item>Bottom</item> //0
-		<item>Left</item> //1
-		<item>Top</item> //2
-		<item>Right</item> //3
-		<item>Full</item> //4
+		<item>Bottom</item>
+		//0
+		<item>Left</item>
+		//1
+		<item>Top</item>
+		//2
+		<item>Right</item>
+		//3
+		<item>Full</item>
+		//4
 	</string-array>
 	<string-array name="colors">
 		<item>Lemon</item>

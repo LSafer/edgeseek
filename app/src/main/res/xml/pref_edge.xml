@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	
-	<SwitchPreference
-		android:key="activated"
-		android:summary="Toggle to activate/deactivate this edge"
-		android:title="Activation" />
+	<PreferenceCategory android:title="Work">
+		<SwitchPreference
+			android:key="activated"
+			android:summary="Toggle to activate/deactivate this edge"
+			android:title="Activation" />
+		
+		<ListPreference
+			android:entries="@array/seek_tasks"
+			android:entryValues="@array/seek_tasks_alias"
+			android:key="seek"
+			android:summary="What to control when seeking"
+			android:title="Seek Task" />
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="Performance">
+		<SeekBarPreference
+			android:key="sensitivity"
+			android:max="100"
+			app:min="10"
+			android:summary="How sensitive the edge is"
+			android:title="Sensitivity" />
+	</PreferenceCategory>
 	
 	<PreferenceCategory android:title="Dimensions">
 		<SeekBarPreference
 			android:key="width"
 			android:max="100"
+			app:min="5"
 			android:summary="The width of this edge"
 			android:title="Width" />
 	</PreferenceCategory>
 	
 	<PreferenceCategory android:title="@string/appearance">
-		<com.rarepebble.colorpicker.ColorPreference
+		<net.margaritov.preference.colorpicker.ColorPickerPreference
+			alphaSlider="true"
 			android:key="color"
 			android:summary="The color of the edge"
 			android:title="Color" />
-		<SeekBarPreference
-			android:key="alpha"
-			android:max="1"
-			android:summary="The transparency of the edge"
-			android:title="Transparency" />
 	</PreferenceCategory>
+
 </PreferenceScreen>

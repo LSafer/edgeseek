@@ -15,6 +15,8 @@
  */
 package lsafer.edgeseek.data;
 
+import android.graphics.Color;
+
 import cufy.beans.AbstractBean;
 import cufyx.perference.MapDataStore;
 
@@ -51,12 +53,19 @@ public class EdgeData extends AbstractBean {
 	 * The color of the edge.
 	 */
 	@Property
-	public int color = 0x000000;
+	public int color = Color.argb(0, 0, 0, 0);
 
 	/**
-	 * The transparency of the edge.
+	 * What to do when seeking.
 	 */
-	public int alpha = 0;
+	@Property
+	public String seek = "brightness";
+
+	/**
+	 * The sensitivity of this edge.
+	 */
+	@Property
+	public int sensitivity = 70;
 
 	/**
 	 * Construct a new edge data for the edge in the given position.

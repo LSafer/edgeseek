@@ -35,6 +35,8 @@ dependencies {
 
     //thanks to rarepebble for the color-picker preference :)
     implementation 'com.rarepebble:colorpicker:3.0.1'
+    //thanks to attenzione too, hope it works
+    implementation 'com.github.attenzione:android-ColorPickerPreference:v1.2'
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
