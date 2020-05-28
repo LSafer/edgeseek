@@ -15,7 +15,6 @@
  */
 package lsafer.edgeseek.util;
 
-import android.annotation.SuppressLint;
 import android.view.Gravity;
 
 import androidx.annotation.IdRes;
@@ -25,18 +24,30 @@ import lsafer.edgeseek.R;
 /**
  * Common utils.
  *
- * @author LSaferSE
- * @version 2 beta (19-Oct-2019)
+ * @author lsafer
+ * @version 0.1.5
  * @since 07-Oct-2019
  */
 final public class Util {
+	/**
+	 * Solve the change between the initial point {@code i} and the final point {@code f}
+	 * considering the given change-sensitivity {@code s}.
+	 *
+	 * @param i the initial point (nullable, the change will be 0)
+	 * @param f the final point (nullable, the change will be 0)
+	 * @param s the sensitivity to be applied in the algorithm (nullable, the change will be 0)
+	 * @return the change from `i` to `f` with the sensitivity `s` applied
+	 */
+	public static float change(Float i, Float f, Float s) {
+		return i == null || f == null || s == null ? 0 : (i - f) * s;
+	}
+
 	/**
 	 * Get {@link Gravity} value for the given position.
 	 *
 	 * @param position to get the gravity for
 	 * @return the gravity for the given position
 	 */
-	@SuppressLint("RtlHardcoded")
 	public static int gravity(int position) {
 		switch (position) {
 			case 0:
@@ -50,18 +61,6 @@ final public class Util {
 			default:
 				return gravity(Math.abs(position) % 4);
 		}
-	}
-
-	/**
-	 * Get the un-rotated position for the given parameters.
-	 *
-	 * @param position        the original position
-	 * @param rotate          whether is it allowed to rotate or not
-	 * @param displayRotation the rotation of the display
-	 * @return the un-rotated position for the given parameters
-	 */
-	public static int position(int position, boolean rotate, int displayRotation) {
-		return rotate ? position : position == 4 ? 4 : Math.abs(displayRotation * 3 + position) % 4;
 	}
 
 	/**
@@ -105,5 +104,32 @@ final public class Util {
 			default:
 				throw new RuntimeException("id: " + id + " is not expected");
 		}
+	}
+
+	/**
+	 * Get the un-rotated position for the given parameters.
+	 *
+	 * @param position        the original position
+	 * @param rotate          whether is it allowed to rotate or not
+	 * @param displayRotation the rotation of the display
+	 * @return the un-rotated position for the given parameters
+	 */
+	public static int position(int position, boolean rotate, int displayRotation) {
+		return rotate ? position : position == 4 ? 4 : Math.abs(displayRotation * 3 + position) % 4;
+	}
+
+	/**
+	 * Cap the given float 'f' not passing more than the maximum 'max'
+	 * and not passing less than the minimum 'min'. if 'f' is more than
+	 * 'max' then 'max' will be returned. and if 'f' is less than 'min'
+	 * then 'min' will be returned.
+	 *
+	 * @param f   the value to be capped
+	 * @param max the maximum value
+	 * @param min the minimum value
+	 * @return 'max' if 'f' is more than 'max' or 'min' if 'f' is less than 'min' otherwise 'f' will be returned
+	 */
+	public static float range(float f, float max, float min) {
+		return f > max ? max : f < min ? min : f;
 	}
 }
