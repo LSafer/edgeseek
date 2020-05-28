@@ -15,23 +15,18 @@
  */
 package lsafer.edgeseek;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
-import android.os.Vibrator;
-import android.provider.Settings;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Objects;
 
 import lsafer.edgeseek.data.EdgeData;
-import lsafer.edgeseek.legacy.SingleToast;
+import lsafer.edgeseek.tasks.AudioControl;
+import lsafer.edgeseek.tasks.BrightnessControl;
 import lsafer.edgeseek.util.Util;
 
 import static android.view.WindowManager.LayoutParams;
@@ -153,12 +148,14 @@ public class Edge {
 		//listeners
 		switch (this.data.seek) {
 			case "brightness":
-				this.view.setOnTouchListener(new BrightnessController());
+				this.view.setOnTouchListener(new BrightnessControl(this.context, this));
 				break;
-			case "media":
-			case "ringtone":
+			case "music":
+			case "ring":
 			case "alarm":
 			case "system":
+				this.view.setOnTouchListener(new AudioControl(this.context, this));
+				break;
 		}
 
 		//dimensions
@@ -229,53 +226,5 @@ public class Edge {
 		}
 
 		return this;
-	}
-
-
-	/**
-	 *
-	 */
-	private class BrightnessController implements View.OnTouchListener {
-		/**
-		 * The previous axis.
-		 */
-		Float axis;
-
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-			switch (event.getAction()) {
-				case MotionEvent.ACTION_CANCEL:
-				case MotionEvent.ACTION_DOWN:
-					this.axis = null;
-				case MotionEvent.ACTION_UP:
-					Vibrator vibrator = Edge.this.context.getSystemService(Vibrator.class);
-					vibrator.vibrate(1);
-					break;
-				default:
-					float axis = Edge.this.landscape ? event.getX() : event.getY();
-					axis *= Edge.this.landscape && Edge.this.position == 3 ? -1 : 1;
-
-					if (this.axis == null)
-						this.axis = axis;
-
-					float change = (this.axis - axis) * ((float) Edge.this.data.sensitivity / 100);
-					this.axis = axis;
-
-					try {
-						ContentResolver resolver = Edge.this.context.getContentResolver();
-
-						float value = change + Settings.System.getInt(resolver, Settings.System.SCREEN_BRIGHTNESS);
-						value = value > 255f ? 255f : value < 0 ? 0 : value;
-
-						Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-						Settings.System.putInt(resolver, Settings.System.SCREEN_BRIGHTNESS, (int) value);
-
-						SingleToast.makeText(Edge.this.context, String.valueOf((int) value), Toast.LENGTH_SHORT).show();
-					} catch (Settings.SettingNotFoundException e) {
-						e.printStackTrace();
-					}
-			}
-			return true;
-		}
 	}
 }
