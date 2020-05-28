@@ -48,6 +48,14 @@ public class Edge {
 	 * The data of this edge.
 	 */
 	final public EdgeData data;
+	/**
+	 * The layout params of this edge.
+	 */
+	final public WindowManager.LayoutParams params = new WindowManager.LayoutParams();
+	/**
+	 * The view to be displayed.
+	 */
+	final public View view;
 
 	/**
 	 * The context this edge is using.
@@ -57,34 +65,24 @@ public class Edge {
 	 * The window-manager for this edge to attach to.
 	 */
 	final private WindowManager manager;
-	/**
-	 * The layout params of this edge.
-	 */
-	final private WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-	/**
-	 * The view to be displayed.
-	 */
-	final private View view;
-	/**
-	 * The view that shows the toast.
-	 */
-	final private TextView toast;
-	/**
-	 * True, if this edge have been built.
-	 */
-	private boolean built = false;
+
 	/**
 	 * If this edge is landscape or not.
 	 */
-	private boolean landscape;
+	public boolean landscape;
 	/**
 	 * The current position of this edge.
 	 */
-	private int position;
+	public int position;
+
 	/**
 	 * True, if this edge is currently showing on the screen.
 	 */
 	private boolean attached = false;
+	/**
+	 * True, if this edge have been built.
+	 */
+	private boolean built = false;
 
 	/**
 	 * Construct a new edge from the given data.
@@ -92,6 +90,7 @@ public class Edge {
 	 * @param context the context of the application
 	 * @param manager for this edge to attach to
 	 * @param data    to construct the edge from
+	 * @throws NullPointerException if the given 'context' or 'manager' or 'data' is null
 	 */
 	public Edge(Context context, WindowManager manager, EdgeData data) {
 		Objects.requireNonNull(context, "context");
@@ -102,8 +101,6 @@ public class Edge {
 		this.data = data;
 
 		//------- initial build
-
-		this.toast = new TextView(context);
 
 		this.view = new View(context) {
 			@Override
@@ -194,21 +191,21 @@ public class Edge {
 	}
 
 	/**
-	 * Check if this edge has been built.
-	 *
-	 * @return true, if this edge has been built
-	 */
-	public boolean isBuilt() {
-		return this.built;
-	}
-
-	/**
 	 * Checks if this edge is currently shown in the display or not.
 	 *
 	 * @return the showing status of this edge
 	 */
 	public boolean isAttached() {
 		return this.attached;
+	}
+
+	/**
+	 * Check if this edge has been built.
+	 *
+	 * @return true, if this edge has been built
+	 */
+	public boolean isBuilt() {
+		return this.built;
 	}
 
 	/**
