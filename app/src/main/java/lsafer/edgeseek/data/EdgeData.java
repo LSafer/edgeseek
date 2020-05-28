@@ -42,30 +42,26 @@ public class EdgeData extends AbstractBean {
 	 */
 	@Property
 	public boolean activated;
-
-	/**
-	 * The width of this edge.
-	 */
-	@Property
-	public int width = 20;
-
 	/**
 	 * The color of the edge.
 	 */
 	@Property
 	public int color = Color.argb(0, 0, 0, 0);
-
 	/**
 	 * What to do when seeking.
 	 */
 	@Property
 	public String seek = "brightness";
-
 	/**
 	 * The sensitivity of this edge.
 	 */
 	@Property
 	public int sensitivity = 70;
+	/**
+	 * The width of this edge.
+	 */
+	@Property
+	public int width = 20;
 
 	/**
 	 * Construct a new edge data for the edge in the given position.

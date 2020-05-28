@@ -35,6 +35,12 @@ import lsafer.edgeseek.fragment.EdgeDataFragment;
  */
 public class EdgeActivity extends AppCompatActivity implements EdgeDataFragment.Activity {
 	@Override
+	public EdgeData getEdgeData(EdgeDataFragment fragment) {
+		Objects.requireNonNull(fragment, "fragment");
+		return App.data.edges.get(this.getIntent().getIntExtra("edge", -1));
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setTheme(R.style.Theme_AppCompat);
@@ -51,11 +57,5 @@ public class EdgeActivity extends AppCompatActivity implements EdgeDataFragment.
 	protected void onPause() {
 		super.onPause();
 		App.data.save();
-	}
-
-	@Override
-	public EdgeData getEdgeData(EdgeDataFragment fragment) {
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data.edges.get(this.getIntent().getIntExtra("edge", -1));
 	}
 }

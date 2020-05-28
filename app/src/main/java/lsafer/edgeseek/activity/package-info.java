@@ -20,4 +20,4 @@
  * @version 0.1.5
  * @since 27-May-20
  */
- package lsafer.edgeseek.activity;
+package lsafer.edgeseek.activity;

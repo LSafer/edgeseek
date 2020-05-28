@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import cufy.beans.AbstractBean;
 import cufy.io.loadable.FileLoadable;
@@ -92,8 +93,11 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 *
 	 * @param file to be set
 	 * @throws IllegalStateException if it has been already set in this app-data instance
+	 * @throws NullPointerException  if the given file is null
 	 */
 	public void setFile(File file) {
+		Objects.requireNonNull(file, "file");
+
 		if (this.file != null)
 			throw new IllegalStateException("file already set");
 

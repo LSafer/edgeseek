@@ -24,10 +24,12 @@ import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.EdgeData;
 
 /**
+ * A preference-fragment to let the user customize a specific edge.
+ *
  * @author lsafer
+ * @version 0.1.5
  * @since 27-May-20
  */
-@SuppressWarnings("JavaDoc")
 public class EdgeDataFragment extends PreferenceFragmentCompat {
 	/**
 	 * The data to be read-from/written-to by this.

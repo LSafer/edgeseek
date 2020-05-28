@@ -45,6 +45,12 @@ import lsafer.edgeseek.util.Util;
  */
 public class MainActivity extends AppCompatActivity implements AppDataFragment.Activity {
 	@Override
+	public AppData getAppData(AppDataFragment fragment) {
+		Objects.requireNonNull(fragment, "fragment");
+		return App.data;
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setTheme(R.style.Theme_AppCompat);
@@ -55,6 +61,12 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 				.beginTransaction()
 				.replace(R.id.fragment_app, new AppDataFragment())
 				.commit();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		App.data.save();
 	}
 
 	@Override
@@ -80,24 +92,14 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 		}
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		App.data.save();
-	}
-
-	@Override
-	public AppData getAppData(AppDataFragment fragment) {
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data;
-	}
-
 	/**
 	 * Get invoked when an edge of the screen module displayed to the user get touched.
 	 *
 	 * @param view the view that has been touch
+	 * @throws NullPointerException if the given 'view' is null
 	 */
 	public void onEdgeClick(View view) {
+		Objects.requireNonNull(view, "view");
 		Intent intent = new Intent(this, EdgeActivity.class);
 		intent.putExtra("edge", Util.position(view.getId()));
 		this.startActivity(intent);

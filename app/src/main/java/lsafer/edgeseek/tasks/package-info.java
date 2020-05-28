@@ -14,10 +14,10 @@
  *	limitations under the License.
  */
 /**
- * Legacy classes.
+ * The tasks that supported by this application.
  *
  * @author lsafer
  * @version 0.1.5
- * @since 27-May-20
+ * @since 28-May-20
  */
-package lsafer.edgeseek.legacy;
+package lsafer.edgeseek.tasks;
