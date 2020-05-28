@@ -71,16 +71,24 @@
 		<item>إمكانية الوصول</item>
 	</string-array>
 	<string-array name="positions">
-		<item>أسفل</item> //0
-		<item>يسار</item> //1
-		<item>أعلى</item> //2
-		<item>يمين</item> //3
-		<item>كامل</item> //4
+		<item>أسفل</item>
+		//0
+		<item>يسار</item>
+		//1
+		<item>أعلى</item>
+		//2
+		<item>يمين</item>
+		//3
+		<item>كامل</item>
+		//4
 	</string-array>
 	<string-array name="seek_tasks">
 		<item>لاشيء</item>
 		<item>التحكم بالسطوع</item>
-		<item>التحكم بالصوت</item>
+		<item>التحكم بصوت الوسائط</item>
+		<item>التحكم بصوت النغمة</item>
+		<item>التحكم باصوات النظام</item>
+		<item>التحكم بصوت المنبه</item>
 	</string-array>
 	<string-array name="double_click_tasks">
 		<item>لاشيء</item>

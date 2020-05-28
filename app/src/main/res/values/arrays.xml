@@ -81,13 +81,19 @@
 	<string-array name="seek_tasks">
 		<item>Nothing</item>
 		<item>Control Brightness</item>
-		<item>Control Audio</item>
+		<item>Control Media</item>
+		<item>Control Ringtone</item>
+		<item>Control System Audio</item>
+		<item>Control Alarms</item>
 	</string-array>
-	
+
 	<string-array name="seek_tasks_alias">
 		<item>non</item>
 		<item>brightness</item>
-		<item>audio</item>
+		<item>music</item>
+		<item>ring</item>
+		<item>system</item>
+		<item>alarm</item>
 	</string-array>
 	
 	<string-array name="double_click_tasks">
