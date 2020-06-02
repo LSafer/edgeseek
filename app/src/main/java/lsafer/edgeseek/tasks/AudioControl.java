@@ -18,6 +18,7 @@ package lsafer.edgeseek.tasks;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
@@ -102,20 +103,26 @@ public class AudioControl implements View.OnTouchListener {
 			case MotionEvent.ACTION_UP:
 				//start/end of motion
 				Vibrator vibrator = this.context.getSystemService(Vibrator.class);
-				vibrator.vibrate(1);
+				vibrator.vibrate(VibrationEffect.createOneShot(1, VibrationEffect.DEFAULT_AMPLITUDE));
 				break;
 			default:
 				//the seek is on
 				float axis = this.edge.landscape ? event.getX() : event.getY();
 
-				int value = (int) Util.range(
-						//the change between the current axis and the previous one
-						Util.change(this.axis, axis, (float) this.edge.data.sensitivity / 100) +
-						//plus the current brightness value
+				int value = Util.compute(
+						//old axis
+						this.axis,
+						//new axis
+						axis,
+						//sensitivity
+						this.edge.data.sensitivity,
+						//sensitivity factor
+						1000,
+						//current volume
 						this.am.getStreamVolume(this.type),
-						//capped to the maximum audio level allowed
+						//maximum volume
 						this.am.getStreamMaxVolume(this.type),
-						//limited to not be a negative number
+						//minimum volume
 						Build.VERSION.SDK_INT >= Build.VERSION_CODES.P ?
 						this.am.getStreamMinVolume(this.type) : 0
 				);

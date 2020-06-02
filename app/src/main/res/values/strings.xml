@@ -1,66 +1,65 @@
 <resources>
-	<string name="app_name" translatable="false">Edge Seek</string>
-	
-	<string name="txt__service_running_in_background">Your screen\'s edges is ready to receive your finger touches!.</string>
-	<string name="txt__need_permissions">This application need some permissions to work</string>
-	
-	<string name="des__permission_display_over_other_apps">Allow this application to draw views floating on your screen.</string>
-	<string name="des__permission_ignore_battery_optimizations">Make this application free from the system battery optimizations.</string>
-	<string name="des__permission_write_system_settings">Allow this application to edit settings.</string>
-	<string name="des__permission_receive_screen_off">Allow this application to receive screen off broadcasts.</string>
-	<string name="des__permission_foreground_service">Allow this application to start foreground services.</string>
-	
-	<string name="des__setting_auto_boot">Auto boot the service every time the device booted-up</string>
-	<string name="des__setting_edge">Manage Edges.</string>
-	<string name="des__setting_interface">Set user interface preference.</string>
-	<string name="des__setting_misc">Other misc preference.</string>
-	<string name="des__setting_permission">Manage application permissions.</string>
-	<string name="des__setting_theme">The overall style of the application.</string>
-	<string name="des__setting_off_screen_auto_brightness">Turn auto-brightness mode on every time the screen turned off.</string>
-	<string name="des__service_channel">Notify you that the application service is running in background</string>
-	
-	<string name="hlp__edges_activity">
-		Click on an inactive edge to activate it.\n
-		Click on an active edge to customize it.\n
-		Long click on an edge to split/merge it.
+	<!-- des perm -->
+	<string name="_des_perm_display_over_other_apps">Allow this application to draw views floating
+		on your screen.
 	</string>
-	
-	<string name="sym__json" translatable="false">{json}</string>
-	
-	<string name="off_screen_auto_brightness">Off Screen Auto Brightness</string>
-	<string name="auto_boot">Auto Boot</string>
+	<string name="_des_perm_ignore_battery_optimizations">Make this application free from the system
+		battery optimizations.
+	</string>
+	<string name="_des_perm_write_system_settings">Allow this application to edit settings.</string>
+	<string name="_des_perm_receive_screen_off">Allow this application to receive screen off
+		broadcasts.
+	</string>
+	<string name="_des_perm_foreground_service">Allow this application to start foreground services.
+	</string>
+	<!-- des pref -->
+	<string name="_des_pref_edge_activation">Toggle to activate or deactivate this edge</string>
+	<string name="_des_pref_app_activation">Toggle to activate or deactivate the application</string>
+	<string name="_des_pref_seek_task">What to control when seeking</string>
+	<string name="_des_pref_sensitivity">How much you want the edge to be sensitive</string>
+	<string name="_des_pref_width">The width of the edge</string>
+	<string name="_des_pref_color">The color of the edge</string>
+	<string name="_des_pref_auto_boot">Auto boot the service every time the device booted-up</string>
+	<string name="_des_pref_auto_brightness">Turn on auto brightness each time the device turn on to sleep</string>
+	<string name="_des_pref_edges">Customize the edges</string>
+	<string name="_des_pref_theme">The theme of the application</string>
+	<string name="_des_pref_rotate">Rotate the edge with the screen rotation</string>
+	<!-- words -->
+	<string name="job">Job</string>
+	<string name="activation">Activation</string>
+	<string name="sensitivity">Sensitivity</string>
+	<string name="input">Input</string>
+	<string name="dimensions">Dimensions</string>
 	<string name="appearance">Appearance</string>
-	<string name="advanced">Advanced</string>
-	<string name="actions">Actions</string>
-	<string name="delete">Delete</string>
-	<string name="colors">Colors</string>
-	<string name="theme">Theme</string>
-	<string name="Interface">Interface</string>
-	<string name="needed">Needed</string>
-	<string name="permissions">Permissions</string>
-	<string name="display_over_other_apps">Display Over Other Apps</string>
-	<string name="write_system_settings">Write System Settings</string>
-	<string name="ignore_battery_optimizations">Ignore Battery Optimizations</string>
-	<string name="foreground_service">Foreground Service</string>
-	<string name="receive_screen_off">Receive Screen Off</string>
+	<string name="color">Color</string>
+	<string name="width">Width</string>
 	<string name="misc">Misc</string>
-	<string name="automation">Automation</string>
-	<string name="app">App</string>
 	<string name="edges">Edges</string>
-	<string name="other">Other</string>
-	<string name="custom_property">Custom Property</string>
-	<string name="service_status">Service Status</string>
-	<string name="running_in_background">Running In Background</string>
-	<string name="cancel">Cancel</string>
-	<string name="confirm">Confirm</string>
-	<string name="black">Black</string>
-	<string name="light">Light</string>
-	<string name="additional">Additional</string>
-	<string name="read_external_storage">Read External Storage</string>
-	<string name="des__permission_read_external_storage">Allow this application to read public files</string>
-	<string name="spam">Spam</string>
-	<string name="long_click">Long Click</string>
-	<string name="custom">Custom</string>
-	<string name="hidden">Hidden</string>
-	<string name="activated">Activated</string>
+	<string name="theme">Theme</string>
+	<string name="rotate">Rotate</string>
+	<!-- names -->
+	<string name="edge_seek">Edge Seek</string>
+	<string name="seek_task">Seek Task</string>
+	<string name="auto_boot">Auto Boot</string>
+	<string name="auto_brightness">Auto Brightness</string>
+	<string name="choose_edge">Choose Edge</string>
+	<string name="bottom_edge">Bottom Edge</string>
+	<string name="left_edge">Left Edge</string>
+	<string name="top_edge">Top Edge</string>
+	<string name="right_edge">Right Edge</string>
+	<!-- arrays -->
+	<string-array name="seek_tasks">
+		<item>Nothing</item>
+		<item>Control Brightness</item>
+		<item>Control Media</item>
+		<item>Control Ringtone</item>
+		<item>Control System Audio</item>
+		<item>Control Alarms</item>
+	</string-array>
+	<string-array name="themes">
+		<item>Black</item>
+		<item>White</item>
+		<item>Dark</item>
+		<item>Light</item>
+	</string-array>
 </resources>

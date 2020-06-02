@@ -17,6 +17,7 @@ package lsafer.edgeseek.tasks;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
@@ -84,21 +85,27 @@ public class BrightnessControl implements View.OnTouchListener {
 			case MotionEvent.ACTION_UP:
 				//start/end of motion
 				Vibrator vibrator = this.context.getSystemService(Vibrator.class);
-				vibrator.vibrate(1);
+				vibrator.vibrate(VibrationEffect.createOneShot(1, VibrationEffect.DEFAULT_AMPLITUDE));
 				break;
 			default:
 				try {
 					//the seek is on
 					float axis = this.edge.landscape ? event.getX() : event.getY();
 
-					int value = (int) Util.range(
-							//the change between the current axis and the previous one
-							Util.change(this.axis, axis, (float) this.edge.data.sensitivity / 100) +
-							//plus the current brightness value
+					int value = Util.compute(
+							//old axis
+							this.axis,
+							//new axis
+							axis,
+							//sensitivity
+							this.edge.data.sensitivity,
+							//sensitivity factor
+							100,
+							//current volume
 							Settings.System.getInt(this.resolver, Settings.System.SCREEN_BRIGHTNESS),
-							//capped to the maximum brightness level allowed
+							//maximum volume
 							255,
-							//limited to not be a negative number
+							//minimum volume
 							0
 					);
 

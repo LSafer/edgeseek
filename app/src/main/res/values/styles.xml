@@ -1,3 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+	<style name="Black" parent="ThemeOverlay.AppCompat.Dark">
+		<item name="colorBackground">@color/blackColorBackground</item>
+		<item name="android:statusBarColor">@color/blackColorBackground</item>
+		<item name="colorPrimary">@color/blackColorPrimary</item>
+		<item name="colorPrimaryDark">@color/blackColorPrimaryDark</item>
+		<item name="colorAccent">@color/blackColorAccent</item>
+	</style>
+
+	<style name="Dark" parent="ThemeOverlay.AppCompat.Dark">
+		<item name="colorBackground">@color/darkColorBackground</item>
+		<item name="android:statusBarColor">@color/darkColorBackground</item>
+		<item name="colorPrimary">@color/darkColorPrimary</item>
+		<item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
+		<item name="colorAccent">@color/darkColorAccent</item>
+	</style>
+
+	<style name="White" parent="ThemeOverlay.AppCompat.Light">
+		<item name="colorBackground">@color/whiteColorBackground</item>
+		<item name="android:statusBarColor">@color/whiteColorBackground</item>
+		<item name="colorPrimary">@color/whiteColorPrimary</item>
+		<item name="colorPrimaryDark">@color/whiteColorPrimaryDark</item>
+		<item name="colorAccent">@color/whiteColorAccent</item>
+		<item name="android:textColorPrimary">@android:color/black</item>
+		<item name="android:textColor">@android:color/black</item>
+	</style>
+
+	<style name="Light" parent="ThemeOverlay.AppCompat.Light">
+		<item name="colorBackground">@color/lightColorBackground</item>
+		<item name="android:statusBarColor">@color/lightColorBackground</item>
+		<item name="colorPrimary">@color/lightColorPrimary</item>
+		<item name="colorPrimaryDark">@color/lightColorPrimaryDark</item>
+		<item name="colorAccent">@color/lightColorAccent</item>
+		<item name="android:textColorPrimary">@android:color/black</item>
+		<item name="android:textColor">@android:color/black</item>
+	</style>
 </resources>

@@ -1,58 +1,52 @@
 <resources>
-	<string name="txt__service_running_in_background">أطراف شاشتك جاهزة لتلقي لمسات أصابعك!.</string>
-	<string name="txt__need_permissions">هذا التطبيق يحتاج لبعض الصلاحيات لكي يعمل</string>
-	
-	<string name="des__permission_display_over_other_apps">السماح لهذا التطبيق بالعرض فوق التطبيقات الأخرى.</string>
-	<string name="des__permission_ignore_battery_optimizations">تحرير هذا التطبيق من تحسينات النظام للبطارية.</string>
-	<string name="des__permission_write_system_settings">السماح لهذا التطبيق بتعديل إعدادات النظام</string>
-	<string name="des__permission_receive_screen_off">السماح لهذا التطبيق بإلتقاط اشارة إقاف الشاشة</string>
-	<string name="des__permission_foreground_service">السماح لهذا التطبيق ببدأ خدمات بالواجهة.</string>
-	
-	<string name="des__setting_auto_boot">تشغيل الخدمة كل مرة يتم فيها تشغيل الجهاز.</string>
-	<string name="des__setting_edge">تعديل الحواف.</string>
-	<string name="des__setting_interface">تعديل تفضيلات الواجهة.</string>
-	<string name="des__setting_misc">تفضيلات أخرى.</string>
-	<string name="des__setting_permission">إدارة صلاحيات التطبيق</string>
-	<string name="des__setting_theme">المظهر العام للتطبيق.</string>
-	<string name="des__setting_off_screen_auto_brightness">تفعيل السطوع التلقائي عند إغلاق الشاشة.</string>
-	<string name="des__service_channel">إعلامك بأن الخدمة تعمل بالخلفية.</string>
-	
-	<string name="hlp__edges_activity">
-		إضغط على حافة غير مفعلة لتفعيلها.\n
-		إضغط على حافة مفعلة لتخصيصها.\n
-		إضغط مطولا على حافة مفعلة لقسمها أو دمجها.
-	</string>
-	
-	<string name="off_screen_auto_brightness">السطوع التلقائي عند إغلاق الشاشة</string>
-	<string name="auto_boot">تشغيل تلقائي</string>
+	<!-- des perm -->
+	<string name="_des_perm_display_over_other_apps">السماح لهذا التطبيق بالعرض فوق التطبيقات الأخرى.</string>
+	<string name="_des_perm_ignore_battery_optimizations">تحرير هذا التطبيق من تحسينات النظام للبطارية.</string>
+	<string name="_des_perm_write_system_settings">السماح لهذا التطبيق بتعديل إعدادات النظام</string>
+	<string name="_des_perm_receive_screen_off">السماح لهذا التطبيق بإلتقاط اشارة إقاف الشاشة</string>
+	<string name="_des_perm_foreground_service">السماح لهذا التطبيق ببدأ خدمات بالواجهة.</string>
+	<!-- des pref -->
+	<string name="_des_pref_edge_activation">اظغط لتفعيل او إلغاء تفعيل الحافة</string>
+	<string name="_des_pref_app_activation">اظغط لتفعيل او إلغاء تفعيل التطبيق</string>
+	<string name="_des_pref_seek_task">اختر ماللذي تريد التحكم به عند السحب</string>
+	<string name="_des_pref_sensitivity">إلى أي درجة تريد الحافة ان تكون حساسة</string>
+	<string name="_des_pref_width">عرض الحافة</string>
+	<string name="_des_pref_color">لون الحافة</string>
+	<string name="_des_pref_auto_boot">تشغيل الخدمة كل مرة يتم فيها تشغيل الجهاز</string>
+	<string name="_des_pref_auto_brightness">تفعيل السطوع التلقائي عند إغلاق الشاشة</string>
+	<string name="_des_pref_edges">تخصيص الحافات</string>
+	<string name="_des_pref_theme">مظهر التطبيق</string>
+	<string name="_des_pref_rotate">استدارة الحافة عند استدارة الشاشة</string>
+	<!-- words -->
+	<string name="job">الوظيفة</string>
+	<string name="activation">التفعيل</string>
+	<string name="sensitivity">الحساسية</string>
+	<string name="input">المدخلات</string>
+	<string name="dimensions">الأبعاد</string>
 	<string name="appearance">المظهر</string>
-	<string name="advanced">متقدم</string>
-	<string name="actions">المهام</string>
-	<string name="delete">حذف</string>
-	<string name="colors">ألوان</string>
-	<string name="theme">الطابع</string>
-	<string name="Interface">الواجهة</string>
-	<string name="needed">إلزامية</string>
-	<string name="permissions">الصلاحيات</string>
-	<string name="display_over_other_apps">الظهور فوق التطبيقات الأخرى</string>
-	<string name="write_system_settings">تعديل إعدادات النظام</string>
-	<string name="ignore_battery_optimizations">تجاهل تحسينات البطارية</string>
-	<string name="foreground_service">خدمات الواجهة</string>
-	<string name="receive_screen_off">تلقي إغلاق الشاشة</string>
+	<string name="color">اللون</string>
+	<string name="width">العرض</string>
 	<string name="misc">أخرى</string>
-	<string name="automation">الأتمتة</string>
-	<string name="app">التطبيق</string>
-	<string name="edges">الحواف</string>
-	<string name="other">أخرى</string>
-	<string name="custom_property">صفة مخصصة</string>
-	<string name="service_status">حالة الخدمة</string>
-	<string name="running_in_background">يعمل بالخلفية</string>
-	<string name="cancel">إلغاء</string>
-	<string name="confirm">تأكيد</string>
-	<string name="black">أسود</string>
-	<string name="light">فاتح</string>
-	<string name="additional">إضافية</string>
-	
-	<string name="read_external_storage">قراءة الملفات الخارجية</string>
-	<string name="des__permission_read_external_storage">السماح لهذا التطبيق بقراءة الملفات العامة</string>
+	<string name="edges">الحافات</string>
+	<string name="theme">المظهر</string>
+	<string name="rotate">الإستدارة</string>
+	<!-- names -->
+	<string name="edge_seek">حساس الأطراف</string>
+	<string name="seek_task">وظيفة السحب</string>
+	<string name="auto_boot">تشغيل تلقائي</string>
+	<string name="auto_brightness">السطوع التلقائي</string>
+	<string name="choose_edge">اختر الحافة</string>
+	<string name="bottom_edge">الحافة السفلى</string>
+	<string name="left_edge">الحافة اليسرى</string>
+	<string name="top_edge">الحافة العليا</string>
+	<string name="right_edge">الحافة اليمنى</string>
+	<!-- arrays -->
+	<string-array name="seek_tasks">
+		<item>لاشيء</item>
+		<item>التحكم بالسطوع</item>
+		<item>التحكم بصوت الوسائط</item>
+		<item>التحكم بصوت النغمة</item>
+		<item>التحكم باصوات النظام</item>
+		<item>التحكم بصوت المنبه</item>
+	</string-array>
 </resources>

@@ -23,7 +23,9 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
+import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
+import lsafer.edgeseek.util.Util;
 
 /**
  * Two toasts of this class can't be displayed at the same time.
@@ -37,6 +39,10 @@ final public class SingleToast extends Toast {
 	 * The current displaying toast.
 	 */
 	private static SingleToast current;
+	/**
+	 * Syncing object.
+	 */
+	final private static Object SYNC = new Object();
 
 	/**
 	 * Constructs a new toast.
@@ -46,14 +52,6 @@ final public class SingleToast extends Toast {
 	 */
 	public SingleToast(Context context) {
 		super(context);
-	}
-
-	@Override
-	public void show() {
-		if (SingleToast.current != null)
-			SingleToast.current.cancel();
-		SingleToast.current = this;
-		super.show();
 	}
 
 	/**
@@ -69,6 +67,7 @@ final public class SingleToast extends Toast {
 		Objects.requireNonNull(context, "context");
 		Objects.requireNonNull(string, "string");
 
+		context.setTheme(Util.theme(App.data.theme));
 		SingleToast toast = new SingleToast(context);
 
 		toast.setDuration(duration);
@@ -77,5 +76,15 @@ final public class SingleToast extends Toast {
 
 		toast.setView(view);
 		return toast;
+	}
+
+	@Override
+	public void show() {
+		synchronized (SingleToast.SYNC) {
+			if (SingleToast.current != null)
+				SingleToast.current.cancel();
+			SingleToast.current = this;
+			super.show();
+		}
 	}
 }

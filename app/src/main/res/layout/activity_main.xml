@@ -1,86 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:background="?colorBackground"
 	android:orientation="vertical">
-	
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:paddingTop="50dp"
+		android:paddingBottom="50dp"
+		android:text="@string/edge_seek"
+		android:textColor="?colorAccent"
+		android:textSize="30sp" />
+
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/fragment_app"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content" />
-	
-	<androidx.constraintlayout.widget.ConstraintLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_margin="50dp"
-		android:orientation="vertical"
-		android:padding="30dp"
-		tools:context=".activity.EdgesActivity"
-		tools:ignore="RtlHardcoded">
-		
-		<View
-			android:id="@+id/mobile"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:background="@drawable/draw_mobile_edges"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintLeft_toLeftOf="parent"
-			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
-		
-		<View
-			android:id="@+id/bottom"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/edges_preview_width"
-			android:layout_marginLeft="30dp"
-			android:layout_marginRight="30dp"
-			android:background="@android:color/holo_red_dark"
-			android:onClick="onEdgeClick"
-			android:visibility="visible"
-			app:layout_constraintBottom_toBottomOf="@id/mobile"
-			app:layout_constraintLeft_toLeftOf="@id/mobile"
-			app:layout_constraintRight_toRightOf="@id/mobile" />
-		
-		<View
-			android:id="@+id/top"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/edges_preview_width"
-			android:layout_marginLeft="30dp"
-			android:layout_marginRight="30dp"
-			android:background="@android:color/holo_red_dark"
-			android:onClick="onEdgeClick"
-			android:visibility="visible"
-			app:layout_constraintLeft_toLeftOf="@id/mobile"
-			app:layout_constraintRight_toRightOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@id/mobile" />
-		
-		<View
-			android:id="@+id/left"
-			android:layout_width="@dimen/edges_preview_width"
-			android:layout_height="match_parent"
-			android:layout_marginTop="30dp"
-			android:layout_marginBottom="30dp"
-			android:background="@android:color/holo_red_dark"
-			android:onClick="onEdgeClick"
-			android:visibility="visible"
-			app:layout_constraintBottom_toBottomOf="@+id/mobile"
-			app:layout_constraintLeft_toLeftOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@+id/mobile" />
-		
-		<View
-			android:id="@+id/right"
-			android:layout_width="@dimen/edges_preview_width"
-			android:layout_height="match_parent"
-			android:layout_marginTop="30dp"
-			android:layout_marginBottom="30dp"
-			android:background="@android:color/holo_red_dark"
-			android:onClick="onEdgeClick"
-			android:visibility="visible"
-			app:layout_constraintBottom_toBottomOf="@+id/mobile"
-			app:layout_constraintRight_toRightOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@+id/mobile" />
-	
-	</androidx.constraintlayout.widget.ConstraintLayout>
+		android:layout_height="match_parent" />
 </LinearLayout>

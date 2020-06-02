@@ -1,92 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="edge_double_click_task">
-		<item>Double Click Task</item>
-		<item>The task should be executed when the edge get double touched.</item>
-	</string-array>
-	<string-array name="edge_long_click_task">
-		<item>Long Click Task</item>
-		<item>The task should be executed when the edge get long clicked</item>
-	</string-array>
-	<string-array name="edge_seek_task">
-		<item>Seek Task</item>
-		<item>The task should be executed when the edge get touched.</item>
-	</string-array>
-	<string-array name="edge_alpha">
-		<item>Alpha</item>
-		<item>Transparency of the edge.</item>
-	</string-array>
-	<string-array name="edge_rotate">
-		<item>Rotate</item>
-		<item>Is it allowed to rotate edges when the screen rotates.</item>
-	</string-array>
-	<string-array name="edge_position">
-		<item>Position</item>
-		<item>The position of the edge.</item>
-	</string-array>
-	<string-array name="edge_xposition">
-		<item>XPosition</item>
-		<item>The secondary position of this edge.</item>
-	</string-array>
-	<string-array name="edge_width">
-		<item>Width</item>
-		<item>The width of this edge.</item>
-	</string-array>
-	<string-array name="edge_sensitivity">
-		<item>Sensitivity</item>
-		<item>The sensitivity of this edge.</item>
-	</string-array>
-	<string-array name="edge_color">
-		<item>Color</item>
-		<item>The color of this edge.</item>
-	</string-array>
-	<string-array name="edge_vibration">
-		<item>Vibration</item>
-		<item>The vibration duration when the edge get touched.</item>
-	</string-array>
-	<string-array name="edge_maximum">
-		<item>Maximum</item>
-		<item>Maximum value allowed to be set.</item>
-	</string-array>
-	<string-array name="edge_minimum">
-		<item>Minimum</item>
-		<item>Minimum value allowed to be set.</item>
-	</string-array>
-	<string-array name="edge_stream">
-		<item>Stream</item>
-		<item>For audio task. To define what stream to be targeted.</item>
-	</string-array>
-	<string-array name="edge_wallpapers">
-		<item>Wallpapers source</item>
-		<item>For change wallpaper task. The directory where the wallpapers get stored at.</item>
-	</string-array>
-	<string-array name="edge_long_click_timeout">
-		<item>Long Click Timeout</item>
-		<item>The time to preform a long click task.</item>
-	</string-array>
-	<string-array name="edge_spam_timeout">
-		<item>Spam Timeout</item>
-		<item>The time to reset spam counting</item>
-	</string-array>
-	<string-array name="edge_spams">
-		<item>Spams</item>
-		<item>The spams required to preform a spam task</item>
-	</string-array>
-	
-	<string-array name="app_ui_theme">
-		<item>Theme</item>
-		<item>The overall theme of this application</item>
-	</string-array>
-	
-	<string-array name="seek_tasks">
-		<item>Nothing</item>
-		<item>Control Brightness</item>
-		<item>Control Media</item>
-		<item>Control Ringtone</item>
-		<item>Control System Audio</item>
-		<item>Control Alarms</item>
-	</string-array>
-
 	<string-array name="seek_tasks_alias">
 		<item>non</item>
 		<item>brightness</item>
@@ -95,56 +8,10 @@
 		<item>system</item>
 		<item>alarm</item>
 	</string-array>
-	
-	<string-array name="double_click_tasks">
-		<item>Nothing</item>
-		<item>Expand Statusbar</item>
-		<item>Change Wallpaper</item>
-	</string-array>
-	<string-array name="long_click_tasks">
-		<item>Nothing</item>
-		<item>Expand Statusbar</item>
-		<item>Change Wallpaper</item>
-	</string-array>
-	<string-array name="streams">
-		<item>Voice Call</item>
-		<item>System</item>
-		<item>Ringtone</item>
-		<item>Music</item>
-		<item>Alarm</item>
-		<item>Notification</item>
-		<item>Bluetooth Voice Calls</item>
-		<item>System Enforced</item>
-		<item>DTMF</item>
-		<item>TTS</item>
-		<item>accessibility</item>
-	</string-array>
-	<string-array name="positions">
-		<item>Bottom</item>
-		//0
-		<item>Left</item>
-		//1
-		<item>Top</item>
-		//2
-		<item>Right</item>
-		//3
-		<item>Full</item>
-		//4
-	</string-array>
-	<string-array name="colors">
-		<item>Lemon</item>
-		<item>Green</item>
-		<item>Sky</item>
-		<item>Purple</item>
-		<item>Pink</item>
-		<item>Orange</item>
-	</string-array>
-	<string-array name="wallpaper_sources">
-		<item>Wallpapers Folder</item>
-		<item>Downloads</item>
-	</string-array>
-	<string-array name="themes">
-		<item>Black</item>
-		<item>Light</item>
+	<string-array name="themes_alias">
+		<item>black</item>
+		<item>white</item>
+		<item>dark</item>
+		<item>light</item>
 	</string-array>
 </resources>

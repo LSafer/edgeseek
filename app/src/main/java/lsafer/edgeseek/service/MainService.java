@@ -19,6 +19,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.IBinder;
 import android.view.WindowManager;
@@ -31,6 +32,7 @@ import java.util.List;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.Edge;
 import lsafer.edgeseek.R;
+import lsafer.edgeseek.receiver.ScreenOffBroadCastReceiver;
 
 /**
  * A service that responsible to display the edges customized by this application.
@@ -40,24 +42,29 @@ import lsafer.edgeseek.R;
  * @version 0.1.5
  * @since 27-May-20
  */
-public class EdgeService extends Service {
+public class MainService extends Service {
 	/**
 	 * The edges served by this service.
 	 */
 	private List<Edge> edges;
+	/**
+	 * A registered receiver on this service.
+	 */
+	private ScreenOffBroadCastReceiver screenOffReceiver;
 	/**
 	 * The window-manager that this service is using.
 	 */
 	private WindowManager wm;
 
 	@Override
-	public IBinder onBind(Intent intent) {
-		return null;
-	}
-
-	@Override
 	public void onCreate() {
 		super.onCreate();
+
+		//stop if not activated
+		if (!App.data.activated) {
+			this.stopSelf();
+			return;
+		}
 
 		//define the window manager
 		this.wm = this.getSystemService(WindowManager.class);
@@ -69,6 +76,13 @@ public class EdgeService extends Service {
 				new Edge(this, this.wm, App.data.edges.get(2)),
 				new Edge(this, this.wm, App.data.edges.get(3))
 		);
+
+		//start the edges
+		this.edges.forEach(Edge::start);
+
+		//register on-screen-off receiver
+		this.screenOffReceiver = new ScreenOffBroadCastReceiver();
+		this.registerReceiver(this.screenOffReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 
 		//foreground-service notification
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -86,28 +100,32 @@ public class EdgeService extends Service {
 	}
 
 	@Override
-	public void onDestroy() {
-		super.onDestroy();
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		//stop if not activated
+		if (!App.data.activated) {
+			this.stopSelf();
+			return startId;
+		}
 
-		//remove the edges from the screen
-		for (Edge edge : this.edges)
-			if (edge.isAttached())
-				edge.detach();
+		//refresh edges managers
+		this.edges.forEach(Edge::update);
+
+		return START_STICKY;
 	}
 
 	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		//refresh edges managers
-		for (Edge edge : this.edges)
-			if (edge.isBuilt())
-				if (edge.isAttached())
-					//update with new data
-					edge.reattach();
-				else//notify to show
-					edge.attach();
-			else//initialize and show
-				edge.build().attach();
+	public void onDestroy() {
+		super.onDestroy();
 
-		return START_STICKY;
+		//destroy the edges
+		this.edges.forEach(Edge::destroy);
+
+		//unregister on-screen-off receiver
+		this.unregisterReceiver(this.screenOffReceiver);
+	}
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
 	}
 }

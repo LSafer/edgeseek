@@ -16,6 +16,7 @@
 package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,7 @@ import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.EdgeData;
 import lsafer.edgeseek.fragment.EdgeDataFragment;
+import lsafer.edgeseek.util.Util;
 
 /**
  * An activity that customize the edge it focuses on.
@@ -34,28 +36,33 @@ import lsafer.edgeseek.fragment.EdgeDataFragment;
  * @since 27-May-20
  */
 public class EdgeActivity extends AppCompatActivity implements EdgeDataFragment.Activity {
+	/**
+	 * The target edge-position by this activity.
+	 */
+	private int position;
+
 	@Override
 	public EdgeData getEdgeData(EdgeDataFragment fragment) {
 		Objects.requireNonNull(fragment, "fragment");
-		return App.data.edges.get(this.getIntent().getIntExtra("edge", -1));
+		return App.data.edges.get(this.position);
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setTheme(R.style.Theme_AppCompat);
+		this.setTheme(Util.theme(App.data.theme));
 		this.setContentView(R.layout.activity_edge);
+
+		this.position = this.getIntent().getIntExtra("edge", -1);
+
+		//title
+		this.<TextView>findViewById(R.id.title)
+				.setText(Util.positionEdgeName(this.position));
 
 		//edge-data fragment
 		this.getSupportFragmentManager()
 				.beginTransaction()
 				.replace(R.id.fragment_edge, new EdgeDataFragment())
 				.commit();
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		App.data.save();
 	}
 }

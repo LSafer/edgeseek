@@ -18,6 +18,10 @@ package lsafer.edgeseek.util;
 import android.view.Gravity;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.StringRes;
+import androidx.annotation.StyleRes;
+
+import java.util.Objects;
 
 import lsafer.edgeseek.R;
 
@@ -131,5 +135,67 @@ final public class Util {
 	 */
 	public static float range(float f, float max, float min) {
 		return f > max ? max : f < min ? min : f;
+	}
+
+	/**
+	 * @param axis0       the previous axis
+	 * @param axis1       the new axis
+	 * @param sensitivity the sensitivity
+	 * @param current     the current value
+	 * @param factor      the sensitivity factor
+	 * @param maximum     maximum value
+	 * @param minimum     minimum value
+	 * @return computed value from the given input
+	 */
+	public static int compute(Float axis0, Float axis1, float sensitivity, float factor, int current, int maximum, int minimum) {
+		float c = axis0 == null || axis1 == null ? 0 : (axis0 - axis1) * (sensitivity / factor);
+		int x = (int) c + current;
+		return x > maximum ? maximum : x < minimum ? minimum : x;
+	}
+
+	/**
+	 * Get the edge name for the given position.
+	 *
+	 * @param position of the edge to get the string resources integer for
+	 * @return the string resources integer of the name of the edge that have the given position
+	 * @throws IllegalArgumentException if the position is not within the range [0, 3]
+	 */
+	@StringRes
+	public static int positionEdgeName(int position) {
+		switch (position) {
+			case 0:
+				return R.string.bottom_edge;
+			case 1:
+				return R.string.left_edge;
+			case 2:
+				return R.string.top_edge;
+			case 3:
+				return R.string.right_edge;
+			default:
+				throw new IllegalArgumentException("unexpected position: " + position);
+		}
+	}
+
+	/**
+	 * Get the theme resources id for the theme-name provided.
+	 *
+	 * @param name the theme name
+	 * @return the theme resources-id for the given theme-name
+	 * @throws NullPointerException if the given 'name' is null
+	 */
+	@StyleRes
+	public static int theme(String name) {
+		Objects.requireNonNull(name, "name");
+		switch (name) {
+			default:
+			case "black":
+				return R.style.Black;
+			case "dark":
+				return R.style.Dark;
+			case "light":
+				return R.style.Light;
+			case "white":
+				return R.style.White;
+		}
 	}
 }

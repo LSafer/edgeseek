@@ -18,7 +18,6 @@ package lsafer.edgeseek.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,9 +26,8 @@ import java.util.Objects;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.AppData;
-import lsafer.edgeseek.data.EdgeData;
 import lsafer.edgeseek.fragment.AppDataFragment;
-import lsafer.edgeseek.service.EdgeService;
+import lsafer.edgeseek.service.MainService;
 import lsafer.edgeseek.util.Util;
 
 /**
@@ -43,7 +41,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 19-May-2020
  */
-public class MainActivity extends AppCompatActivity implements AppDataFragment.Activity {
+public class MainActivity extends AppCompatActivity implements AppDataFragment.Activity, AppData.OnDataChangeListener {
 	@Override
 	public AppData getAppData(AppDataFragment fragment) {
 		Objects.requireNonNull(fragment, "fragment");
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.setTheme(R.style.Theme_AppCompat);
+		this.setTheme(Util.theme(App.data.theme));
 		this.setContentView(R.layout.activity_main);
 
 		//app-data fragment
@@ -61,47 +59,30 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 				.beginTransaction()
 				.replace(R.id.fragment_app, new AppDataFragment())
 				.commit();
+
+		//start main-service
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+			this.startForegroundService(new Intent(this, MainService.class));
+		else this.startService(new Intent(this, MainService.class));
+
+		//register listener
+		App.data.registerOnDataChangeListener(this);
 	}
 
 	@Override
-	protected void onPause() {
-		super.onPause();
-		App.data.save();
+	protected void onDestroy() {
+		super.onDestroy();
+		App.data.unregisterOnDataChangeListener(this);
 	}
 
 	@Override
-	protected void onResume() {
-		super.onResume();
-
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			this.startForegroundService(new Intent(this, EdgeService.class));
-		} else {
-			this.startService(new Intent(this, EdgeService.class));
+	public void onDataChange(AppData data, Object key, Object oldValue, Object newValue) {
+		if (key.equals("theme") && !oldValue.equals(newValue)) {
+			//theme change listener
+			this.startActivity(new Intent(this, MainActivity.class));
+			this.stopService(new Intent(this, MainService.class));
+			this.startService(new Intent(this, MainService.class));
+			this.finish();
 		}
-
-		//style-em
-		for (int i = 0; i < 4; i++) {
-			View view = this.findViewById(Util.id(i));
-			EdgeData data = App.data.edges.get(i);
-
-			if (data.activated) {
-				view.setBackgroundColor(data.color);
-			} else {
-				view.setBackgroundColor(this.getColor(R.color.disabled_gray));
-			}
-		}
-	}
-
-	/**
-	 * Get invoked when an edge of the screen module displayed to the user get touched.
-	 *
-	 * @param view the view that has been touch
-	 * @throws NullPointerException if the given 'view' is null
-	 */
-	public void onEdgeClick(View view) {
-		Objects.requireNonNull(view, "view");
-		Intent intent = new Intent(this, EdgeActivity.class);
-		intent.putExtra("edge", Util.position(view.getId()));
-		this.startActivity(intent);
 	}
 }

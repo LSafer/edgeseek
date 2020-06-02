@@ -16,12 +16,18 @@
 package lsafer.edgeseek;
 
 import android.app.Application;
-import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Build;
 
 import java.io.File;
-import java.util.function.Supplier;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
 
 import lsafer.edgeseek.data.AppData;
+import lsafer.edgeseek.service.MainService;
+import lsafer.edgeseek.util.Util;
 
 /**
  * The application class of this application.
@@ -30,21 +36,98 @@ import lsafer.edgeseek.data.AppData;
  * @version 0.1.5
  * @since 18-May-20
  */
-public class App extends Application {
+public class App extends Application implements AppData.OnDataChangeListener {
+	/**
+	 * The listeners.
+	 */
+	final static private Collection<OnConfigurationChangeListener> listeners = new HashSet<>();
 	/**
 	 * The data of this application.
+	 * <br>
+	 * FINAL !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	 */
-	final public static AppData data = new AppData();
+	public static AppData data;
+
 	/**
-	 * The supplier of the application context.
+	 * Register the given listener to be called when a new configuration occurs.
+	 *
+	 * @param listener to be registered
+	 * @throws NullPointerException     if the given 'listener' is null
+	 * @throws IllegalArgumentException if the given 'listener' already registered
 	 */
-	private static Supplier<Context> context;
+	public static void registerOnConfigurationChangeListener(OnConfigurationChangeListener listener) {
+		Objects.requireNonNull(listener, "listener");
+		if (App.listeners.contains(listener))
+			throw new IllegalArgumentException("listener is already registered");
+
+		App.listeners.add(listener);
+	}
+
+	/**
+	 * Unregister the given listener from the listeners list.
+	 *
+	 * @param listener to be unregistered
+	 * @throws NullPointerException     if the given 'listener' is null
+	 * @throws IllegalArgumentException if the given 'listener' isn't registered
+	 */
+	public static void unregisterOnConfigurationChangeListener(OnConfigurationChangeListener listener) {
+		Objects.requireNonNull(listener, "listener");
+		if (!App.listeners.contains(listener))
+			throw new IllegalArgumentException("listener is not registered");
+
+		App.listeners.remove(listener);
+	}
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		App.context = this::getApplicationContext;
-		App.data.setFile(new File(this.getExternalFilesDir("data"), "main"));
+
+		//data
+		App.data = new AppData(new File(this.getExternalFilesDir("data"), "main"));
 		App.data.load();
+
+		//listener
+		App.data.registerOnDataChangeListener(this);
+
+		this.setTheme(Util.theme(App.data.theme));
+	}
+
+	@Override
+	public void onTerminate() {
+		super.onTerminate();
+
+		//remove listener
+		App.data.unregisterOnDataChangeListener(this);
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+
+		//notify listeners
+		App.listeners.forEach(l -> l.onConfigurationChanged(newConfig));
+	}
+
+	@Override
+	public void onDataChange(AppData data, Object key, Object oldValue, Object newValue) {
+		//save data
+		App.data.save();
+
+		//update main-service
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+			this.startForegroundService(new Intent(this, MainService.class));
+		else this.startService(new Intent(this, MainService.class));
+	}
+
+	/**
+	 * A listener that listens to the changes in configuration.
+	 */
+	public interface OnConfigurationChangeListener {
+		/**
+		 * Called when a new configuration occurred.
+		 *
+		 * @param newConfig the new configuration
+		 */
+		void onConfigurationChanged(Configuration newConfig);
 	}
 }
