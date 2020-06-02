@@ -47,6 +47,24 @@ final public class Util {
 	}
 
 	/**
+	 * Compute the given inputs.
+	 *
+	 * @param axis0       the previous axis
+	 * @param axis1       the new axis
+	 * @param sensitivity the sensitivity
+	 * @param current     the current value
+	 * @param factor      the sensitivity factor
+	 * @param maximum     maximum value
+	 * @param minimum     minimum value
+	 * @return computed value from the given input
+	 */
+	public static int compute(Float axis0, Float axis1, float sensitivity, float factor, int current, int maximum, int minimum) {
+		float c = axis0 == null || axis1 == null ? 0 : (axis0 - axis1) * (sensitivity / factor);
+		int x = (int) c + current;
+		return x > maximum ? maximum : x < minimum ? minimum : x;
+	}
+
+	/**
 	 * Get {@link Gravity} value for the given position.
 	 *
 	 * @param position to get the gravity for
@@ -90,6 +108,18 @@ final public class Util {
 	}
 
 	/**
+	 * Get the un-rotated position for the given parameters.
+	 *
+	 * @param position        the original position
+	 * @param rotate          whether is it allowed to rotate or not
+	 * @param displayRotation the rotation of the display
+	 * @return the un-rotated position for the given parameters
+	 */
+	public static int position(int position, boolean rotate, int displayRotation) {
+		return rotate ? position : position == 4 ? 4 : Math.abs(displayRotation * 3 + position) % 4;
+	}
+
+	/**
 	 * Get the position from the given id-res.
 	 *
 	 * @param id to get position from
@@ -108,49 +138,6 @@ final public class Util {
 			default:
 				throw new RuntimeException("id: " + id + " is not expected");
 		}
-	}
-
-	/**
-	 * Get the un-rotated position for the given parameters.
-	 *
-	 * @param position        the original position
-	 * @param rotate          whether is it allowed to rotate or not
-	 * @param displayRotation the rotation of the display
-	 * @return the un-rotated position for the given parameters
-	 */
-	public static int position(int position, boolean rotate, int displayRotation) {
-		return rotate ? position : position == 4 ? 4 : Math.abs(displayRotation * 3 + position) % 4;
-	}
-
-	/**
-	 * Cap the given float 'f' not passing more than the maximum 'max'
-	 * and not passing less than the minimum 'min'. if 'f' is more than
-	 * 'max' then 'max' will be returned. and if 'f' is less than 'min'
-	 * then 'min' will be returned.
-	 *
-	 * @param f   the value to be capped
-	 * @param max the maximum value
-	 * @param min the minimum value
-	 * @return 'max' if 'f' is more than 'max' or 'min' if 'f' is less than 'min' otherwise 'f' will be returned
-	 */
-	public static float range(float f, float max, float min) {
-		return f > max ? max : f < min ? min : f;
-	}
-
-	/**
-	 * @param axis0       the previous axis
-	 * @param axis1       the new axis
-	 * @param sensitivity the sensitivity
-	 * @param current     the current value
-	 * @param factor      the sensitivity factor
-	 * @param maximum     maximum value
-	 * @param minimum     minimum value
-	 * @return computed value from the given input
-	 */
-	public static int compute(Float axis0, Float axis1, float sensitivity, float factor, int current, int maximum, int minimum) {
-		float c = axis0 == null || axis1 == null ? 0 : (axis0 - axis1) * (sensitivity / factor);
-		int x = (int) c + current;
-		return x > maximum ? maximum : x < minimum ? minimum : x;
 	}
 
 	/**
@@ -174,6 +161,21 @@ final public class Util {
 			default:
 				throw new IllegalArgumentException("unexpected position: " + position);
 		}
+	}
+
+	/**
+	 * Cap the given float 'f' not passing more than the maximum 'max'
+	 * and not passing less than the minimum 'min'. if 'f' is more than
+	 * 'max' then 'max' will be returned. and if 'f' is less than 'min'
+	 * then 'min' will be returned.
+	 *
+	 * @param f   the value to be capped
+	 * @param max the maximum value
+	 * @param min the minimum value
+	 * @return 'max' if 'f' is more than 'max' or 'min' if 'f' is less than 'min' otherwise 'f' will be returned
+	 */
+	public static float range(float f, float max, float min) {
+		return f > max ? max : f < min ? min : f;
 	}
 
 	/**

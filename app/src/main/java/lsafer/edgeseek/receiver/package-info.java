@@ -14,8 +14,10 @@
  *	limitations under the License.
  */
 /**
+ * The receivers of this application.
+ *
  * @author lsafer
- * @version
+ * @version 0.1.5
  * @since 01-Jun-20
  */
 package lsafer.edgeseek.receiver;

@@ -128,15 +128,15 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	}
 
 	@Override
+	public void onDataChange(EdgeData data, Object key, Object oldValue, Object newValue) {
+		this.listeners.forEach(l -> l.onDataChange(this, key, oldValue, newValue));
+	}
+
+	@Override
 	public Object put(Object key, Object value) {
 		Object old = super.put(key, value);
 		this.listeners.forEach(l -> l.onDataChange(this, key, old, value));
 		return old;
-	}
-
-	@Override
-	public void onDataChange(EdgeData data, Object key, Object oldValue, Object newValue) {
-		this.listeners.forEach(l -> l.onDataChange(this, key, oldValue, newValue));
 	}
 
 	/**

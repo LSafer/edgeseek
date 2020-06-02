@@ -36,13 +36,13 @@ import lsafer.edgeseek.util.Util;
  */
 final public class SingleToast extends Toast {
 	/**
-	 * The current displaying toast.
-	 */
-	private static SingleToast current;
-	/**
 	 * Syncing object.
 	 */
 	final private static Object SYNC = new Object();
+	/**
+	 * The current displaying toast.
+	 */
+	private static SingleToast current;
 
 	/**
 	 * Constructs a new toast.

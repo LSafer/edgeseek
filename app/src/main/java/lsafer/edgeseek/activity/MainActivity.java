@@ -49,6 +49,17 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 	}
 
 	@Override
+	public void onDataChange(AppData data, Object key, Object oldValue, Object newValue) {
+		if (key.equals("theme") && !oldValue.equals(newValue)) {
+			//theme change listener
+			this.startActivity(new Intent(this, MainActivity.class));
+			this.stopService(new Intent(this, MainService.class));
+			this.startService(new Intent(this, MainService.class));
+			this.finish();
+		}
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setTheme(Util.theme(App.data.theme));
@@ -73,16 +84,5 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 	protected void onDestroy() {
 		super.onDestroy();
 		App.data.unregisterOnDataChangeListener(this);
-	}
-
-	@Override
-	public void onDataChange(AppData data, Object key, Object oldValue, Object newValue) {
-		if (key.equals("theme") && !oldValue.equals(newValue)) {
-			//theme change listener
-			this.startActivity(new Intent(this, MainActivity.class));
-			this.stopService(new Intent(this, MainService.class));
-			this.startService(new Intent(this, MainService.class));
-			this.finish();
-		}
 	}
 }

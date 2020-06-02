@@ -7,7 +7,7 @@
 		android:centerY="15"
 		android:endColor="@android:color/transparent"
 		android:startColor="@android:color/transparent"
-		android:type="linear"/>
+		android:type="linear" />
 	<stroke
 		android:width="@dimen/edges_preview_width"
 		android:color="?colorPrimary" />
