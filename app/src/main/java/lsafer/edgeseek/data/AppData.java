@@ -54,7 +54,7 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 * The activation status of this application.
 	 */
 	@Property
-	public boolean activated = true;
+	public boolean activated = false;
 	/**
 	 * Launch the service on-start.
 	 */

@@ -1,10 +1,8 @@
 <resources>
 	<!-- des perm -->
-	<string name="_des_perm_display_over_other_apps">السماح لهذا التطبيق بالعرض فوق التطبيقات الأخرى.</string>
-	<string name="_des_perm_ignore_battery_optimizations">تحرير هذا التطبيق من تحسينات النظام للبطارية.</string>
+	<string name="_des_perm_display_over_other_apps">السماح لهذا التطبيق بالعرض فوق التطبيقات الأخرى</string>
+	<string name="_des_perm_ignore_battery_optimizations">تحرير هذا التطبيق من تحسينات النظام للبطارية</string>
 	<string name="_des_perm_write_system_settings">السماح لهذا التطبيق بتعديل إعدادات النظام</string>
-	<string name="_des_perm_receive_screen_off">السماح لهذا التطبيق بإلتقاط اشارة إقاف الشاشة</string>
-	<string name="_des_perm_foreground_service">السماح لهذا التطبيق ببدأ خدمات بالواجهة.</string>
 	<!-- des pref -->
 	<string name="_des_pref_edge_activation">اظغط لتفعيل او إلغاء تفعيل الحافة</string>
 	<string name="_des_pref_app_activation">اظغط لتفعيل او إلغاء تفعيل التطبيق</string>
@@ -17,6 +15,7 @@
 	<string name="_des_pref_edges">تخصيص الحافات</string>
 	<string name="_des_pref_theme">مظهر التطبيق</string>
 	<string name="_des_pref_rotate">استدارة الحافة عند استدارة الشاشة</string>
+	<string name="_des_pref_permissions">إدارة صلاحيات التطبيق</string>
 	<!-- words -->
 	<string name="job">الوظيفة</string>
 	<string name="activation">التفعيل</string>
@@ -30,6 +29,9 @@
 	<string name="edges">الحافات</string>
 	<string name="theme">المظهر</string>
 	<string name="rotate">الإستدارة</string>
+	<string name="permissions">الصلاحيات</string>
+	<string name="mandatory">إلزامي</string>
+	<string name="additional">إضافي</string>
 	<!-- names -->
 	<string name="edge_seek">حساس الأطراف</string>
 	<string name="seek_task">وظيفة السحب</string>
@@ -40,6 +42,9 @@
 	<string name="left_edge">الحافة اليسرى</string>
 	<string name="top_edge">الحافة العليا</string>
 	<string name="right_edge">الحافة اليمنى</string>
+	<string name="display_over_other_apps">العرض فوق التطبيقات الأخرى</string>
+	<string name="write_system_settings">كتابة إعدادات النظام</string>
+	<string name="ignore_battery_optimization">تجاهل تحسينات البطارية</string>
 	<!-- arrays -->
 	<string-array name="seek_tasks">
 		<item>لاشيء</item>

@@ -7,6 +7,13 @@
 			app:summary="@string/_des_pref_app_activation"
 			app:title="@string/activation" />
 		<Preference
+			app:summary="@string/_des_pref_permissions"
+			app:title="@string/permissions">
+			<intent
+				android:targetClass="lsafer.edgeseek.activity.PermissionsActivity"
+				android:targetPackage="lsafer.edgeseek" />
+		</Preference>
+		<Preference
 			app:summary="@string/_des_pref_edges"
 			app:title="@string/edges">
 			<intent

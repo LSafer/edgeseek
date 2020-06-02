@@ -1,17 +1,8 @@
 <resources>
 	<!-- des perm -->
-	<string name="_des_perm_display_over_other_apps">Allow this application to draw views floating
-		on your screen.
-	</string>
-	<string name="_des_perm_ignore_battery_optimizations">Make this application free from the system
-		battery optimizations.
-	</string>
-	<string name="_des_perm_write_system_settings">Allow this application to edit settings.</string>
-	<string name="_des_perm_receive_screen_off">Allow this application to receive screen off
-		broadcasts.
-	</string>
-	<string name="_des_perm_foreground_service">Allow this application to start foreground services.
-	</string>
+	<string name="_des_perm_display_over_other_apps">Allow this application to draw views floating on your screen</string>
+	<string name="_des_perm_ignore_battery_optimizations">Make this application free from the system battery optimizations</string>
+	<string name="_des_perm_write_system_settings">Allow this application to edit settings</string>
 	<!-- des pref -->
 	<string name="_des_pref_edge_activation">Toggle to activate or deactivate this edge</string>
 	<string name="_des_pref_app_activation">Toggle to activate or deactivate the application</string>
@@ -24,6 +15,7 @@
 	<string name="_des_pref_edges">Customize the edges</string>
 	<string name="_des_pref_theme">The theme of the application</string>
 	<string name="_des_pref_rotate">Rotate the edge with the screen rotation</string>
+	<string name="_des_pref_permissions">Manage application\'s permissions</string>
 	<!-- words -->
 	<string name="job">Job</string>
 	<string name="activation">Activation</string>
@@ -37,6 +29,9 @@
 	<string name="edges">Edges</string>
 	<string name="theme">Theme</string>
 	<string name="rotate">Rotate</string>
+	<string name="permissions">Permissions</string>
+	<string name="mandatory">Mandatory</string>
+	<string name="additional">Additional</string>
 	<!-- names -->
 	<string name="edge_seek">Edge Seek</string>
 	<string name="seek_task">Seek Task</string>
@@ -47,6 +42,9 @@
 	<string name="left_edge">Left Edge</string>
 	<string name="top_edge">Top Edge</string>
 	<string name="right_edge">Right Edge</string>
+	<string name="display_over_other_apps">Display Over Other Apps</string>
+	<string name="write_system_settings">Write System Settings</string>
+	<string name="ignore_battery_optimization">Ignore Battery Optimization</string>
 	<!-- arrays -->
 	<string-array name="seek_tasks">
 		<item>Nothing</item>

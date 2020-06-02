@@ -60,6 +60,20 @@ public class MainService extends Service {
 	public void onCreate() {
 		super.onCreate();
 
+		//foreground-service notification
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+			this.getSystemService(NotificationManager.class)
+					.createNotificationChannel(new NotificationChannel(
+							"Foreground",
+							"Foreground Service Channel",
+							NotificationManager.IMPORTANCE_LOW
+					));
+		this.startForeground(1, new NotificationCompat.Builder(this, "Foreground")
+				.setContentTitle("Running in the background")
+				.setContentText("")
+				.setSmallIcon(R.drawable.ic_sync)
+				.build());
+
 		//stop if not activated
 		if (!App.data.activated) {
 			this.stopSelf();
@@ -83,20 +97,6 @@ public class MainService extends Service {
 		//register on-screen-off receiver
 		this.screenOffReceiver = new ScreenOffBroadCastReceiver();
 		this.registerReceiver(this.screenOffReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
-
-		//foreground-service notification
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-			this.getSystemService(NotificationManager.class)
-					.createNotificationChannel(new NotificationChannel(
-							"Foreground",
-							"Foreground Service Channel",
-							NotificationManager.IMPORTANCE_LOW
-					));
-		this.startForeground(1, new NotificationCompat.Builder(this, "Foreground")
-				.setContentTitle("Running in the background")
-				.setContentText("")
-				.setSmallIcon(R.drawable.ic_sync)
-				.build());
 	}
 
 	@Override
@@ -118,10 +118,12 @@ public class MainService extends Service {
 		super.onDestroy();
 
 		//destroy the edges
-		this.edges.forEach(Edge::destroy);
+		if (this.edges != null)
+			this.edges.forEach(Edge::destroy);
 
 		//unregister on-screen-off receiver
-		this.unregisterReceiver(this.screenOffReceiver);
+		if (this.screenOffReceiver != null)
+			this.unregisterReceiver(this.screenOffReceiver);
 	}
 
 	@Override
