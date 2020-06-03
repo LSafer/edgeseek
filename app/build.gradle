@@ -32,7 +32,7 @@ dependencies {
 
 	//thanks a lot for `cufy` for there good work, lol
 	implementation 'org.cufy:framework:0.1.5-beta6'
-	implementation 'com.github.cufyx:support:0.1.3-beta2'
+	implementation 'org.cufyx:support:0.1.3-beta2'
 
 	//thanks to `attenzione` for the color-picker
 	implementation 'com.github.attenzione:android-ColorPickerPreference:v1.2'
