@@ -16,6 +16,8 @@
 	<string name="_des_pref_theme">The theme of the application</string>
 	<string name="_des_pref_rotate">Rotate the edge with the screen rotation</string>
 	<string name="_des_pref_permissions">Manage application\'s permissions</string>
+	<string name="_des_pref_about">Information about this application</string>
+	<string name="_des_pref_author">Made By LSafer</string>
 	<string name="_des_pref_choose_edge">Touch an edge to customize it</string>
 	<!-- words -->
 	<string name="job">Job</string>
@@ -33,6 +35,10 @@
 	<string name="permissions">Permissions</string>
 	<string name="mandatory">Mandatory</string>
 	<string name="additional">Additional</string>
+	<string name="application">Application</string>
+	<string name="about">About</string>
+	<string name="author">Author</string>
+	<string name="credits">Credits</string>
 	<!-- names -->
 	<string name="edge_seek">Edge Seek</string>
 	<string name="seek_task">Seek Task</string>

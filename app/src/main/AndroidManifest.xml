@@ -29,6 +29,7 @@
 			android:name=".activity.EdgesActivity"
 			android:screenOrientation="portrait" />
 		<activity android:name=".activity.PermissionsActivity" />
+		<activity android:name=".activity.AboutActivity" />
 
 		<service android:name=".service.MainService" />
 

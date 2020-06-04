@@ -16,6 +16,8 @@
 	<string name="_des_pref_theme">مظهر التطبيق</string>
 	<string name="_des_pref_rotate">استدارة الحافة عند استدارة الشاشة</string>
 	<string name="_des_pref_permissions">إدارة صلاحيات التطبيق</string>
+	<string name="_des_pref_about">معلومات عن هذا التطبيق</string>
+	<string name="_des_pref_author">التطبيق مبني من قبل LSafer</string>
 	<string name="_des_pref_choose_edge">إلمس حافة لتخصيصها</string>
 	<!-- words -->
 	<string name="job">الوظيفة</string>
@@ -33,6 +35,10 @@
 	<string name="permissions">الصلاحيات</string>
 	<string name="mandatory">إلزامي</string>
 	<string name="additional">إضافي</string>
+	<string name="application">التطبيق</string>
+	<string name="about">معلومات</string>
+	<string name="author">المالك</string>
+	<string name="credits">النسب</string>
 	<!-- names -->
 	<string name="edge_seek">حساس الأطراف</string>
 	<string name="seek_task">وظيفة السحب</string>
@@ -46,6 +52,7 @@
 	<string name="display_over_other_apps">العرض فوق التطبيقات الأخرى</string>
 	<string name="write_system_settings">كتابة إعدادات النظام</string>
 	<string name="ignore_battery_optimization">تجاهل تحسينات البطارية</string>
+	<string name="select_color">اختر اللون</string>
 	<!-- arrays -->
 	<string-array name="seek_tasks">
 		<item>لاشيء</item>
