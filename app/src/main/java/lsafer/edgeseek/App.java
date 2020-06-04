@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+import cufyx.perference.MapDataStore;
 import lsafer.edgeseek.data.AppData;
 import lsafer.edgeseek.service.MainService;
 import lsafer.edgeseek.util.Util;
@@ -36,7 +37,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 18-May-20
  */
-public class App extends Application implements AppData.OnDataChangeListener {
+public class App extends Application implements MapDataStore.OnDataChangeListener {
 	/**
 	 * The listeners.
 	 */
@@ -87,7 +88,7 @@ public class App extends Application implements AppData.OnDataChangeListener {
 		App.data.load();
 
 		//listener
-		App.data.registerOnDataChangeListener(this);
+		App.data.store.registerOnDataChangeListener(this);
 
 		this.setTheme(Util.theme(App.data.theme));
 	}
@@ -97,7 +98,7 @@ public class App extends Application implements AppData.OnDataChangeListener {
 		super.onTerminate();
 
 		//remove listener
-		App.data.unregisterOnDataChangeListener(this);
+		App.data.store.unregisterOnDataChangeListener(this);
 	}
 
 	@Override
@@ -109,9 +110,14 @@ public class App extends Application implements AppData.OnDataChangeListener {
 	}
 
 	@Override
-	public void onDataChange(AppData data, Object key, Object oldValue, Object newValue) {
+	public void onDataChange(MapDataStore store, Object key, Object oldValue, Object newValue) {
 		//save data
 		App.data.save();
+
+		if (key.equals("theme") && !oldValue.equals(newValue)) {
+			//on-theme-changed
+			this.setTheme(Util.theme(App.data.theme));
+		}
 
 		//update main-service
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)

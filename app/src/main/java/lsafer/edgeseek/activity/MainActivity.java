@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Objects;
 
+import cufyx.perference.MapDataStore;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.AppData;
@@ -41,7 +42,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 19-May-2020
  */
-public class MainActivity extends AppCompatActivity implements AppDataFragment.Activity, AppData.OnDataChangeListener {
+public class MainActivity extends AppCompatActivity implements AppDataFragment.Activity, MapDataStore.OnDataChangeListener {
 	@Override
 	public AppData getAppData(AppDataFragment fragment) {
 		Objects.requireNonNull(fragment, "fragment");
@@ -49,12 +50,10 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 	}
 
 	@Override
-	public void onDataChange(AppData data, Object key, Object oldValue, Object newValue) {
+	public void onDataChange(MapDataStore data, Object key, Object oldValue, Object newValue) {
 		if (key.equals("theme") && !oldValue.equals(newValue)) {
-			//theme change listener
+			//on-theme-change
 			this.startActivity(new Intent(this, MainActivity.class));
-			this.stopService(new Intent(this, MainService.class));
-			this.startService(new Intent(this, MainService.class));
 			this.finish();
 		}
 	}
@@ -77,12 +76,12 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 		else this.startService(new Intent(this, MainService.class));
 
 		//register listener
-		App.data.registerOnDataChangeListener(this);
+		App.data.store.registerOnDataChangeListener(this);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		App.data.unregisterOnDataChangeListener(this);
+		App.data.store.unregisterOnDataChangeListener(this);
 	}
 }

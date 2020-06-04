@@ -17,10 +17,6 @@ package lsafer.edgeseek.data;
 
 import android.graphics.Color;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-
 import cufy.beans.AbstractBean;
 import cufyx.perference.MapDataStore;
 
@@ -40,11 +36,6 @@ final public class EdgeData extends AbstractBean {
 	 * The data store for this bean.
 	 */
 	final public MapDataStore store = new MapDataStore(this);
-
-	/**
-	 * The listeners to be called when data changed.
-	 */
-	final private Collection<OnDataChangeListener> listeners = new HashSet<>();
 
 	/**
 	 * Whether this edge is activated or not.
@@ -90,57 +81,5 @@ final public class EdgeData extends AbstractBean {
 
 		//---- default values
 		this.activated = position == 1 || position == 3;
-	}
-
-	@Override
-	public Object put(Object key, Object value) {
-		Object old = super.put(key, value);
-		this.listeners.forEach(l -> l.onDataChange(this, key, old, value));
-		return old;
-	}
-
-	/**
-	 * Register a listener to be called when data changed in this bean.
-	 *
-	 * @param listener to be registered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given listener is already registered
-	 */
-	public void registerOnDataChangeListener(OnDataChangeListener listener) {
-		Objects.requireNonNull(listener, "consumer");
-		if (this.listeners.contains(listener))
-			throw new IllegalArgumentException("listener already registered");
-
-		this.listeners.add(listener);
-	}
-
-	/**
-	 * Unregister the given listener from the listeners-list.
-	 *
-	 * @param listener to be unregistered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given listener not registered
-	 */
-	public void unregisterOnDataChangeListener(OnDataChangeListener listener) {
-		Objects.requireNonNull(listener, "listener");
-		if (!this.listeners.contains(listener))
-			throw new IllegalArgumentException("listener not registered");
-
-		this.listeners.remove(listener);
-	}
-
-	/**
-	 * A listener that listens to the change in an edge-data instance.
-	 */
-	public interface OnDataChangeListener {
-		/**
-		 * Get called when a change in the data occurred in the target edge-data.
-		 *
-		 * @param data     the data-instance that the change occurred on
-		 * @param key      the key
-		 * @param oldValue the old value
-		 * @param newValue the new value
-		 */
-		void onDataChange(EdgeData data, Object key, Object oldValue, Object newValue);
 	}
 }

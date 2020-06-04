@@ -24,9 +24,10 @@ import android.view.WindowManager;
 
 import java.util.Objects;
 
+import cufyx.perference.MapDataStore;
+import cufyx.perference.MapDataStore.OnDataChangeListener;
 import lsafer.edgeseek.App.OnConfigurationChangeListener;
 import lsafer.edgeseek.data.EdgeData;
-import lsafer.edgeseek.data.EdgeData.OnDataChangeListener;
 import lsafer.edgeseek.tasks.AudioControl;
 import lsafer.edgeseek.tasks.BrightnessControl;
 import lsafer.edgeseek.util.Util;
@@ -132,7 +133,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	}
 
 	@Override
-	public void onDataChange(EdgeData data, Object key, Object oldValue, Object newValue) {
+	public void onDataChange(MapDataStore data, Object key, Object oldValue, Object newValue) {
 		this.update();
 	}
 
@@ -149,7 +150,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 			this.detach();
 
 		//remove listeners
-		this.data.unregisterOnDataChangeListener(this);
+		this.data.store.unregisterOnDataChangeListener(this);
 		App.unregisterOnConfigurationChangeListener(this);
 
 		//don't use again
@@ -166,7 +167,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		this.assertNotDestroyed();
 		this.assertNotStarted();
 
-		this.data.registerOnDataChangeListener(this);
+		this.data.store.registerOnDataChangeListener(this);
 		App.registerOnConfigurationChangeListener(this);
 
 		this.started = true;
