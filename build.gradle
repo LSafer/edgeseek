@@ -5,7 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.0'
-        classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:2.0.1'
+//        classpath 'org.codehaus.groovy:groovy-android-gradle-plugin:2.0.1'
     }
 }
 
