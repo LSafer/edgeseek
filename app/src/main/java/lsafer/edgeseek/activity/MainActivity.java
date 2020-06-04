@@ -20,14 +20,14 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceDataStore;
 
 import java.util.Objects;
 
 import cufyx.perference.MapDataStore;
+import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
-import lsafer.edgeseek.data.AppData;
-import lsafer.edgeseek.fragment.AppDataFragment;
 import lsafer.edgeseek.service.MainService;
 import lsafer.edgeseek.util.Util;
 
@@ -42,13 +42,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 19-May-2020
  */
-public class MainActivity extends AppCompatActivity implements AppDataFragment.Activity, MapDataStore.OnDataChangeListener {
-	@Override
-	public AppData getAppData(AppDataFragment fragment) {
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data;
-	}
-
+public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
 	@Override
 	public void onDataChange(MapDataStore data, Object key, Object oldValue, Object newValue) {
 		if (key.equals("theme") && !oldValue.equals(newValue)) {
@@ -67,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 		//app-data fragment
 		this.getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.fragment_app, new AppDataFragment())
+				.replace(R.id.fragment_app, new SimplePreferenceFragment())
 				.commit();
 
 		//start main-service
@@ -83,5 +77,17 @@ public class MainActivity extends AppCompatActivity implements AppDataFragment.A
 	protected void onDestroy() {
 		super.onDestroy();
 		App.data.store.unregisterOnDataChangeListener(this);
+	}
+
+	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_app_data;
+	}
+
+	@Override
+	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
+		Objects.requireNonNull(fragment, "fragment");
+		return App.data.store;
 	}
 }

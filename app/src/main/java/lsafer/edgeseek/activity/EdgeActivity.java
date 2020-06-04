@@ -19,13 +19,13 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceDataStore;
 
 import java.util.Objects;
 
+import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
-import lsafer.edgeseek.data.EdgeData;
-import lsafer.edgeseek.fragment.EdgeDataFragment;
 import lsafer.edgeseek.util.Util;
 
 /**
@@ -35,34 +35,44 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 27-May-20
  */
-public class EdgeActivity extends AppCompatActivity implements EdgeDataFragment.Activity {
+public class EdgeActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	/**
 	 * The target edge-position by this activity.
 	 */
 	private int position;
 
 	@Override
-	public EdgeData getEdgeData(EdgeDataFragment fragment) {
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data.edges.get(this.position);
-	}
-
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//initial
 		super.onCreate(savedInstanceState);
 		this.setTheme(Util.theme(App.data.theme));
-		this.setContentView(R.layout.activity_edge);
+		this.setContentView(R.layout.activity_fragment);
 
+		//data
 		this.position = this.getIntent().getIntExtra("edge", -1);
+
+		//fragment instance
+		this.getSupportFragmentManager()
+				.beginTransaction()
+				.replace(R.id.fragment, new SimplePreferenceFragment())
+				.commit();
 
 		//title
 		this.<TextView>findViewById(R.id.title)
 				.setText(Util.positionEdgeName(this.position));
+	}
 
-		//edge-data fragment
-		this.getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.fragment_edge, new EdgeDataFragment())
-				.commit();
+	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//fragment layout
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_edge_data;
+	}
+
+	@Override
+	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
+		//data store
+		Objects.requireNonNull(fragment, "fragment");
+		return App.data.edges.get(this.position).store;
 	}
 }

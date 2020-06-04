@@ -40,6 +40,7 @@ import lsafer.edgeseek.util.Util;
 public class EdgesActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		//initial
 		super.onCreate(savedInstanceState);
 		this.setTheme(Util.theme(App.data.theme));
 		this.setContentView(R.layout.activity_edges);
@@ -49,17 +50,10 @@ public class EdgesActivity extends AppCompatActivity {
 	protected void onResume() {
 		super.onResume();
 
-		//style-em
-		for (int i = 0; i < 4; i++) {
-			View view = this.findViewById(Util.id(i));
-			EdgeData data = App.data.edges.get(i);
-
-			if (data.activated) {
-				view.setBackgroundColor(data.color);
-			} else {
-				view.setBackgroundColor(Color.TRANSPARENT);
-			}
-		}
+		//styling
+		for (EdgeData data : App.data.edges)
+			this.findViewById(Util.id(data.position))
+					.setBackgroundColor(data.activated ? data.color : Color.TRANSPARENT);
 	}
 
 	/**
