@@ -81,6 +81,6 @@ public class PermissionsFragment extends PreferenceFragmentCompat {
 				}
 			}
 		});
-		this.setPreferencesFromResource(R.xml.pref_permissions, rootKey);
+		this.setPreferencesFromResource(R.xml.fragment_permissions, rootKey);
 	}
 }

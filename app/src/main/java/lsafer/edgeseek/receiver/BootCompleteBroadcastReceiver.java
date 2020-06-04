@@ -34,8 +34,10 @@ public class BootCompleteBroadcastReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+			//on-boot
 
 			if (App.data.auto_boot) {
+				//start application on boot
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 					context.startForegroundService(new Intent(context, MainService.class));
 				else context.startService(new Intent(context, MainService.class));

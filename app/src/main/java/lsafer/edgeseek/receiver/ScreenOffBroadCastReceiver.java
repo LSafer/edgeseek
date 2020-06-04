@@ -33,8 +33,10 @@ public class ScreenOffBroadCastReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+			//on-screen-off
 
 			if (App.data.auto_brightness) {
+				//auto brightness on screen-off
 				Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC);
 			}
 		}

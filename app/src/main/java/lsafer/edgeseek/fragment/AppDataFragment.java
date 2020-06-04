@@ -48,7 +48,7 @@ public class AppDataFragment extends PreferenceFragmentCompat {
 	@Override
 	public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 		this.getPreferenceManager().setPreferenceDataStore(this.data.store);
-		this.setPreferencesFromResource(R.xml.pref_app, rootKey);
+		this.setPreferencesFromResource(R.xml.fragment_app_data, rootKey);
 	}
 
 	/**
