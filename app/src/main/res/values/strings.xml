@@ -16,6 +16,7 @@
 	<string name="_des_pref_theme">The theme of the application</string>
 	<string name="_des_pref_rotate">Rotate the edge with the screen rotation</string>
 	<string name="_des_pref_permissions">Manage application\'s permissions</string>
+	<string name="_des_pref_choose_edge">Touch an edge to customize it</string>
 	<!-- words -->
 	<string name="job">Job</string>
 	<string name="activation">Activation</string>
@@ -45,6 +46,7 @@
 	<string name="display_over_other_apps">Display Over Other Apps</string>
 	<string name="write_system_settings">Write System Settings</string>
 	<string name="ignore_battery_optimization">Ignore Battery Optimization</string>
+	<string name="select_color">Select Color</string>
 	<!-- arrays -->
 	<string-array name="seek_tasks">
 		<item>Nothing</item>

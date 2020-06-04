@@ -16,4 +16,6 @@
 			app:summary="@string/_des_perm_ignore_battery_optimizations"
 			app:title="@string/ignore_battery_optimization" />
 	</PreferenceCategory>
+	<!-- to add a gap between the bottom of the list and the screen -->
+	<Preference />
 </PreferenceScreen>

@@ -16,6 +16,7 @@
 	<string name="_des_pref_theme">مظهر التطبيق</string>
 	<string name="_des_pref_rotate">استدارة الحافة عند استدارة الشاشة</string>
 	<string name="_des_pref_permissions">إدارة صلاحيات التطبيق</string>
+	<string name="_des_pref_choose_edge">إلمس حافة لتخصيصها</string>
 	<!-- words -->
 	<string name="job">الوظيفة</string>
 	<string name="activation">التفعيل</string>
@@ -53,5 +54,11 @@
 		<item>التحكم بصوت النغمة</item>
 		<item>التحكم باصوات النظام</item>
 		<item>التحكم بصوت المنبه</item>
+	</string-array>
+	<string-array name="themes">
+		<item>أسود</item>
+		<item>أبيض</item>
+		<item>داكن</item>
+		<item>فاتح</item>
 	</string-array>
 </resources>

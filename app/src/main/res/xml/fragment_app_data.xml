@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
-	<PreferenceCategory app:title="@string/job">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory app:title="@string/application">
 		<SwitchPreference
 			app:key="activated"
 			app:summary="@string/_des_pref_app_activation"
@@ -13,6 +13,8 @@
 				android:targetClass="lsafer.edgeseek.activity.PermissionsActivity"
 				android:targetPackage="lsafer.edgeseek" />
 		</Preference>
+	</PreferenceCategory>
+	<PreferenceCategory app:title="@string/job">
 		<Preference
 			app:summary="@string/_des_pref_edges"
 			app:title="@string/edges">
@@ -20,8 +22,6 @@
 				android:targetClass="lsafer.edgeseek.activity.EdgesActivity"
 				android:targetPackage="lsafer.edgeseek" />
 		</Preference>
-	</PreferenceCategory>
-	<PreferenceCategory app:title="@string/misc">
 		<SwitchPreference
 			app:key="auto_boot"
 			app:summary="@string/_des_pref_auto_boot"
@@ -30,11 +30,22 @@
 			app:key="auto_brightness"
 			app:summary="@string/_des_pref_auto_brightness"
 			app:title="@string/auto_brightness" />
+	</PreferenceCategory>
+	<PreferenceCategory app:title="@string/misc">
 		<DropDownPreference
 			app:entries="@array/themes"
 			app:entryValues="@array/themes_alias"
 			app:key="theme"
 			app:summary="@string/_des_pref_theme"
 			app:title="@string/theme" />
+		<Preference
+			app:summary="@string/_des_pref_about"
+			app:title="@string/about">
+			<intent
+				android:targetClass="lsafer.edgeseek.activity.AboutActivity"
+				android:targetPackage="lsafer.edgeseek" />
+		</Preference>
 	</PreferenceCategory>
+	<!-- to add a gap between the bottom of the list and the screen -->
+	<Preference />
 </PreferenceScreen>
