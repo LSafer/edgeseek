@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'groovyx.android'
 
 sourceCompatibility = "1.9"
 targetCompatibility = "1.9"
@@ -11,7 +10,7 @@ android {
 		applicationId "lsafer.edgeseek"
 		minSdkVersion 26
 		targetSdkVersion 29
-		versionCode 3
+		versionCode 4
 		versionName "alpha"
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
@@ -28,14 +27,12 @@ android {
 }
 
 dependencies {
-//	implementation 'org.codehaus.groovy:groovy:3.0.3:grooid'
-
 	//thanks a lot for `cufy` for there good work, lol
 	implementation 'org.cufy:framework:0.1.5-beta6'
 	implementation 'org.cufyx:support:0.1.5-beta0'
 
-	//thanks to `attenzione` for the color-picker
-	implementation 'com.github.attenzione:android-ColorPickerPreference:v1.2'
+	//thanks to `jaredrummler` for the color-picker
+	implementation 'com.jaredrummler:colorpicker:1.1.0'
 
 	implementation 'androidx.appcompat:appcompat:1.1.0'
 	implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

@@ -14,6 +14,7 @@
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/input">
 		<SeekBarPreference
+			app:showSeekBarValue="true"
 			app:key="sensitivity"
 			app:max="100"
 			app:min="10"
@@ -22,6 +23,7 @@
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/dimensions">
 		<SeekBarPreference
+			app:showSeekBarValue="true"
 			app:key="width"
 			app:max="100"
 			app:min="5"
@@ -29,8 +31,15 @@
 			app:title="@string/width" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/appearance">
-		<net.margaritov.preference.colorpicker.ColorPickerPreference
-			alphaSlider="true"
+		<com.jaredrummler.android.colorpicker.ColorPreferenceCompat
+			app:cpv_dialogType="preset"
+			app:cpv_showAlphaSlider="true"
+			app:cpv_colorShape="circle"
+			app:cpv_dialogTitle="@string/select_color"
+			app:cpv_showColorShades="true"
+			app:cpv_allowPresets="true"
+			app:cpv_allowCustom="true"
+			app:cpv_showDialog="true"
 			app:key="color"
 			app:summary="@string/_des_pref_color"
 			app:title="@string/color" />
@@ -41,4 +50,6 @@
 			app:summary="@string/_des_pref_rotate"
 			app:title="@string/rotate" />
 	</PreferenceCategory>
+	<!-- to add a gap between the bottom of the list and the screen -->
+	<Preference />
 </PreferenceScreen>
