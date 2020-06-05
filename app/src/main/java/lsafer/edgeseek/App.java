@@ -37,7 +37,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 18-May-20
  */
-public class App extends Application implements MapDataStore.OnDataChangeListener {
+final public class App extends Application implements MapDataStore.OnDataChangeListener {
 	/**
 	 * The listeners.
 	 */

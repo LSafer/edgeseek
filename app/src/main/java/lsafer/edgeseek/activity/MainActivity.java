@@ -18,6 +18,7 @@ package lsafer.edgeseek.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceDataStore;
@@ -45,8 +46,10 @@ import lsafer.edgeseek.util.Util;
 public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
 	@Override
 	public void onDataChange(MapDataStore data, Object key, Object oldValue, Object newValue) {
+		//change listeners
+
 		if (key.equals("theme") && !oldValue.equals(newValue)) {
-			//on-theme-change
+			//theme change listeners
 			this.startActivity(new Intent(this, MainActivity.class));
 			this.finish();
 		}
@@ -54,39 +57,48 @@ public class MainActivity extends AppCompatActivity implements SimplePreferenceF
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//register listener
+		App.data.store.registerOnDataChangeListener(this);
+
+		//initial
 		super.onCreate(savedInstanceState);
 		this.setTheme(Util.theme(App.data.theme));
-		this.setContentView(R.layout.activity_main);
+		this.setContentView(R.layout.activity_fragment);
 
-		//app-data fragment
+		//fragment instance
 		this.getSupportFragmentManager()
 				.beginTransaction()
-				.replace(R.id.fragment_app, new SimplePreferenceFragment())
+				.replace(R.id.fragment, new SimplePreferenceFragment())
 				.commit();
+
+		//title
+		this.<TextView>findViewById(R.id.title)
+				.setText(R.string.edge_seek);
 
 		//start main-service
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 			this.startForegroundService(new Intent(this, MainService.class));
 		else this.startService(new Intent(this, MainService.class));
-
-		//register listener
-		App.data.store.registerOnDataChangeListener(this);
 	}
 
 	@Override
 	protected void onDestroy() {
-		super.onDestroy();
+		//remove listeners
 		App.data.store.unregisterOnDataChangeListener(this);
+
+		super.onDestroy();
 	}
 
 	@Override
 	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//fragment layout
 		Objects.requireNonNull(fragment, "fragment");
 		return R.xml.fragment_app_data;
 	}
 
 	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
+		//data store
 		Objects.requireNonNull(fragment, "fragment");
 		return App.data.store;
 	}

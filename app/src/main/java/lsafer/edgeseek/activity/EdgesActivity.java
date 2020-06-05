@@ -63,6 +63,7 @@ public class EdgesActivity extends AppCompatActivity {
 	 * @throws NullPointerException if the given 'view' is null
 	 */
 	public void onEdgeClick(View view) {
+		//click listener
 		Objects.requireNonNull(view, "view");
 		Intent intent = new Intent(this, EdgeActivity.class);
 		intent.putExtra("edge", Util.position(view.getId()));

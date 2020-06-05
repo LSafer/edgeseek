@@ -43,13 +43,13 @@ public class EdgeActivity extends AppCompatActivity implements SimplePreferenceF
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//data
+		this.position = this.getIntent().getIntExtra("edge", -1);
+
 		//initial
 		super.onCreate(savedInstanceState);
 		this.setTheme(Util.theme(App.data.theme));
 		this.setContentView(R.layout.activity_fragment);
-
-		//data
-		this.position = this.getIntent().getIntExtra("edge", -1);
 
 		//fragment instance
 		this.getSupportFragmentManager()

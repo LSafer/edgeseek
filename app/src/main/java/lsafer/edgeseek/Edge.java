@@ -277,7 +277,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * @return this
 	 * @throws IllegalStateException if this edge is showing already or if the edge not built yet, or if this edge is destroyed
 	 */
-	private Edge attach() {
+	protected Edge attach() {
 		this.assertNotDestroyed();
 		this.assertNotAttached();
 		this.assertBuilt();
@@ -294,7 +294,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * @return this edge
 	 * @throws IllegalStateException if already built, or if this edge is destroyed
 	 */
-	private Edge build() {
+	protected Edge build() {
 		this.assertNotDestroyed();
 		this.assertNotBuilt();
 
@@ -321,7 +321,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * @return this
 	 * @throws IllegalStateException if this edge is not showing, or if this edge is destroyed
 	 */
-	private Edge detach() {
+	protected Edge detach() {
 		this.assertNotDestroyed();
 		this.assertAttached();
 
@@ -337,7 +337,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * @return this
 	 * @throws IllegalStateException if the edge is currently not shown, or if this edge is destroyed
 	 */
-	private Edge reattach() {
+	protected Edge reattach() {
 		this.assertNotDestroyed();
 		this.assertAttached();
 
@@ -351,7 +351,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * @return this
 	 * @throws IllegalStateException if this edge haven't been built yet, or if this edge is destroyed
 	 */
-	private Edge rebuild() {
+	protected Edge rebuild() {
 		this.assertNotDestroyed();
 		this.assertBuilt();
 
