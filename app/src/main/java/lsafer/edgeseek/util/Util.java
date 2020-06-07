@@ -26,7 +26,7 @@ import java.util.Objects;
 import lsafer.edgeseek.R;
 
 /**
- * Common utils.
+ * Common utils across the application.
  *
  * @author lsafer
  * @version 0.1.5

@@ -38,8 +38,6 @@ import static android.view.WindowManager.LayoutParams;
 
 /**
  * An instance that responsible for viewing and managing an edge.
- * <br<
- * an `attached` edge is always `built` and `alive`
  *
  * @author lsafer
  * @version 0.1.5
