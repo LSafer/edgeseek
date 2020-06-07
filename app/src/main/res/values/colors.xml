@@ -6,22 +6,34 @@
 	<color name="blackColorPrimary">#424242</color>
 	<color name="blackColorPrimaryDark">#5C5C5C</color>
 	<color name="blackColorAccent">#ffff0000</color>
+	<color name="blackModuleMobileStartColor">#785858</color>
+	<color name="blackModuleMobileCenterColor">#816060</color>
+	<color name="blackModuleMobileEndColor">#804949</color>
 	<!-- Dark -->
 	<color name="darkColorBackground">#ff303030</color>
 	<color name="darkColorBackgroundFloating">#ff353535</color>
 	<color name="darkColorPrimary">#ff909090</color>
 	<color name="darkColorPrimaryDark">#ff808080</color>
 	<color name="darkColorAccent">#00B1B8</color>
+	<color name="darkModuleMobileStartColor">#81A0A1</color>
+	<color name="darkModuleMobileCenterColor">#81A0A1</color>
+	<color name="darkModuleMobileEndColor">#63ABAE</color>
 	<!-- White -->
 	<color name="whiteColorBackground">#ffffff</color>
 	<color name="whiteColorBackgroundFloating">#ffe0e0e0</color>
 	<color name="whiteColorPrimary">#ff858585</color>
 	<color name="whiteColorPrimaryDark">#ff5A5A5A</color>
 	<color name="whiteColorAccent">#ff905AD3</color>
+	<color name="whiteModuleMobileStartColor">#8989F4</color>
+	<color name="whiteModuleMobileCenterColor">#9E7CEF</color>
+	<color name="whiteModuleMobileEndColor">#B070EB</color>
 	<!-- Light -->
 	<color name="lightColorBackground">#ffc0c0c0</color>
 	<color name="lightColorBackgroundFloating">#ffa0a0a0</color>
 	<color name="lightColorPrimary">#ff6E6E6E</color>
 	<color name="lightColorPrimaryDark">#ff494949</color>
 	<color name="lightColorAccent">#ff01579B</color>
+	<color name="lightModuleMobileStartColor">#81A0A1</color>
+	<color name="lightModuleMobileCenterColor">#81A0A1</color>
+	<color name="lightModuleMobileEndColor">#63ABAE</color>
 </resources>

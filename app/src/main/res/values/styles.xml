@@ -18,6 +18,10 @@
 		<item name="android:actionMenuTextColor">@android:color/white</item>
 		<!-- dialog -->
 		<item name="dialogCornerRadius">25dp</item>
+		<!-- module mobile -->
+		<item name="moduleMobileCenterColor">@color/blackModuleMobileCenterColor</item>
+		<item name="moduleMobileStartColor">@color/blackModuleMobileStartColor</item>
+		<item name="moduleMobileEndColor">@color/blackModuleMobileEndColor</item>
 	</style>
 
 	<style name="Dark" parent="ThemeOverlay.AppCompat.Dark">
@@ -37,6 +41,10 @@
 		<item name="android:actionMenuTextColor">@android:color/white</item>
 		<!-- dialog -->
 		<item name="dialogCornerRadius">25dp</item>
+		<!-- module mobile -->
+		<item name="moduleMobileCenterColor">@color/darkModuleMobileCenterColor</item>
+		<item name="moduleMobileStartColor">@color/darkModuleMobileStartColor</item>
+		<item name="moduleMobileEndColor">@color/darkModuleMobileEndColor</item>
 	</style>
 
 	<style name="White" parent="ThemeOverlay.AppCompat.Light">
@@ -56,6 +64,10 @@
 		<item name="android:actionMenuTextColor">@android:color/black</item>
 		<!-- dialog -->
 		<item name="dialogCornerRadius">25dp</item>
+		<!-- module mobile -->
+		<item name="moduleMobileCenterColor">@color/whiteModuleMobileCenterColor</item>
+		<item name="moduleMobileStartColor">@color/whiteModuleMobileStartColor</item>
+		<item name="moduleMobileEndColor">@color/whiteModuleMobileEndColor</item>
 	</style>
 
 	<style name="Light" parent="ThemeOverlay.AppCompat.Light">
@@ -75,5 +87,9 @@
 		<item name="android:actionMenuTextColor">@android:color/black</item>
 		<!-- dialog -->
 		<item name="dialogCornerRadius">25dp</item>
+		<!-- module mobile -->
+		<item name="moduleMobileCenterColor">@color/lightModuleMobileCenterColor</item>
+		<item name="moduleMobileStartColor">@color/lightModuleMobileStartColor</item>
+		<item name="moduleMobileEndColor">@color/lightModuleMobileEndColor</item>
 	</style>
 </resources>
