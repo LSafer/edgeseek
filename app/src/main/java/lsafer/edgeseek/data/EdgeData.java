@@ -48,6 +48,11 @@ final public class EdgeData extends AbstractBean {
 	@Property
 	public int color = Color.argb(0, 255, 0, 0);
 	/**
+	 * The task to be performed on long click.
+	 */
+	@Property
+	public String longClick = "";
+	/**
 	 * False makes the edge remain on the same position even if the screen changed its position.
 	 */
 	@Property
@@ -77,11 +82,6 @@ final public class EdgeData extends AbstractBean {
 	 */
 	@Property
 	public int width = 20;
-	/**
-	 * The task to be performed on long click.
-	 */
-	@Property
-	public String longClick = "";
 
 	/**
 	 * Construct a new edge data for the edge in the given position.

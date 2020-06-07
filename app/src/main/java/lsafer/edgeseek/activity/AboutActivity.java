@@ -41,6 +41,20 @@ import lsafer.edgeseek.util.Util;
  */
 final public class AboutActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//fragment layout
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_about;
+	}
+
+	@Override
+	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
+		//data store
+		Objects.requireNonNull(fragment, "fragment");
+		return new MapDataStore(new HashMap());
+	}
+
+	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		//activity
 		super.onCreate(savedInstanceState);
@@ -66,20 +80,6 @@ final public class AboutActivity extends AppCompatActivity implements SimplePref
 		fragment.findPreference("version")
 				.setSummary(this.getString(R.string._des_pref_ABOUT_VERSION, BuildConfig.VERSION_NAME));
 		fragment.findPreference("version_code")
-				.setSummary(this.getString(R.string._des_pref_ABOUT_VERSION_CODE, BuildConfig.VERSION_CODE));
-	}
-
-	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
-		return R.xml.fragment_about;
-	}
-
-	@Override
-	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
-		return new MapDataStore(new HashMap());
+				.setSummary(this.getString(R.string._des_pref_ABOUT_VERSION_CODE, String.valueOf(BuildConfig.VERSION_CODE)));
 	}
 }

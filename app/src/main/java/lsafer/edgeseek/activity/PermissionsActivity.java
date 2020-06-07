@@ -38,6 +38,20 @@ import lsafer.edgeseek.util.Util;
  */
 final public class PermissionsActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//fragment layout
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_permissions;
+	}
+
+	@Override
+	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
+		//data store
+		Objects.requireNonNull(fragment, "fragment");
+		return App.data.permissions.store;
+	}
+
+	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		//initial
 		super.onCreate(savedInstanceState);
@@ -53,19 +67,5 @@ final public class PermissionsActivity extends AppCompatActivity implements Simp
 		//title
 		this.<TextView>findViewById(R.id.title)
 				.setText(R.string._tit_pref_APP_PERMISSIONS);
-	}
-
-	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
-		return R.xml.fragment_permissions;
-	}
-
-	@Override
-	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data.permissions.store;
 	}
 }

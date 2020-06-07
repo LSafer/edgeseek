@@ -46,6 +46,20 @@ import lsafer.edgeseek.util.Util;
  */
 final public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
 	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//fragment layout
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_app_data;
+	}
+
+	@Override
+	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
+		//data store
+		Objects.requireNonNull(fragment, "fragment");
+		return App.data.store;
+	}
+
+	@Override
 	public void onDataChange(MapDataStore data, String key, Object oldValue, Object newValue) {
 		//change listeners
 
@@ -89,14 +103,6 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 	}
 
 	@Override
-	protected void onResume() {
-		super.onResume();
-
-		if (!Settings.System.canWrite(this) || !Settings.canDrawOverlays(this))
-			this.startActivity(new Intent(this, PermissionsActivity.class));
-	}
-
-	@Override
 	protected void onDestroy() {
 		//remove listeners
 		App.data.store.unregisterOnDataChangeListener(this);
@@ -105,16 +111,10 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 	}
 
 	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
-		return R.xml.fragment_app_data;
-	}
+	protected void onResume() {
+		super.onResume();
 
-	@Override
-	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data.store;
+		if (!Settings.System.canWrite(this) || !Settings.canDrawOverlays(this))
+			this.startActivity(new Intent(this, PermissionsActivity.class));
 	}
 }

@@ -42,6 +42,20 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 	private int position;
 
 	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//fragment layout
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_edge_data;
+	}
+
+	@Override
+	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
+		//data store
+		Objects.requireNonNull(fragment, "fragment");
+		return App.data.edges.get(this.position).store;
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		//data
 		this.position = this.getIntent().getIntExtra("edge", -1);
@@ -60,19 +74,5 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 		//title
 		this.<TextView>findViewById(R.id.title)
 				.setText(Util.positionEdgeName(this.position));
-	}
-
-	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
-		return R.xml.fragment_edge_data;
-	}
-
-	@Override
-	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data.edges.get(this.position).store;
 	}
 }

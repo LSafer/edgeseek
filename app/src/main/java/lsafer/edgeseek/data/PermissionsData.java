@@ -39,6 +39,10 @@ import cufyx.perference.MapDataStore;
  */
 final public class PermissionsData extends AbstractMap {
 	/**
+	 * A data store to use this map with the package {@code android.preference}.
+	 */
+	final public MapDataStore store = new MapDataStore(this);
+	/**
 	 * The context to get the permissions-status of.
 	 */
 	final private Context context;
@@ -46,10 +50,6 @@ final public class PermissionsData extends AbstractMap {
 	 * The entry set of this map.
 	 */
 	final private Set<Entry> entrySet;
-	/**
-	 * A data store to use this map with the package {@code android.preference}.
-	 */
-	final public MapDataStore store = new MapDataStore(this);
 
 	/**
 	 * Construct a new permissions data.
@@ -130,15 +130,15 @@ final public class PermissionsData extends AbstractMap {
 	}
 
 	@Override
-	public Set<Entry> entrySet() {
-		return this.entrySet;
-	}
-
-	@Override
 	public Object put(Object key, Object value) {
 		for (Entry entry : this.entrySet)
 			if (entry.getKey().equals(key))
 				return entry.setValue(value);
 		return null;
+	}
+
+	@Override
+	public Set<Entry> entrySet() {
+		return this.entrySet;
 	}
 }

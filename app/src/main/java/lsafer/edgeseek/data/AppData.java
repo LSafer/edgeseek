@@ -39,10 +39,15 @@ import cufyx.perference.MapDataStore;
  */
 final public class AppData extends AbstractBean implements FileLoadable, FormatLoadable {
 	/**
+	 * The data of the permissions of this application.
+	 * <br>
+	 * Note: this data isn't stored in a file.
+	 */
+	final public PermissionsData permissions;
+	/**
 	 * The store to be used on preference screens/fragments.
 	 */
 	final public MapDataStore store = new MapDataStore(this);
-
 	/**
 	 * The activation status of this application.
 	 */
@@ -73,18 +78,10 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 */
 	@Property
 	public String theme = "black";
-
 	/**
 	 * The file this loadable is loading-from/saving-to.
 	 */
 	private File file;
-
-	/**
-	 * The data of the permissions of this application.
-	 * <br>
-	 * Note: this data isn't stored in a file.
-	 */
-	final public PermissionsData permissions;
 
 	/**
 	 * Construct a new app-data.

@@ -74,7 +74,12 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * The current position of this edge.
 	 */
 	public int position;
-
+	/**
+	 * Determines if this edge is alive or not.
+	 * <br>
+	 * If this set to false, then {@link #attached} should be false, too.
+	 */
+	protected boolean alive = false;
 	/**
 	 * True, if this edge is currently showing on the screen.
 	 * <br>
@@ -87,12 +92,6 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * If this set to false, then {@link #attached} should be false, too.
 	 */
 	protected boolean built = false;
-	/**
-	 * Determines if this edge is alive or not.
-	 * <br>
-	 * If this set to false, then {@link #attached} should be false, too.
-	 */
-	protected boolean alive = false;
 
 	/**
 	 * Construct a new edge from the given data.
@@ -269,6 +268,27 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	}
 
 	/**
+	 * Configure the long-click-task of this edge.
+	 *
+	 * @return this
+	 * @throws IllegalStateException if this edge is not alive
+	 */
+	protected synchronized Edge viewSolveLongClickTask() {
+		this.assertAlive();
+
+		switch (this.data.longClick) {
+			case "expand_status_bar":
+				this.view.setOnLongClickListener(new OnLongClickExpandStatusBar(this.context, this));
+				break;
+			default:
+				this.view.setOnLongClickListener(v -> false);
+				break;
+		}
+
+		return this;
+	}
+
+	/**
 	 * Configure the seek-task of this edge.
 	 *
 	 * @return this
@@ -289,27 +309,6 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 				break;
 			default:
 				this.view.setOnTouchListener((v, e) -> false);
-				break;
-		}
-
-		return this;
-	}
-
-	/**
-	 * Configure the long-click-task of this edge.
-	 *
-	 * @return this
-	 * @throws IllegalStateException if this edge is not alive
-	 */
-	protected synchronized Edge viewSolveLongClickTask() {
-		this.assertAlive();
-
-		switch (this.data.longClick) {
-			case "expand_status_bar":
-				this.view.setOnLongClickListener(new OnLongClickExpandStatusBar(this.context, this));
-				break;
-			default:
-				this.view.setOnLongClickListener(v -> false);
 				break;
 		}
 
@@ -395,6 +394,16 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	//assertions
 
 	/**
+	 * Assert that this edge is alive.
+	 *
+	 * @throws IllegalStateException if this edge is not alive
+	 */
+	private synchronized void assertAlive() {
+		if (!this.alive)
+			throw new IllegalStateException("edge is not alive");
+	}
+
+	/**
 	 * Assert that this edge is attached.
 	 *
 	 * @throws IllegalStateException if this edge is not attached
@@ -418,6 +427,18 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	}
 
 	/**
+	 * Assert that this edge is not alive.
+	 *
+	 * @throws IllegalStateException if this edge is alive
+	 */
+	private synchronized void assertNotAlive() {
+		//if it is attached, then it is alive
+		this.assertNotAttached();
+		if (this.alive)
+			throw new IllegalStateException("this edge is alive");
+	}
+
+	/**
 	 * Assert that this edge is not attached.
 	 *
 	 * @throws IllegalStateException if this edge is attached
@@ -437,27 +458,5 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		this.assertNotAttached();
 		if (this.built)
 			throw new IllegalStateException("built edge");
-	}
-
-	/**
-	 * Assert that this edge is alive.
-	 *
-	 * @throws IllegalStateException if this edge is not alive
-	 */
-	private synchronized void assertAlive() {
-		if (!this.alive)
-			throw new IllegalStateException("edge is not alive");
-	}
-
-	/**
-	 * Assert that this edge is not alive.
-	 *
-	 * @throws IllegalStateException if this edge is alive
-	 */
-	private synchronized void assertNotAlive() {
-		//if it is attached, then it is alive
-		this.assertNotAttached();
-		if (this.alive)
-			throw new IllegalStateException("this edge is alive");
 	}
 }

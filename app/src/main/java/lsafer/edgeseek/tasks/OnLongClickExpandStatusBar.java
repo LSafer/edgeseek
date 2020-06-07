@@ -35,13 +35,13 @@ import lsafer.edgeseek.R;
  */
 public class OnLongClickExpandStatusBar implements View.OnLongClickListener {
 	/**
-	 * The edge that this listener is targeting.
-	 */
-	private Edge edge;
-	/**
 	 * The context to be used by this listener.
 	 */
 	private Context context;
+	/**
+	 * The edge that this listener is targeting.
+	 */
+	private Edge edge;
 
 	/**
 	 * Construct a new long-click-listener that expands the status bar when called.
