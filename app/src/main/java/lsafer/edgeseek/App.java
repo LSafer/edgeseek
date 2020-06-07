@@ -89,6 +89,7 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 
 		//listener
 		App.data.store.registerOnDataChangeListener(this);
+		App.data.edges.forEach(edge -> edge.store.registerOnDataChangeListener(this));
 
 		this.setTheme(Util.theme(App.data.theme));
 	}
@@ -99,6 +100,7 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 
 		//remove listener
 		App.data.store.unregisterOnDataChangeListener(this);
+		App.data.edges.forEach(edge -> edge.store.registerOnDataChangeListener(this));
 	}
 
 	@Override
