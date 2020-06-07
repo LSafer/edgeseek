@@ -11,5 +11,5 @@
 	<stroke
 		android:width="@dimen/edges_preview_width"
 		android:color="?colorPrimary" />
-	<corners android:radius="10dp" />
+	<corners android:radius="15dp" />
 </shape>
