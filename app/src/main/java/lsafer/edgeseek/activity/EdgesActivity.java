@@ -53,7 +53,13 @@ final public class EdgesActivity extends AppCompatActivity {
 		//styling
 		for (EdgeData data : App.data.edges)
 			this.findViewById(Util.id(data.position))
-					.setBackgroundColor(data.activated ? data.color : Color.TRANSPARENT);
+					.setBackgroundColor(!data.activated ?
+										Color.TRANSPARENT :
+										Color.argb(150,
+												Color.red(data.color),
+												Color.green(data.color),
+												Color.blue(data.color))
+					);
 	}
 
 	/**
