@@ -30,7 +30,7 @@ import lsafer.edgeseek.service.MainService;
  * @version 0.1.5
  * @since 01-Jun-20
  */
-public class BootCompleteBroadcastReceiver extends BroadcastReceiver {
+final public class BootCompleteBroadcastReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {

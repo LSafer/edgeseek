@@ -42,7 +42,7 @@ import lsafer.edgeseek.receiver.ScreenOffBroadCastReceiver;
  * @version 0.1.5
  * @since 27-May-20
  */
-public class MainService extends Service {
+final public class MainService extends Service {
 	/**
 	 * The edges served by this service.
 	 */

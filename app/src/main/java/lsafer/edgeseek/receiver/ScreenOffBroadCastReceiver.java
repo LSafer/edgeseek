@@ -29,7 +29,7 @@ import lsafer.edgeseek.App;
  * @version 0.1.5
  * @since 01-Jun-20
  */
-public class ScreenOffBroadCastReceiver extends BroadcastReceiver {
+final public class ScreenOffBroadCastReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
