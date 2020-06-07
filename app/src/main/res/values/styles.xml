@@ -20,6 +20,7 @@
 	<style name="White" parent="ThemeOverlay.AppCompat.Light">
 		<item name="colorBackground">@color/whiteColorBackground</item>
 		<item name="android:statusBarColor">@color/whiteColorBackground</item>
+		<item name="android:windowLightStatusBar">true</item>
 		<item name="colorPrimary">@color/whiteColorPrimary</item>
 		<item name="colorPrimaryDark">@color/whiteColorPrimaryDark</item>
 		<item name="colorAccent">@color/whiteColorAccent</item>
@@ -30,6 +31,7 @@
 	<style name="Light" parent="ThemeOverlay.AppCompat.Light">
 		<item name="colorBackground">@color/lightColorBackground</item>
 		<item name="android:statusBarColor">@color/lightColorBackground</item>
+		<item name="android:windowLightStatusBar">true</item>
 		<item name="colorPrimary">@color/lightColorPrimary</item>
 		<item name="colorPrimaryDark">@color/lightColorPrimaryDark</item>
 		<item name="colorAccent">@color/lightColorAccent</item>

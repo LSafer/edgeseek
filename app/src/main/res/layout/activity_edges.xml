@@ -11,15 +11,15 @@
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:paddingTop="60dp"
 		android:orientation="vertical"
+		android:paddingTop="60dp"
 		android:paddingBottom="15dp">
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center"
-			android:text="@string/choose_edge"
+			android:text="@string/_tit_pref_APP_CHOOSE_EDGE"
 			android:textColor="?colorAccent"
 			android:textSize="30sp" />
 
@@ -27,9 +27,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center"
-			android:text="@string/_des_pref_choose_edge"
-			android:textSize="15sp"/>
-
+			android:text="@string/_des_pref_APP_CHOOSE_EDGE"
+			android:textSize="15sp" />
 	</LinearLayout>
 
 	<androidx.constraintlayout.widget.ConstraintLayout

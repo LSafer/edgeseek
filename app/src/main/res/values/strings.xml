@@ -1,61 +1,72 @@
 <resources>
+	<!-- des erro -->
+	<string name="_des_erro_ERROR">Error (%s)</string>
+	<!-- lak perm -->
+	<string name="_lak_perm_SYSTEM_ALERT_WINDOW">Can\'t show without \'Display Over Other Apps\' permission</string>
+	<string name="_lak_perm_WRITE_SETTINGS">Can\'t change values without \'Write System Settings\' permission</string>
+	<string name="_lak_perm_IGNORE_BATTERY_OPTIMIZATIONS">It is better for the application to grant \'ignore battery optimization\' permission</string>
+	<!-- tit perm -->
+	<string name="_tit_perm_SYSTEM_ALERT_WINDOW">Display Over Other Apps</string>
+	<string name="_tit_perm_WRITE_SETTINGS">Write System Settings</string>
+	<string name="_tit_perm_IGNORE_BATTERY_OPTIMIZATIONS">Ignore Battery Optimization</string>
 	<!-- des perm -->
-	<string name="_des_perm_display_over_other_apps">Allow this application to draw views floating on your screen</string>
-	<string name="_des_perm_ignore_battery_optimizations">Make this application free from the system battery optimizations</string>
-	<string name="_des_perm_write_system_settings">Allow this application to edit settings</string>
-	<!-- des pref -->
-	<string name="_des_pref_edge_activation">Toggle to activate or deactivate this edge</string>
-	<string name="_des_pref_app_activation">Toggle to activate or deactivate the application</string>
-	<string name="_des_pref_seek_task">What to control when seeking</string>
-	<string name="_des_pref_sensitivity">How much you want the edge to be sensitive</string>
-	<string name="_des_pref_width">The width of the edge</string>
-	<string name="_des_pref_color">The color of the edge</string>
-	<string name="_des_pref_auto_boot">Auto boot the service every time the device booted-up</string>
-	<string name="_des_pref_auto_brightness">Turn on auto brightness each time the device turn on to sleep</string>
-	<string name="_des_pref_edges">Customize the edges</string>
-	<string name="_des_pref_theme">The theme of the application</string>
-	<string name="_des_pref_rotate">Rotate the edge with the screen rotation</string>
-	<string name="_des_pref_permissions">Manage application\'s permissions</string>
-	<string name="_des_pref_about">Information about this application</string>
-	<string name="_des_pref_author">Made By LSafer</string>
-	<string name="_des_pref_choose_edge">Touch an edge to customize it</string>
+	<string name="_des_perm_SYSTEM_ALERT_WINDOW">Allow this application to draw views floating on your screen</string>
+	<string name="_des_perm_WRITE_SETTINGS">Allow this application to edit settings</string>
+	<string name="_des_perm_IGNORE_BATTERY_OPTIMIZATIONS">Make this application free from the system battery optimizations</string>
+	<!-- tit pref APP -->
+	<string name="_tit_pref_APP_ACTIVATION">Activation</string>
+	<string name="_tit_pref_APP_PERMISSIONS">Permissions</string>
+	<string name="_tit_pref_APP_EDGES">Edges</string>
+	<string name="_tit_pref_APP_AUTO_BOOT">Auto Boot</string>
+	<string name="_tit_pref_APP_AUTO_BRIGHTNESS">Auto Brightness</string>
+	<string name="_tit_pref_APP_THEME">Theme</string>
+	<string name="_tit_pref_APP_ABOUT">About</string>
+	<string name="_tit_pref_APP_AUTHOR">Author</string>
+	<string name="_tit_pref_APP_CHOOSE_EDGE">Choose Edge</string>
+	<!-- tit pref EDGE -->
+	<string name="_tit_pref_EDGE_ACTIVATION">Activation</string>
 	<string name="_tit_pref_EDGE_VIBRATION">Vibration</string>
+	<string name="_tit_pref_EDGE_ROTATE">Rotate</string>
+	<string name="_tit_pref_EDGE_COLOR">Color</string>
+	<string name="_tit_pref_EDGE_WIDTH">Width</string>
+	<string name="_tit_pref_EDGE_SENSITIVITY">Sensitivity</string>
+	<string name="_tit_pref_EDGE_SEEK_TASK">Seek Task</string>
 	<string name="_tit_pref_EDGE_TOAST">Toast</string>
+	<!-- des pref APP -->
+	<string name="_des_pref_APP_ACTIVATION">Toggle to activate or deactivate the application</string>
+	<string name="_des_pref_APP_PERMISSIONS">Manage application\'s permissions</string>
+	<string name="_des_pref_APP_EDGES">Customize the edges</string>
+	<string name="_des_pref_APP_AUTO_BOOT">Auto boot the service every time the device booted-up</string>
+	<string name="_des_pref_APP_AUTO_BRIGHTNESS">Turn on auto brightness each time the device turn on to sleep</string>
+	<string name="_des_pref_APP_THEME">The theme of the application</string>
+	<string name="_des_pref_APP_ABOUT">Information about this application</string>
+	<string name="_des_pref_APP_AUTHOR">Made By LSafer</string>
+	<string name="_des_pref_APP_CHOOSE_EDGE">Touch an edge to customize it</string>
+	<!-- des pref EDGE -->
+	<string name="_des_pref_EDGE_ACTIVATION">Toggle to activate or deactivate this edge</string>
 	<string name="_des_pref_EDGE_VIBRATION">The vibration when the edge get touched</string>
+	<string name="_des_pref_EDGE_ROTATE">Rotate the edge with the screen rotation</string>
+	<string name="_des_pref_EDGE_COLOR">The color of the edge</string>
+	<string name="_des_pref_EDGE_WIDTH">The width of the edge</string>
+	<string name="_des_pref_EDGE_SENSITIVITY">How much you want the edge to be sensitive</string>
+	<string name="_des_pref_EDGE_SEEK_TASK">What to control when seeking</string>
 	<string name="_des_pref_EDGE_TOAST">Display a message with the current volume when seeking</string>
 	<!-- words -->
 	<string name="job">Job</string>
-	<string name="activation">Activation</string>
-	<string name="sensitivity">Sensitivity</string>
 	<string name="input">Input</string>
 	<string name="dimensions">Dimensions</string>
 	<string name="appearance">Appearance</string>
-	<string name="color">Color</string>
-	<string name="width">Width</string>
 	<string name="misc">Misc</string>
-	<string name="edges">Edges</string>
-	<string name="theme">Theme</string>
-	<string name="rotate">Rotate</string>
-	<string name="permissions">Permissions</string>
 	<string name="mandatory">Mandatory</string>
 	<string name="additional">Additional</string>
 	<string name="application">Application</string>
-	<string name="about">About</string>
-	<string name="author">Author</string>
 	<string name="credits">Credits</string>
 	<!-- names -->
 	<string name="edge_seek">Edge Seek</string>
-	<string name="seek_task">Seek Task</string>
-	<string name="auto_boot">Auto Boot</string>
-	<string name="auto_brightness">Auto Brightness</string>
-	<string name="choose_edge">Choose Edge</string>
 	<string name="bottom_edge">Bottom Edge</string>
 	<string name="left_edge">Left Edge</string>
 	<string name="top_edge">Top Edge</string>
 	<string name="right_edge">Right Edge</string>
-	<string name="display_over_other_apps">Display Over Other Apps</string>
-	<string name="write_system_settings">Write System Settings</string>
-	<string name="ignore_battery_optimization">Ignore Battery Optimization</string>
 	<string name="select_color">Select Color</string>
 	<!-- arrays -->
 	<string-array name="seek_tasks">

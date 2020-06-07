@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="?colorBackground"
@@ -12,9 +13,9 @@
 		android:gravity="center"
 		android:paddingTop="50dp"
 		android:paddingBottom="50dp"
-		android:text="@string/about"
 		android:textColor="?colorAccent"
-		android:textSize="30sp" />
+		android:textSize="30sp"
+		tools:text="Title" />
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/fragment"

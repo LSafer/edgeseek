@@ -3,52 +3,52 @@
 	<PreferenceCategory app:title="@string/job">
 		<SwitchPreference
 			app:key="activated"
-			app:summary="@string/_des_pref_edge_activation"
-			app:title="@string/activation" />
+			app:summary="@string/_des_pref_EDGE_ACTIVATION"
+			app:title="@string/_tit_pref_EDGE_ACTIVATION" />
 		<DropDownPreference
 			app:entries="@array/seek_tasks"
 			app:entryValues="@array/seek_tasks_alias"
 			app:key="seek"
-			app:summary="@string/_des_pref_seek_task"
-			app:title="@string/seek_task" />
+			app:summary="@string/_des_pref_EDGE_SEEK_TASK"
+			app:title="@string/_tit_pref_EDGE_SEEK_TASK" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/input">
 		<SeekBarPreference
-			app:showSeekBarValue="true"
 			app:key="sensitivity"
 			app:max="100"
 			app:min="10"
-			app:summary="@string/_des_pref_sensitivity"
-			app:title="@string/sensitivity" />
+			app:showSeekBarValue="true"
+			app:summary="@string/_des_pref_EDGE_SENSITIVITY"
+			app:title="@string/_tit_pref_EDGE_SENSITIVITY" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/dimensions">
 		<SeekBarPreference
-			app:showSeekBarValue="true"
 			app:key="width"
 			app:max="100"
 			app:min="5"
-			app:summary="@string/_des_pref_width"
-			app:title="@string/width" />
+			app:showSeekBarValue="true"
+			app:summary="@string/_des_pref_EDGE_WIDTH"
+			app:title="@string/_tit_pref_EDGE_WIDTH" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/appearance">
 		<com.jaredrummler.android.colorpicker.ColorPreferenceCompat
-			app:cpv_dialogType="preset"
-			app:cpv_showAlphaSlider="true"
+			app:cpv_allowCustom="true"
+			app:cpv_allowPresets="true"
 			app:cpv_colorShape="circle"
 			app:cpv_dialogTitle="@string/select_color"
+			app:cpv_dialogType="preset"
+			app:cpv_showAlphaSlider="true"
 			app:cpv_showColorShades="true"
-			app:cpv_allowPresets="true"
-			app:cpv_allowCustom="true"
 			app:cpv_showDialog="true"
 			app:key="color"
-			app:summary="@string/_des_pref_color"
-			app:title="@string/color" />
+			app:summary="@string/_des_pref_EDGE_COLOR"
+			app:title="@string/_tit_pref_EDGE_COLOR" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/misc">
 		<SwitchPreference
 			app:key="rotate"
-			app:summary="@string/_des_pref_rotate"
-			app:title="@string/rotate" />
+			app:summary="@string/_des_pref_EDGE_ROTATE"
+			app:title="@string/_tit_pref_EDGE_ROTATE" />
 		<SwitchPreference
 			app:key="toast"
 			app:summary="@string/_des_pref_EDGE_TOAST"
