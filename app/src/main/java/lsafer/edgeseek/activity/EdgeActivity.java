@@ -35,7 +35,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 27-May-20
  */
-public class EdgeActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
+final public class EdgeActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	/**
 	 * The target edge-position by this activity.
 	 */

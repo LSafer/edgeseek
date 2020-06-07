@@ -38,7 +38,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 04-Jun-20
  */
-public class AboutActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
+final public class AboutActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		//activity
@@ -54,7 +54,7 @@ public class AboutActivity extends AppCompatActivity implements SimplePreference
 
 		//title
 		this.<TextView>findViewById(R.id.title)
-				.setText(R.string.about);
+				.setText(R.string._tit_pref_APP_ABOUT);
 	}
 
 	@Override

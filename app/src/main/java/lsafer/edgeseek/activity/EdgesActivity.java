@@ -37,7 +37,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 01-Jun-20
  */
-public class EdgesActivity extends AppCompatActivity {
+final public class EdgesActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		//initial

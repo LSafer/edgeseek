@@ -40,7 +40,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 02-Jun-20
  */
-public class PermissionsActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
+final public class PermissionsActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		//initial
@@ -75,19 +75,19 @@ public class PermissionsActivity extends AppCompatActivity implements SimplePref
 			@Override
 			public void putBoolean(String key, boolean value) {
 				switch (key) {
-					case "display_over_other_apps":
+					case "SYSTEM_ALERT_WINDOW":
 						Intent i0 = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
 						i0.setData(Uri.parse("package:" + this.context.getPackageName()));
 						i0.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						this.context.startActivity(i0);
 						break;
-					case "write_system_settings":
+					case "WRITE_SETTINGS":
 						Intent i1 = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
 						i1.setData(Uri.parse("package:" + this.context.getPackageName()));
 						i1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						this.context.startActivity(i1);
 						break;
-					case "ignore_battery_optimization":
+					case "IGNORE_BATTERY_OPTIMIZATIONS":
 						Intent i2 = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
 						i2.setData(Uri.parse("package:" + this.context.getPackageName()));
 						i2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

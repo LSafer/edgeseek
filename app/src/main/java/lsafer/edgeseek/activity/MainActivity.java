@@ -43,7 +43,7 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 19-May-2020
  */
-public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
+final public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
 	@Override
 	public void onDataChange(MapDataStore data, Object key, Object oldValue, Object newValue) {
 		//change listeners
