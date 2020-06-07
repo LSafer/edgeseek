@@ -18,6 +18,7 @@ package lsafer.edgeseek.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,6 +86,14 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 			this.startForegroundService(new Intent(this, MainService.class));
 		else this.startService(new Intent(this, MainService.class));
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		if (!Settings.System.canWrite(this) || !Settings.canDrawOverlays(this))
+			this.startActivity(new Intent(this, PermissionsActivity.class));
 	}
 
 	@Override

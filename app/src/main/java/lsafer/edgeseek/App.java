@@ -84,7 +84,7 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 		super.onCreate();
 
 		//data
-		App.data = new AppData(new File(this.getExternalFilesDir("data"), "main"));
+		App.data = new AppData(this, new File(this.getExternalFilesDir("data"), "main"));
 		App.data.load();
 
 		//listener

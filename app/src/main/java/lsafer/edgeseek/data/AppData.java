@@ -15,6 +15,7 @@
  */
 package lsafer.edgeseek.data;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.io.File;
@@ -79,12 +80,21 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	private File file;
 
 	/**
+	 * The data of the permissions of this application.
+	 * <br>
+	 * Note: this data isn't stored in a file.
+	 */
+	final public PermissionsData permissions;
+
+	/**
 	 * Construct a new app-data.
 	 *
-	 * @param file to read-from/write-to
+	 * @param context to be used
+	 * @param file    to read-from/write-to
 	 */
-	public AppData(File file) {
+	public AppData(Context context, File file) {
 		this.file = file;
+		this.permissions = new PermissionsData(context);
 	}
 
 	@Override

@@ -2,17 +2,17 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 	<PreferenceCategory app:title="@string/mandatory">
 		<CheckBoxPreference
-			app:key="SYSTEM_ALERT_WINDOW"
+			app:key="android.permission.SYSTEM_ALERT_WINDOW"
 			app:summary="@string/_des_perm_SYSTEM_ALERT_WINDOW"
 			app:title="@string/_tit_perm_SYSTEM_ALERT_WINDOW" />
 		<CheckBoxPreference
-			app:key="WRITE_SETTINGS"
+			app:key="android.permission.WRITE_SETTINGS"
 			app:summary="@string/_des_perm_WRITE_SETTINGS"
 			app:title="@string/_tit_perm_WRITE_SETTINGS" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/additional">
 		<CheckBoxPreference
-			app:key="IGNORE_BATTERY_OPTIMIZATIONS"
+			app:key="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
 			app:summary="@string/_des_perm_IGNORE_BATTERY_OPTIMIZATIONS"
 			app:title="@string/_tit_perm_IGNORE_BATTERY_OPTIMIZATIONS" />
 	</PreferenceCategory>
