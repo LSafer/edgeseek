@@ -5,12 +5,18 @@
 			app:key="activated"
 			app:summary="@string/_des_pref_EDGE_ACTIVATION"
 			app:title="@string/_tit_pref_EDGE_ACTIVATION" />
-		<DropDownPreference
+		<ListPreference
 			app:entries="@array/seek_tasks"
 			app:entryValues="@array/seek_tasks_alias"
 			app:key="seek"
 			app:summary="@string/_des_pref_EDGE_SEEK_TASK"
 			app:title="@string/_tit_pref_EDGE_SEEK_TASK" />
+		<ListPreference
+			app:entries="@array/long_click_tasks"
+			app:entryValues="@array/long_click_tasks_alias"
+			app:key="longClick"
+			app:summary="@string/_des_pref_EDGE_LONG_CLICK_TASK"
+			app:title="@string/_tit_pref_EDGE_LONG_CLICK_TASK" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/input">
 		<SeekBarPreference

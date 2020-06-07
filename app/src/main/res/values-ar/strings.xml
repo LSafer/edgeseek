@@ -1,4 +1,10 @@
 <resources>
+	<!-- tit noti -->
+	<string name="_tit_noti_MAIN_SERVICE">يعمل بالخلفية</string>
+	<string name="_tit_noti_MAIN_SERVICE_CHANNEL">يعمل بالخلفية</string>
+	<!-- des noti -->
+	<string name="_des_noti_MAIN_SERVICE">حافات الشاشة جاهزة لاستقبال اللمسات</string>
+	<string name="_des_noti_MAIN_SERVICE_CHANNEL">تسمح للتطبيق بالعمل بالخلفية, ينصح بتعطيل هذا الإشعار حيث ان ليس له قيمة حقيقية</string>
 	<!-- des erro -->
 	<string name="_des_erro_ERROR">خطأ (%s)</string>
 	<!-- lak perm -->
@@ -32,13 +38,15 @@
 	<string name="_tit_pref_EDGE_SENSITIVITY">الحساسية</string>
 	<string name="_tit_pref_EDGE_SEEK_TASK">وظيفة السحب</string>
 	<string name="_tit_pref_EDGE_TOAST">إظهار القيمة</string>
+	<string name="_tit_pref_EDGE_LONG_CLICK_TASK">وظيفة الضغط مطولا</string>
 	<!-- des pref APP -->
 	<string name="_des_pref_APP_ACTIVATION">اظغط لتفعيل او إلغاء تفعيل التطبيق</string>
 	<string name="_des_pref_APP_PERMISSIONS">إدارة صلاحيات التطبيق</string>
 	<string name="_des_pref_APP_EDGES">تخصيص الحافات</string>
 	<string name="_des_pref_APP_AUTO_BOOT">تشغيل الخدمة كل مرة يتم فيها تشغيل الجهاز</string>
 	<string name="_des_pref_APP_AUTO_BRIGHTNESS">تفعيل السطوع التلقائي عند إغلاق الشاشة</string>
-	<string name="_des_pref_APP_THEME">مظهر التطبيق</string>
+	<string name="_des_pref_APP_THEME">%s</string>
+<!--	<string name="_des_pref_APP_THEME"><![CDATA[المظهر الحالي: <big>%s</big>]]></string>-->
 	<string name="_des_pref_APP_ABOUT">معلومات عن هذا التطبيق</string>
 	<string name="_des_pref_APP_AUTHOR">التطبيق مبني من قبل LSafer</string>
 	<string name="_des_pref_APP_CHOOSE_EDGE">إلمس حافة لتخصيصها</string>
@@ -49,8 +57,11 @@
 	<string name="_des_pref_EDGE_COLOR">لون الحافة</string>
 	<string name="_des_pref_EDGE_WIDTH">عرض الحافة</string>
 	<string name="_des_pref_EDGE_SENSITIVITY">إلى أي درجة تريد الحافة ان تكون حساسة</string>
-	<string name="_des_pref_EDGE_SEEK_TASK">اختر ماللذي تريد التحكم به عند السحب</string>
+	<string name="_des_pref_EDGE_SEEK_TASK">%s</string>
+	<!--	<string name="_des_pref_EDGE_SEEK_TASK"><![CDATA[عند السحب على الحافة سوف يتم <big>%s</big>]]></string>-->
 	<string name="_des_pref_EDGE_TOAST">إظهار القيمة الحالية عند السحب على الطرف</string>
+	<string name="_des_pref_EDGE_LONG_CLICK_TASK">%s</string>
+	<!--	<string name="_des_pref_EDGE_LONG_CLICK_TASK"><![CDATA[عند الضغط المطول على الحافة سوف يتم <big>%s</big>]]></string>-->
 	<!-- words -->
 	<string name="job">الوظيفة</string>
 	<string name="input">المدخلات</string>
@@ -76,6 +87,10 @@
 		<item>التحكم بصوت النغمة</item>
 		<item>التحكم باصوات النظام</item>
 		<item>التحكم بصوت المنبه</item>
+	</string-array>
+	<string-array name="long_click_tasks">
+		<item>لا شيء</item>
+		<item>فتح الإشعارات</item>
 	</string-array>
 	<string-array name="themes">
 		<item>أسود</item>

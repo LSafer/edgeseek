@@ -101,7 +101,6 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	public void load() {
 		try {
 			FormatLoadable.super.load();
-			this.put("edges", this.edges);
 		} catch (IOException e) {
 			Log.e("MainData", "load: ", e);
 		}

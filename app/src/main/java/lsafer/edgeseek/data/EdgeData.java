@@ -46,7 +46,7 @@ final public class EdgeData extends AbstractBean {
 	 * The color of the edge.
 	 */
 	@Property
-	public int color = Color.argb(0, 0, 0, 0);
+	public int color = Color.argb(0, 255, 0, 0);
 	/**
 	 * False makes the edge remain on the same position even if the screen changed its position.
 	 */
@@ -56,27 +56,32 @@ final public class EdgeData extends AbstractBean {
 	 * What to do when seeking.
 	 */
 	@Property
-	public String seek = "brightness";
+	public String seek = "";
 	/**
 	 * The sensitivity of this edge.
 	 */
 	@Property
 	public int sensitivity = 70;
 	/**
-	 * The width of this edge.
+	 * Show a toast with the current volume-value when seeking.
 	 */
 	@Property
-	public int width = 20;
+	public boolean toast = true;
 	/**
 	 * The vibration once the edge get touched.
 	 */
 	@Property
 	public int vibration = 1;
 	/**
-	 * Show a toast with the current volume-value when seeking.
+	 * The width of this edge.
 	 */
 	@Property
-	public boolean toast = true;
+	public int width = 20;
+	/**
+	 * The task to be performed on long click.
+	 */
+	@Property
+	public String longClick = "";
 
 	/**
 	 * Construct a new edge data for the edge in the given position.
@@ -89,7 +94,24 @@ final public class EdgeData extends AbstractBean {
 			throw new IllegalArgumentException("position out of range [0, 3]");
 		this.position = position;
 
-		//---- default values
-		this.activated = position == 1 || position == 3;
+		//---- default values depending on position
+		switch (position) {
+			case 0:
+				this.activated = true;
+				this.longClick = "expand_status_bar";
+				this.width = 30;
+				this.color = Color.argb(0, 50, 50, 150);
+				break;
+			case 1:
+				this.activated = true;
+				this.seek = "audio";
+				this.color = Color.argb(0, 150, 50, 50);
+				break;
+			case 3:
+				this.activated = true;
+				this.seek = "brightness";
+				this.color = Color.argb(0, 150, 50, 50);
+				break;
+		}
 	}
 }

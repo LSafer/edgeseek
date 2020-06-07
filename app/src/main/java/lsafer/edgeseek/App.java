@@ -41,7 +41,7 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 	/**
 	 * The listeners.
 	 */
-	final static private Collection<OnConfigurationChangeListener> listeners = new HashSet<>();
+	final private static Collection<OnConfigurationChangeListener> listeners = new HashSet<>();
 	/**
 	 * The data of this application.
 	 * <br>
@@ -112,19 +112,30 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 	}
 
 	@Override
-	public void onDataChange(MapDataStore store, Object key, Object oldValue, Object newValue) {
+	public void onDataChange(MapDataStore store, String key, Object oldValue, Object newValue) {
 		//save data
 		App.data.save();
 
-		if (key.equals("theme") && !oldValue.equals(newValue)) {
-			//on-theme-changed
-			this.setTheme(Util.theme(App.data.theme));
-		}
+		if (!Objects.equals(oldValue, newValue)) {
+			//ignore useless calls!
 
-		//update main-service
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-			this.startForegroundService(new Intent(this, MainService.class));
-		else this.startService(new Intent(this, MainService.class));
+			if (App.data.store == store) {
+				//only app-data
+
+				switch (key) {
+					case "theme":
+						//on-theme-changed
+						this.setTheme(Util.theme(App.data.theme));
+						break;
+					case "activated":
+						//update main-service that the activation status changed
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+							this.startForegroundService(new Intent(this, MainService.class));
+						else this.startService(new Intent(this, MainService.class));
+						break;
+				}
+			}
+		}
 	}
 
 	/**

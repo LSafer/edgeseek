@@ -61,16 +61,20 @@ final public class MainService extends Service {
 		super.onCreate();
 
 		//foreground-service notification
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			NotificationChannel channel = new NotificationChannel(
+					"main",
+					this.getString(R.string._tit_noti_MAIN_SERVICE_CHANNEL),
+					NotificationManager.IMPORTANCE_MIN
+			);
+			channel.setDescription(this.getString(R.string._des_noti_MAIN_SERVICE_CHANNEL));
+
 			this.getSystemService(NotificationManager.class)
-					.createNotificationChannel(new NotificationChannel(
-							"Foreground",
-							"Foreground Service Channel",
-							NotificationManager.IMPORTANCE_LOW
-					));
-		this.startForeground(1, new NotificationCompat.Builder(this, "Foreground")
-				.setContentTitle("Running in the background")
-				.setContentText("")
+					.createNotificationChannel(channel);
+		}
+		this.startForeground(1, new NotificationCompat.Builder(this, "main")
+				.setContentTitle(this.getString(R.string._tit_noti_MAIN_SERVICE))
+				.setContentText(this.getString(R.string._des_noti_MAIN_SERVICE))
 				.setSmallIcon(R.drawable.ic_sync)
 				.build());
 
@@ -104,11 +108,8 @@ final public class MainService extends Service {
 		//stop if not activated
 		if (!App.data.activated) {
 			this.stopSelf();
-			return startId;
+			return START_NOT_STICKY;
 		}
-
-		//refresh edges managers
-		this.edges.forEach(Edge::update);
 
 		return START_STICKY;
 	}

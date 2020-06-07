@@ -2,40 +2,78 @@
 <resources>
 
 	<style name="Black" parent="ThemeOverlay.AppCompat.Dark">
-		<item name="colorBackground">@color/blackColorBackground</item>
-		<item name="android:statusBarColor">@color/blackColorBackground</item>
+		<!-- colors -->
 		<item name="colorPrimary">@color/blackColorPrimary</item>
 		<item name="colorPrimaryDark">@color/blackColorPrimaryDark</item>
 		<item name="colorAccent">@color/blackColorAccent</item>
+		<item name="colorBackground">@color/blackColorBackground</item>
+		<item name="colorBackgroundFloating">@color/blackColorBackgroundFloating</item>
+		<!-- status bar -->
+		<item name="android:statusBarColor">@color/blackColorBackground</item>
+		<item name="android:windowLightStatusBar">false</item>
+		<!-- text -->
+		<item name="android:textColorPrimary">@android:color/white</item>
+		<item name="android:textColor">@android:color/white</item>
+		<item name="textColorAlertDialogListItem">@android:color/white</item>
+		<item name="android:actionMenuTextColor">@android:color/white</item>
+		<!-- dialog -->
+		<item name="dialogCornerRadius">25dp</item>
 	</style>
 
 	<style name="Dark" parent="ThemeOverlay.AppCompat.Dark">
-		<item name="colorBackground">@color/darkColorBackground</item>
-		<item name="android:statusBarColor">@color/darkColorBackground</item>
+		<!-- colors -->
 		<item name="colorPrimary">@color/darkColorPrimary</item>
 		<item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
 		<item name="colorAccent">@color/darkColorAccent</item>
+		<item name="colorBackground">@color/darkColorBackground</item>
+		<item name="colorBackgroundFloating">@color/darkColorBackgroundFloating</item>
+		<!-- status bar -->
+		<item name="android:statusBarColor">@color/darkColorBackground</item>
+		<item name="android:windowLightStatusBar">false</item>
+		<!-- text -->
+		<item name="android:textColorPrimary">@android:color/white</item>
+		<item name="android:textColor">@android:color/white</item>
+		<item name="textColorAlertDialogListItem">@android:color/white</item>
+		<item name="android:actionMenuTextColor">@android:color/white</item>
+		<!-- dialog -->
+		<item name="dialogCornerRadius">25dp</item>
 	</style>
 
 	<style name="White" parent="ThemeOverlay.AppCompat.Light">
-		<item name="colorBackground">@color/whiteColorBackground</item>
-		<item name="android:statusBarColor">@color/whiteColorBackground</item>
-		<item name="android:windowLightStatusBar">true</item>
+		<!-- colors -->
 		<item name="colorPrimary">@color/whiteColorPrimary</item>
 		<item name="colorPrimaryDark">@color/whiteColorPrimaryDark</item>
 		<item name="colorAccent">@color/whiteColorAccent</item>
+		<item name="colorBackground">@color/whiteColorBackground</item>
+		<item name="colorBackgroundFloating">@color/whiteColorBackgroundFloating</item>
+		<!-- status bar -->
+		<item name="android:statusBarColor">@color/whiteColorBackground</item>
+		<item name="android:windowLightStatusBar">true</item>
+		<!-- text -->
 		<item name="android:textColorPrimary">@android:color/black</item>
 		<item name="android:textColor">@android:color/black</item>
+		<item name="textColorAlertDialogListItem">@android:color/black</item>
+		<item name="android:actionMenuTextColor">@android:color/black</item>
+		<!-- dialog -->
+		<item name="dialogCornerRadius">25dp</item>
 	</style>
 
 	<style name="Light" parent="ThemeOverlay.AppCompat.Light">
-		<item name="colorBackground">@color/lightColorBackground</item>
-		<item name="android:statusBarColor">@color/lightColorBackground</item>
-		<item name="android:windowLightStatusBar">true</item>
+		<!-- colors -->
 		<item name="colorPrimary">@color/lightColorPrimary</item>
 		<item name="colorPrimaryDark">@color/lightColorPrimaryDark</item>
 		<item name="colorAccent">@color/lightColorAccent</item>
+		<item name="colorBackground">@color/lightColorBackground</item>
+		<item name="colorBackgroundFloating">@color/lightColorBackground</item>
+		<!-- status bar -->
+		<item name="android:statusBarColor">@color/lightColorBackground</item>
+		<item name="android:windowLightStatusBar">true</item>
+		<!-- text -->
 		<item name="android:textColorPrimary">@android:color/black</item>
 		<item name="android:textColor">@android:color/black</item>
+		<item name="textColorAlertDialogListItem">@android:color/black</item>
+		<item name="android:actionMenuTextColor">@android:color/black</item>
+		<!-- dialog -->
+		<item name="dialogCornerRadius">25dp</item>
 	</style>
 </resources>

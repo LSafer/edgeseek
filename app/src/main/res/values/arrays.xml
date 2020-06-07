@@ -14,4 +14,8 @@
 		<item>dark</item>
 		<item>light</item>
 	</string-array>
+	<string-array name="long_click_tasks_alias">
+		<item>non</item>
+		<item>expand_status_bar</item>
+	</string-array>
 </resources>

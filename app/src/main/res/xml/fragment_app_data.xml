@@ -6,13 +6,12 @@
 			app:key="activated"
 			app:summary="@string/_des_pref_APP_ACTIVATION"
 			app:title="@string/_tit_pref_APP_ACTIVATION" />
-		<Preference
-			app:summary="@string/_des_pref_APP_PERMISSIONS"
-			app:title="@string/_tit_pref_APP_PERMISSIONS">
-			<intent
-				android:targetClass="lsafer.edgeseek.activity.PermissionsActivity"
-				android:targetPackage="lsafer.edgeseek" />
-		</Preference>
+		<ListPreference
+			app:entries="@array/themes"
+			app:entryValues="@array/themes_alias"
+			app:key="theme"
+			app:summary="@string/_des_pref_APP_THEME"
+			app:title="@string/_tit_pref_APP_THEME" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/job">
 		<Preference
@@ -32,12 +31,13 @@
 			app:title="@string/_tit_pref_APP_AUTO_BRIGHTNESS" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/misc">
-		<DropDownPreference
-			app:entries="@array/themes"
-			app:entryValues="@array/themes_alias"
-			app:key="theme"
-			app:summary="@string/_des_pref_APP_THEME"
-			app:title="@string/_tit_pref_APP_THEME" />
+		<Preference
+			app:summary="@string/_des_pref_APP_PERMISSIONS"
+			app:title="@string/_tit_pref_APP_PERMISSIONS">
+			<intent
+				android:targetClass="lsafer.edgeseek.activity.PermissionsActivity"
+				android:targetPackage="lsafer.edgeseek" />
+		</Preference>
 		<Preference
 			app:summary="@string/_des_pref_APP_ABOUT"
 			app:title="@string/_tit_pref_APP_ABOUT">

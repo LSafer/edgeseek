@@ -45,13 +45,19 @@ import lsafer.edgeseek.util.Util;
  */
 final public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
 	@Override
-	public void onDataChange(MapDataStore data, Object key, Object oldValue, Object newValue) {
+	public void onDataChange(MapDataStore data, String key, Object oldValue, Object newValue) {
 		//change listeners
 
-		if (key.equals("theme") && !oldValue.equals(newValue)) {
-			//theme change listeners
-			this.startActivity(new Intent(this, MainActivity.class));
-			this.finish();
+		if (!Objects.equals(oldValue, newValue)) {
+			//ignore useless calls
+
+			//noinspection SwitchStatementWithTooFewBranches
+			switch (key) {
+				case "theme":
+					this.startActivity(new Intent(this, MainActivity.class));
+					this.finish();
+					break;
+			}
 		}
 	}
 

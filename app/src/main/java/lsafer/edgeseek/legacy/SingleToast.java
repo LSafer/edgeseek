@@ -36,10 +36,6 @@ import lsafer.edgeseek.util.Util;
  */
 final public class SingleToast extends Toast {
 	/**
-	 * Syncing object.
-	 */
-	final private static Object SYNC = new Object();
-	/**
 	 * The current displaying toast.
 	 */
 	private static SingleToast current;
@@ -80,7 +76,7 @@ final public class SingleToast extends Toast {
 
 	@Override
 	public void show() {
-		synchronized (SingleToast.SYNC) {
+		synchronized (SingleToast.class) {
 			if (SingleToast.current != null)
 				SingleToast.current.cancel();
 			SingleToast.current = this;
