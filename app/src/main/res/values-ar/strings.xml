@@ -19,6 +19,10 @@
 	<string name="_des_pref_about">معلومات عن هذا التطبيق</string>
 	<string name="_des_pref_author">التطبيق مبني من قبل LSafer</string>
 	<string name="_des_pref_choose_edge">إلمس حافة لتخصيصها</string>
+	<string name="_tit_pref_EDGE_VIBRATION">الإهتزاز</string>
+	<string name="_tit_pref_EDGE_TOAST">إظهار القيمة</string>
+	<string name="_des_pref_EDGE_VIBRATION">الإهتزاز عند لمس الطرف</string>
+	<string name="_des_pref_EDGE_TOAST">إظهار القيمة الحالية عند السحب على الطرف</string>
 	<!-- words -->
 	<string name="job">الوظيفة</string>
 	<string name="activation">التفعيل</string>

@@ -27,6 +27,7 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import lsafer.edgeseek.Edge;
+import lsafer.edgeseek.R;
 import lsafer.edgeseek.legacy.SingleToast;
 import lsafer.edgeseek.util.Util;
 
@@ -39,27 +40,27 @@ import lsafer.edgeseek.util.Util;
  * @version 0.1.5
  * @since 28-May-20
  */
-public class AudioControl implements View.OnTouchListener {
+public class OnTouchAudioControl implements View.OnTouchListener {
 	/**
 	 * The audio manager.
 	 */
-	private AudioManager am;
+	protected AudioManager am;
 	/**
 	 * The previous axis.
 	 */
-	private Float axis;
+	protected Float axis;
 	/**
 	 * The context to be used by this listener.
 	 */
-	private Context context;
+	protected Context context;
 	/**
 	 * The edge to work with.
 	 */
-	private Edge edge;
+	protected Edge edge;
 	/**
 	 * The audio-type this is targeting.
 	 */
-	private int type;
+	protected int type;
 
 	/**
 	 * Constructs a new listener that targets the given edge.
@@ -68,7 +69,7 @@ public class AudioControl implements View.OnTouchListener {
 	 * @param edge    to target
 	 * @throws NullPointerException if the given 'context' or 'edge' is null
 	 */
-	public AudioControl(Context context, Edge edge) {
+	public OnTouchAudioControl(Context context, Edge edge) {
 		Objects.requireNonNull(context, "context");
 		Objects.requireNonNull(edge, "edge");
 		this.context = context;
@@ -103,7 +104,7 @@ public class AudioControl implements View.OnTouchListener {
 			case MotionEvent.ACTION_UP:
 				//start/end of motion
 				Vibrator vibrator = this.context.getSystemService(Vibrator.class);
-				vibrator.vibrate(VibrationEffect.createOneShot(1, VibrationEffect.DEFAULT_AMPLITUDE));
+				vibrator.vibrate(VibrationEffect.createOneShot(this.edge.data.vibration, VibrationEffect.DEFAULT_AMPLITUDE));
 				break;
 			default:
 				//the seek is on
@@ -127,12 +128,20 @@ public class AudioControl implements View.OnTouchListener {
 						this.am.getStreamMinVolume(this.type) : 0
 				);
 
-				this.am.setStreamVolume(this.type, value, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+				try {
+					this.am.setStreamVolume(this.type, value, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
-				SingleToast.makeText(this.context, String.valueOf(value), Toast.LENGTH_SHORT).show();
+					//toast
+					if (this.edge.data.toast)
+						SingleToast.makeText(this.context, String.valueOf(value), Toast.LENGTH_SHORT).show();
+				} catch (Exception e) {
+					//permission not granted
+					Toast.makeText(this.context, R.string._lak_perm_WRITE_SETTINGS, Toast.LENGTH_LONG).show();
+				}
 
 				this.axis = axis;
 		}
-		return true;
+
+		return false;
 	}
 }

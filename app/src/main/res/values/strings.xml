@@ -19,6 +19,10 @@
 	<string name="_des_pref_about">Information about this application</string>
 	<string name="_des_pref_author">Made By LSafer</string>
 	<string name="_des_pref_choose_edge">Touch an edge to customize it</string>
+	<string name="_tit_pref_EDGE_VIBRATION">Vibration</string>
+	<string name="_tit_pref_EDGE_TOAST">Toast</string>
+	<string name="_des_pref_EDGE_VIBRATION">The vibration when the edge get touched</string>
+	<string name="_des_pref_EDGE_TOAST">Display a message with the current volume when seeking</string>
 	<!-- words -->
 	<string name="job">Job</string>
 	<string name="activation">Activation</string>

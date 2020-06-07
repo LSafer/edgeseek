@@ -67,6 +67,16 @@ final public class EdgeData extends AbstractBean {
 	 */
 	@Property
 	public int width = 20;
+	/**
+	 * The vibration once the edge get touched.
+	 */
+	@Property
+	public int vibration = 1;
+	/**
+	 * Show a toast with the current volume-value when seeking.
+	 */
+	@Property
+	public boolean toast = true;
 
 	/**
 	 * Construct a new edge data for the edge in the given position.
