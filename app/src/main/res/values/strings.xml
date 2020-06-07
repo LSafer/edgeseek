@@ -43,13 +43,15 @@
 	<string name="_des_pref_APP_CHOOSE_EDGE">Touch an edge to customize it</string>
 	<!-- pref ABOUT -->
 	<!-- tit pref ABOUT -->
-	<string name="_tit_pref_ABOUT_VERSION">Application Version</string>
+	<string name="_tit_pref_ABOUT_VERSION">Version</string>
+	<string name="_tit_pref_ABOUT_VERSION_CODE">Version Code</string>
 	<string name="_tit_pref_ABOUT_AUTHOR">Author</string>
 	<string name="_tit_pref_ABOUT_WEBSITE">LSafer Website</string>
 	<string name="_tit_pref_ABOUT_GOOGLE_PLAY">Google Play</string>
 	<string name="_tit_pref_ABOUT_GITHUB">GitHub Repository</string>
 	<!-- des pref ABOUT -->
-	<string name="_des_pref_ABOUT_VERSION">Alpha</string>
+	<string name="_des_pref_ABOUT_VERSION">Version %s</string>
+	<string name="_des_pref_ABOUT_VERSION_CODE">Version code %d</string>
 	<string name="_des_pref_ABOUT_AUTHOR">Made By LSafer</string>
 	<string name="_des_pref_ABOUT_WEBSITE">All versions</string>
 	<string name="_des_pref_ABOUT_GOOGLE_PLAY">Official Releases Only</string>

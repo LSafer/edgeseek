@@ -8,8 +8,13 @@
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/versions">
 		<Preference
+			app:key="version"
 			app:summary="@string/_des_pref_ABOUT_VERSION"
 			app:title="@string/_tit_pref_ABOUT_VERSION" />
+		<Preference
+			app:key="version_code"
+			app:summary="@string/_des_pref_ABOUT_VERSION_CODE"
+			app:title="@string/_tit_pref_ABOUT_VERSION_CODE" />
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/updates">
 		<Preference

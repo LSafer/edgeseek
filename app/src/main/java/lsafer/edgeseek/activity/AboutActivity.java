@@ -28,6 +28,7 @@ import java.util.Objects;
 import cufyx.perference.MapDataStore;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
+import lsafer.edgeseek.BuildConfig;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.util.Util;
 
@@ -55,6 +56,17 @@ final public class AboutActivity extends AppCompatActivity implements SimplePref
 		//title
 		this.<TextView>findViewById(R.id.title)
 				.setText(R.string._tit_pref_APP_ABOUT);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		SimplePreferenceFragment fragment = (SimplePreferenceFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment);
+
+		fragment.findPreference("version")
+				.setSummary(this.getString(R.string._des_pref_ABOUT_VERSION, BuildConfig.VERSION_NAME));
+		fragment.findPreference("version_code")
+				.setSummary(this.getString(R.string._des_pref_ABOUT_VERSION_CODE, BuildConfig.VERSION_CODE));
 	}
 
 	@Override
