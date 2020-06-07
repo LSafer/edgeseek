@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<!-- WARNING: it may get replaced or removed! -->
 	<dimen name="edges_preview_width">15dp</dimen>
-	<dimen name="linear_layout_bottom_gap">100dp</dimen>
-	<dimen name="section_top_gap">50dp</dimen>
-	<dimen name="pre_margins">5dp</dimen>
 </resources>
