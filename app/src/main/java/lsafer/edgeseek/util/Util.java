@@ -15,15 +15,13 @@
  */
 package lsafer.edgeseek.util;
 
-import android.view.Gravity;
+import android.graphics.Point;
+import android.view.Display;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.StringRes;
-import androidx.annotation.StyleRes;
+import androidx.arch.core.util.Function;
 
+import java.util.List;
 import java.util.Objects;
-
-import lsafer.edgeseek.R;
 
 /**
  * Common utils across the application.
@@ -65,105 +63,6 @@ final public class Util {
 	}
 
 	/**
-	 * Get {@link Gravity} value for the given position.
-	 *
-	 * @param position to get the gravity for
-	 * @return the gravity for the given position
-	 */
-	public static int gravity(int position) {
-		switch (position) {
-			case 0:
-				return Gravity.BOTTOM;
-			case 1:
-				return Gravity.LEFT;
-			case 2:
-				return Gravity.TOP;
-			case 3:
-				return Gravity.RIGHT;
-			default:
-				return gravity(Math.abs(position) % 4);
-		}
-	}
-
-	/**
-	 * Get the id from the given position.
-	 *
-	 * @param position to get the id from
-	 * @return an id from the given position
-	 */
-	@IdRes
-	public static int id(int position) {
-		switch (position) {
-			case 0:
-				return R.id.bottom;
-			case 1:
-				return R.id.left;
-			case 2:
-				return R.id.top;
-			case 3:
-				return R.id.right;
-			default:
-				throw new RuntimeException("position: " + position + " is not expected");
-		}
-	}
-
-	/**
-	 * Get the un-rotated position for the given parameters.
-	 *
-	 * @param position        the original position
-	 * @param rotate          whether is it allowed to rotate or not
-	 * @param displayRotation the rotation of the display
-	 * @return the un-rotated position for the given parameters
-	 */
-	public static int position(int position, boolean rotate, int displayRotation) {
-		return rotate ? position : position == 4 ? 4 : Math.abs(displayRotation * 3 + position) % 4;
-	}
-
-	/**
-	 * Get the position from the given id-res.
-	 *
-	 * @param id to get position from
-	 * @return a position from the given id-res
-	 */
-	public static int position(@IdRes int id) {
-		switch (id) {
-			case R.id.bottom:
-				return 0;
-			case R.id.left:
-				return 1;
-			case R.id.top:
-				return 2;
-			case R.id.right:
-				return 3;
-			default:
-				throw new RuntimeException("id: " + id + " is not expected");
-		}
-	}
-
-	/**
-	 * Get the edge name for the given position.
-	 *
-	 * @param position of the edge to get the string resources integer for
-	 * @return the string resources integer of the name of the edge that have the given position
-	 * @throws IllegalArgumentException if the position is not within the range [0, 3]
-	 */
-	@StringRes
-	public static int positionEdgeName(int position) {
-		switch (position) {
-			case 0:
-				return R.string.bottom_edge;
-			case 1:
-				return R.string.left_edge;
-			case 2:
-				return R.string.top_edge;
-			case 3:
-				return R.string.right_edge;
-			default:
-				throw new IllegalArgumentException("unexpected position: " + position);
-		}
-	}
-
-	/**
 	 * Cap the given float 'f' not passing more than the maximum 'max'
 	 * and not passing less than the minimum 'min'. if 'f' is more than
 	 * 'max' then 'max' will be returned. and if 'f' is less than 'min'
@@ -176,29 +75,6 @@ final public class Util {
 	 */
 	public static float range(float f, float max, float min) {
 		return f > max ? max : f < min ? min : f;
-	}
-
-	/**
-	 * Get the theme resources id for the theme-name provided.
-	 *
-	 * @param name the theme name
-	 * @return the theme resources-id for the given theme-name
-	 * @throws NullPointerException if the given 'name' is null
-	 */
-	@StyleRes
-	public static int theme(String name) {
-		Objects.requireNonNull(name, "name");
-		switch (name) {
-			default:
-			case "black":
-				return R.style.Black;
-			case "dark":
-				return R.style.Dark;
-			case "light":
-				return R.style.Light;
-			case "white":
-				return R.style.White;
-		}
 	}
 
 	/**
@@ -220,7 +96,35 @@ final public class Util {
 			throw new IllegalArgumentException("length < 0");
 
 		for (int i = 0, x = index; i < length; i++, x++)
-			list.add(function.apply(x));
+			list.add(x, function.apply(x));
 		return list;
+	}
+
+	/**
+	 * Get the height of the given display.
+	 *
+	 * @param display to get the height of
+	 * @return the height of the given display
+	 * @throws NullPointerException if the given 'display' is null
+	 */
+	public static float getHeight(Display display) {
+		Objects.requireNonNull(display, "display");
+		Point point = new Point();
+		display.getSize(point);
+		return point.y;
+	}
+
+	/**
+	 * Get the width of the given display.
+	 *
+	 * @param display to get the width of
+	 * @return the width of the given display
+	 * @throws NullPointerException if the given 'display' is null
+	 */
+	public static float getWidth(Display display) {
+		Objects.requireNonNull(display, "display");
+		Point point = new Point();
+		display.getSize(point);
+		return point.x;
 	}
 }
