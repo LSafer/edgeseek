@@ -725,21 +725,4 @@ final public class Position { //[-5, 39]
 		int origin = Position.getSide(position);
 		return origin == BOTTOM || origin == TOP;
 	}
-
-//	public static int[] getFactorPositions(int factor) {
-//		//TODO
-//		return null;
-//	}
-
-//	public static int[] getPositions(int side, int factor) {
-//		int[] sps = getSidePositions(side);
-//		int[] fps = new int[factor];
-//
-//		//Just bear with it
-//		for (int i = 0; i < fps.length; i++)
-//			if (factor == getFactor(sps[i]))
-//				fps[i] = sps[i];
-//
-//		return fps;
-//	}
 }
