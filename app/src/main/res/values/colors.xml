@@ -9,6 +9,7 @@
 	<color name="blackModuleMobileStartColor">#785858</color>
 	<color name="blackModuleMobileCenterColor">#816060</color>
 	<color name="blackModuleMobileEndColor">#804949</color>
+	<color name="blackModuleMobileButtonColor">#550C0C</color>
 	<!-- Dark -->
 	<color name="darkColorBackground">#ff303030</color>
 	<color name="darkColorBackgroundFloating">#ff353535</color>
@@ -18,6 +19,7 @@
 	<color name="darkModuleMobileStartColor">#81A0A1</color>
 	<color name="darkModuleMobileCenterColor">#81A0A1</color>
 	<color name="darkModuleMobileEndColor">#63ABAE</color>
+	<color name="darkModuleMobileButtonColor">#013D40</color>
 	<!-- White -->
 	<color name="whiteColorBackground">#ffffff</color>
 	<color name="whiteColorBackgroundFloating">#ffe0e0e0</color>
@@ -27,6 +29,7 @@
 	<color name="whiteModuleMobileStartColor">#8989F4</color>
 	<color name="whiteModuleMobileCenterColor">#9E7CEF</color>
 	<color name="whiteModuleMobileEndColor">#B070EB</color>
+	<color name="whiteModuleMobileButtonColor">#250642</color>
 	<!-- Light -->
 	<color name="lightColorBackground">#ffc0c0c0</color>
 	<color name="lightColorBackgroundFloating">#ffa0a0a0</color>
@@ -36,4 +39,5 @@
 	<color name="lightModuleMobileStartColor">#81A0A1</color>
 	<color name="lightModuleMobileCenterColor">#81A0A1</color>
 	<color name="lightModuleMobileEndColor">#63ABAE</color>
+	<color name="lightModuleMobileButtonColor">#033D40</color>
 </resources>
