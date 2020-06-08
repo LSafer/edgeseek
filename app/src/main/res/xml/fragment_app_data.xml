@@ -8,7 +8,7 @@
 			app:title="@string/_tit_pref_APP_ACTIVATION" />
 		<ListPreference
 			app:entries="@array/themes"
-			app:entryValues="@array/themes_alias"
+			app:entryValues="@array/_themes"
 			app:key="theme"
 			app:summary="@string/_des_pref_APP_THEME"
 			app:title="@string/_tit_pref_APP_THEME" />
