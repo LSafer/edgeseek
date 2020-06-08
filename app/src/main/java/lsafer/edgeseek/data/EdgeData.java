@@ -148,7 +148,7 @@ final public class EdgeData extends AbstractBean {
 	 * The width of this edge.
 	 */
 	@Property
-	public int width = 20;
+	public int width = 35;
 
 	/**
 	 * Construct a new edge data for the edge in the given position.
