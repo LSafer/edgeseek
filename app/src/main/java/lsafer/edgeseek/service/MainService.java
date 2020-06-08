@@ -22,17 +22,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.IBinder;
-import android.view.WindowManager;
 
 import androidx.core.app.NotificationCompat;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.Edge;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.receiver.ScreenOffBroadCastReceiver;
+import lsafer.edgeseek.util.Position;
+import lsafer.edgeseek.util.Util;
 
 /**
  * A service that responsible to display the edges customized by this application.
@@ -51,10 +52,6 @@ final public class MainService extends Service {
 	 * A registered receiver on this service.
 	 */
 	private ScreenOffBroadCastReceiver screenOffReceiver;
-	/**
-	 * The window-manager that this service is using.
-	 */
-	private WindowManager wm;
 
 	@Override
 	public void onCreate() {
@@ -62,21 +59,17 @@ final public class MainService extends Service {
 
 		//foreground-service notification
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-			NotificationChannel channel = new NotificationChannel(
-					"main",
-					this.getString(R.string._tit_noti_MAIN_SERVICE_CHANNEL),
-					NotificationManager.IMPORTANCE_MIN
-			);
+			NotificationChannel channel = new NotificationChannel("main", this.getString(R.string._tit_noti_MAIN_SERVICE_CHANNEL), NotificationManager.IMPORTANCE_MIN);
 			channel.setDescription(this.getString(R.string._des_noti_MAIN_SERVICE_CHANNEL));
 
 			this.getSystemService(NotificationManager.class)
 					.createNotificationChannel(channel);
+			this.startForeground(1, new NotificationCompat.Builder(this, "main")
+					.setContentTitle(this.getString(R.string._tit_noti_MAIN_SERVICE))
+					.setContentText(this.getString(R.string._des_noti_MAIN_SERVICE))
+					.setSmallIcon(R.drawable.ic_sync)
+					.build());
 		}
-		this.startForeground(1, new NotificationCompat.Builder(this, "main")
-				.setContentTitle(this.getString(R.string._tit_noti_MAIN_SERVICE))
-				.setContentText(this.getString(R.string._des_noti_MAIN_SERVICE))
-				.setSmallIcon(R.drawable.ic_sync)
-				.build());
 
 		//stop if not activated
 		if (!App.data.activated) {
@@ -84,16 +77,8 @@ final public class MainService extends Service {
 			return;
 		}
 
-		//define the window manager
-		this.wm = this.getSystemService(WindowManager.class);
-
 		//construct the edges
-		this.edges = Arrays.asList(
-				new Edge(this, this.wm, App.data.edges.get(0)),
-				new Edge(this, this.wm, App.data.edges.get(1)),
-				new Edge(this, this.wm, App.data.edges.get(2)),
-				new Edge(this, this.wm, App.data.edges.get(3))
-		);
+		this.edges = Util.fill(new ArrayList(), 0, Position.MAX, i -> new Edge(this, App.data.sides.get(i), App.data.edges.get(i)));
 
 		//start the edges
 		this.edges.forEach(Edge::start);
