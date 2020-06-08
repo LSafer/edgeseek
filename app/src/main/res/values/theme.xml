@@ -2,6 +2,7 @@
 <resources>
 	<!-- BLACK -->
 	<color name="blackColorBackground">#ff000000</color>
+	<color name="blackColorBackgroundBlur">#ff000000</color>
 	<color name="blackColorBackgroundFloating">#ff202020</color>
 	<color name="blackColorPrimary">#424242</color>
 	<color name="blackColorPrimaryDark">#5C5C5C</color>
@@ -17,10 +18,8 @@
 		<item name="colorPrimaryDark">@color/blackColorPrimaryDark</item>
 		<item name="colorAccent">@color/blackColorAccent</item>
 		<item name="colorBackground">@color/blackColorBackground</item>
+		<item name="colorBackgroundBlur">@color/blackColorBackgroundBlur</item>
 		<item name="colorBackgroundFloating">@color/blackColorBackgroundFloating</item>
-		<!-- status bar -->
-		<item name="android:statusBarColor">@color/blackColorBackground</item>
-		<item name="android:windowLightStatusBar">false</item>
 		<!-- text -->
 		<item name="android:textColorPrimary">@android:color/white</item>
 		<item name="android:textColor">@android:color/white</item>
@@ -36,8 +35,9 @@
 	</style>
 	<!-- DARK -->
 	<color name="darkColorBackground">#ff303030</color>
+	<color name="darkColorBackgroundBlur">#ff303030</color>
 	<color name="darkColorBackgroundFloating">#ff353535</color>
-	<color name="darkColorPrimary">#ff909090</color>
+	<color name="darkColorPrimary">#00000000</color>
 	<color name="darkColorPrimaryDark">#ff808080</color>
 	<color name="darkColorAccent">#00B1B8</color>
 	<color name="darkModuleMobileStartColor">#81A0A1</color>
@@ -51,10 +51,8 @@
 		<item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
 		<item name="colorAccent">@color/darkColorAccent</item>
 		<item name="colorBackground">@color/darkColorBackground</item>
+		<item name="colorBackgroundBlur">@color/darkColorBackgroundBlur</item>
 		<item name="colorBackgroundFloating">@color/darkColorBackgroundFloating</item>
-		<!-- status bar -->
-		<item name="android:statusBarColor">@color/darkColorBackground</item>
-		<item name="android:windowLightStatusBar">false</item>
 		<!-- text -->
 		<item name="android:textColorPrimary">@android:color/white</item>
 		<item name="android:textColor">@android:color/white</item>
@@ -70,6 +68,7 @@
 	</style>
 	<!-- WHITE -->
 	<color name="whiteColorBackground">#ffffff</color>
+	<color name="whiteColorBackgroundBlur">#ffffff</color>
 	<color name="whiteColorBackgroundFloating">#ffe0e0e0</color>
 	<color name="whiteColorPrimary">#ff858585</color>
 	<color name="whiteColorPrimaryDark">#ff5A5A5A</color>
@@ -85,10 +84,8 @@
 		<item name="colorPrimaryDark">@color/whiteColorPrimaryDark</item>
 		<item name="colorAccent">@color/whiteColorAccent</item>
 		<item name="colorBackground">@color/whiteColorBackground</item>
+		<item name="colorBackgroundBlur">@color/whiteColorBackgroundBlur</item>
 		<item name="colorBackgroundFloating">@color/whiteColorBackgroundFloating</item>
-		<!-- status bar -->
-		<item name="android:statusBarColor">@color/whiteColorBackground</item>
-		<item name="android:windowLightStatusBar">true</item>
 		<!-- text -->
 		<item name="android:textColorPrimary">@android:color/black</item>
 		<item name="android:textColor">@android:color/black</item>
@@ -103,8 +100,9 @@
 		<item name="moduleMobileButtonColor">@color/whiteModuleMobileButtonColor</item>
 	</style>
 	<!-- LIGHT -->
-	<color name="lightColorBackground">#ffc0c0c0</color>
-	<color name="lightColorBackgroundFloating">#ffa0a0a0</color>
+	<color name="lightColorBackground">#BCFFFF</color>
+	<color name="lightColorBackgroundBlur">#9299E3</color>
+	<color name="lightColorBackgroundFloating">#BACFEF</color>
 	<color name="lightColorPrimary">#ff6E6E6E</color>
 	<color name="lightColorPrimaryDark">#ff494949</color>
 	<color name="lightColorAccent">#ff01579B</color>
@@ -119,10 +117,8 @@
 		<item name="colorPrimaryDark">@color/lightColorPrimaryDark</item>
 		<item name="colorAccent">@color/lightColorAccent</item>
 		<item name="colorBackground">@color/lightColorBackground</item>
-		<item name="colorBackgroundFloating">@color/lightColorBackground</item>
-		<!-- status bar -->
-		<item name="android:statusBarColor">@color/lightColorBackground</item>
-		<item name="android:windowLightStatusBar">true</item>
+		<item name="colorBackgroundBlur">@color/lightColorBackgroundBlur</item>
+		<item name="colorBackgroundFloating">@color/lightColorBackgroundFloating</item>
 		<!-- text -->
 		<item name="android:textColorPrimary">@android:color/black</item>
 		<item name="android:textColor">@android:color/black</item>
@@ -138,6 +134,8 @@
 	</style>
 	<!-- attrs -->
 	<attr name="colorBackground" format="color" />
+	<attr name="colorBackgroundBlur" format="color" />
+	<attr name="colorBackgroundFloating" format="color" />
 	<attr name="colorAccent" format="color" />
 	<attr name="colorPrimary" format="color" />
 	<attr name="colorPrimaryDark" format="color" />
