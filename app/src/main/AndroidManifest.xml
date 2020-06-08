@@ -30,6 +30,7 @@
 			android:screenOrientation="portrait" />
 		<activity android:name=".activity.PermissionsActivity" />
 		<activity android:name=".activity.AboutActivity" />
+		<activity android:name=".activity.SideActivity" />
 
 		<service android:name=".service.MainService" />
 
