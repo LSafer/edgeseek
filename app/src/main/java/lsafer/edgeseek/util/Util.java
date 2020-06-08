@@ -81,7 +81,6 @@ final public class Util {
 	 * Fill the given list using the given function.
 	 *
 	 * @param list     to be filled
-	 * @param index    the initial index to start on
 	 * @param length   how many elements to fill the given list
 	 * @param function is the function to be used to fill the given list
 	 * @param <E>      the type of the elements in the given list
@@ -89,14 +88,14 @@ final public class Util {
 	 * @throws NullPointerException     if the given 'list' or 'function' is null
 	 * @throws IllegalArgumentException if the given length is less than 0
 	 */
-	public static <E> List<E> fill(List<E> list, int index, int length, Function<Integer, E> function) {
+	public static <E> List<E> fill(List<E> list, int length, Function<Integer, E> function) {
 		Objects.requireNonNull(list, "list");
 		Objects.requireNonNull(function, "function");
 		if (length < 0)
 			throw new IllegalArgumentException("length < 0");
 
-		for (int i = 0, x = index; i < length; i++, x++)
-			list.add(x, function.apply(x));
+		for (int i = 0; i < length; i++)
+			list.add(function.apply(i));
 		return list;
 	}
 
