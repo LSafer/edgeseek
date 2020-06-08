@@ -28,7 +28,6 @@ import java.util.Objects;
 import cufyx.perference.MapDataStore;
 import lsafer.edgeseek.data.AppData;
 import lsafer.edgeseek.service.MainService;
-import lsafer.edgeseek.util.Util;
 
 /**
  * The application class of this application.
@@ -90,6 +89,7 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 		//listener
 		App.data.store.registerOnDataChangeListener(this);
 		App.data.edges.forEach(edge -> edge.store.registerOnDataChangeListener(this));
+		App.data.sides.forEach(side -> side.store.registerOnDataChangeListener(this));
 
 		this.setTheme(App.data.getTheme());
 	}
