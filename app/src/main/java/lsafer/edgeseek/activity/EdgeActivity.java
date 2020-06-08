@@ -26,7 +26,7 @@ import java.util.Objects;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
-import lsafer.edgeseek.util.Util;
+import lsafer.edgeseek.util.Position;
 
 /**
  * An activity that customize the edge it focuses on.
@@ -62,7 +62,7 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 
 		//initial
 		super.onCreate(savedInstanceState);
-		this.setTheme(Util.theme(App.data.theme));
+		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_fragment);
 
 		//fragment instance
@@ -73,6 +73,6 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 
 		//title
 		this.<TextView>findViewById(R.id.title)
-				.setText(Util.positionEdgeName(this.position));
+				.setText(Position.getEdgeTitle(this.position));
 	}
 }
