@@ -31,6 +31,8 @@ import java.util.List;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.Edge;
 import lsafer.edgeseek.R;
+import lsafer.edgeseek.data.EdgeData;
+import lsafer.edgeseek.data.SideData;
 import lsafer.edgeseek.receiver.ScreenOffBroadCastReceiver;
 import lsafer.edgeseek.util.Position;
 import lsafer.edgeseek.util.Util;
@@ -78,7 +80,11 @@ final public class MainService extends Service {
 		}
 
 		//construct the edges
-		this.edges = Util.fill(new ArrayList(), 0, Position.MAX, i -> new Edge(this, App.data.sides.get(i), App.data.edges.get(i)));
+		this.edges = Util.fill(new ArrayList(), Position.MAX, i -> {
+			EdgeData edge = App.data.edges.get(i);
+			SideData side = App.data.sides.get(edge.side);
+			return new Edge(this, side, edge);
+		});
 
 		//start the edges
 		this.edges.forEach(Edge::start);
