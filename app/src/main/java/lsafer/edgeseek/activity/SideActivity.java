@@ -16,6 +16,7 @@
 package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -56,6 +57,9 @@ final public class SideActivity extends AppCompatActivity implements SimplePrefe
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		//transparent status-bar
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
 		//data
 		this.position = this.getIntent().getIntExtra("side", -1);
 

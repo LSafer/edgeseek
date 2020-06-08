@@ -16,6 +16,7 @@
 package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,6 +58,9 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		//transparent status-bar
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
 		//data
 		this.position = this.getIntent().getIntExtra("edge", -1);
 

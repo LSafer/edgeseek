@@ -16,6 +16,7 @@
 package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -55,6 +56,9 @@ final public class AboutActivity extends AppCompatActivity implements SimplePref
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		//transparent status-bar
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
 		//activity
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());

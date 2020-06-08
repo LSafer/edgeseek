@@ -16,6 +16,7 @@
 package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -52,6 +53,9 @@ final public class PermissionsActivity extends AppCompatActivity implements Simp
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		//transparent status-bar
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
 		//initial
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
