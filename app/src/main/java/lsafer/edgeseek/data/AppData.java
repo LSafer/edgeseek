@@ -18,6 +18,8 @@ package lsafer.edgeseek.data;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.StyleRes;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ import cufy.io.loadable.FormatLoadable;
 import cufy.text.Format;
 import cufy.text.json.JSON;
 import cufyx.perference.MapDataStore;
+import lsafer.edgeseek.R;
 import lsafer.edgeseek.util.Position;
 import lsafer.edgeseek.util.Util;
 
@@ -52,6 +55,7 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 * Just a string represents the key of a field in this.
 	 */
 	final public static String AUTO_BRIGHTNESS = "auto_brightness";
+
 	/**
 	 * Just a string represents the key of a field in this.
 	 */
@@ -59,35 +63,28 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	/**
 	 * Just a string represents the key of a field in this.
 	 */
+	final public static String SIDES = "sides";
+
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
 	final public static String THEME = "theme";
-
 	/**
-	 * Just a string represents the key of a field in this.
+	 * The value for the black-theme.
 	 */
-	final public static String FACTOR_BOTTOM = "factorBottom";
+	final public static String THEME_BLACK = "black";
 	/**
-	 * Just a string represents the key of a field in this.
+	 * The value for the dark-theme.
 	 */
-	final public static String FACTOR_LEFT = "factorLeft";
+	final public static String THEME_DARK = "dark";
 	/**
-	 * Just a string represents the key of a field in this.
+	 * The value for the light-theme.
 	 */
-	final public static String FACTOR_TOP = "factorTop";
+	final public static String THEME_LIGHT = "light";
 	/**
-	 * Just a string represents the key of a field in this.
+	 * The value for the white-theme.
 	 */
-	final public static String FACTOR_RIGHT = "factorRight";
-
-	/**
-	 * A string with the names of the factor fields.
-	 * <ul>
-	 *     <li>{@link #factorBottom}</li>
-	 *     <li>{@link #factorLeft}</li>
-	 *     <li>{@link #factorTop}</li>
-	 *     <li>{@link #factorRight}</li>
-	 * </ul>
-	 */
-	final public static String[] FACTORS = {FACTOR_BOTTOM, FACTOR_LEFT, FACTOR_TOP, FACTOR_RIGHT};
+	final public static String THEME_WHITE = "white";
 
 	/**
 	 * The data of the permissions of this application.
@@ -115,36 +112,25 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 */
 	@Property
 	public boolean auto_brightness = true;
+
 	/**
-	 * The data of the edges. Limited to 4 representing the 4 edges of the screen.
+	 * The data of the edges.
 	 */
 	@Property
-	public List<EdgeData> edges = Util.fill(new ArrayList<>(), 0, 39, EdgeData::new);
+	public List<EdgeData> edges = Util.fill(new ArrayList<>(), 0, Position.MAX, EdgeData::new);
 	/**
-	 * The left side factor.
+	 * The data of the sides. Limited to 4 representing the 4 sides of the screen.
 	 */
 	@Property
-	public int factorLeft = 0;
-	/**
-	 * The right side factor.
-	 */
-	@Property
-	public int factorRight = 0;
-	/**
-	 * The top side factor.
-	 */
-	@Property
-	public int factorTop = 0;
-	/**
-	 * The bottom side factor.
-	 */
-	@Property
-	public int factorBottom = 0;
+	public List<SideData> sides = Util.fill(new ArrayList<>(), 0, Position.SIDES.length, SideData::new);
+
 	/**
 	 * The theme of the application.
 	 */
 	@Property
 	public String theme = "black";
+
+	//------- defaults
 
 	/**
 	 * The file this loadable is loading-from/saving-to.
@@ -191,24 +177,25 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 		}
 	}
 
+	//--------- end defaults
+
 	/**
-	 * Get the factor used at the given side in this app-data.
+	 * Get the theme resources id for the theme set in this.
 	 *
-	 * @param side to get the factor used at it
-	 * @return the factor used at the given side
+	 * @return the theme resources-id for this app-data theme
 	 */
-	public int getFactor(int side) {
-		switch (side) {
-			case Position.BOTTOM:
-				return this.factorBottom;
-			case Position.LEFT:
-				return this.factorLeft;
-			case Position.TOP:
-				return this.factorTop;
-			case Position.RIGHT:
-				return this.factorRight;
+	@StyleRes
+	public int getTheme() {
+		switch (this.theme) {
 			default:
-				throw new IllegalArgumentException("Unexpected side: " + side);
+			case THEME_BLACK:
+				return R.style.Black;
+			case THEME_DARK:
+				return R.style.Dark;
+			case THEME_LIGHT:
+				return R.style.Light;
+			case THEME_WHITE:
+				return R.style.White;
 		}
 	}
 }
