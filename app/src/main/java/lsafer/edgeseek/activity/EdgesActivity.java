@@ -75,6 +75,7 @@ final public class EdgesActivity extends AppCompatActivity {
 						Color.red(data.color),
 						Color.green(data.color),
 						Color.blue(data.color)));
+			else view.setBackgroundColor(Color.TRANSPARENT);
 		}
 	}
 
