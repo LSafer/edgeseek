@@ -42,6 +42,11 @@ import lsafer.edgeseek.util.Util;
  */
 public class OnTouchBrightnessControl implements View.OnTouchListener {
 	/**
+	 * The name of this task.
+	 */
+	final public static String TASK = "brightness";
+
+	/**
 	 * The previous axis.
 	 */
 	private Float axis;

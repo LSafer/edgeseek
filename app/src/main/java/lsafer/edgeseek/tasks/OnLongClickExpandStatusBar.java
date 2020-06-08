@@ -35,6 +35,11 @@ import lsafer.edgeseek.R;
  */
 public class OnLongClickExpandStatusBar implements View.OnLongClickListener {
 	/**
+	 * The task name of this.
+	 */
+	final public static String TASK = "expand_status_bar";
+
+	/**
 	 * The context to be used by this listener.
 	 */
 	private Context context;

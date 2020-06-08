@@ -42,6 +42,23 @@ import lsafer.edgeseek.util.Util;
  */
 public class OnTouchAudioControl implements View.OnTouchListener {
 	/**
+	 * The name of the music task.
+	 */
+	final public static String TASK_MUSIC = "music";
+	/**
+	 * The name of the alarm task.
+	 */
+	final public static String TASK_ALARM = "alarm";
+	/**
+	 * The name of the ring task.
+	 */
+	final public static String TASK_RING = "ring";
+	/**
+	 * The name of the system task.
+	 */
+	final public static String TASK_SYSTEM = "system";
+
+	/**
 	 * The audio manager.
 	 */
 	protected AudioManager am;
@@ -79,16 +96,16 @@ public class OnTouchAudioControl implements View.OnTouchListener {
 		this.am = context.getSystemService(AudioManager.class);
 
 		switch (edge.data.seek) {
-			case "music":
+			case TASK_MUSIC:
 				this.type = AudioManager.STREAM_MUSIC;
 				break;
-			case "system":
+			case TASK_SYSTEM:
 				this.type = AudioManager.STREAM_SYSTEM;
 				break;
-			case "alarm":
+			case TASK_ALARM:
 				this.type = AudioManager.STREAM_ALARM;
 				break;
-			case "ring":
+			case TASK_RING:
 				this.type = AudioManager.STREAM_RING;
 				break;
 		}
