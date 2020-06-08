@@ -117,12 +117,12 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 * The data of the edges.
 	 */
 	@Property
-	public List<EdgeData> edges = Util.fill(new ArrayList<>(), 0, Position.MAX, EdgeData::new);
+	public List<EdgeData> edges = Util.fill(new ArrayList<>(), Position.POSITIONS.length, EdgeData::new);
 	/**
 	 * The data of the sides. Limited to 4 representing the 4 sides of the screen.
 	 */
 	@Property
-	public List<SideData> sides = Util.fill(new ArrayList<>(), 0, Position.SIDES.length, SideData::new);
+	public List<SideData> sides = Util.fill(new ArrayList<>(), Position.SIDES.length, SideData::new);
 
 	/**
 	 * The theme of the application.
@@ -163,6 +163,7 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 		try {
 			FormatLoadable.super.load();
 			this.put("edges", this.edges);
+			this.put("sides", this.sides);
 		} catch (IOException e) {
 			Log.e("MainData", "load: ", e);
 		}
