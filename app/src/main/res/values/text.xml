@@ -1,0 +1,114 @@
+<resources>
+	<!-- noti -->
+	<!-- tit noti -->
+	<string name="_tit_noti_MAIN_SERVICE">Running In Background</string>
+	<string name="_tit_noti_MAIN_SERVICE_CHANNEL">Running In Background</string>
+	<!-- des noti -->
+	<string name="_des_noti_MAIN_SERVICE">The screen\'s edges are ready to receive touch events</string>
+	<string name="_des_noti_MAIN_SERVICE_CHANNEL">Allows the application to work in background. Recommended to disable this notification since it has no real value</string>
+	<!-- erro -->
+	<!-- des erro -->
+	<string name="_des_erro_ERROR">Error (%s)</string>
+	<!-- perm -->
+	<!-- lak perm -->
+	<string name="_lak_perm_SYSTEM_ALERT_WINDOW">Can\'t show without \'Display Over Other Apps\' permission</string>
+	<string name="_lak_perm_WRITE_SETTINGS">Can\'t change values without \'Write System Settings\' permission</string>
+	<string name="_lak_perm_IGNORE_BATTERY_OPTIMIZATIONS">It is better for the application to grant \'ignore battery optimization\' permission</string>
+	<!-- tit perm -->
+	<string name="_tit_perm_SYSTEM_ALERT_WINDOW">Display Over Other Apps</string>
+	<string name="_tit_perm_WRITE_SETTINGS">Write System Settings</string>
+	<string name="_tit_perm_IGNORE_BATTERY_OPTIMIZATIONS">Ignore Battery Optimization</string>
+	<!-- des perm -->
+	<string name="_des_perm_SYSTEM_ALERT_WINDOW">Allow this application to draw views floating on your screen</string>
+	<string name="_des_perm_WRITE_SETTINGS">Allow this application to edit settings</string>
+	<string name="_des_perm_IGNORE_BATTERY_OPTIMIZATIONS">Make this application free from the system battery optimizations</string>
+	<!-- pref APP -->
+	<!-- tit pref APP -->
+	<string name="_tit_pref_APP_ACTIVATION">Activation</string>
+	<string name="_tit_pref_APP_PERMISSIONS">Permissions</string>
+	<string name="_tit_pref_APP_EDGES">Edges</string>
+	<string name="_tit_pref_APP_AUTO_BOOT">Auto Boot</string>
+	<string name="_tit_pref_APP_AUTO_BRIGHTNESS">Auto Brightness</string>
+	<string name="_tit_pref_APP_THEME">Theme</string>
+	<string name="_tit_pref_APP_ABOUT">About</string>
+	<string name="_tit_pref_APP_CHOOSE_EDGE">Choose Edge</string>
+	<!-- des pref APP -->
+	<string name="_des_pref_APP_ACTIVATION">Toggle to activate or deactivate the application</string>
+	<string name="_des_pref_APP_PERMISSIONS">Manage application\'s permissions</string>
+	<string name="_des_pref_APP_EDGES">Customize the edges</string>
+	<string name="_des_pref_APP_AUTO_BOOT">Auto boot the service every time the device booted-up</string>
+	<string name="_des_pref_APP_AUTO_BRIGHTNESS">Turn on auto brightness each time the device turn on to sleep</string>
+	<string name="_des_pref_APP_THEME">%s</string>
+	<string name="_des_pref_APP_ABOUT">Information about this application</string>
+	<string name="_des_pref_APP_CHOOSE_EDGE">Touch an edge to customize it</string>
+	<!-- pref ABOUT -->
+	<!-- tit pref ABOUT -->
+	<string name="_tit_pref_ABOUT_VERSION">Version</string>
+	<string name="_tit_pref_ABOUT_VERSION_CODE">Version Code</string>
+	<string name="_tit_pref_ABOUT_AUTHOR">Author</string>
+	<string name="_tit_pref_ABOUT_WEBSITE">LSafer Website</string>
+	<string name="_tit_pref_ABOUT_GOOGLE_PLAY">Google Play</string>
+	<string name="_tit_pref_ABOUT_GITHUB">GitHub Repository</string>
+	<!-- des pref ABOUT -->
+	<string name="_des_pref_ABOUT_VERSION">%s</string>
+	<string name="_des_pref_ABOUT_VERSION_CODE">%s</string>
+	<string name="_des_pref_ABOUT_AUTHOR">Made By LSafer</string>
+	<string name="_des_pref_ABOUT_WEBSITE">All versions</string>
+	<string name="_des_pref_ABOUT_GOOGLE_PLAY">Official Releases Only</string>
+	<string name="_des_pref_ABOUT_GITHUB">Directly from the source-code</string>
+	<!-- pref EDGE -->
+	<!-- tit pref EDGE -->
+	<string name="_tit_pref_EDGE_ACTIVATION">Activation</string>
+	<string name="_tit_pref_EDGE_VIBRATION">Vibration</string>
+	<string name="_tit_pref_EDGE_ROTATE">Rotate</string>
+	<string name="_tit_pref_EDGE_COLOR">Color</string>
+	<string name="_tit_pref_EDGE_WIDTH">Width</string>
+	<string name="_tit_pref_EDGE_SENSITIVITY">Sensitivity</string>
+	<string name="_tit_pref_EDGE_SEEK_TASK">Seek Task</string>
+	<string name="_tit_pref_EDGE_TOAST">Toast</string>
+	<string name="_tit_pref_EDGE_LONG_CLICK_TASK">Long Click Task</string>
+	<!-- des pref EDGE -->
+	<string name="_des_pref_EDGE_ACTIVATION">Toggle to activate or deactivate this edge</string>
+	<string name="_des_pref_EDGE_VIBRATION">The vibration when the edge get touched</string>
+	<string name="_des_pref_EDGE_ROTATE">Rotate the edge with the screen rotation</string>
+	<string name="_des_pref_EDGE_COLOR">The color of the edge</string>
+	<string name="_des_pref_EDGE_WIDTH">The width of the edge</string>
+	<string name="_des_pref_EDGE_SENSITIVITY">How much you want the edge to be sensitive</string>
+	<string name="_des_pref_EDGE_SEEK_TASK">%s</string>
+	<string name="_des_pref_EDGE_TOAST">Display a message with the current volume when seeking</string>
+	<string name="_des_pref_EDGE_LONG_CLICK_TASK">%s</string>
+	<!-- words -->
+	<string name="job">Job</string>
+	<string name="input">Input</string>
+	<string name="dimensions">Dimensions</string>
+	<string name="appearance">Appearance</string>
+	<string name="misc">Misc</string>
+	<string name="mandatory">Mandatory</string>
+	<string name="additional">Additional</string>
+	<string name="application">Application</string>
+	<string name="credits">Credits</string>
+	<string name="updates">Updates</string>
+	<string name="versions">Versions</string>
+	<!-- names -->
+	<string name="edge_seek">Edge Seek</string>
+	<string name="select_color">Select Color</string>
+	<!-- arrays -->
+	<string-array name="seek_tasks">
+		<item>Do Nothing</item>
+		<item>Control Brightness</item>
+		<item>Control Media</item>
+		<item>Control Ringtone</item>
+		<item>Control System Audio</item>
+		<item>Control Alarms</item>
+	</string-array>
+	<string-array name="long_click_tasks">
+		<item>Do Nothing</item>
+		<item>Expand Status Bar</item>
+	</string-array>
+	<string-array name="themes">
+		<item>Black</item>
+		<item>White</item>
+		<item>Dark</item>
+		<item>Light</item>
+	</string-array>
+</resources>
