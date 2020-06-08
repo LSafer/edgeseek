@@ -95,7 +95,7 @@ public class OnTouchAudioControl implements View.OnTouchListener {
 		//----
 		this.am = context.getSystemService(AudioManager.class);
 
-		switch (edge.data.seek) {
+		switch (edge.edgeData.seek) {
 			case TASK_MUSIC:
 				this.type = AudioManager.STREAM_MUSIC;
 				break;
@@ -121,7 +121,7 @@ public class OnTouchAudioControl implements View.OnTouchListener {
 			case MotionEvent.ACTION_UP:
 				//start/end of motion
 				Vibrator vibrator = this.context.getSystemService(Vibrator.class);
-				vibrator.vibrate(VibrationEffect.createOneShot(this.edge.data.vibration, VibrationEffect.DEFAULT_AMPLITUDE));
+				vibrator.vibrate(VibrationEffect.createOneShot(this.edge.edgeData.vibration, VibrationEffect.DEFAULT_AMPLITUDE));
 				break;
 			default:
 				//the seek is on
@@ -133,7 +133,7 @@ public class OnTouchAudioControl implements View.OnTouchListener {
 						//new axis
 						axis,
 						//sensitivity
-						this.edge.data.sensitivity,
+						this.edge.edgeData.sensitivity,
 						//sensitivity factor
 						1000,
 						//current volume
@@ -149,7 +149,7 @@ public class OnTouchAudioControl implements View.OnTouchListener {
 					this.am.setStreamVolume(this.type, value, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 
 					//toast
-					if (this.edge.data.toast)
+					if (this.edge.edgeData.toast)
 						SingleToast.makeText(this.context, String.valueOf(value), Toast.LENGTH_SHORT).show();
 				} catch (Exception e) {
 					//permission not granted
