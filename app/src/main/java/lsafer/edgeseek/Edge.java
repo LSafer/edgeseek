@@ -146,26 +146,41 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 				//ignore useless calls
 
 				switch (key) {
-					case SideData.SPLITS:
+					case SideData.FACTOR:
+						//if the split-factor of the side of this changed,
+						//the activation-status of this will change, too
 					case EdgeData.ACTIVATED:
+						//when the user toggles the activation status of this edge
 						if (this.isActivated()) {
+							//if it was deactivated and the user activated it
 							if (!this.attached) {
 								if (!this.built)
 									this.viewBuild();
 
 								this.windowAttach();
 							}
-						} else {
+						} else if (this.attached) {
+							//if it was activated and the user deactivated it,
+							//only do when attach, since the data may change while
+							//this edge is not attached
 							this.windowDetach();
 						}
 						break;
 					case EdgeData.WIDTH:
+						//when the width changes, the layout-params should change
+						//and to show the effect of the change in the layout-params
+						//we should update the window manager
 					case EdgeData.ROTATE:
+						//when the rotation changes, the current position should
+						//be changed too, depending on the current display position
 						this.viewSolveDimens();
+						//only if it have been attached, since if its not,
+						//then no need to update it
 						if (this.attached)
 							this.windowReattach();
 						break;
 					case EdgeData.SEEK:
+						//update the seek-task is just changing the
 						this.viewSolveSeekTask();
 						break;
 					case EdgeData.LONG_CLICK:
@@ -173,6 +188,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 						break;
 					case EdgeData.COLOR:
 						this.viewSolveStyle();
+						if (this.attached)
+							this.windowReattach();
 						break;
 				}
 			}
@@ -239,7 +256,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * @return whether this edge is allowed to be displayed or not
 	 */
 	protected synchronized boolean isActivated() {
-		return this.edgeData.factor == this.sideData.factor;
+		return this.edgeData.activated && this.edgeData.factor == this.sideData.factor;
 	}
 
 	//view control OK
@@ -376,11 +393,11 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 
 		try {
 			this.manager.addView(this.view, this.params);
+			this.attached = true;
 		} catch (Exception e) {
 			Toast.makeText(this.context, R.string._lak_perm_SYSTEM_ALERT_WINDOW, Toast.LENGTH_LONG).show();
 		}
 
-		this.attached = true;
 		return this;
 	}
 
@@ -395,11 +412,11 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 
 		try {
 			this.manager.removeView(this.view);
+			this.attached = false;
 		} catch (Exception e) {
 			Toast.makeText(this.context, R.string._lak_perm_SYSTEM_ALERT_WINDOW, Toast.LENGTH_LONG).show();
 		}
 
-		this.attached = false;
 		return this;
 	}
 
