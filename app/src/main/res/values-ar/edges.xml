@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- edges names -->
+	<!-- bottom -->
+	<string name="_bottom">الحافة السفلى</string>
+	<string name="_bottom2_right">Bottom Right Edge</string>
+	<string name="_bottom2_left">Bottom Left Edge</string>
+	<string name="_bottom3_right">Bottom Right Edge</string>
+	<string name="_bottom3_center">Bottom Center Edge</string>
+	<string name="_bottom3_left">Bottom Left Edge</string>
+	<string name="_bottom4_right">Bottom Right Edge</string>
+	<string name="_bottom4_cright">Bottom Center Right Edge</string>
+	<string name="_bottom4_cleft">Bottom Center Left Edge</string>
+	<string name="_bottom4_left">Bottom Left Edge</string>
+	<!-- left -->
+	<string name="_left">الحافة اليسرى</string>
+	<string name="_left2_bottom">Left Bottom Edge</string>
+	<string name="_left2_top">Left Top Edge</string>
+	<string name="_left3_bottom">Left Bottom Edge</string>
+	<string name="_left3_center">Left Center Edge</string>
+	<string name="_left3_top">Left Top Edge</string>
+	<string name="_left4_bottom">Left Bottom Edge</string>
+	<string name="_left4_cbottom">Left Center Bottom Edge</string>
+	<string name="_left4_ctop">Left Center Top Edge</string>
+	<string name="_left4_top">Left Top Edge</string>
+	<!-- top -->
+	<string name="_top">الحافة العليا</string>
+	<string name="_top2_left">Top Left Edge</string>
+	<string name="_top2_right">Top Right Edge</string>
+	<string name="_top3_left">Top Left Edge</string>
+	<string name="_top3_center">Top Center Edge</string>
+	<string name="_top3_right">Top Right Edge</string>
+	<string name="_top4_left">Top Left Edge</string>
+	<string name="_top4_cleft">Top Center Left Edge</string>
+	<string name="_top4_cright">Top Center Right Edge</string>
+	<string name="_top4_right">Top Right Edge</string>
+	<!-- right -->
+	<string name="_right">الحافة اليمنى</string>
+	<string name="_right2_top">Right Top Edge</string>
+	<string name="_right2_bottom">Right Bottom Edge</string>
+	<string name="_right3_top">Right Top Edge</string>
+	<string name="_right3_center">Right Center Edge</string>
+	<string name="_right3_bottom">Right Bottom Edge</string>
+	<string name="_right4_top">Right Top Edge</string>
+	<string name="_right4_ctop">Right Center Top Edge</string>
+	<string name="_right4_cbottom">Right Center Bottom Edge</string>
+	<string name="_right4_bottom">Right Bottom Edge</string>
+</resources>
