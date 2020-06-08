@@ -20,7 +20,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import cufy.beans.AbstractBean;
@@ -29,6 +29,8 @@ import cufy.io.loadable.FormatLoadable;
 import cufy.text.Format;
 import cufy.text.json.JSON;
 import cufyx.perference.MapDataStore;
+import lsafer.edgeseek.util.Position;
+import lsafer.edgeseek.util.Util;
 
 /**
  * The data of the hole application.
@@ -45,7 +47,48 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	/**
 	 * Just a string represents the key of a field in this.
 	 */
+	final public static String AUTO_BOOT = "auto_boot";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String AUTO_BRIGHTNESS = "auto_brightness";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String EDGES = "edges";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
 	final public static String THEME = "theme";
+
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String FACTOR_BOTTOM = "factorBottom";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String FACTOR_LEFT = "factorLeft";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String FACTOR_TOP = "factorTop";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String FACTOR_RIGHT = "factorRight";
+
+	/**
+	 * A string with the names of the factor fields.
+	 * <ul>
+	 *     <li>{@link #factorBottom}</li>
+	 *     <li>{@link #factorLeft}</li>
+	 *     <li>{@link #factorTop}</li>
+	 *     <li>{@link #factorRight}</li>
+	 * </ul>
+	 */
+	final public static String[] FACTORS = {FACTOR_BOTTOM, FACTOR_LEFT, FACTOR_TOP, FACTOR_RIGHT};
+
 	/**
 	 * The data of the permissions of this application.
 	 * <br>
@@ -56,6 +99,7 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 * The store to be used on preference screens/fragments.
 	 */
 	final public MapDataStore store = new MapDataStore(this);
+
 	/**
 	 * The activation status of this application.
 	 */
@@ -70,22 +114,38 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 * Turn on auto-brightness on screen-off.
 	 */
 	@Property
-	public boolean auto_brightness = false;
+	public boolean auto_brightness = true;
 	/**
 	 * The data of the edges. Limited to 4 representing the 4 edges of the screen.
 	 */
 	@Property
-	public List<EdgeData> edges = Arrays.asList(
-			new EdgeData(0),
-			new EdgeData(1),
-			new EdgeData(2),
-			new EdgeData(3)
-	);
+	public List<EdgeData> edges = Util.fill(new ArrayList<>(), 0, 39, EdgeData::new);
+	/**
+	 * The left side factor.
+	 */
+	@Property
+	public int factorLeft = 0;
+	/**
+	 * The right side factor.
+	 */
+	@Property
+	public int factorRight = 0;
+	/**
+	 * The top side factor.
+	 */
+	@Property
+	public int factorTop = 0;
+	/**
+	 * The bottom side factor.
+	 */
+	@Property
+	public int factorBottom = 0;
 	/**
 	 * The theme of the application.
 	 */
 	@Property
 	public String theme = "black";
+
 	/**
 	 * The file this loadable is loading-from/saving-to.
 	 */
@@ -116,6 +176,7 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	public void load() {
 		try {
 			FormatLoadable.super.load();
+			this.put("edges", this.edges);
 		} catch (IOException e) {
 			Log.e("MainData", "load: ", e);
 		}
@@ -127,6 +188,27 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 			FormatLoadable.super.save();
 		} catch (IOException e) {
 			Log.e("MainData", "save: ", e);
+		}
+	}
+
+	/**
+	 * Get the factor used at the given side in this app-data.
+	 *
+	 * @param side to get the factor used at it
+	 * @return the factor used at the given side
+	 */
+	public int getFactor(int side) {
+		switch (side) {
+			case Position.BOTTOM:
+				return this.factorBottom;
+			case Position.LEFT:
+				return this.factorLeft;
+			case Position.TOP:
+				return this.factorTop;
+			case Position.RIGHT:
+				return this.factorRight;
+			default:
+				throw new IllegalArgumentException("Unexpected side: " + side);
 		}
 	}
 }
