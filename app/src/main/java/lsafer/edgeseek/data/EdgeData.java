@@ -19,6 +19,10 @@ import android.graphics.Color;
 
 import cufy.beans.AbstractBean;
 import cufyx.perference.MapDataStore;
+import lsafer.edgeseek.tasks.OnLongClickExpandStatusBar;
+import lsafer.edgeseek.tasks.OnTouchAudioControl;
+import lsafer.edgeseek.tasks.OnTouchBrightnessControl;
+import lsafer.edgeseek.util.Position;
 
 /**
  * A structure holding the data of an edge.
@@ -29,9 +33,72 @@ import cufyx.perference.MapDataStore;
  */
 final public class EdgeData extends AbstractBean {
 	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String ACTIVATED = "activated";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String COLOR = "color";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String LONG_CLICK = "longClick";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String ROTATE = "rotate";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String SEEK = "seek";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String SENSITIVITY = "sensitivity";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String TOAST = "toast";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String VIBRATION = "vibration";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String WIDTH = "width";
+
+	/**
 	 * The position of this edge.
+	 * <pre>
+	 *     ---
+	 *     00: bottom
+	 *     01: left
+	 *     02: top
+	 *     03: right
+	 *     ---
+	 *     04: bottom-right
+	 *     05: left-bottom
+	 *     06: top-left
+	 *     07: right-top
+	 *     ---
+	 *     08: bottom-left
+	 *     09: left-top
+	 *     10: top-right
+	 *     11: right-bottom
+	 *     ---
+	 * </pre>
 	 */
 	final public int position;
+	/**
+	 * The split factor used on this edge.
+	 */
+	final public int factor;
+	/**
+	 * The side of this edge.
+	 */
+	final public int side;
 	/**
 	 * The data store for this bean.
 	 */
@@ -66,7 +133,7 @@ final public class EdgeData extends AbstractBean {
 	 * The sensitivity of this edge.
 	 */
 	@Property
-	public int sensitivity = 70;
+	public int sensitivity = 45;
 	/**
 	 * Show a toast with the current volume-value when seeking.
 	 */
@@ -90,26 +157,28 @@ final public class EdgeData extends AbstractBean {
 	 * @throws IllegalArgumentException if hte given 'position' is not within the range [0, 3]
 	 */
 	public EdgeData(int position) {
-		if (position < 0 || position > 3)
-			throw new IllegalArgumentException("position out of range [0, 3]");
+		if (position < Position.MIN || position > Position.MAX)
+			throw new IllegalArgumentException("position out of range [" + Position.MIN + ", " + Position.MAX + "]");
 		this.position = position;
+		this.factor = Position.getFactor(position);
+		this.side = Position.getSide(position);
 
 		//---- default values depending on position
 		switch (position) {
-			case 0:
+			case Position.BOTTOM:
 				this.activated = true;
-				this.longClick = "expand_status_bar";
+				this.longClick = OnLongClickExpandStatusBar.TASK;
 				this.width = 30;
 				this.color = Color.argb(0, 50, 50, 150);
 				break;
-			case 1:
+			case Position.LEFT:
 				this.activated = true;
-				this.seek = "audio";
+				this.seek = OnTouchAudioControl.TASK_MUSIC;
 				this.color = Color.argb(0, 150, 50, 50);
 				break;
-			case 3:
+			case Position.RIGHT:
 				this.activated = true;
-				this.seek = "brightness";
+				this.seek = OnTouchBrightnessControl.TASK;
 				this.color = Color.argb(0, 150, 50, 50);
 				break;
 		}
