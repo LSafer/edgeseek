@@ -15,7 +15,7 @@ public class SideData extends AbstractBean {
 	/**
 	 * Just a string represents the key of a field in this.
 	 */
-	final public static String SPLITS = "splits";
+	final public static String FACTOR = "factor";
 
 	/**
 	 * The position of this side.
