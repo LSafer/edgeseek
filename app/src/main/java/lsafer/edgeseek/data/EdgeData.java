@@ -68,7 +68,10 @@ final public class EdgeData extends AbstractBean {
 	 * Just a string represents the key of a field in this.
 	 */
 	final public static String WIDTH = "width";
-
+	/**
+	 * The split factor used on this edge.
+	 */
+	final public int factor;
 	/**
 	 * The position of this edge.
 	 * <pre>
@@ -91,10 +94,6 @@ final public class EdgeData extends AbstractBean {
 	 * </pre>
 	 */
 	final public int position;
-	/**
-	 * The split factor used on this edge.
-	 */
-	final public int factor;
 	/**
 	 * The side of this edge.
 	 */

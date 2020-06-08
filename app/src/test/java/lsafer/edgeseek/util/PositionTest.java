@@ -6,6 +6,25 @@ import org.junit.Test;
 @SuppressWarnings("JavaDoc")
 public class PositionTest {
 	@Test
+	public void getOrigin() {
+		//bottom
+		ago(Position.BOTTOM2_RIGHT, Position.BOTTOM);
+		ago(Position.BOTTOM2_LEFT, Position.BOTTOM);
+
+		//left
+		ago(Position.LEFT2_BOTTOM, Position.LEFT);
+		ago(Position.LEFT2_TOP, Position.LEFT);
+
+		//top
+		ago(Position.TOP2_LEFT, Position.TOP);
+		ago(Position.TOP2_RIGHT, Position.TOP);
+
+		//right
+		ago(Position.RIGHT2_TOP, Position.RIGHT);
+		ago(Position.RIGHT2_BOTTOM, Position.RIGHT);
+	}
+
+	@Test
 	public void getRotated() {
 		//bottom display
 		agr(Position.BOTTOM, Position.BOTTOM, Position.BOTTOM);
@@ -80,30 +99,11 @@ public class PositionTest {
 		agr(Position.TOP, Position.RIGHT2_BOTTOM, Position.LEFT2_TOP);
 	}
 
-	@Test
-	public void getOrigin() {
-		//bottom
-		ago(Position.BOTTOM2_RIGHT, Position.BOTTOM);
-		ago(Position.BOTTOM2_LEFT, Position.BOTTOM);
-
-		//left
-		ago(Position.LEFT2_BOTTOM, Position.LEFT);
-		ago(Position.LEFT2_TOP, Position.LEFT);
-
-		//top
-		ago(Position.TOP2_LEFT, Position.TOP);
-		ago(Position.TOP2_RIGHT, Position.TOP);
-
-		//right
-		ago(Position.RIGHT2_TOP, Position.RIGHT);
-		ago(Position.RIGHT2_BOTTOM, Position.RIGHT);
+	private void ago(int p, int r) {
+		Assert.assertSame(" (position: " + p + ") ", r, Position.getSide(r));
 	}
 
 	private void agr(int d, int p, int r) {
 		Assert.assertSame(" (display: " + d + " position: " + p + ") ", r, Position.getRotated(p, d));
-	}
-
-	private void ago(int p, int r) {
-		Assert.assertSame(" (position: " + p + ") ", r, Position.getSide(r));
 	}
 }

@@ -1,3 +1,18 @@
+/*
+ *	Copyright 2020 LSafer
+ *
+ *	Licensed under the Apache License, Version 2.0 (the "License");
+ *	you may not use this file except in compliance with the License.
+ *	You may obtain a copy of the License at
+ *
+ *	    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *	Unless required by applicable law or agreed to in writing, software
+ *	distributed under the License is distributed on an "AS IS" BASIS,
+ *	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *	See the License for the specific language governing permissions and
+ *	limitations under the License.
+ */
 package lsafer.edgeseek.util;
 
 import android.view.Gravity;
@@ -8,31 +23,14 @@ import androidx.annotation.StringRes;
 import lsafer.edgeseek.R;
 
 /**
+ * A utility class for managing positions.
+ *
  * @author lsafer
+ * @version 0.1.5
  * @since 07-Jun-20
  */
 @SuppressWarnings("JavaDoc")
 final public class Position { //[-5, 39]
-	final public static int MAX = 39;
-	final public static int MIN = 0;
-	final public static int XMIN = -5;
-	//EXTRA ALIGNS
-	final public static int CRIGHT = -5;
-	final public static int CTOP = -4;
-	final public static int CLEFT = -3;
-	final public static int CBOTTOM = -2;
-	final public static int CENTER = -1;
-	//FACTORS
-	final public static int FACTOR_FULL = 1;
-	final public static int FACTOR_HALF = 2;
-	final public static int FACTOR_THIRD = 3;
-	final public static int FACTOR_QUARTER = 4;
-	final public static int[] FACTORS = new int[]{
-			FACTOR_FULL,
-			FACTOR_HALF,
-			FACTOR_THIRD,
-			FACTOR_QUARTER
-	};
 	//BOTTOM
 	final public static int BOTTOM = 0;
 	final public static int BOTTOM2_LEFT = 8;
@@ -40,10 +38,10 @@ final public class Position { //[-5, 39]
 	final public static int BOTTOM3_CENTER = 16;
 	final public static int BOTTOM3_LEFT = 20;
 	final public static int BOTTOM3_RIGHT = 12;
-	final public static int BOTTOM4_RIGHT = 24;
-	final public static int BOTTOM4_CRIGHT = 28;
 	final public static int BOTTOM4_CLEFT = 32;
+	final public static int BOTTOM4_CRIGHT = 28;
 	final public static int BOTTOM4_LEFT = 36;
+	final public static int BOTTOM4_RIGHT = 24;
 	final public static int[] BOTTOMS = new int[]{
 			BOTTOM,
 			BOTTOM2_RIGHT,
@@ -56,6 +54,26 @@ final public class Position { //[-5, 39]
 			BOTTOM4_CLEFT,
 			BOTTOM4_LEFT
 	};
+
+	//EXTRA ALIGNS
+	final public static int CBOTTOM = -2;
+	final public static int CENTER = -1;
+	final public static int CLEFT = -3;
+	final public static int CRIGHT = -5;
+	final public static int CTOP = -4;
+
+	//FACTORS
+	final public static int FACTOR_FULL = 1;
+	final public static int FACTOR_HALF = 2;
+	final public static int FACTOR_QUARTER = 4;
+	final public static int FACTOR_THIRD = 3;
+	final public static int[] FACTORS = new int[]{
+			FACTOR_FULL,
+			FACTOR_HALF,
+			FACTOR_THIRD,
+			FACTOR_QUARTER
+	};
+
 	//LEFT
 	final public static int LEFT = 1;
 	final public static int LEFT2_BOTTOM = 5;
@@ -79,6 +97,11 @@ final public class Position { //[-5, 39]
 			LEFT4_CTOP,
 			LEFT4_TOP
 	};
+
+	//META
+	final public static int MAX = 39;
+	final public static int MIN = 0;
+
 	//RIGHT
 	final public static int RIGHT = 3;
 	final public static int RIGHT2_BOTTOM = 11;
@@ -86,10 +109,10 @@ final public class Position { //[-5, 39]
 	final public static int RIGHT3_BOTTOM = 23;
 	final public static int RIGHT3_CENTER = 19;
 	final public static int RIGHT3_TOP = 15;
-	final public static int RIGHT4_TOP = 27;
-	final public static int RIGHT4_CTOP = 31;
-	final public static int RIGHT4_CBOTTOM = 35;
 	final public static int RIGHT4_BOTTOM = 39;
+	final public static int RIGHT4_CBOTTOM = 35;
+	final public static int RIGHT4_CTOP = 31;
+	final public static int RIGHT4_TOP = 27;
 	final public static int[] RIGHTS = new int[]{
 			RIGHT,
 			RIGHT2_TOP,
@@ -102,29 +125,9 @@ final public class Position { //[-5, 39]
 			RIGHT4_CBOTTOM,
 			RIGHT4_BOTTOM
 	};
+
 	//TOP
 	final public static int TOP = 2;
-	final public static int TOP2_LEFT = 6;
-	final public static int TOP2_RIGHT = 10;
-	final public static int TOP3_CENTER = 18;
-	final public static int TOP3_LEFT = 14;
-	final public static int TOP3_RIGHT = 22;
-	final public static int TOP4_LEFT = 26;
-	final public static int TOP4_CLEFT = 30;
-	final public static int TOP4_CRIGHT = 34;
-	final public static int TOP4_RIGHT = 38;
-	final public static int[] TOPS = new int[]{
-			TOP,
-			TOP2_LEFT,
-			TOP2_RIGHT,
-			TOP3_LEFT,
-			TOP3_CENTER,
-			TOP3_RIGHT,
-			TOP4_LEFT,
-			TOP4_CLEFT,
-			TOP4_CRIGHT,
-			TOP4_RIGHT
-	};
 	//SIDES
 	final public static int[] SIDES = new int[]{
 			BOTTOM,
@@ -132,6 +135,18 @@ final public class Position { //[-5, 39]
 			TOP,
 			RIGHT
 	};
+	//TOP - AGAIN
+	final public static int TOP2_LEFT = 6;
+	final public static int TOP2_RIGHT = 10;
+	final public static int TOP3_CENTER = 18;
+	final public static int TOP3_LEFT = 14;
+	final public static int TOP3_RIGHT = 22;
+	final public static int TOP4_CLEFT = 30;
+	final public static int TOP4_CRIGHT = 34;
+	final public static int TOP4_LEFT = 26;
+	final public static int TOP4_RIGHT = 38;
+
+	//POSITIONS
 	final public static int[] POSITIONS = new int[]{
 			//1
 			BOTTOM, LEFT, TOP, RIGHT,
@@ -149,6 +164,25 @@ final public class Position { //[-5, 39]
 			BOTTOM4_LEFT, LEFT4_TOP, TOP4_RIGHT, RIGHT4_BOTTOM
 	};
 
+	//TOP - AGAIN x2
+	final public static int[] TOPS = new int[]{
+			TOP,
+			TOP2_LEFT,
+			TOP2_RIGHT,
+			TOP3_LEFT,
+			TOP3_CENTER,
+			TOP3_RIGHT,
+			TOP4_LEFT,
+			TOP4_CLEFT,
+			TOP4_CRIGHT,
+			TOP4_RIGHT
+	};
+
+	/**
+	 * This is a util class. And shall not be instanced as an object.
+	 *
+	 * @throws AssertionError when called
+	 */
 	private Position() {
 		throw new AssertionError("No instance for you!");
 	}
@@ -158,6 +192,7 @@ final public class Position { //[-5, 39]
 	 *
 	 * @param id to get the position of
 	 * @return a position of the given id-res
+	 * @throws IllegalArgumentException if the given 'id' is not a position id
 	 */
 	public static int fromId(@IdRes int id) {
 		switch (id) {
@@ -254,253 +289,6 @@ final public class Position { //[-5, 39]
 		}
 	}
 
-	@IdRes
-	public static int getId(int side, int factor) {
-		switch (factor) {
-			case FACTOR_FULL:
-				switch (side) {
-					case BOTTOM:
-						return R.id.bottom;
-					case LEFT:
-						return R.id.left;
-					case TOP:
-						return R.id.top;
-					case RIGHT:
-						return R.id.right;
-				}
-			case FACTOR_HALF:
-				switch (side) {
-					case BOTTOM:
-						return R.id.bottom2;
-					case LEFT:
-						return R.id.left2;
-					case TOP:
-						return R.id.top2;
-					case RIGHT:
-						return R.id.right2;
-				}
-			case FACTOR_THIRD:
-				switch (side) {
-					case BOTTOM:
-						return R.id.bottom3;
-					case LEFT:
-						return R.id.left3;
-					case TOP:
-						return R.id.top3;
-					case RIGHT:
-						return R.id.right3;
-				}
-			case FACTOR_QUARTER:
-				switch (side) {
-					case BOTTOM:
-						return R.id.bottom4;
-					case LEFT:
-						return R.id.left4;
-					case TOP:
-						return R.id.top4;
-					case RIGHT:
-						return R.id.right4;
-				}
-			default:
-				throw new IllegalArgumentException("Unexpected factor: " + factor + " in side: " + side);
-		}
-	}
-
-	/**
-	 * Get {@link Gravity} value for the given position.
-	 *
-	 * @param position to get the gravity for
-	 * @return the gravity for the given position
-	 */
-	public static int getGravity(int position) {
-		int side = Position.getSide(position);
-		int align = Position.getAlign(position);
-
-		int gravity;
-
-		switch (side) {
-			case BOTTOM:
-				gravity = Gravity.BOTTOM;
-				break;
-			case LEFT:
-				gravity = Gravity.LEFT;
-				break;
-			case TOP:
-				gravity = Gravity.TOP;
-				break;
-			case RIGHT:
-				gravity = Gravity.RIGHT;
-				break;
-			default:
-				throw new InternalError("Unexpected side: " + side);
-		}
-
-		switch (align) {
-			case BOTTOM:
-				return gravity | Gravity.BOTTOM;
-			case LEFT:
-				return gravity | Gravity.LEFT;
-			case TOP:
-				return gravity | Gravity.TOP;
-			case RIGHT:
-				return gravity | Gravity.RIGHT;
-			case CENTER:
-				return gravity | Gravity.CENTER;
-			case CBOTTOM:
-				return gravity | Gravity.CENTER_VERTICAL | Gravity.BOTTOM;
-			case CLEFT:
-				return gravity | Gravity.CENTER_HORIZONTAL | Gravity.LEFT;
-			case CTOP:
-				return gravity | Gravity.CENTER_VERTICAL | Gravity.TOP;
-			case CRIGHT:
-				return gravity | Gravity.CENTER_HORIZONTAL | Gravity.RIGHT;
-			default:
-				throw new InternalError("Unexpected align: " + align);
-		}
-	}
-
-	/**
-	 * Get the split factor of the position given.
-	 * If a position in a range of split of 3 (left, center, bottom) then 3 will be returned.
-	 * <ul>
-	 *     <li>{@link #FACTOR_FULL}</li>
-	 *     <li>{@link #FACTOR_HALF}</li>
-	 *     <li>{@link #FACTOR_THIRD}</li>
-	 *     <li>{@link #FACTOR_QUARTER}</li>
-	 * </ul>
-	 *
-	 * @param position to get the factor of
-	 * @return the split factor at the range the given position is at
-	 * @throws IllegalArgumentException if the given position is out of any known range (currently [1, 4])
-	 */
-	public static int getFactor(int position) {
-		if (position <= RIGHT)
-			return 1;
-		if (position <= RIGHT2_BOTTOM)
-			return 2;
-		if (position <= RIGHT3_BOTTOM)
-			return 3;
-		if (position <= RIGHT4_BOTTOM)
-			return 4;
-
-		throw new IllegalArgumentException("Unexpected position: " + position);
-	}
-
-	/**
-	 * Get the resource-id that is linked to the given position.
-	 *
-	 * @param position to get the id of
-	 * @return an id for the given position
-	 * @throws IllegalArgumentException if the given 'position' have no known id
-	 */
-	@IdRes
-	public static int getId(int position) {
-		switch (position) {
-			//BOTTOM
-			case BOTTOM:
-				return R.id.bottom;
-			case BOTTOM2_RIGHT:
-				return R.id.bottom2_right;
-			case BOTTOM2_LEFT:
-				return R.id.bottom2_left;
-			case BOTTOM3_RIGHT:
-				return R.id.bottom3_right;
-			case BOTTOM3_CENTER:
-				return R.id.bottom3_center;
-			case BOTTOM3_LEFT:
-				return R.id.bottom3_left;
-			case BOTTOM4_RIGHT:
-				return R.id.bottom4_right;
-			case BOTTOM4_CRIGHT:
-				return R.id.bottom4_cright;
-			case BOTTOM4_CLEFT:
-				return R.id.bottom4_cleft;
-			case BOTTOM4_LEFT:
-				return R.id.bottom4_left;
-			//LEFT
-			case LEFT:
-				return R.id.left;
-			case LEFT2_BOTTOM:
-				return R.id.left2_bottom;
-			case LEFT2_TOP:
-				return R.id.left2_top;
-			case LEFT3_BOTTOM:
-				return R.id.left3_bottom;
-			case LEFT3_CENTER:
-				return R.id.left3_center;
-			case LEFT3_TOP:
-				return R.id.left3_top;
-			case LEFT4_BOTTOM:
-				return R.id.left4_bottom;
-			case LEFT4_CBOTTOM:
-				return R.id.left4_cbottom;
-			case LEFT4_CTOP:
-				return R.id.left4_ctop;
-			case LEFT4_TOP:
-				return R.id.left4_top;
-			//TOP
-			case TOP:
-				return R.id.top;
-			case TOP2_LEFT:
-				return R.id.top2_left;
-			case TOP2_RIGHT:
-				return R.id.top2_right;
-			case TOP3_LEFT:
-				return R.id.top3_left;
-			case TOP3_CENTER:
-				return R.id.top3_center;
-			case TOP3_RIGHT:
-				return R.id.top3_right;
-			case TOP4_LEFT:
-				return R.id.top4_left;
-			case TOP4_CLEFT:
-				return R.id.top4_cleft;
-			case TOP4_CRIGHT:
-				return R.id.top4_cright;
-			case TOP4_RIGHT:
-				return R.id.top4_right;
-			//RIGHT
-			case RIGHT:
-				return R.id.right;
-			case RIGHT2_TOP:
-				return R.id.right2_top;
-			case RIGHT2_BOTTOM:
-				return R.id.right2_bottom;
-			case RIGHT3_TOP:
-				return R.id.right3_top;
-			case RIGHT3_CENTER:
-				return R.id.right3_center;
-			case RIGHT3_BOTTOM:
-				return R.id.right3_bottom;
-			case RIGHT4_TOP:
-				return R.id.right4_top;
-			case RIGHT4_CTOP:
-				return R.id.right4_ctop;
-			case RIGHT4_CBOTTOM:
-				return R.id.right4_cbottom;
-			case RIGHT4_BOTTOM:
-				return R.id.right4_bottom;
-			default:
-				throw new RuntimeException("Unexpected position: " + position);
-		}
-	}
-
-	/**
-	 * Get the side the given position is at.
-	 * <ul>
-	 *     <li>{@link #BOTTOM}</li>
-	 *     <li>{@link #LEFT}</li>
-	 *     <li>{@link #TOP}</li>
-	 *     <li>{@link #RIGHT}</li>
-	 * </ul>
-	 *
-	 * @param position
-	 * @return
-	 */
-	public static int getSide(int position) {
-		return position - position / 4 * 4;
-	}
-
 	/**
 	 * Get the align of the given position at its side.
 	 * <ul>
@@ -590,38 +378,11 @@ final public class Position { //[-5, 39]
 	}
 
 	/**
-	 * Get the un-rotated position for the given parameters.
-	 *
-	 * @param position the original position
-	 * @param display  the rotation of the display
-	 * @return the un-rotated position for the given parameters
-	 */
-	public static int getRotated(int position, int display) {
-		int gap = (position / 4) * 4;
-		return (display * 3 + position - gap) % 4 + gap;
-	}
-
-	public static int[] getSidePositions(int side) {
-		switch (side) {
-			case BOTTOM:
-				return BOTTOMS;
-			case LEFT:
-				return LEFTS;
-			case TOP:
-				return TOPS;
-			case RIGHT:
-				return RIGHTS;
-			default:
-				throw new IllegalArgumentException("Unexpected side: " + side);
-		}
-	}
-
-	/**
 	 * Get the edge name for the given position.
 	 *
 	 * @param position of the edge to get the string resources integer for
 	 * @return the string resources integer of the name of the edge that have the given position
-	 * @throws IllegalArgumentException if the position is not within the range [0, 3]
+	 * @throws IllegalArgumentException if the position is unknown position
 	 */
 	@StringRes
 	public static int getEdgeTitle(int position) {
@@ -715,6 +476,303 @@ final public class Position { //[-5, 39]
 		}
 	}
 
+	/**
+	 * Get the split factor of the position given.
+	 * If a position in a range of split of 3 (left, center, bottom) then 3 will be returned.
+	 * <ul>
+	 *     <li>{@link #FACTOR_FULL}</li>
+	 *     <li>{@link #FACTOR_HALF}</li>
+	 *     <li>{@link #FACTOR_THIRD}</li>
+	 *     <li>{@link #FACTOR_QUARTER}</li>
+	 * </ul>
+	 *
+	 * @param position to get the factor of
+	 * @return the split factor at the range the given position is at
+	 * @throws IllegalArgumentException if the given position is unknown position
+	 */
+	public static int getFactor(int position) {
+		if (position <= RIGHT)
+			return 1;
+		if (position <= RIGHT2_BOTTOM)
+			return 2;
+		if (position <= RIGHT3_BOTTOM)
+			return 3;
+		if (position <= RIGHT4_BOTTOM)
+			return 4;
+
+		throw new IllegalArgumentException("Unexpected position: " + position);
+	}
+
+	/**
+	 * Get {@link Gravity} value for the given position.
+	 *
+	 * @param position to get the gravity for
+	 * @return the gravity for the given position
+	 * @throws IllegalArgumentException if the given 'position' is an unknown position
+	 */
+	public static int getGravity(int position) {
+		int side = Position.getSide(position);
+		int align = Position.getAlign(position);
+
+		int gravity;
+
+		switch (side) {
+			case BOTTOM:
+				gravity = Gravity.BOTTOM;
+				break;
+			case LEFT:
+				gravity = Gravity.LEFT;
+				break;
+			case TOP:
+				gravity = Gravity.TOP;
+				break;
+			case RIGHT:
+				gravity = Gravity.RIGHT;
+				break;
+			default:
+				throw new InternalError("Unexpected side: " + side);
+		}
+
+		switch (align) {
+			case BOTTOM:
+				return gravity | Gravity.BOTTOM;
+			case LEFT:
+				return gravity | Gravity.LEFT;
+			case TOP:
+				return gravity | Gravity.TOP;
+			case RIGHT:
+				return gravity | Gravity.RIGHT;
+			case CENTER:
+				return gravity | Gravity.CENTER;
+			case CBOTTOM:
+				return gravity | Gravity.CENTER_VERTICAL | Gravity.BOTTOM;
+			case CLEFT:
+				return gravity | Gravity.CENTER_HORIZONTAL | Gravity.LEFT;
+			case CTOP:
+				return gravity | Gravity.CENTER_VERTICAL | Gravity.TOP;
+			case CRIGHT:
+				return gravity | Gravity.CENTER_HORIZONTAL | Gravity.RIGHT;
+			default:
+				throw new InternalError("Unexpected align: " + align);
+		}
+	}
+
+	/**
+	 * Returns the id of the given side-position that have the given factor.
+	 *
+	 * @param side   the position of the targeted side
+	 * @param factor the split-factor of the targeted side
+	 * @return the id of the targeted side that have the same given parameters
+	 * @throws IllegalArgumentException if the given 'side' or 'factor' is unknown
+	 */
+	@IdRes
+	public static int getSideId(int side, int factor) {
+		switch (factor) {
+			case FACTOR_FULL:
+				switch (side) {
+					case BOTTOM:
+						return R.id.bottom;
+					case LEFT:
+						return R.id.left;
+					case TOP:
+						return R.id.top;
+					case RIGHT:
+						return R.id.right;
+				}
+			case FACTOR_HALF:
+				switch (side) {
+					case BOTTOM:
+						return R.id.bottom2;
+					case LEFT:
+						return R.id.left2;
+					case TOP:
+						return R.id.top2;
+					case RIGHT:
+						return R.id.right2;
+				}
+			case FACTOR_THIRD:
+				switch (side) {
+					case BOTTOM:
+						return R.id.bottom3;
+					case LEFT:
+						return R.id.left3;
+					case TOP:
+						return R.id.top3;
+					case RIGHT:
+						return R.id.right3;
+				}
+			case FACTOR_QUARTER:
+				switch (side) {
+					case BOTTOM:
+						return R.id.bottom4;
+					case LEFT:
+						return R.id.left4;
+					case TOP:
+						return R.id.top4;
+					case RIGHT:
+						return R.id.right4;
+				}
+			default:
+				throw new IllegalArgumentException("Unexpected factor: " + factor + " in side: " + side);
+		}
+	}
+
+	/**
+	 * Get the resource-id that is linked to the given position.
+	 *
+	 * @param position to get the id of
+	 * @return an id for the given position
+	 * @throws IllegalArgumentException if the given 'position' have no known id
+	 */
+	@IdRes
+	public static int getEdgeId(int position) {
+		switch (position) {
+			//BOTTOM
+			case BOTTOM:
+				return R.id.bottom;
+			case BOTTOM2_RIGHT:
+				return R.id.bottom2_right;
+			case BOTTOM2_LEFT:
+				return R.id.bottom2_left;
+			case BOTTOM3_RIGHT:
+				return R.id.bottom3_right;
+			case BOTTOM3_CENTER:
+				return R.id.bottom3_center;
+			case BOTTOM3_LEFT:
+				return R.id.bottom3_left;
+			case BOTTOM4_RIGHT:
+				return R.id.bottom4_right;
+			case BOTTOM4_CRIGHT:
+				return R.id.bottom4_cright;
+			case BOTTOM4_CLEFT:
+				return R.id.bottom4_cleft;
+			case BOTTOM4_LEFT:
+				return R.id.bottom4_left;
+			//LEFT
+			case LEFT:
+				return R.id.left;
+			case LEFT2_BOTTOM:
+				return R.id.left2_bottom;
+			case LEFT2_TOP:
+				return R.id.left2_top;
+			case LEFT3_BOTTOM:
+				return R.id.left3_bottom;
+			case LEFT3_CENTER:
+				return R.id.left3_center;
+			case LEFT3_TOP:
+				return R.id.left3_top;
+			case LEFT4_BOTTOM:
+				return R.id.left4_bottom;
+			case LEFT4_CBOTTOM:
+				return R.id.left4_cbottom;
+			case LEFT4_CTOP:
+				return R.id.left4_ctop;
+			case LEFT4_TOP:
+				return R.id.left4_top;
+			//TOP
+			case TOP:
+				return R.id.top;
+			case TOP2_LEFT:
+				return R.id.top2_left;
+			case TOP2_RIGHT:
+				return R.id.top2_right;
+			case TOP3_LEFT:
+				return R.id.top3_left;
+			case TOP3_CENTER:
+				return R.id.top3_center;
+			case TOP3_RIGHT:
+				return R.id.top3_right;
+			case TOP4_LEFT:
+				return R.id.top4_left;
+			case TOP4_CLEFT:
+				return R.id.top4_cleft;
+			case TOP4_CRIGHT:
+				return R.id.top4_cright;
+			case TOP4_RIGHT:
+				return R.id.top4_right;
+			//RIGHT
+			case RIGHT:
+				return R.id.right;
+			case RIGHT2_TOP:
+				return R.id.right2_top;
+			case RIGHT2_BOTTOM:
+				return R.id.right2_bottom;
+			case RIGHT3_TOP:
+				return R.id.right3_top;
+			case RIGHT3_CENTER:
+				return R.id.right3_center;
+			case RIGHT3_BOTTOM:
+				return R.id.right3_bottom;
+			case RIGHT4_TOP:
+				return R.id.right4_top;
+			case RIGHT4_CTOP:
+				return R.id.right4_ctop;
+			case RIGHT4_CBOTTOM:
+				return R.id.right4_cbottom;
+			case RIGHT4_BOTTOM:
+				return R.id.right4_bottom;
+			default:
+				throw new RuntimeException("Unexpected position: " + position);
+		}
+	}
+
+	/**
+	 * Get the un-rotated position for the given parameters.
+	 *
+	 * @param position the original position
+	 * @param display  the rotation of the display
+	 * @return the un-rotated position for the given parameters
+	 */
+	public static int getRotated(int position, int display) {
+		int gap = (position / 4) * 4;
+		return (display * 3 + position - gap) % 4 + gap;
+	}
+
+	/**
+	 * Get the side the given position is at.
+	 * <ul>
+	 *     <li>{@link #BOTTOM}</li>
+	 *     <li>{@link #LEFT}</li>
+	 *     <li>{@link #TOP}</li>
+	 *     <li>{@link #RIGHT}</li>
+	 * </ul>
+	 *
+	 * @param position the position of the edge to get the side for
+	 * @return the position of the side of the given position of the targeted edge
+	 */
+	public static int getSide(int position) {
+		return position - position / 4 * 4;
+	}
+
+	/**
+	 * Get all positions that are in the given side.
+	 *
+	 * @param side the position of the targeted side
+	 * @return all the positions that are in the given side
+	 * @throws IllegalArgumentException if the given 'side' is unknown
+	 */
+	public static int[] getSidePositions(int side) {
+		switch (side) {
+			case BOTTOM:
+				return BOTTOMS;
+			case LEFT:
+				return LEFTS;
+			case TOP:
+				return TOPS;
+			case RIGHT:
+				return RIGHTS;
+			default:
+				throw new IllegalArgumentException("Unexpected side: " + side);
+		}
+	}
+
+	/**
+	 * Get string-res of the title of the give side.
+	 *
+	 * @param side to get a title string-res for
+	 * @return a title string-res for the given side
+	 * @throws IllegalArgumentException if the given 'side' is unknown
+	 */
 	@StringRes
 	public static int getSideTitle(int side) {
 		switch (side) {

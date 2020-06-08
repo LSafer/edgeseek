@@ -27,7 +27,6 @@ import java.util.Objects;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
-import lsafer.edgeseek.util.Util;
 
 /**
  * Activity to manage permissions.

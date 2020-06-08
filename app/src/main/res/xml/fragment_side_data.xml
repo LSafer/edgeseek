@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<SeekBarPreference
-		app:key="factor"
 		android:max="3"
+		app:key="factor"
 		app:min="1"
 		app:showSeekBarValue="true"
 		app:summary="@string/_des_pref_SIDE_SPLIT"

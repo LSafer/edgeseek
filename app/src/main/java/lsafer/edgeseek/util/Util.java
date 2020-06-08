@@ -32,19 +32,6 @@ import java.util.Objects;
  */
 final public class Util {
 	/**
-	 * Solve the change between the initial point {@code i} and the final point {@code f}
-	 * considering the given change-sensitivity {@code s}.
-	 *
-	 * @param i the initial point (nullable, the change will be 0)
-	 * @param f the final point (nullable, the change will be 0)
-	 * @param s the sensitivity to be applied in the algorithm (nullable, the change will be 0)
-	 * @return the change from `i` to `f` with the sensitivity `s` applied
-	 */
-	public static float change(Float i, Float f, Float s) {
-		return i == null || f == null || s == null ? 0 : (i - f) * s;
-	}
-
-	/**
 	 * Compute the given inputs.
 	 *
 	 * @param axis0       the previous axis
@@ -60,21 +47,6 @@ final public class Util {
 		float c = axis0 == null || axis1 == null ? 0 : (axis0 - axis1) * (sensitivity / factor);
 		int x = (int) c + current;
 		return x > maximum ? maximum : x < minimum ? minimum : x;
-	}
-
-	/**
-	 * Cap the given float 'f' not passing more than the maximum 'max'
-	 * and not passing less than the minimum 'min'. if 'f' is more than
-	 * 'max' then 'max' will be returned. and if 'f' is less than 'min'
-	 * then 'min' will be returned.
-	 *
-	 * @param f   the value to be capped
-	 * @param max the maximum value
-	 * @param min the minimum value
-	 * @return 'max' if 'f' is more than 'max' or 'min' if 'f' is less than 'min' otherwise 'f' will be returned
-	 */
-	public static float range(float f, float max, float min) {
-		return f > max ? max : f < min ? min : f;
 	}
 
 	/**

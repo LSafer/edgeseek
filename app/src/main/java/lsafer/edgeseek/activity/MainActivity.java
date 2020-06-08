@@ -34,10 +34,6 @@ import lsafer.edgeseek.service.MainService;
 
 /**
  * The first activity displayed to the user.
- * <p>
- * - starts the service
- * - displays the edges to the user
- * - leads to the edge-activity to customize the edge
  *
  * @author lsafer
  * @version 0.1.5

@@ -58,17 +58,17 @@ final public class EdgesActivity extends AppCompatActivity {
 		//SET `GONE` TO ALL FACTORS
 		for (int side : Position.SIDES)
 			for (int factor : Position.FACTORS)
-				this.findViewById(Position.getId(side, factor))
+				this.findViewById(Position.getSideId(side, factor))
 						.setVisibility(View.GONE);
 
 		//SET `VISIBLE` TO ACTIVE FACTORS
 		for (int i = 0; i < Position.SIDES.length; i++)
-			this.findViewById(Position.getId(i, App.data.sides.get(i).factor))
+			this.findViewById(Position.getSideId(i, App.data.sides.get(i).factor))
 					.setVisibility(View.VISIBLE);
 
 		//styling
 		for (EdgeData data : App.data.edges) {
-			View view = this.findViewById(Position.getId(data.position));
+			View view = this.findViewById(Position.getEdgeId(data.position));
 
 			if (data.activated)
 				view.setBackgroundColor(Color.argb(150,

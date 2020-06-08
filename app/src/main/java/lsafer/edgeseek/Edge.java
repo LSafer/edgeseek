@@ -56,35 +56,33 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 */
 	final public SideData sideData;
 	/**
-	 * The layout params of this edge.
-	 */
-	public WindowManager.LayoutParams params;
-	/**
-	 * The view to be displayed.
-	 */
-	public View view;
-
-	/**
 	 * The context this edge is using.
 	 */
 	final private Context context;
+	/**
+	 * The display this edge is showing at.
+	 */
+	final private Display display;
 	/**
 	 * The window-manager for this edge to attach to.
 	 */
 	final private WindowManager manager;
 	/**
-	 * The display this edge is showing at.
-	 */
-	final private Display display;
-
-	/**
 	 * If this edge is landscape or not.
 	 */
 	public boolean landscape;
 	/**
+	 * The layout params of this edge.
+	 */
+	public WindowManager.LayoutParams params;
+	/**
 	 * The current position of this edge.
 	 */
 	public int position;
+	/**
+	 * The view to be displayed.
+	 */
+	public View view;
 	/**
 	 * Determines if this edge is alive or not.
 	 * <br>

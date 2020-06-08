@@ -42,13 +42,13 @@ import lsafer.edgeseek.util.Util;
  */
 public class OnTouchAudioControl implements View.OnTouchListener {
 	/**
-	 * The name of the music task.
-	 */
-	final public static String TASK_MUSIC = "music";
-	/**
 	 * The name of the alarm task.
 	 */
 	final public static String TASK_ALARM = "alarm";
+	/**
+	 * The name of the music task.
+	 */
+	final public static String TASK_MUSIC = "music";
 	/**
 	 * The name of the ring task.
 	 */
