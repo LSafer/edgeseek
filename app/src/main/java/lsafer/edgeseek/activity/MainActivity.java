@@ -83,7 +83,7 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 
 		//initial
 		super.onCreate(savedInstanceState);
-		this.setTheme(Util.theme(App.data.theme));
+		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_fragment);
 
 		//fragment instance

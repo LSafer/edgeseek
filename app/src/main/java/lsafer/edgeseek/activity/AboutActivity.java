@@ -30,7 +30,6 @@ import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.BuildConfig;
 import lsafer.edgeseek.R;
-import lsafer.edgeseek.util.Util;
 
 /**
  * An activity that shows the user information about the application.
@@ -58,7 +57,7 @@ final public class AboutActivity extends AppCompatActivity implements SimplePref
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		//activity
 		super.onCreate(savedInstanceState);
-		this.setTheme(Util.theme(App.data.theme));
+		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_fragment);
 
 		//fragment instance

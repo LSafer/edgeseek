@@ -91,7 +91,7 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 		App.data.store.registerOnDataChangeListener(this);
 		App.data.edges.forEach(edge -> edge.store.registerOnDataChangeListener(this));
 
-		this.setTheme(Util.theme(App.data.theme));
+		this.setTheme(App.data.getTheme());
 	}
 
 	@Override
@@ -125,7 +125,7 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 				switch (key) {
 					case AppData.THEME:
 						//on-theme-changed
-						this.setTheme(Util.theme(App.data.theme));
+						this.setTheme(App.data.getTheme());
 						break;
 					case AppData.ACTIVATED:
 						//update main-service that the activation status changed

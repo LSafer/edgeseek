@@ -25,7 +25,6 @@ import java.util.Objects;
 
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
-import lsafer.edgeseek.util.Util;
 
 /**
  * Two toasts of this class can't be displayed at the same time.
@@ -63,7 +62,7 @@ final public class SingleToast extends Toast {
 		Objects.requireNonNull(context, "context");
 		Objects.requireNonNull(string, "string");
 
-		context.setTheme(Util.theme(App.data.theme));
+		context.setTheme(App.data.getTheme());
 		SingleToast toast = new SingleToast(context);
 
 		toast.setDuration(duration);
