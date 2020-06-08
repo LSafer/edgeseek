@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
+import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -29,9 +30,11 @@ import cufyx.perference.MapDataStore;
 import cufyx.perference.MapDataStore.OnDataChangeListener;
 import lsafer.edgeseek.App.OnConfigurationChangeListener;
 import lsafer.edgeseek.data.EdgeData;
+import lsafer.edgeseek.data.SideData;
 import lsafer.edgeseek.tasks.OnLongClickExpandStatusBar;
 import lsafer.edgeseek.tasks.OnTouchAudioControl;
 import lsafer.edgeseek.tasks.OnTouchBrightnessControl;
+import lsafer.edgeseek.util.Position;
 import lsafer.edgeseek.util.Util;
 
 import static android.view.WindowManager.LayoutParams;
@@ -47,15 +50,19 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * The data of this edge.
 	 */
-	final public EdgeData data;
+	final public EdgeData edgeData;
+	/**
+	 * The data of the side of this edge.
+	 */
+	final public SideData sideData;
 	/**
 	 * The layout params of this edge.
 	 */
-	final public WindowManager.LayoutParams params;
+	public WindowManager.LayoutParams params;
 	/**
 	 * The view to be displayed.
 	 */
-	final public View view;
+	public View view;
 
 	/**
 	 * The context this edge is using.
@@ -65,6 +72,10 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * The window-manager for this edge to attach to.
 	 */
 	final private WindowManager manager;
+	/**
+	 * The display this edge is showing at.
+	 */
+	final private Display display;
 
 	/**
 	 * If this edge is landscape or not.
@@ -96,83 +107,79 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Construct a new edge from the given data.
 	 *
-	 * @param context the context of the application
-	 * @param manager for this edge to attach to
-	 * @param data    to construct the edge from
-	 * @throws NullPointerException if the given 'context' or 'manager' or 'data' is null
+	 * @param context  the context of the application
+	 * @param edgeData to construct the edge from
+	 * @param sideData the data of the side this edge is at
+	 * @throws NullPointerException if the given 'context' or 'sideData' or 'edgeData' is null
 	 */
-	public Edge(Context context, WindowManager manager, EdgeData data) {
+	public Edge(Context context, SideData sideData, EdgeData edgeData) {
 		Objects.requireNonNull(context, "context");
-		Objects.requireNonNull(manager, "manager");
-		Objects.requireNonNull(data, "data");
+		Objects.requireNonNull(sideData, "sideData");
+		Objects.requireNonNull(edgeData, "edgeData");
 		this.context = context;
-		this.manager = manager;
-		this.data = data;
-		this.view = new View(context);
-		this.params = new LayoutParams();
+		this.edgeData = edgeData;
+		this.sideData = sideData;
+		this.manager = context.getSystemService(WindowManager.class);
+		this.display = this.manager.getDefaultDisplay();
 	}
 
 	//events
 
 	@Override
 	public synchronized void onConfigurationChanged(Configuration newConfig) {
-		this.assertAlive();
+		if (this.attached) {
+			//if this edge is not attached, then ignore the call
 
-		if (!this.data.rotate) {
-			//only if this edge is not allowed to rotate with the screen
-			this.viewSolveDimens();
-			//reattach to the layout-manager
-			this.windowReattach();
-		}
-	}
-
-	@Override
-	public synchronized void onDataChange(MapDataStore data, String key, Object oldValue, Object newValue) {
-		this.assertAlive();
-
-		if (!Objects.equals(newValue, oldValue)) {
-			//ignore useless calls
-
-			switch (key) {
-				case "activated":
-					if (this.data.activated) {
-						if (this.attached) {
-							//if it is attached
-							this.windowReattach();
-						} else {
-							//if it was not attached
-							if (!this.built) {
-								//if it haven't been attached before
-								this.viewBuild();
-							}
-
-							this.windowAttach();
-						}
-					} else {
-						//if it have been activated before
-						this.windowDetach();
-					}
-					break;
-				case "width":
-				case "rotate":
-					this.viewSolveDimens();
-					if (this.attached)
-						this.windowReattach();
-					break;
-				case "seek":
-					this.viewSolveSeekTask();
-					break;
-				case "longClick":
-					this.viewSolveLongClickTask();
-					break;
-				case "color":
-					this.viewSolveStyle();
-					break;
+			if (!this.edgeData.rotate) {
+				//only if the edge should stay the same position
+				this.viewSolveDimens();
+				//if its attached and have been started, then it is attached
+				this.windowReattach();
 			}
 		}
 	}
 
-	//public control
+	@Override
+	public synchronized void onDataChange(MapDataStore store, String key, Object oldValue, Object newValue) {
+		if (this.alive) {
+			if (!Objects.equals(newValue, oldValue)) {
+				//ignore useless calls
+
+				switch (key) {
+					case SideData.SPLITS:
+					case EdgeData.ACTIVATED:
+						if (this.isActivated()) {
+							if (!this.attached) {
+								if (!this.built)
+									this.viewBuild();
+
+								this.windowAttach();
+							}
+						} else {
+							this.windowDetach();
+						}
+						break;
+					case EdgeData.WIDTH:
+					case EdgeData.ROTATE:
+						this.viewSolveDimens();
+						if (this.attached)
+							this.windowReattach();
+						break;
+					case EdgeData.SEEK:
+						this.viewSolveSeekTask();
+						break;
+					case EdgeData.LONG_CLICK:
+						this.viewSolveLongClickTask();
+						break;
+					case EdgeData.COLOR:
+						this.viewSolveStyle();
+						break;
+				}
+			}
+		}
+	}
+
+	//public control OK
 
 	/**
 	 * Destroy this edge.
@@ -187,7 +194,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 			this.windowDetach();
 
 		//remove listeners
-		this.data.store.unregisterOnDataChangeListener(this);
+		this.edgeData.store.unregisterOnDataChangeListener(this);
+		this.sideData.store.unregisterOnDataChangeListener(this);
 		App.unregisterOnConfigurationChangeListener(this);
 
 		this.alive = false;
@@ -204,18 +212,37 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 
 		this.alive = true;
 
-		this.data.store.registerOnDataChangeListener(this);
+		this.edgeData.store.registerOnDataChangeListener(this);
+		this.sideData.store.registerOnDataChangeListener(this);
 		App.registerOnConfigurationChangeListener(this);
 
-		if (this.data.activated) {
-			this.viewBuild();
+		if (this.isActivated()) {
+			if (!this.built) {
+				this.viewBuild();
+			} else {
+				this.viewSolveDimens();
+				this.viewSolveSeekTask();
+				this.viewSolveLongClickTask();
+				this.viewSolveStyle();
+			}
 			this.windowAttach();
 		}
 
 		return this;
 	}
 
-	//view control
+	//ask OK
+
+	/**
+	 * Determine if this edge is allowed to be displayed or not.
+	 *
+	 * @return whether this edge is allowed to be displayed or not
+	 */
+	protected synchronized boolean isActivated() {
+		return this.edgeData.factor == this.sideData.factor;
+	}
+
+	//view control OK
 
 	/**
 	 * Builds this edge for the first time.
@@ -227,6 +254,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		this.assertAlive();
 		this.assertNotBuilt();
 
+		this.view = new View(this.context);
+		this.params = new LayoutParams();
 		//noinspection deprecation
 		this.params.type = Build.VERSION.SDK_INT >= 26 ?
 						   LayoutParams.TYPE_APPLICATION_OVERLAY :
@@ -255,14 +284,15 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		this.assertAlive();
 
 		//positioning
-		int d = this.manager.getDefaultDisplay().getRotation();
-		this.position = Util.position(this.data.position, this.data.rotate, this.manager.getDefaultDisplay().getRotation());
-		this.landscape = this.position == 0 || this.position == 2;
+		this.position = this.edgeData.rotate ? this.edgeData.position : Position.getRotated(this.edgeData.position, this.display.getRotation());
+		this.landscape = Position.isLandscape(this.position);
+
+		float height = (this.landscape ? Util.getWidth(this.display) : Util.getHeight(this.display)) / Position.getFactor(this.position);
 
 		//dimensions
-		this.params.gravity = Util.gravity(this.position);
-		this.params.width = this.landscape ? LayoutParams.MATCH_PARENT : this.data.width;
-		this.params.height = this.landscape ? this.data.width : LayoutParams.MATCH_PARENT;
+		this.params.gravity = Position.getGravity(this.position);
+		this.params.width = this.landscape ? (int) height : this.edgeData.width;
+		this.params.height = this.landscape ? this.edgeData.width : (int) height;
 
 		return this;
 	}
@@ -276,8 +306,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	protected synchronized Edge viewSolveLongClickTask() {
 		this.assertAlive();
 
-		switch (this.data.longClick) {
-			case "expand_status_bar":
+		switch (this.edgeData.longClick) {
+			case OnLongClickExpandStatusBar.TASK:
 				this.view.setOnLongClickListener(new OnLongClickExpandStatusBar(this.context, this));
 				break;
 			default:
@@ -297,14 +327,14 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	protected synchronized Edge viewSolveSeekTask() {
 		this.assertAlive();
 
-		switch (this.data.seek) {
-			case "brightness":
+		switch (this.edgeData.seek) {
+			case OnTouchBrightnessControl.TASK:
 				this.view.setOnTouchListener(new OnTouchBrightnessControl(this.context, this));
 				break;
-			case "music":
-			case "ring":
-			case "alarm":
-			case "system":
+			case OnTouchAudioControl.TASK_ALARM:
+			case OnTouchAudioControl.TASK_MUSIC:
+			case OnTouchAudioControl.TASK_RING:
+			case OnTouchAudioControl.TASK_SYSTEM:
 				this.view.setOnTouchListener(new OnTouchAudioControl(this.context, this));
 				break;
 			default:
@@ -324,14 +354,14 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	protected synchronized Edge viewSolveStyle() {
 		this.assertAlive();
 
-		this.view.setBackgroundColor(this.data.color);
-		this.view.setAlpha(Color.alpha(this.data.color));
-		this.params.alpha = Color.alpha(this.data.color);
+		this.view.setBackgroundColor(this.edgeData.color);
+		this.view.setAlpha(Color.alpha(this.edgeData.color));
+		this.params.alpha = Color.alpha(this.edgeData.color);
 
 		return this;
 	}
 
-	//window control
+	//window control FINAL
 
 	/**
 	 * Display this edge to the screen.
@@ -391,7 +421,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		return this;
 	}
 
-	//assertions
+	//assertions FINAL
 
 	/**
 	 * Assert that this edge is alive.
