@@ -719,13 +719,13 @@ final public class Position { //[-5, 39]
 	public static int getSideTitle(int side) {
 		switch (side) {
 			case BOTTOM:
-				return R.string.bottom_side;
+				return R.string._bottom_side;
 			case LEFT:
-				return R.string.left_side;
+				return R.string._left_side;
 			case TOP:
-				return R.string.top_side;
+				return R.string._top_side;
 			case RIGHT:
-				return R.string.right_side;
+				return R.string._right_side;
 			default:
 				throw new IllegalArgumentException("Unexpected side: " + side);
 		}

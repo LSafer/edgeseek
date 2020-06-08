@@ -55,43 +55,43 @@
 			app:layout_constraintTop_toTopOf="parent" />
 
 		<Button
-			android:background="@null"
 			android:id="@id/left_split"
 			android:layout_width="80dp"
 			android:layout_height="150dp"
 			android:layout_marginLeft="30dp"
+			android:background="@null"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
-			app:layout_constraintLeft_toLeftOf="@+id/mobile"
+			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile" />
 
 		<Button
-			android:background="@null"
 			android:id="@id/right_split"
 			android:layout_width="80dp"
 			android:layout_height="150dp"
 			android:layout_marginRight="30dp"
+			android:background="@null"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
-			app:layout_constraintRight_toRightOf="@+id/mobile"
+			app:layout_constraintRight_toRightOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile" />
 
 		<Button
-			android:background="@null"
 			android:id="@id/bottom_split"
 			android:layout_width="150dp"
 			android:layout_height="80dp"
 			android:layout_marginBottom="30dp"
+			android:background="@null"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
-			app:layout_constraintLeft_toLeftOf="@+id/mobile"
-			app:layout_constraintRight_toRightOf="@+id/mobile" />
+			app:layout_constraintLeft_toLeftOf="@id/mobile"
+			app:layout_constraintRight_toRightOf="@id/mobile" />
 
 		<Button
-			android:background="@null"
 			android:id="@id/top_split"
 			android:layout_width="150dp"
 			android:layout_height="80dp"
 			android:layout_marginTop="30dp"
-			app:layout_constraintLeft_toLeftOf="@+id/mobile"
-			app:layout_constraintRight_toRightOf="@+id/mobile"
+			android:background="@null"
+			app:layout_constraintLeft_toLeftOf="@id/mobile"
+			app:layout_constraintRight_toRightOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile" />
 
 		<View
@@ -139,13 +139,13 @@
 			app:layout_constraintTop_toTopOf="@id/mobile" />
 
 		<LinearLayout
-			android:id="@+id/bottom2"
-			android:visibility="gone"
+			android:id="@id/bottom2"
 			android:layout_width="match_parent"
 			android:layout_height="15dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile">
@@ -166,13 +166,13 @@
 		</LinearLayout>
 
 		<LinearLayout
-			android:visibility="gone"
-			android:id="@+id/top2"
+			android:id="@id/top2"
 			android:layout_width="match_parent"
 			android:layout_height="15dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
+			android:visibility="gone"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -193,13 +193,13 @@
 		</LinearLayout>
 
 		<LinearLayout
-			android:visibility="gone"
-			android:id="@+id/left2"
+			android:id="@id/left2"
 			android:layout_width="15dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
 			android:orientation="vertical"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -209,7 +209,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/left2_bottom"
@@ -220,13 +220,13 @@
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/right2"
-			android:visibility="gone"
+			android:id="@id/right2"
 			android:layout_width="15dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
 			android:orientation="vertical"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -247,13 +247,13 @@
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/bottom3"
-			android:visibility="gone"
+			android:id="@id/bottom3"
 			android:layout_width="match_parent"
 			android:layout_height="15dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile">
@@ -263,7 +263,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/bottom3_center"
@@ -277,17 +277,17 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:visibility="gone"
-			android:id="@+id/top3"
+			android:id="@id/top3"
 			android:layout_width="match_parent"
 			android:layout_height="15dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
+			android:visibility="gone"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -311,17 +311,17 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/left3"
-			android:visibility="gone"
+			android:id="@id/left3"
 			android:layout_width="15dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
 			android:orientation="vertical"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -338,24 +338,24 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/left3_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/right3"
-			android:visibility="gone"
+			android:id="@id/right3"
 			android:layout_width="15dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
 			android:orientation="vertical"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -372,24 +372,24 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/right3_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/bottom4"
-			android:visibility="gone"
+			android:id="@id/bottom4"
 			android:layout_width="match_parent"
 			android:layout_height="15dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile">
@@ -413,7 +413,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/bottom4_right"
@@ -424,13 +424,13 @@
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/top4"
-			android:visibility="gone"
+			android:id="@id/top4"
 			android:layout_width="match_parent"
 			android:layout_height="15dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
+			android:visibility="gone"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -440,7 +440,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/top4_cleft"
@@ -465,13 +465,13 @@
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/left4"
-			android:visibility="gone"
+			android:id="@id/left4"
 			android:layout_width="15dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
 			android:orientation="vertical"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -481,38 +481,38 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/left4_ctop"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/left4_cbottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/left4_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 		</LinearLayout>
 
 		<LinearLayout
-			android:id="@+id/right4"
-			android:visibility="gone"
+			android:id="@id/right4"
 			android:layout_width="15dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
 			android:orientation="vertical"
+			android:visibility="gone"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
 			app:layout_constraintTop_toTopOf="@id/mobile">
@@ -522,21 +522,21 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/right4_ctop"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/right4_cbottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick"/>
+				android:onClick="onEdgeClick" />
 
 			<View
 				android:id="@id/right4_bottom"

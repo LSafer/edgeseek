@@ -15,7 +15,7 @@
 		android:allowBackup="true"
 		android:fullBackupContent="true"
 		android:icon="@drawable/ic_launcher"
-		android:label="@string/edge_seek"
+		android:label="@string/app_name"
 		android:supportsRtl="true"
 		android:theme="@style/Black">
 		<activity android:name="lsafer.edgeseek.activity.MainActivity">

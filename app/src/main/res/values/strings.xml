@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="_tit_pref_EDGE_SPLIT">Splits</string>
-	<string name="_des_pref_EDGE_SPLIT">Set the number of splits in this side</string>
-	<string name="bottom_side">Bottom Side</string>
-	<string name="left_side">Left Side</string>
-	<string name="top_side">Top Side</string>
-	<string name="right_side">Right Side</string>
-</resources>

@@ -64,6 +64,7 @@
 	<!-- edges names -->
 	<!-- bottom -->
 	<string name="_bottom">Bottom Edge</string>
+	<string name="_bottom_side">Bottom Side</string>
 	<string name="_bottom2_right">Bottom Right Edge</string>
 	<string name="_bottom2_left">Bottom Left Edge</string>
 	<string name="_bottom3_right">Bottom Right Edge</string>
@@ -75,6 +76,7 @@
 	<string name="_bottom4_left">Bottom Left Edge</string>
 	<!-- left -->
 	<string name="_left">Left Edge</string>
+	<string name="_left_side">Left Side</string>
 	<string name="_left2_bottom">Left Bottom Edge</string>
 	<string name="_left2_top">Left Top Edge</string>
 	<string name="_left3_bottom">Left Bottom Edge</string>
@@ -86,6 +88,7 @@
 	<string name="_left4_top">Left Top Edge</string>
 	<!-- top -->
 	<string name="_top">Top Edge</string>
+	<string name="_top_side">Top Side</string>
 	<string name="_top2_left">Top Left Edge</string>
 	<string name="_top2_right">Top Right Edge</string>
 	<string name="_top3_left">Top Left Edge</string>
@@ -97,6 +100,7 @@
 	<string name="_top4_right">Top Right Edge</string>
 	<!-- right -->
 	<string name="_right">Right Edge</string>
+	<string name="_right_side">Right Side</string>
 	<string name="_right2_top">Right Top Edge</string>
 	<string name="_right2_bottom">Right Bottom Edge</string>
 	<string name="_right3_top">Right Top Edge</string>

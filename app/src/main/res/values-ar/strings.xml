@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<string name="_tit_pref_EDGE_SPLIT">التقسيم</string>
-	<string name="_des_pref_EDGE_SPLIT">حدد كم تريد من قسم في هذه الجهة</string>
-	<string name="bottom_side">Bottom Side</string>
-	<string name="left_side">Left Side</string>
-	<string name="top_side">Top Side</string>
-	<string name="right_side">Right Side</string>
-</resources>

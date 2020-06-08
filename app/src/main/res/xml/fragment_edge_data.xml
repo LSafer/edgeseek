@@ -41,7 +41,7 @@
 			app:cpv_allowCustom="true"
 			app:cpv_allowPresets="true"
 			app:cpv_colorShape="circle"
-			app:cpv_dialogTitle="@string/select_color"
+			app:cpv_dialogTitle="@string/_tit_pref_EDGE_COLOR_SELECT"
 			app:cpv_dialogType="preset"
 			app:cpv_showAlphaSlider="true"
 			app:cpv_showColorShades="true"

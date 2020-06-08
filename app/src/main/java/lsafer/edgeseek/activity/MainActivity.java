@@ -31,7 +31,6 @@ import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.service.MainService;
-import lsafer.edgeseek.util.Util;
 
 /**
  * The first activity displayed to the user.
@@ -94,7 +93,7 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 
 		//title
 		this.<TextView>findViewById(R.id.title)
-				.setText(R.string.edge_seek);
+				.setText(R.string.app_name);
 
 		//start main-service
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
