@@ -10,8 +10,8 @@ android {
 		applicationId "lsafer.edgeseek"
 		minSdkVersion 26
 		targetSdkVersion 29
-		versionCode 5
-		versionName "0.1.5-beta00"
+		versionCode 6
+		versionName "0.1.5-beta01"
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 	buildTypes {
