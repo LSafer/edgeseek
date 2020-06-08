@@ -17,7 +17,7 @@
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/edge_seek"
 		android:supportsRtl="true"
-		android:theme="@style/Theme.AppCompat.NoActionBar">
+		android:theme="@style/Black">
 		<activity android:name="lsafer.edgeseek.activity.MainActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
