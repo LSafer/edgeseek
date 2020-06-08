@@ -39,6 +39,14 @@ import cufyx.perference.MapDataStore;
  */
 final public class AppData extends AbstractBean implements FileLoadable, FormatLoadable {
 	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String ACTIVATED = "activated";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String THEME = "theme";
+	/**
 	 * The data of the permissions of this application.
 	 * <br>
 	 * Note: this data isn't stored in a file.

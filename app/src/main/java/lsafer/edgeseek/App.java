@@ -123,11 +123,11 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 				//only app-data
 
 				switch (key) {
-					case "theme":
+					case AppData.THEME:
 						//on-theme-changed
 						this.setTheme(Util.theme(App.data.theme));
 						break;
-					case "activated":
+					case AppData.ACTIVATED:
 						//update main-service that the activation status changed
 						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 							this.startForegroundService(new Intent(this, MainService.class));
