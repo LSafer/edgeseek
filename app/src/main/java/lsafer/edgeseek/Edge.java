@@ -322,7 +322,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		this.position = this.edgeData.rotate ? this.edgeData.position : Position.getRotated(this.edgeData.position, this.display.getRotation());
 		this.landscape = Position.isLandscape(this.position);
 
-		float height = (this.landscape ? Util.getWidth(this.display) : Util.getHeight(this.display)) / Position.getFactor(this.position);
+		float height = this.edgeData.factor == 1 ? LayoutParams.MATCH_PARENT :
+					   (this.landscape ? Util.getWidth(this.display) : Util.getHeight(this.display)) / Position.getFactor(this.position);
 
 		//dimensions
 		this.params.gravity = Position.getGravity(this.position);
