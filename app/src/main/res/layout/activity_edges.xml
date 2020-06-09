@@ -6,21 +6,23 @@
 	android:layout_height="match_parent"
 	android:background="@drawable/background_blur"
 	android:orientation="vertical"
+	android:paddingTop="50dp"
+	android:paddingBottom="50dp"
 	tools:context=".activity.EdgesActivity">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:minHeight="?android:attr/listPreferredItemHeight"
 		android:orientation="vertical"
-		android:layout_marginTop="50dp"
-		android:paddingTop="60dp"
-		android:paddingBottom="15dp">
+		android:paddingTop="50dp">
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:text="@string/_tit_pref_APP_CHOOSE_EDGE"
+			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:textColor="?colorAccent"
 			android:textSize="30sp" />
 
@@ -38,7 +40,7 @@
 		android:paddingStart="30dp"
 		android:paddingTop="20dp"
 		android:paddingEnd="30dp"
-		android:paddingBottom="50dp"
+		android:paddingBottom="20dp"
 		tools:ignore="RtlHardcoded">
 
 		<View

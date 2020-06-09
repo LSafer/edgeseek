@@ -44,7 +44,7 @@
 	<string name="_des_pref_APP_AUTO_BRIGHTNESS">تفعيل السطوع التلقائي عند إغلاق الشاشة</string>
 	<string name="_des_pref_APP_THEME">%s</string>
 	<string name="_des_pref_APP_ABOUT">معلومات عن هذا التطبيق</string>
-	<string name="_des_pref_APP_CHOOSE_EDGE">إلمس حافة لتخصيصها</string>
+	<string name="_des_pref_APP_CHOOSE_EDGE">إلمس حافة لتخصيصها\nإضغط مطولا على جهة لتخصيص الجهة كاملة</string>
 	<!-- pref ABOUT -->
 	<!-- tit pref ABOUT -->
 	<string name="_tit_pref_ABOUT_VERSION">الإصدار</string>
