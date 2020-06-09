@@ -37,7 +37,7 @@
 	<color name="darkColorBackground">#ff303030</color>
 	<color name="darkColorBackgroundBlur">#ff303030</color>
 	<color name="darkColorBackgroundFloating">#ff353535</color>
-	<color name="darkColorPrimary">#00000000</color>
+	<color name="darkColorPrimary">#303030</color>
 	<color name="darkColorPrimaryDark">#ff808080</color>
 	<color name="darkColorAccent">#00B1B8</color>
 	<color name="darkModuleMobileStartColor">#81A0A1</color>
