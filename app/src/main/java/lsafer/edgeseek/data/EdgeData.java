@@ -17,6 +17,9 @@ package lsafer.edgeseek.data;
 
 import android.graphics.Color;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import cufy.beans.AbstractBean;
 import cufyx.perference.MapDataStore;
 import lsafer.edgeseek.tasks.OnLongClickExpandStatusBar;
@@ -68,6 +71,11 @@ final public class EdgeData extends AbstractBean {
 	 * Just a string represents the key of a field in this.
 	 */
 	final public static String WIDTH = "width";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String BLACK_LIST = "blackList";
+
 	/**
 	 * The split factor used on this edge.
 	 */
@@ -148,6 +156,11 @@ final public class EdgeData extends AbstractBean {
 	 */
 	@Property
 	public int width = 35;
+	/**
+	 * A set of application names for this edge to not run on.
+	 */
+	@Property
+	public Set<String> blackList = new HashSet<>();
 
 	/**
 	 * Construct a new edge data for the edge in the given position.

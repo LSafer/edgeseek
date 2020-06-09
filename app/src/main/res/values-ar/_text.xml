@@ -72,6 +72,7 @@
 	<string name="_tit_pref_EDGE_SEEK_TASK">وظيفة السحب</string>
 	<string name="_tit_pref_EDGE_TOAST">إظهار القيمة</string>
 	<string name="_tit_pref_EDGE_LONG_CLICK_TASK">وظيفة الضغط مطولا</string>
+	<string name="_tit_pref_EDGE_BLACK_LIST">القائمة السوداء</string>
 	<!-- des pref EDGE -->
 	<string name="_des_pref_EDGE_ACTIVATION">اظغط لتفعيل او إلغاء تفعيل الحافة</string>
 	<string name="_des_pref_EDGE_VIBRATION">الإهتزاز عند لمس الطرف</string>
@@ -82,6 +83,7 @@
 	<string name="_des_pref_EDGE_SEEK_TASK">%s</string>
 	<string name="_des_pref_EDGE_TOAST">إظهار القيمة الحالية عند السحب على الطرف</string>
 	<string name="_des_pref_EDGE_LONG_CLICK_TASK">%s</string>
+	<string name="_des_pref_EDGE_BLACK_LIST">مجموعة من التطبيقات لكي لا تعمل هذه الحافة فيها</string>
 	<!-- pref SIDE -->
 	<!-- tit pref SIDE -->
 	<string name="_tit_pref_SIDE_SPLIT">التقسيم</string>

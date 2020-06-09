@@ -16,6 +16,7 @@
 package lsafer.edgeseek;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
@@ -31,6 +32,7 @@ import cufyx.perference.MapDataStore.OnDataChangeListener;
 import lsafer.edgeseek.App.OnConfigurationChangeListener;
 import lsafer.edgeseek.data.EdgeData;
 import lsafer.edgeseek.data.SideData;
+import lsafer.edgeseek.service.CallbackService;
 import lsafer.edgeseek.tasks.OnLongClickExpandStatusBar;
 import lsafer.edgeseek.tasks.OnTouchAudioControl;
 import lsafer.edgeseek.tasks.OnTouchBrightnessControl;
@@ -46,7 +48,7 @@ import static android.view.WindowManager.LayoutParams;
  * @version 0.1.5
  * @since 27-May-20
  */
-public class Edge implements OnDataChangeListener, OnConfigurationChangeListener {
+public class Edge implements OnDataChangeListener, OnConfigurationChangeListener, CallbackService.OnWindowStateChangedListener {
 	/**
 	 * The data of this edge.
 	 */
@@ -211,9 +213,25 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		//remove listeners
 		this.edgeData.store.unregisterOnDataChangeListener(this);
 		this.sideData.store.unregisterOnDataChangeListener(this);
+		CallbackService.unregisterOnWindowStateChangedListener(this);
 		App.unregisterOnConfigurationChangeListener(this);
 
 		this.alive = false;
+	}
+
+	@Override
+	public void onWindowStateChanged(ActivityInfo activity) {
+		if (this.alive && this.built) {
+			if (this.edgeData.blackList.contains(activity.packageName))
+				this.view.setVisibility(View.GONE);
+			else this.view.setVisibility(View.VISIBLE);
+		}
+	}
+
+	@Override
+	public void onCallBackDestroyed() {
+		if (this.alive && this.built)
+			this.view.setVisibility(View.VISIBLE);
 	}
 
 	/**
@@ -227,8 +245,10 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 
 		this.alive = true;
 
+		//listeners
 		this.edgeData.store.registerOnDataChangeListener(this);
 		this.sideData.store.registerOnDataChangeListener(this);
+		CallbackService.registerOnWindowStateChangedListener(this);
 		App.registerOnConfigurationChangeListener(this);
 
 		if (this.isActivated()) {

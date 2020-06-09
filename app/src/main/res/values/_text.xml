@@ -71,6 +71,7 @@
 	<string name="_tit_pref_EDGE_SEEK_TASK">Seek Task</string>
 	<string name="_tit_pref_EDGE_TOAST">Toast</string>
 	<string name="_tit_pref_EDGE_LONG_CLICK_TASK">Long Click Task</string>
+	<string name="_tit_pref_EDGE_BLACK_LIST">Black List</string>
 	<!-- des pref EDGE -->
 	<string name="_des_pref_EDGE_ACTIVATION">Toggle to activate or deactivate this edge</string>
 	<string name="_des_pref_EDGE_VIBRATION">The vibration when the edge get touched</string>
@@ -81,6 +82,7 @@
 	<string name="_des_pref_EDGE_SEEK_TASK">%s</string>
 	<string name="_des_pref_EDGE_TOAST">Display a message with the current volume when seeking</string>
 	<string name="_des_pref_EDGE_LONG_CLICK_TASK">%s</string>
+	<string name="_des_pref_EDGE_BLACK_LIST">A list of application for this edge to not run on</string>
 	<!-- pref SIDE -->
 	<!-- tit pref SIDE -->
 	<string name="_tit_pref_SIDE_SPLIT">Splits</string>

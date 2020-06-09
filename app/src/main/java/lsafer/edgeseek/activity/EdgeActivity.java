@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.MultiSelectListPreference;
 import androidx.preference.PreferenceDataStore;
 
 import java.util.Objects;
@@ -27,7 +28,9 @@ import java.util.Objects;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
+import lsafer.edgeseek.data.EdgeData;
 import lsafer.edgeseek.util.Position;
+import lsafer.edgeseek.util.UserPackagesUtil;
 
 /**
  * An activity that customize the edge it focuses on.
@@ -78,5 +81,15 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 		//title
 		this.<TextView>findViewById(R.id.title)
 				.setText(Position.getEdgeTitle(this.position));
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		//set the installed application's list
+		MultiSelectListPreference preference = ((SimplePreferenceFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment)).findPreference(EdgeData.BLACK_LIST);
+		preference.setEntries(UserPackagesUtil.getLabels(this.getPackageManager()));
+		preference.setEntryValues(UserPackagesUtil.getPackagesNames(this.getPackageManager()));
 	}
 }

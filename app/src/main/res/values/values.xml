@@ -19,4 +19,6 @@
 		<item></item>
 		<item>expand_status_bar</item>
 	</string-array>
+	<string-array name="empty">
+	</string-array>
 </resources>
