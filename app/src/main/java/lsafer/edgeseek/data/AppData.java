@@ -128,7 +128,7 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 * The theme of the application.
 	 */
 	@Property
-	public String theme = "black";
+	public String theme = "light";
 
 	//------- defaults
 
