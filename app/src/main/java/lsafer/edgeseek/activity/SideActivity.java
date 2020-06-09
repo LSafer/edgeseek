@@ -17,7 +17,6 @@ package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -73,9 +72,16 @@ final public class SideActivity extends AppCompatActivity implements SimplePrefe
 				.beginTransaction()
 				.replace(R.id.fragment, new SimplePreferenceFragment())
 				.commit();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		//title
-		this.<TextView>findViewById(R.id.title)
-				.setText(Position.getSideTitle(this.position));
+		((SimplePreferenceFragment) this.getSupportFragmentManager()
+				.findFragmentById(R.id.fragment))
+				.findPreference("title")
+				.setTitle(Position.getSideTitle(this.position));
 	}
 }

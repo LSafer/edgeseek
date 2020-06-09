@@ -11,6 +11,8 @@
 	<string name="credits">النسب</string>
 	<string name="updates">التحديثات</string>
 	<string name="versions">الإصدارات</string>
+	<string name="about">معلومات</string>
+	<string name="permissions">الصلاحيات</string>
 	<!-- arrays -->
 	<string-array name="seek_tasks">
 		<item>لاشيء</item>

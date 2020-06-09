@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
+	<Preference
+		app:layout="@layout/header"
+		app:title="@string/app_name" />
 	<PreferenceCategory app:title="@string/application">
 		<SwitchPreference
 			app:key="activated"

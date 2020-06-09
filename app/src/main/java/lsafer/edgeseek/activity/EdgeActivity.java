@@ -17,7 +17,6 @@ package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.MultiSelectListPreference;
@@ -77,18 +76,20 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 				.beginTransaction()
 				.replace(R.id.fragment, new SimplePreferenceFragment())
 				.commit();
-
-		//title
-		this.<TextView>findViewById(R.id.title)
-				.setText(Position.getEdgeTitle(this.position));
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 
+		SimplePreferenceFragment fragment = (SimplePreferenceFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment);
+
+		//title
+		fragment.findPreference("title")
+				.setTitle(Position.getEdgeTitle(this.position));
+
 		//set the installed application's list
-		MultiSelectListPreference preference = ((SimplePreferenceFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment)).findPreference(EdgeData.BLACK_LIST);
+		MultiSelectListPreference preference = fragment.findPreference(EdgeData.BLACK_LIST);
 		preference.setEntries(UserPackagesUtil.getLabels(this.getPackageManager()));
 		preference.setEntryValues(UserPackagesUtil.getPackagesNames(this.getPackageManager()));
 	}

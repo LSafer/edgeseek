@@ -17,7 +17,6 @@ package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,9 +65,5 @@ final public class PermissionsActivity extends AppCompatActivity implements Simp
 				.beginTransaction()
 				.replace(R.id.fragment, new SimplePreferenceFragment())
 				.commit();
-
-		//title
-		this.<TextView>findViewById(R.id.title)
-				.setText(R.string._tit_pref_APP_PERMISSIONS);
 	}
 }

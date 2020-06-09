@@ -12,6 +12,8 @@
 	<string name="credits">Credits</string>
 	<string name="updates">Updates</string>
 	<string name="versions">Versions</string>
+	<string name="about">About</string>
+	<string name="permissions">Permissions</string>
 	<!-- arrays -->
 	<string-array name="seek_tasks">
 		<item>Do Nothing</item>

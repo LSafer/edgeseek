@@ -20,7 +20,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceDataStore;
@@ -90,10 +89,6 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 				.beginTransaction()
 				.replace(R.id.fragment, new SimplePreferenceFragment())
 				.commit();
-
-		//title
-		this.<TextView>findViewById(R.id.title)
-				.setText(R.string.app_name);
 
 		//start main-service
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)

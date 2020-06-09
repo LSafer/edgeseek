@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+	<Preference
+		app:layout="@layout/header"
+		app:title="@string/permissions" />
 	<PreferenceCategory app:title="@string/mandatory">
 		<CheckBoxPreference
 			app:key="android.permission.SYSTEM_ALERT_WINDOW"
