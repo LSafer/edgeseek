@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+		<shape android:shape="rectangle">
+			<stroke android:dashGap="5dp"
+				android:width="1dp"
+				android:dashWidth="5dp"
+				android:color="?moduleMobileButtonColor"/>
+<!--			<corners android:radius="5dp"/>-->
+		</shape>
+	</item>
+</selector>
