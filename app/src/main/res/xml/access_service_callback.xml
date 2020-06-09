@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><!-- These options MUST be specified here in order for the events to be received on first
+ start in Android 4.1.1 -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+	android:accessibilityEventTypes="typeWindowStateChanged"
+	android:accessibilityFeedbackType="feedbackGeneric"
+	android:accessibilityFlags="flagIncludeNotImportantViews"
+	android:description="@string/_des_perm_BIND_ACCESSBILITY_SERVICE" />
