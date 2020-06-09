@@ -41,7 +41,7 @@
 			</intent-filter>
 			<meta-data
 				android:name="android.accessibilityservice"
-				android:resource="@xml/access_service_callback"/>
+				android:resource="@xml/service_callback"/>
 		</service>
 
 		<receiver android:name=".receiver.BootCompleteBroadcastReceiver">
