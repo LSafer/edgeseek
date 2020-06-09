@@ -19,10 +19,12 @@
 	<!-- tit perm -->
 	<string name="_tit_perm_SYSTEM_ALERT_WINDOW">العرض فوق التطبيقات الأخرى</string>
 	<string name="_tit_perm_WRITE_SETTINGS">كتابة إعدادات النظام</string>
+	<string name="_tit_perm_BIND_ACCESSBILITY_SERVICE">خدمات تسهيل الوصول</string>
 	<string name="_tit_perm_IGNORE_BATTERY_OPTIMIZATIONS">تجاهل تحسينات البطارية</string>
 	<!-- des perm -->
 	<string name="_des_perm_SYSTEM_ALERT_WINDOW">السماح لهذا التطبيق بالعرض فوق التطبيقات الأخرى</string>
 	<string name="_des_perm_WRITE_SETTINGS">السماح لهذا التطبيق بتعديل إعدادات النظام</string>
+	<string name="_des_perm_BIND_ACCESSBILITY_SERVICE">التطبيق يستخدم صلاحيات تسهيل الوصول ليستطيع التوقف عن العمل في التطبيقات المحددة</string>
 	<string name="_des_perm_IGNORE_BATTERY_OPTIMIZATIONS">تحرير هذا التطبيق من تحسينات النظام للبطارية</string>
 	<!-- pref APP -->
 	<!-- tit pref APP -->

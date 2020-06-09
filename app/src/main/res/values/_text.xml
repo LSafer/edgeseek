@@ -18,10 +18,12 @@
 	<!-- tit perm -->
 	<string name="_tit_perm_SYSTEM_ALERT_WINDOW">Display Over Other Apps</string>
 	<string name="_tit_perm_WRITE_SETTINGS">Write System Settings</string>
+	<string name="_tit_perm_BIND_ACCESSBILITY_SERVICE">Accessibility Service</string>
 	<string name="_tit_perm_IGNORE_BATTERY_OPTIMIZATIONS">Ignore Battery Optimization</string>
 	<!-- des perm -->
 	<string name="_des_perm_SYSTEM_ALERT_WINDOW">Allow this application to draw views floating on your screen</string>
 	<string name="_des_perm_WRITE_SETTINGS">Allow this application to edit settings</string>
+	<string name="_des_perm_BIND_ACCESSBILITY_SERVICE">The application uses the accessibility service for black-listing applications</string>
 	<string name="_des_perm_IGNORE_BATTERY_OPTIMIZATIONS">Make this application free from the system battery optimizations</string>
 	<!-- pref APP -->
 	<!-- tit pref APP -->
