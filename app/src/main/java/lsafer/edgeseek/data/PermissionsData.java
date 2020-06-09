@@ -119,7 +119,8 @@ final public class PermissionsData extends AbstractMap {
 					@Override
 					public Object setValue(Object value) {
 						Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
-						intent.setData(Uri.parse("package:" + context.getPackageName()));
+//						//need better solution
+//						intent.setData(Uri.parse("package:" + context.getPackageName()));
 						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						context.startActivity(intent);
 
