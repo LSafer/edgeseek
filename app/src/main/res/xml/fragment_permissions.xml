@@ -12,6 +12,10 @@
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/additional">
 		<CheckBoxPreference
+			app:key="android.permission.BIND_ACCESSIBILITY_SERVICE"
+			app:summary="@string/_des_perm_BIND_ACCESSBILITY_SERVICE"
+			app:title="@string/_tit_perm_BIND_ACCESSBILITY_SERVICE" />
+		<CheckBoxPreference
 			app:key="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
 			app:summary="@string/_des_perm_IGNORE_BATTERY_OPTIMIZATIONS"
 			app:title="@string/_tit_perm_IGNORE_BATTERY_OPTIMIZATIONS" />

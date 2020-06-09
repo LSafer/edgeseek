@@ -29,6 +29,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import cufyx.perference.MapDataStore;
+import lsafer.edgeseek.service.CallbackService;
 
 /**
  * A map to simplify the permissions request and permissions get.
@@ -96,6 +97,28 @@ final public class PermissionsData extends AbstractMap {
 					@Override
 					public Object setValue(Object value) {
 						Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+						intent.setData(Uri.parse("package:" + context.getPackageName()));
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						context.startActivity(intent);
+
+						return this.getValue();
+					}
+				},
+				//android.permission.BIND_ACCESSIBILITY_SERVICE
+				new Entry() {
+					@Override
+					public Object getKey() {
+						return Manifest.permission.BIND_ACCESSIBILITY_SERVICE;
+					}
+
+					@Override
+					public Object getValue() {
+						return CallbackService.isAlive();
+					}
+
+					@Override
+					public Object setValue(Object value) {
+						Intent intent = new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS);
 						intent.setData(Uri.parse("package:" + context.getPackageName()));
 						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						context.startActivity(intent);
