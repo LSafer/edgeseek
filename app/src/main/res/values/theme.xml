@@ -12,7 +12,8 @@
 	<color name="blackModuleMobileEndColor">#804949</color>
 	<color name="blackModuleMobileButtonColor">#550C0C</color>
 
-	<style name="Black" parent="Theme.AppCompat.NoActionBar">
+	<style name="Black"
+	       parent="Theme.AppCompat.NoActionBar">
 		<!-- colors -->
 		<item name="colorPrimary">@color/blackColorPrimary</item>
 		<item name="colorPrimaryDark">@color/blackColorPrimaryDark</item>
@@ -45,7 +46,8 @@
 	<color name="darkModuleMobileEndColor">#63ABAE</color>
 	<color name="darkModuleMobileButtonColor">#013D40</color>
 
-	<style name="Dark" parent="Theme.AppCompat.NoActionBar">
+	<style name="Dark"
+	       parent="Theme.AppCompat.NoActionBar">
 		<!-- colors -->
 		<item name="colorPrimary">@color/darkColorPrimary</item>
 		<item name="colorPrimaryDark">@color/darkColorPrimaryDark</item>
@@ -78,7 +80,8 @@
 	<color name="whiteModuleMobileEndColor">#B070EB</color>
 	<color name="whiteModuleMobileButtonColor">#250642</color>
 
-	<style name="White" parent="Theme.AppCompat.Light.NoActionBar">
+	<style name="White"
+	       parent="Theme.AppCompat.Light.NoActionBar">
 		<!-- colors -->
 		<item name="colorPrimary">@color/whiteColorPrimary</item>
 		<item name="colorPrimaryDark">@color/whiteColorPrimaryDark</item>
@@ -111,7 +114,8 @@
 	<color name="lightModuleMobileEndColor">#63ABAE</color>
 	<color name="lightModuleMobileButtonColor">#033D40</color>
 
-	<style name="Light" parent="Theme.AppCompat.Light.NoActionBar">
+	<style name="Light"
+	       parent="Theme.AppCompat.Light.NoActionBar">
 		<!-- colors -->
 		<item name="colorPrimary">@color/lightColorPrimary</item>
 		<item name="colorPrimaryDark">@color/lightColorPrimaryDark</item>
@@ -133,15 +137,26 @@
 		<item name="moduleMobileButtonColor">@color/whiteModuleMobileButtonColor</item>
 	</style>
 	<!-- attrs -->
-	<attr name="colorBackground" format="color" />
-	<attr name="colorBackgroundBlur" format="color" />
-	<attr name="colorBackgroundFloating" format="color" />
-	<attr name="colorAccent" format="color" />
-	<attr name="colorPrimary" format="color" />
-	<attr name="colorPrimaryDark" format="color" />
-	<attr name="max" format="integer" />
-	<attr name="moduleMobileCenterColor" format="color" />
-	<attr name="moduleMobileStartColor" format="color" />
-	<attr name="moduleMobileEndColor" format="color" />
-	<attr name="moduleMobileButtonColor" format="color" />
+	<attr name="colorBackground"
+	      format="color"/>
+	<attr name="colorBackgroundBlur"
+	      format="color"/>
+	<attr name="colorBackgroundFloating"
+	      format="color"/>
+	<attr name="colorAccent"
+	      format="color"/>
+	<attr name="colorPrimary"
+	      format="color"/>
+	<attr name="colorPrimaryDark"
+	      format="color"/>
+	<attr name="max"
+	      format="integer"/>
+	<attr name="moduleMobileCenterColor"
+	      format="color"/>
+	<attr name="moduleMobileStartColor"
+	      format="color"/>
+	<attr name="moduleMobileEndColor"
+	      format="color"/>
+	<attr name="moduleMobileButtonColor"
+	      format="color"/>
 </resources>

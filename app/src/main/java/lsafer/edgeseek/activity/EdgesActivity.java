@@ -20,16 +20,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Objects;
-
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.EdgeData;
 import lsafer.edgeseek.util.Position;
+
+import java.util.Objects;
 
 /**
  * An activity that makes the user navigate between the preference foreach edge.
@@ -49,10 +47,10 @@ final public class EdgesActivity extends AppCompatActivity {
 		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_edges);
 
-		this.findViewById(R.id.bottom_split).setOnLongClickListener(this::onSplitLongClick);
-		this.findViewById(R.id.left_split).setOnLongClickListener(this::onSplitLongClick);
-		this.findViewById(R.id.top_split).setOnLongClickListener(this::onSplitLongClick);
-		this.findViewById(R.id.right_split).setOnLongClickListener(this::onSplitLongClick);
+		this.findViewById(R.id.bottom_side).setOnLongClickListener(this::onSplitLongClick);
+		this.findViewById(R.id.left_side).setOnLongClickListener(this::onSplitLongClick);
+		this.findViewById(R.id.top_side).setOnLongClickListener(this::onSplitLongClick);
+		this.findViewById(R.id.right_side).setOnLongClickListener(this::onSplitLongClick);
 	}
 
 	@Override
@@ -60,19 +58,27 @@ final public class EdgesActivity extends AppCompatActivity {
 		super.onResume();
 
 		//SET `GONE` TO ALL FACTORS
-		for (int side : Position.SIDES)
-			for (int factor : Position.FACTORS)
-				this.findViewById(Position.getSideId(side, factor))
+		for (int side : Position.side.ARRAY)
+			for (int factor : Position.factor.ARRAY) {
+				int split = Position.split.inSide(side, factor);
+
+				this.findViewById(Position.split.getId(split))
 						.setVisibility(View.GONE);
+			}
 
 		//SET `VISIBLE` TO ACTIVE FACTORS
-		for (int i = 0; i < Position.SIDES.length; i++)
-			this.findViewById(Position.getSideId(i, App.data.sides.get(i).factor))
+		for (int i = 0; i < Position.side.ARRAY.length; i++) {
+			int side = Position.side.ARRAY[i];
+			int factor = App.data.sides.get(i).factor;
+			int split = Position.split.inSide(side, factor);
+
+			this.findViewById(Position.split.getId(split))
 					.setVisibility(View.VISIBLE);
+		}
 
 		//styling
 		for (EdgeData data : App.data.edges) {
-			View view = this.findViewById(Position.getEdgeId(data.position));
+			View view = this.findViewById(Position.edge.getId(data.position));
 
 			if (data.activated)
 				view.setBackgroundColor(Color.argb(150,
@@ -86,29 +92,29 @@ final public class EdgesActivity extends AppCompatActivity {
 	/**
 	 * Get invoked when an edge of the screen module displayed to the user get touched.
 	 *
-	 * @param view the view that has been touch
-	 * @throws NullPointerException if the given 'view' is null
+	 * @param view the view that has been touch.
+	 * @throws NullPointerException if the given 'view' is null.
 	 */
 	public void onEdgeClick(View view) {
 		Objects.requireNonNull(view, "view");
 
 		Intent intent = new Intent(this, EdgeActivity.class);
-		intent.putExtra("edge", Position.fromId(view.getId()));
+		intent.putExtra("edge", Position.edge.ofId(view.getId()));
 		this.startActivity(intent);
 	}
 
 	/**
 	 * Get invoked when an edge-splitter get long-clicked.
 	 *
-	 * @param view the view that have been clicked
+	 * @param view the view that have been clicked.
 	 * @return true if the callback consumed the long click, false otherwise.
-	 * @throws NullPointerException if the given 'view' is null
+	 * @throws NullPointerException if the given 'view' is null.
 	 */
 	public boolean onSplitLongClick(View view) {
 		Objects.requireNonNull(view, "view");
 
 		Intent intent = new Intent(this, SideActivity.class);
-		intent.putExtra("side", Position.fromId(view.getId()));
+		intent.putExtra("side", Position.side.ofId(view.getId()));
 		this.startActivity(intent);
 		return true;
 	}

@@ -20,17 +20,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.WindowManager;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceDataStore;
-
-import java.util.Objects;
-
 import cufyx.perference.MapDataStore;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.service.MainService;
+
+import java.util.Objects;
 
 /**
  * The first activity displayed to the user.
@@ -41,17 +39,17 @@ import lsafer.edgeseek.service.MainService;
  */
 final public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
 	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
-		return R.xml.fragment_app_data;
-	}
-
-	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
 		//data store
 		Objects.requireNonNull(fragment, "fragment");
 		return App.data.store;
+	}
+
+	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//layout resources
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_app_data;
 	}
 
 	@Override
@@ -61,7 +59,6 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 		if (!Objects.equals(oldValue, newValue)) {
 			//ignore useless calls
 
-			//noinspection SwitchStatementWithTooFewBranches
 			switch (key) {
 				case "theme":
 					this.startActivity(new Intent(this, MainActivity.class));
@@ -73,22 +70,13 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//transparent status-bar
+		super.onCreate(savedInstanceState);
+		this.setTheme(App.data.getTheme());
+		this.setContentView(R.layout.activity_fragment);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
 		//register listener
 		App.data.store.registerOnDataChangeListener(this);
-
-		//initial
-		super.onCreate(savedInstanceState);
-		this.setTheme(App.data.getTheme());
-		this.setContentView(R.layout.activity_fragment);
-
-		//fragment instance
-		this.getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.fragment, new SimplePreferenceFragment())
-				.commit();
 
 		//start main-service
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -108,6 +96,7 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 	protected void onResume() {
 		super.onResume();
 
+		//don't run unless permission granted
 		if (!Settings.System.canWrite(this) || !Settings.canDrawOverlays(this))
 			this.startActivity(new Intent(this, PermissionsActivity.class));
 	}

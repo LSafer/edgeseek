@@ -26,7 +26,7 @@ import lsafer.edgeseek.util.Position;
  * @version 0.1.5
  * @since 08-Jun-20
  */
-public class SideData extends AbstractBean {
+final public class SideData extends AbstractBean {
 	/**
 	 * Just a string represents the key of a field in this.
 	 */
@@ -45,7 +45,7 @@ public class SideData extends AbstractBean {
 	 * The number of splits in this side.
 	 */
 	@Property
-	public int factor = Position.FACTOR_FULL;
+	public int factor = Position.factor.FULL;
 
 	/**
 	 * Constructs a new side data.

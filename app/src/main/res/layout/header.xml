@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:minHeight="?android:attr/listPreferredItemHeight"
-	android:orientation="vertical"
-	android:padding="50dp">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:minHeight="?android:attr/listPreferredItemHeight"
+              android:orientation="vertical"
+              android:padding="50dp">
 
 	<TextView
 		android:id="@android:id/title"
@@ -15,7 +15,7 @@
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:textColor="?colorAccent"
 		android:textSize="30sp"
-		tools:text="Title" />
+		tools:text="Title"/>
 
 	<TextView
 		android:id="@android:id/summary"
@@ -23,5 +23,5 @@
 		android:layout_height="wrap_content"
 		android:gravity="center"
 		android:textSize="15sp"
-		tools:text="Summary" />
+		tools:text="Summary"/>
 </LinearLayout>

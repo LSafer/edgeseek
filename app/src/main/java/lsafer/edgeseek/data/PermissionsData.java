@@ -21,15 +21,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.provider.Settings;
-
-import java.util.AbstractMap;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import cufyx.perference.MapDataStore;
 import lsafer.edgeseek.service.CallbackService;
+
+import java.util.*;
 
 /**
  * A map to simplify the permissions request and permissions get.
@@ -43,6 +38,7 @@ final public class PermissionsData extends AbstractMap {
 	 * A data store to use this map with the package {@code android.preference}.
 	 */
 	final public MapDataStore store = new MapDataStore(this);
+
 	/**
 	 * The context to get the permissions-status of.
 	 */
@@ -53,11 +49,13 @@ final public class PermissionsData extends AbstractMap {
 	final private Set<Entry> entrySet;
 
 	/**
-	 * Construct a new permissions data.
+	 * Construct a new permissions' data.
 	 *
 	 * @param context the context
+	 * @throws NullPointerException if the given 'context' is null.
 	 */
 	public PermissionsData(Context context) {
+		Objects.requireNonNull(context, "context");
 		this.context = context;
 		this.entrySet = Collections.unmodifiableSet(new HashSet(Arrays.asList(
 				//android.permission.SYSTEM_ALERT_WINDOW

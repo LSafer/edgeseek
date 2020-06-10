@@ -17,14 +17,7 @@ package lsafer.edgeseek.data;
 
 import android.content.Context;
 import android.util.Log;
-
 import androidx.annotation.StyleRes;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import cufy.beans.AbstractBean;
 import cufy.io.loadable.FileLoadable;
 import cufy.io.loadable.FormatLoadable;
@@ -34,6 +27,12 @@ import cufyx.perference.MapDataStore;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.util.Position;
 import lsafer.edgeseek.util.Util;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * The data of the hole application.
@@ -117,18 +116,18 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	 * The data of the edges.
 	 */
 	@Property
-	public List<EdgeData> edges = Util.fill(new ArrayList<>(), Position.POSITIONS.length, EdgeData::new);
+	public List<EdgeData> edges = Util.fill(new ArrayList<>(), Position.edge.ARRAY.length, EdgeData::new);
 	/**
 	 * The data of the sides. Limited to 4 representing the 4 sides of the screen.
 	 */
 	@Property
-	public List<SideData> sides = Util.fill(new ArrayList<>(), Position.SIDES.length, SideData::new);
+	public List<SideData> sides = Util.fill(new ArrayList<>(), Position.side.ARRAY.length, SideData::new);
 
 	/**
 	 * The theme of the application.
 	 */
 	@Property
-	public String theme = "light";
+	public String theme = AppData.THEME_LIGHT;
 
 	//------- defaults
 
@@ -140,10 +139,13 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	/**
 	 * Construct a new app-data.
 	 *
-	 * @param context to be used
-	 * @param file    to read-from/write-to
+	 * @param context to be used.
+	 * @param file    to read-from/write-to.
+	 * @throws NullPointerException if the given 'context' or 'file' is null.
 	 */
 	public AppData(Context context, File file) {
+		Objects.requireNonNull(context, "context");
+		Objects.requireNonNull(file, "file");
 		this.file = file;
 		this.permissions = new PermissionsData(context);
 	}
@@ -162,8 +164,12 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	public void load() {
 		try {
 			FormatLoadable.super.load();
-			this.put("edges", this.edges);
-			this.put("sides", this.sides);
+
+			//if it got removed by the parser
+			this.put(AppData.EDGES, this.edges);
+			this.put(AppData.SIDES, this.sides);
+			for (EdgeData edge : this.edges)
+				edge.put(EdgeData.BLACK_LIST, edge.blackList);
 		} catch (IOException e) {
 			Log.e("MainData", "load: ", e);
 		}
@@ -183,7 +189,7 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	/**
 	 * Get the theme resources id for the theme set in this.
 	 *
-	 * @return the theme resources-id for this app-data theme
+	 * @return the theme resources-id for this app-data theme.
 	 */
 	@StyleRes
 	public int getTheme() {

@@ -17,30 +17,29 @@ package lsafer.edgeseek.tasks;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-
-import java.util.Objects;
-
 import lsafer.edgeseek.Edge;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.legacy.SingleToast;
 import lsafer.edgeseek.util.Util;
 
+import java.util.Objects;
+
 /**
- * A controller that listens for touches applied to an edge and
- * controls the brightness depending on the user input and the data
- * provided to it by the edge it targets.
+ * A controller that listens for touches applied to an edge and controls the brightness depending on the user input, and the data provided to it by
+ * the edge it targets.
  *
  * @author lsafer
  * @version 0.1.5
  * @since 28-May-20
  */
-public class OnTouchBrightnessControl implements View.OnTouchListener {
+final public class OnTouchBrightnessControl implements View.OnTouchListener {
 	/**
 	 * The name of this task.
 	 */
@@ -64,11 +63,11 @@ public class OnTouchBrightnessControl implements View.OnTouchListener {
 	private ContentResolver resolver;
 
 	/**
-	 * Construct a new touch listener that controls brightness when it get invoked.
+	 * Construct a new touch listener that controls brightness when it gets invoked.
 	 *
-	 * @param context to be used
-	 * @param edge    to work with
-	 * @throws NullPointerException if the given 'context' or 'edge' is null
+	 * @param context to be used.
+	 * @param edge    to work with.
+	 * @throws NullPointerException if the given 'context' or 'edge' is null.
 	 */
 	public OnTouchBrightnessControl(Context context, Edge edge) {
 		Objects.requireNonNull(context, "context");
@@ -90,7 +89,10 @@ public class OnTouchBrightnessControl implements View.OnTouchListener {
 			case MotionEvent.ACTION_UP:
 				//start/end of motion
 				Vibrator vibrator = this.context.getSystemService(Vibrator.class);
-				vibrator.vibrate(VibrationEffect.createOneShot(this.edge.edgeData.vibration, VibrationEffect.DEFAULT_AMPLITUDE));
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+					vibrator.vibrate(VibrationEffect.createOneShot(this.edge.edgeData.vibration, VibrationEffect.DEFAULT_AMPLITUDE));
+				else//noinspection deprecation, deprecated in API 26
+					vibrator.vibrate(this.edge.edgeData.vibration);
 				break;
 			default:
 				//the seek is on

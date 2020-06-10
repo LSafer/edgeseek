@@ -2,65 +2,121 @@
 <resources>
 	<!-- edge ids -->
 	<!-- bottom -->
-	<item name="bottom" type="id" />
-	<item name="bottom_split" type="id" />
-	<item name="bottom2" type="id" />
-	<item name="bottom2_right" type="id" />
-	<item name="bottom2_left" type="id" />
-	<item name="bottom3" type="id" />
-	<item name="bottom3_right" type="id" />
-	<item name="bottom3_center" type="id" />
-	<item name="bottom3_left" type="id" />
-	<item name="bottom4" type="id" />
-	<item name="bottom4_right" type="id" />
-	<item name="bottom4_cright" type="id" />
-	<item name="bottom4_cleft" type="id" />
-	<item name="bottom4_left" type="id" />
+	<item name="bottom"
+	      type="id"/>
+	<item name="bottom2"
+	      type="id"/>
+	<item name="bottom3"
+	      type="id"/>
+	<item name="bottom4"
+	      type="id"/>
+	<item name="bottom_side"
+	      type="id"/>
+	<item name="bottom2_right"
+	      type="id"/>
+	<item name="bottom2_left"
+	      type="id"/>
+	<item name="bottom3_right"
+	      type="id"/>
+	<item name="bottom3_center"
+	      type="id"/>
+	<item name="bottom3_left"
+	      type="id"/>
+	<item name="bottom4_right"
+	      type="id"/>
+	<item name="bottom4_cright"
+	      type="id"/>
+	<item name="bottom4_cleft"
+	      type="id"/>
+	<item name="bottom4_left"
+	      type="id"/>
 	<!-- left -->
-	<item name="left" type="id" />
-	<item name="left_split" type="id" />
-	<item name="left2" type="id" />
-	<item name="left2_bottom" type="id" />
-	<item name="left2_top" type="id" />
-	<item name="left3" type="id" />
-	<item name="left3_bottom" type="id" />
-	<item name="left3_center" type="id" />
-	<item name="left3_top" type="id" />
-	<item name="left4" type="id" />
-	<item name="left4_bottom" type="id" />
-	<item name="left4_cbottom" type="id" />
-	<item name="left4_ctop" type="id" />
-	<item name="left4_top" type="id" />
+	<item name="left"
+	      type="id"/>
+	<item name="left2"
+	      type="id"/>
+	<item name="left3"
+	      type="id"/>
+	<item name="left4"
+	      type="id"/>
+	<item name="left_side"
+	      type="id"/>
+	<item name="left2_bottom"
+	      type="id"/>
+	<item name="left2_top"
+	      type="id"/>
+	<item name="left3_bottom"
+	      type="id"/>
+	<item name="left3_center"
+	      type="id"/>
+	<item name="left3_top"
+	      type="id"/>
+	<item name="left4_bottom"
+	      type="id"/>
+	<item name="left4_cbottom"
+	      type="id"/>
+	<item name="left4_ctop"
+	      type="id"/>
+	<item name="left4_top"
+	      type="id"/>
 	<!-- top -->
-	<item name="top" type="id" />
-	<item name="top_split" type="id" />
-	<item name="top2" type="id" />
-	<item name="top2_left" type="id" />
-	<item name="top2_right" type="id" />
-	<item name="top3" type="id" />
-	<item name="top3_left" type="id" />
-	<item name="top3_center" type="id" />
-	<item name="top3_right" type="id" />
-	<item name="top4" type="id" />
-	<item name="top4_left" type="id" />
-	<item name="top4_cleft" type="id" />
-	<item name="top4_cright" type="id" />
-	<item name="top4_right" type="id" />
+	<item name="top"
+	      type="id"/>
+	<item name="top2"
+	      type="id"/>
+	<item name="top3"
+	      type="id"/>
+	<item name="top4"
+	      type="id"/>
+	<item name="top_side"
+	      type="id"/>
+	<item name="top2_left"
+	      type="id"/>
+	<item name="top2_right"
+	      type="id"/>
+	<item name="top3_left"
+	      type="id"/>
+	<item name="top3_center"
+	      type="id"/>
+	<item name="top3_right"
+	      type="id"/>
+	<item name="top4_left"
+	      type="id"/>
+	<item name="top4_cleft"
+	      type="id"/>
+	<item name="top4_cright"
+	      type="id"/>
+	<item name="top4_right"
+	      type="id"/>
 	<!-- right -->
-	<item name="right" type="id" />
-	<item name="right_split" type="id" />
-	<item name="right2" type="id" />
-	<item name="right2_top" type="id" />
-	<item name="right2_bottom" type="id" />
-	<item name="right3" type="id" />
-	<item name="right3_top" type="id" />
-	<item name="right3_center" type="id" />
-	<item name="right3_bottom" type="id" />
-	<item name="right4" type="id" />
-	<item name="right4_top" type="id" />
-	<item name="right4_ctop" type="id" />
-	<item name="right4_cbottom" type="id" />
-	<item name="right4_bottom" type="id" />
+	<item name="right"
+	      type="id"/>
+	<item name="right2"
+	      type="id"/>
+	<item name="right3"
+	      type="id"/>
+	<item name="right4"
+	      type="id"/>
+	<item name="right_side"
+	      type="id"/>
+	<item name="right2_top"
+	      type="id"/>
+	<item name="right2_bottom"
+	      type="id"/>
+	<item name="right3_top"
+	      type="id"/>
+	<item name="right3_center"
+	      type="id"/>
+	<item name="right3_bottom"
+	      type="id"/>
+	<item name="right4_top"
+	      type="id"/>
+	<item name="right4_ctop"
+	      type="id"/>
+	<item name="right4_cbottom"
+	      type="id"/>
+	<item name="right4_bottom"
+	      type="id"/>
 	<!-- edges names -->
 	<!-- bottom -->
 	<string name="_bottom">Bottom Edge</string>

@@ -17,17 +17,15 @@ package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceDataStore;
-
-import java.util.Objects;
-
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.util.Position;
+
+import java.util.Objects;
 
 /**
  * An activity that manages the data of a side.
@@ -43,11 +41,6 @@ final public class SideActivity extends AppCompatActivity implements SimplePrefe
 	private int position;
 
 	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		return R.xml.fragment_side_data;
-	}
-
-	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
 		//data store
 		Objects.requireNonNull(fragment, "fragment");
@@ -55,23 +48,21 @@ final public class SideActivity extends AppCompatActivity implements SimplePrefe
 	}
 
 	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//layout resources
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_side_data;
+	}
+
+	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		//transparent status-bar
+		super.onCreate(savedInstanceState);
+		this.setTheme(App.data.getTheme());
+		this.setContentView(R.layout.activity_fragment);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
 		//data
 		this.position = this.getIntent().getIntExtra("side", -1);
-
-		//initial
-		super.onCreate(savedInstanceState);
-		this.setTheme(App.data.getTheme());
-		this.setContentView(R.layout.activity_fragment);
-
-		//fragment instance
-		this.getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.fragment, new SimplePreferenceFragment())
-				.commit();
 	}
 
 	@Override
@@ -82,6 +73,6 @@ final public class SideActivity extends AppCompatActivity implements SimplePrefe
 		((SimplePreferenceFragment) this.getSupportFragmentManager()
 				.findFragmentById(R.id.fragment))
 				.findPreference("title")
-				.setTitle(Position.getSideTitle(this.position));
+				.setTitle(Position.side.getTitle(this.position));
 	}
 }

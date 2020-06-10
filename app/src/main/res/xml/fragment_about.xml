@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 	<Preference
 		app:layout="@layout/header"
-		app:title="@string/about" />
+		app:title="@string/about"/>
 	<PreferenceCategory app:title="@string/credits">
 		<Preference
 			app:summary="@string/_des_pref_ABOUT_AUTHOR"
-			app:title="@string/_tit_pref_ABOUT_AUTHOR" />
+			app:title="@string/_tit_pref_ABOUT_AUTHOR"/>
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/versions">
 		<Preference
 			app:key="version"
 			app:summary="@string/_des_pref_ABOUT_VERSION"
-			app:title="@string/_tit_pref_ABOUT_VERSION" />
+			app:title="@string/_tit_pref_ABOUT_VERSION"/>
 		<Preference
 			app:key="version_code"
 			app:summary="@string/_des_pref_ABOUT_VERSION_CODE"
-			app:title="@string/_tit_pref_ABOUT_VERSION_CODE" />
+			app:title="@string/_tit_pref_ABOUT_VERSION_CODE"/>
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/updates">
 		<Preference
@@ -25,23 +25,23 @@
 			app:title="@string/_tit_pref_ABOUT_WEBSITE">
 			<intent
 				android:action="android.intent.action.VIEW"
-				android:data="https://lsafer.net/edgeseek" />
+				android:data="https://lsafer.net/edgeseek"/>
 		</Preference>
 		<Preference
 			app:summary="@string/_des_pref_ABOUT_GOOGLE_PLAY"
 			app:title="@string/_tit_pref_ABOUT_GOOGLE_PLAY">
 			<intent
 				android:action="android.intent.action.VIEW"
-				android:data="https://play.google.com/store/apps/details?id=lsafer.edgeseek" />
+				android:data="https://play.google.com/store/apps/details?id=lsafer.edgeseek"/>
 		</Preference>
 		<Preference
 			app:summary="@string/_des_pref_ABOUT_GITHUB"
 			app:title="@string/_tit_pref_ABOUT_GITHUB">
 			<intent
 				android:action="android.intent.action.VIEW"
-				android:data="https://github.com/lsafer/edgeseek" />
+				android:data="https://github.com/lsafer/edgeseek"/>
 		</Preference>
 	</PreferenceCategory>
-	<!-- to add a gap between the bottom of the list and the screen -->
-	<Preference />
+	<!-- to add a gap between the bottom of the list, and the screen -->
+	<Preference/>
 </PreferenceScreen>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 	<Preference
 		android:layout="@layout/header"
-		app:key="title" />
+		app:key="title"/>
 	<PreferenceCategory app:title="@string/misc">
 		<SeekBarPreference
 			android:max="3"
@@ -11,8 +11,8 @@
 			app:min="1"
 			app:showSeekBarValue="true"
 			app:summary="@string/_des_pref_SIDE_SPLIT"
-			app:title="@string/_tit_pref_SIDE_SPLIT" />
+			app:title="@string/_tit_pref_SIDE_SPLIT"/>
 	</PreferenceCategory>
 	<!-- to add a gap between the bottom of the list and the screen -->
-	<Preference />
+	<Preference/>
 </PreferenceScreen>

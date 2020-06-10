@@ -20,14 +20,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Objects;
-
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 
+import java.util.Objects;
+
 /**
- * Two toasts of this class can't be displayed at the same time.
+ * A toast that when shown it removes the current displayed toast of its kind.
  *
  * @author lsafer
  * @version 0.1.5
@@ -42,21 +41,21 @@ final public class SingleToast extends Toast {
 	/**
 	 * Constructs a new toast.
 	 *
-	 * @param context to be used
-	 * @throws NullPointerException if the given context is null
+	 * @param context to be used.
+	 * @throws NullPointerException if the given context is null.
 	 */
 	public SingleToast(Context context) {
-		super(context);
+		super(Objects.requireNonNull(context, "context"));
 	}
 
 	/**
 	 * relevant to the method {@link Toast#makeText(Context, CharSequence, int)}.
 	 *
-	 * @param context  to be used
-	 * @param string   to be displayed
-	 * @param duration to show the toast within
-	 * @return the toast constructed
-	 * @throws NullPointerException if the given 'context' or 'string' is null
+	 * @param context  to be used.
+	 * @param string   to be displayed.
+	 * @param duration to show the toast within.
+	 * @return the toast constructed.
+	 * @throws NullPointerException if the given 'context' or 'string' is null.
 	 */
 	public static SingleToast makeText(Context context, String string, int duration) {
 		Objects.requireNonNull(context, "context");

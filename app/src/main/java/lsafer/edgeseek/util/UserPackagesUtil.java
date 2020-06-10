@@ -18,11 +18,13 @@ package lsafer.edgeseek.util;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Objects;
 
 /**
- * A utils for dealing with the user packages.
+ * An utils for dealing with the user packages.
  *
  * @author lsafer
  * @version 0.1.5
@@ -38,14 +40,14 @@ final public class UserPackagesUtil {
 	 */
 	private static CharSequence[] labels;
 	/**
-	 * The packages names.
+	 * The packages' names.
 	 */
 	private static CharSequence[] packages;
 
 	/**
-	 * This is a util class. And shall not be instanced as an object.
+	 * This is an util class. And must not be instanced as an object.
 	 *
-	 * @throws AssertionError when called
+	 * @throws AssertionError when called.
 	 */
 	private UserPackagesUtil() {
 		throw new AssertionError("No instance for you!");
@@ -54,18 +56,28 @@ final public class UserPackagesUtil {
 	/**
 	 * Get the info of all applications installed in the user's device.
 	 *
-	 * @param manager to be used
-	 * @return the info of all the installed applications
-	 * @throws NullPointerException if the given 'manager' is null
+	 * @param manager to be used.
+	 * @return the info of all the installed applications.
+	 * @throws NullPointerException if the given 'manager' is null.
 	 */
 	public static synchronized ApplicationInfo[] getApplications(PackageManager manager) {
 		Objects.requireNonNull(manager, "manager");
 
 		if (UserPackagesUtil.applications == null) {
 			List<ApplicationInfo> list = manager.getInstalledApplications(PackageManager.GET_META_DATA);
-			list.removeIf(app -> (app.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
-			list.forEach(l -> l.nonLocalizedLabel = l.loadLabel(manager));
-			list.sort((a, b) -> a.nonLocalizedLabel.toString().compareTo(b.nonLocalizedLabel.toString()));
+
+			//filter and solve
+			ListIterator<ApplicationInfo> iterator = list.listIterator();
+			while (iterator.hasNext()) {
+				ApplicationInfo app = iterator.next();
+
+				if ((app.flags & ApplicationInfo.FLAG_SYSTEM) != 0)
+					iterator.remove();
+				else app.nonLocalizedLabel = app.loadLabel(manager);
+			}
+
+			//noinspection ComparatorCombinators
+			Collections.sort(list, (a, b) -> a.nonLocalizedLabel.toString().compareTo(b.nonLocalizedLabel.toString()));
 
 			UserPackagesUtil.applications = list.toArray(new ApplicationInfo[0]);
 		}
@@ -76,9 +88,9 @@ final public class UserPackagesUtil {
 	/**
 	 * Get the labels of all applications installed in the user's device.
 	 *
-	 * @param manager to be used
-	 * @return the labels of all the installed applications
-	 * @throws NullPointerException if the given 'manager' is null
+	 * @param manager to be used.
+	 * @return the labels of all the installed applications.
+	 * @throws NullPointerException if the given 'manager' is null.
 	 */
 	public static synchronized CharSequence[] getLabels(PackageManager manager) {
 		Objects.requireNonNull(manager, "manager");
@@ -99,9 +111,9 @@ final public class UserPackagesUtil {
 	/**
 	 * Get the packages-names of all applications installed in the user's device.
 	 *
-	 * @param manager to be used
-	 * @return the packages-names of all the installed applications
-	 * @throws NullPointerException if the given 'manager' is null
+	 * @param manager to be used.
+	 * @return the packages-names of all the installed applications.
+	 * @throws NullPointerException if the given 'manager' is null.
 	 */
 	public static synchronized CharSequence[] getPackagesNames(PackageManager manager) {
 		Objects.requireNonNull(manager, "manager");

@@ -16,16 +16,15 @@
 package lsafer.edgeseek.data;
 
 import android.graphics.Color;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import cufy.beans.AbstractBean;
 import cufyx.perference.MapDataStore;
 import lsafer.edgeseek.tasks.OnLongClickExpandStatusBar;
 import lsafer.edgeseek.tasks.OnTouchAudioControl;
 import lsafer.edgeseek.tasks.OnTouchBrightnessControl;
 import lsafer.edgeseek.util.Position;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A structure holding the data of an edge.
@@ -39,6 +38,10 @@ final public class EdgeData extends AbstractBean {
 	 * Just a string represents the key of a field in this.
 	 */
 	final public static String ACTIVATED = "activated";
+	/**
+	 * Just a string represents the key of a field in this.
+	 */
+	final public static String BLACK_LIST = "blackList";
 	/**
 	 * Just a string represents the key of a field in this.
 	 */
@@ -71,10 +74,6 @@ final public class EdgeData extends AbstractBean {
 	 * Just a string represents the key of a field in this.
 	 */
 	final public static String WIDTH = "width";
-	/**
-	 * Just a string represents the key of a field in this.
-	 */
-	final public static String BLACK_LIST = "blackList";
 
 	/**
 	 * The split factor used on this edge.
@@ -117,6 +116,11 @@ final public class EdgeData extends AbstractBean {
 	@Property
 	public boolean activated;
 	/**
+	 * A set of application names for this edge to not run on.
+	 */
+	@Property
+	public Set<String> blackList = new HashSet<>();
+	/**
 	 * The color of the edge.
 	 */
 	@Property
@@ -132,7 +136,7 @@ final public class EdgeData extends AbstractBean {
 	@Property
 	public boolean rotate = false;
 	/**
-	 * What to do when seeking.
+	 * What to-do when seeking.
 	 */
 	@Property
 	public String seek = "";
@@ -156,24 +160,19 @@ final public class EdgeData extends AbstractBean {
 	 */
 	@Property
 	public int width = 35;
-	/**
-	 * A set of application names for this edge to not run on.
-	 */
-	@Property
-	public Set<String> blackList = new HashSet<>();
 
 	/**
 	 * Construct a new edge data for the edge in the given position.
 	 *
-	 * @param position the position of the edge
-	 * @throws IllegalArgumentException if hte given 'position' is not within the range [0, 3]
+	 * @param position the position of the edge.
+	 * @throws IllegalArgumentException if hte given 'position' is unknown.
 	 */
 	public EdgeData(int position) {
-		if (position < Position.MIN || position > Position.MAX)
-			throw new IllegalArgumentException("position out of range [" + Position.MIN + ", " + Position.MAX + "]");
+		if (position < 0 || position >= Position.edge.ARRAY.length)
+			throw new IllegalArgumentException("position out of range [0, " + (Position.edge.ARRAY.length - 1) + "]");
 		this.position = position;
-		this.factor = Position.getFactor(position);
-		this.side = Position.getSide(position);
+		this.factor = Position.factor.ofPosition(position);
+		this.side = Position.side.ofPosition(position);
 
 		//---- default values depending on position
 		switch (position) {

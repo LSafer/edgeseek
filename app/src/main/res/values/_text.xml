@@ -6,7 +6,9 @@
 	<string name="_tit_noti_MAIN_SERVICE_CHANNEL">Running In Background</string>
 	<!-- des noti -->
 	<string name="_des_noti_MAIN_SERVICE">The screen\'s edges are ready to receive touch events</string>
-	<string name="_des_noti_MAIN_SERVICE_CHANNEL">Allows the application to work in background. Recommended to disable this notification since it has no real value</string>
+	<string name="_des_noti_MAIN_SERVICE_CHANNEL">Allows the application to work in background. Recommended to disable this notification since it has
+		no real value
+	</string>
 	<!-- erro -->
 	<!-- des erro -->
 	<string name="_des_erro_ERROR">Error (%s)</string>
@@ -14,7 +16,8 @@
 	<!-- lak perm -->
 	<string name="_lak_perm_SYSTEM_ALERT_WINDOW">Can\'t show without \'Display Over Other Apps\' permission</string>
 	<string name="_lak_perm_WRITE_SETTINGS">Can\'t change values without \'Write System Settings\' permission</string>
-	<string name="_lak_perm_IGNORE_BATTERY_OPTIMIZATIONS">It is better for the application to grant \'ignore battery optimization\' permission</string>
+	<string name="_lak_perm_IGNORE_BATTERY_OPTIMIZATIONS">It is better for the application to grant \'ignore battery optimization\' permission
+	</string>
 	<!-- tit perm -->
 	<string name="_tit_perm_SYSTEM_ALERT_WINDOW">Display Over Other Apps</string>
 	<string name="_tit_perm_WRITE_SETTINGS">Write System Settings</string>

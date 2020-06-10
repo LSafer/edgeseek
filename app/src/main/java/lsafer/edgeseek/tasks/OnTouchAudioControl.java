@@ -23,24 +23,22 @@ import android.os.Vibrator;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-
-import java.util.Objects;
-
 import lsafer.edgeseek.Edge;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.legacy.SingleToast;
 import lsafer.edgeseek.util.Util;
 
+import java.util.Objects;
+
 /**
- * A controller that listens for touches applied to an edge and
- * controls the audio depending on the user input and the data
- * provided to it by the edge it targets.
+ * A controller that listens for touches applied to an edge and controls the audio depending on the user input, and the data provided to it by the
+ * edge it targets.
  *
  * @author lsafer
  * @version 0.1.5
  * @since 28-May-20
  */
-public class OnTouchAudioControl implements View.OnTouchListener {
+final public class OnTouchAudioControl implements View.OnTouchListener {
 	/**
 	 * The name of the alarm task.
 	 */
@@ -84,7 +82,7 @@ public class OnTouchAudioControl implements View.OnTouchListener {
 	 *
 	 * @param context to be used
 	 * @param edge    to target
-	 * @throws NullPointerException if the given 'context' or 'edge' is null
+	 * @throws NullPointerException if the given 'context' or 'edge' is null.
 	 */
 	public OnTouchAudioControl(Context context, Edge edge) {
 		Objects.requireNonNull(context, "context");
@@ -121,7 +119,10 @@ public class OnTouchAudioControl implements View.OnTouchListener {
 			case MotionEvent.ACTION_UP:
 				//start/end of motion
 				Vibrator vibrator = this.context.getSystemService(Vibrator.class);
-				vibrator.vibrate(VibrationEffect.createOneShot(this.edge.edgeData.vibration, VibrationEffect.DEFAULT_AMPLITUDE));
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+					vibrator.vibrate(VibrationEffect.createOneShot(this.edge.edgeData.vibration, VibrationEffect.DEFAULT_AMPLITUDE));
+				else//noinspection deprecation, deprecated in API 26
+					vibrator.vibrate(this.edge.edgeData.vibration);
 				break;
 			default:
 				//the seek is on

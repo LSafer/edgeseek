@@ -24,9 +24,6 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
-
-import java.util.Objects;
-
 import cufyx.perference.MapDataStore;
 import cufyx.perference.MapDataStore.OnDataChangeListener;
 import lsafer.edgeseek.App.OnConfigurationChangeListener;
@@ -38,6 +35,8 @@ import lsafer.edgeseek.tasks.OnTouchAudioControl;
 import lsafer.edgeseek.tasks.OnTouchBrightnessControl;
 import lsafer.edgeseek.util.Position;
 import lsafer.edgeseek.util.Util;
+
+import java.util.Objects;
 
 import static android.view.WindowManager.LayoutParams;
 
@@ -61,10 +60,6 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * The context this edge is using.
 	 */
 	final private Context context;
-	/**
-	 * The display this edge is showing at.
-	 */
-	final private Display display;
 	/**
 	 * The window-manager for this edge to attach to.
 	 */
@@ -92,17 +87,21 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 */
 	protected boolean alive = false;
 	/**
-	 * True, if this edge is currently showing on the screen.
+	 * True, if this edge is now showing on the screen.
 	 * <br>
 	 * If this set to true, then {@link #built} and {@link #alive} should be true, too.
 	 */
 	protected boolean attached = false;
 	/**
-	 * True, if this edge have been built.
+	 * True, if this edge has been built.
 	 * <br>
 	 * If this set to false, then {@link #attached} should be false, too.
 	 */
 	protected boolean built = false;
+	/**
+	 * The display this edge is showing at.
+	 */
+	protected Display display;
 
 	/**
 	 * Construct a new edge from the given data.
@@ -110,7 +109,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	 * @param context  the context of the application
 	 * @param edgeData to construct the edge from
 	 * @param sideData the data of the side this edge is at
-	 * @throws NullPointerException if the given 'context' or 'sideData' or 'edgeData' is null
+	 * @throws NullPointerException if the given 'context' or 'sideData' or 'edgeData' is null.
 	 */
 	public Edge(Context context, SideData sideData, EdgeData edgeData) {
 		Objects.requireNonNull(context, "context");
@@ -126,11 +125,30 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	//events
 
 	@Override
+	public void onCallBackDestroyed() {
+		if (this.alive && this.built)
+			this.view.setVisibility(View.VISIBLE);
+	}
+
+	@Override
+	public void onWindowStateChanged(ActivityInfo activity) {
+		if (this.alive && this.built) {
+			if (this.edgeData.blackList.contains(activity.packageName))
+				this.view.setVisibility(View.GONE);
+			else this.view.setVisibility(View.VISIBLE);
+		}
+	}
+
+	//public
+
+	@Override
 	public synchronized void onConfigurationChanged(Configuration newConfig) {
 		if (this.attached) {
 			//if this edge is not attached, then ignore the call
 
-			if (!this.edgeData.rotate) {
+			this.display = this.manager.getDefaultDisplay();
+
+			if (!this.edgeData.rotate || this.edgeData.factor != 1) {
 				//only if the edge should stay the same position
 				this.viewSolveDimens();
 				//if its attached and have been started, then it is attached
@@ -152,7 +170,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 					case EdgeData.ACTIVATED:
 						//when the user toggles the activation status of this edge
 						if (this.isActivated()) {
-							//if it was deactivated and the user activated it
+							//if it was deactivated, and the user activated it
 							if (!this.attached) {
 								if (!this.built)
 									this.viewBuild();
@@ -160,8 +178,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 								this.windowAttach();
 							}
 						} else if (this.attached) {
-							//if it was activated and the user deactivated it,
-							//only do when attach, since the data may change while
+							//if it was activated, and the user deactivated it,
+							//only perform when attach, since the data may change while
 							//this edge is not attached
 							this.windowDetach();
 						}
@@ -173,35 +191,42 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 					case EdgeData.ROTATE:
 						//when the rotation changes, the current position should
 						//be changed too, depending on the current display position
-						this.viewSolveDimens();
-						//only if it have been attached, since if its not,
-						//then no need to update it
-						if (this.attached)
-							this.windowReattach();
+						if (this.built) {
+							this.viewSolveDimens();
+							//only if it has been attached, since if its not,
+							//then no need to update it
+							if (this.attached)
+								this.windowReattach();
+						}
 						break;
 					case EdgeData.SEEK:
 						//update the seek-task is just changing the
-						this.viewSolveSeekTask();
+						if (this.built) {
+							this.viewSolveSeekTask();
+						}
 						break;
 					case EdgeData.LONG_CLICK:
-						this.viewSolveLongClickTask();
+						if (this.built) {
+							this.viewSolveLongClickTask();
+						}
 						break;
 					case EdgeData.COLOR:
-						this.viewSolveStyle();
-						if (this.attached)
-							this.windowReattach();
+						if (this.built) {
+							this.viewSolveStyle();
+
+							if (this.attached)
+								this.windowReattach();
+						}
 						break;
 				}
 			}
 		}
 	}
 
-	//public control OK
-
 	/**
 	 * Destroy this edge.
 	 *
-	 * @throws IllegalStateException if this edge is not alive
+	 * @throws IllegalStateException if this edge is not alive.
 	 */
 	public synchronized void destroy() {
 		this.assertAlive();
@@ -219,26 +244,11 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		this.alive = false;
 	}
 
-	@Override
-	public void onWindowStateChanged(ActivityInfo activity) {
-		if (this.alive && this.built) {
-			if (this.edgeData.blackList.contains(activity.packageName))
-				this.view.setVisibility(View.GONE);
-			else this.view.setVisibility(View.VISIBLE);
-		}
-	}
-
-	@Override
-	public void onCallBackDestroyed() {
-		if (this.alive && this.built)
-			this.view.setVisibility(View.VISIBLE);
-	}
-
 	/**
 	 * Start/Revive this edge.
 	 *
-	 * @return this
-	 * @throws IllegalStateException if this edge is alive
+	 * @return this.
+	 * @throws IllegalStateException if this edge is alive.
 	 */
 	public synchronized Edge start() {
 		this.assertNotAlive();
@@ -266,24 +276,24 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		return this;
 	}
 
-	//ask OK
+	//ask
 
 	/**
 	 * Determine if this edge is allowed to be displayed or not.
 	 *
-	 * @return whether this edge is allowed to be displayed or not
+	 * @return whether this edge is allowed to be displayed or not.
 	 */
 	protected synchronized boolean isActivated() {
 		return this.edgeData.activated && this.edgeData.factor == this.sideData.factor;
 	}
 
-	//view control OK
+	//view
 
 	/**
 	 * Builds this edge for the first time.
 	 *
-	 * @return this edge
-	 * @throws IllegalStateException if already built, or if this edge is not alive
+	 * @return this edge.
+	 * @throws IllegalStateException if already built, or if this edge is not alive.
 	 */
 	protected synchronized Edge viewBuild() {
 		this.assertAlive();
@@ -295,6 +305,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		this.params.type = Build.VERSION.SDK_INT >= 26 ?
 						   LayoutParams.TYPE_APPLICATION_OVERLAY :
 						   LayoutParams.TYPE_PHONE;
+		//noinspection deprecation
 		this.params.flags = LayoutParams.FLAG_NOT_FOCUSABLE |
 							LayoutParams.FLAG_LAYOUT_IN_SCREEN |
 							LayoutParams.FLAG_LAYOUT_NO_LIMITS |
@@ -312,8 +323,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Stick this edge to its position in the display.
 	 *
-	 * @return this
-	 * @throws IllegalStateException if this edge is not alive
+	 * @return this.
+	 * @throws IllegalStateException if this edge is not alive.
 	 */
 	protected synchronized Edge viewSolveDimens() {
 		this.assertAlive();
@@ -322,11 +333,12 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		this.position = this.edgeData.rotate ? this.edgeData.position : Position.getRotated(this.edgeData.position, this.display.getRotation());
 		this.landscape = Position.isLandscape(this.position);
 
-		float height = this.edgeData.factor == 1 ? LayoutParams.MATCH_PARENT :
-					   (this.landscape ? Util.getWidth(this.display) : Util.getHeight(this.display)) / Position.getFactor(this.position);
+		float height = this.edgeData.factor == 1 ?
+					   LayoutParams.MATCH_PARENT :
+					   (this.landscape ? Util.getWidth(this.display) : Util.getHeight(this.display)) / this.edgeData.factor;
 
 		//dimensions
-		this.params.gravity = Position.getGravity(this.position);
+		this.params.gravity = Position.gravity.ofPosition(this.position);
 		this.params.width = this.landscape ? (int) height : this.edgeData.width;
 		this.params.height = this.landscape ? this.edgeData.width : (int) height;
 
@@ -336,8 +348,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Configure the long-click-task of this edge.
 	 *
-	 * @return this
-	 * @throws IllegalStateException if this edge is not alive
+	 * @return this.
+	 * @throws IllegalStateException if this edge is not alive.
 	 */
 	protected synchronized Edge viewSolveLongClickTask() {
 		this.assertAlive();
@@ -357,8 +369,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Configure the seek-task of this edge.
 	 *
-	 * @return this
-	 * @throws IllegalStateException if this edge is not alive
+	 * @return this.
+	 * @throws IllegalStateException if this edge is not alive.
 	 */
 	protected synchronized Edge viewSolveSeekTask() {
 		this.assertAlive();
@@ -384,8 +396,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Style the view of this edge.
 	 *
-	 * @return this
-	 * @throws IllegalStateException if this edge is not alive
+	 * @return this.
+	 * @throws IllegalStateException if this edge is not alive.
 	 */
 	protected synchronized Edge viewSolveStyle() {
 		this.assertAlive();
@@ -397,13 +409,13 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 		return this;
 	}
 
-	//window control FINAL
+	//window FINAL
 
 	/**
 	 * Display this edge to the screen.
 	 *
-	 * @return this
-	 * @throws IllegalStateException if this edge is showing already or if the edge not built yet, or if this edge is not alive
+	 * @return this.
+	 * @throws IllegalStateException if this edge is showing already or if the edge not built yet, or if this edge is not alive.
 	 */
 	protected synchronized Edge windowAttach() {
 		this.assertAlive();
@@ -423,8 +435,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Remove this edge from the screen.
 	 *
-	 * @return this
-	 * @throws IllegalStateException if this edge is not showing, or if this edge is not alive
+	 * @return this.
+	 * @throws IllegalStateException if this edge is not showing, or if this edge is not alive.
 	 */
 	protected synchronized Edge windowDetach() {
 		this.assertAttached();
@@ -442,8 +454,8 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Update the view live. (call only when the edge is shown)
 	 *
-	 * @return this
-	 * @throws IllegalStateException if the edge is currently not shown, or if this edge is not alive
+	 * @return this.
+	 * @throws IllegalStateException if the edge is not shown, or if this edge is not alive.
 	 */
 	protected synchronized Edge windowReattach() {
 		this.assertAttached();
@@ -462,7 +474,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Assert that this edge is alive.
 	 *
-	 * @throws IllegalStateException if this edge is not alive
+	 * @throws IllegalStateException if this edge is not alive.
 	 */
 	private synchronized void assertAlive() {
 		if (!this.alive)
@@ -472,7 +484,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Assert that this edge is attached.
 	 *
-	 * @throws IllegalStateException if this edge is not attached
+	 * @throws IllegalStateException if this edge is not attached.
 	 */
 	private synchronized void assertAttached() {
 		//if it is not alive or not built, then it is not attached
@@ -483,9 +495,9 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	}
 
 	/**
-	 * Assert that this edge have been built.
+	 * Assert that this edge has been built.
 	 *
-	 * @throws IllegalStateException if this edge is not built
+	 * @throws IllegalStateException if this edge is not built.
 	 */
 	private synchronized void assertBuilt() {
 		if (!this.built)
@@ -495,7 +507,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Assert that this edge is not alive.
 	 *
-	 * @throws IllegalStateException if this edge is alive
+	 * @throws IllegalStateException if this edge is alive.
 	 */
 	private synchronized void assertNotAlive() {
 		//if it is attached, then it is alive
@@ -507,7 +519,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Assert that this edge is not attached.
 	 *
-	 * @throws IllegalStateException if this edge is attached
+	 * @throws IllegalStateException if this edge is attached.
 	 */
 	private synchronized void assertNotAttached() {
 		if (this.attached)
@@ -517,7 +529,7 @@ public class Edge implements OnDataChangeListener, OnConfigurationChangeListener
 	/**
 	 * Assert that this edge is not built.
 	 *
-	 * @throws IllegalStateException if this edge is built
+	 * @throws IllegalStateException if this edge is built.
 	 */
 	private synchronized void assertNotBuilt() {
 		//if it is attached, then it is built

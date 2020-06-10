@@ -6,8 +6,8 @@
 				android:angle="45"
 				android:centerColor="?moduleMobileCenterColor"
 				android:endColor="?moduleMobileEndColor"
-				android:startColor="?moduleMobileStartColor" />
-			<corners android:radius="22dp" />
+				android:startColor="?moduleMobileStartColor"/>
+			<corners android:radius="22dp"/>
 		</shape>
 	</item>
 </selector>

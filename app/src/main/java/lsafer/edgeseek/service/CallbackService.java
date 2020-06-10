@@ -33,7 +33,7 @@ import java.util.Objects;
  * @version 0.1.5
  * @since 09-Jun-20
  */
-public class CallbackService extends AccessibilityService {
+final public class CallbackService extends AccessibilityService {
 	/**
 	 * The listeners to be called by the current running callback-service when it detects a window-state-change.
 	 */
@@ -44,11 +44,22 @@ public class CallbackService extends AccessibilityService {
 	private static volatile boolean alive;
 
 	/**
+	 * Check if the callback service is alive or not.
+	 *
+	 * @return whether the callback service is alive or not.
+	 */
+	public static boolean isAlive() {
+		synchronized (CallbackService.class) {
+			return CallbackService.alive;
+		}
+	}
+
+	/**
 	 * Register the given listener to be called when the service capture a window state change.
 	 *
-	 * @param listener to be registered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given 'listener' already registered
+	 * @param listener to be registered.
+	 * @throws NullPointerException     if the given 'listener' is null.
+	 * @throws IllegalArgumentException if the given 'listener' already registered.
 	 */
 	public static void registerOnWindowStateChangedListener(OnWindowStateChangedListener listener) {
 		Objects.requireNonNull(listener, "listener");
@@ -65,7 +76,7 @@ public class CallbackService extends AccessibilityService {
 	 *
 	 * @param listener to be unregistered
 	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given listener isn't registered
+	 * @throws IllegalArgumentException if the given listener isn't registered.
 	 */
 	public static void unregisterOnWindowStateChangedListener(OnWindowStateChangedListener listener) {
 		Objects.requireNonNull(listener, "listener");
@@ -92,13 +103,18 @@ public class CallbackService extends AccessibilityService {
 					), 0);
 
 					synchronized (CallbackService.listeners) {
-						CallbackService.listeners.forEach(l -> l.onWindowStateChanged(info));
+						for (OnWindowStateChangedListener listener : CallbackService.listeners)
+							listener.onWindowStateChanged(info);
 					}
 				} catch (PackageManager.NameNotFoundException e) {
 					Log.e("CallbackService", "onAccessibilityEvent", e);
 				}
 			}
 		}
+	}
+
+	@Override
+	public void onInterrupt() {
 	}
 
 	@Override
@@ -110,32 +126,17 @@ public class CallbackService extends AccessibilityService {
 		}
 	}
 
-	/**
-	 * Check if the callback service is alive or not.
-	 *
-	 * @return whether the callback service is alive or not
-	 */
-	public static boolean isAlive() {
-		synchronized (CallbackService.class) {
-			return CallbackService.alive;
-		}
-	}
-
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 
 		synchronized (CallbackService.listeners) {
-			CallbackService.listeners.forEach(OnWindowStateChangedListener::onCallBackDestroyed);
+			for (OnWindowStateChangedListener listener : CallbackService.listeners)
+				listener.onCallBackDestroyed();
 		}
 		synchronized (CallbackService.class) {
 			CallbackService.alive = false;
 		}
-	}
-
-	@Override
-	public void onInterrupt() {
-
 	}
 
 	/**
@@ -143,16 +144,15 @@ public class CallbackService extends AccessibilityService {
 	 */
 	public interface OnWindowStateChangedListener {
 		/**
-		 * Get called when the window-state has been changed.
-		 *
-		 * @param activity the information about the current 'top' activity
-		 */
-		void onWindowStateChanged(ActivityInfo activity);
-
-		/**
 		 * Get called when the callback service get destroyed.
 		 */
 		default void onCallBackDestroyed() {
 		}
+		/**
+		 * Get called when the window-state has been changed.
+		 *
+		 * @param activity the information about the current 'top' activity.
+		 */
+		void onWindowStateChanged(ActivityInfo activity);
 	}
 }

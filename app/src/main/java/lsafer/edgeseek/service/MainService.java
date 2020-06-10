@@ -22,12 +22,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.IBinder;
-
 import androidx.core.app.NotificationCompat;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.Edge;
 import lsafer.edgeseek.R;
@@ -37,9 +32,11 @@ import lsafer.edgeseek.receiver.ScreenOffBroadCastReceiver;
 import lsafer.edgeseek.util.Position;
 import lsafer.edgeseek.util.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * A service that responsible to display the edges customized by this application.
- * The service takes its data directly from {@link App#data}.
+ * A service that responsible to display the edges customized by this application. The service takes its data directly from {@link App#data}.
  *
  * @author lsafer
  * @version 0.1.5
@@ -80,7 +77,7 @@ final public class MainService extends Service {
 		}
 
 		//construct the edges
-		this.edges = Util.fill(new ArrayList(), Position.MAX, i -> {
+		this.edges = Util.fill(new ArrayList(), Position.edge.ARRAY.length, i -> {
 			EdgeData edge = App.data.edges.get(i);
 			SideData side = App.data.sides.get(edge.side);
 			return new Edge(this, side, edge);

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@drawable/background_blur"
-	android:orientation="vertical"
-	android:paddingTop="50dp"
-	android:paddingBottom="50dp"
-	tools:context=".activity.EdgesActivity">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/background_blur"
+              android:orientation="vertical"
+              android:paddingTop="50dp"
+              android:paddingBottom="50dp"
+              tools:context=".activity.EdgesActivity">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -24,14 +24,14 @@
 			android:text="@string/_tit_pref_APP_CHOOSE_EDGE"
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:textColor="?colorAccent"
-			android:textSize="30sp" />
+			android:textSize="30sp"/>
 
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:text="@string/_des_pref_APP_CHOOSE_EDGE"
-			android:textSize="15sp" />
+			android:textSize="15sp"/>
 	</LinearLayout>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -55,47 +55,47 @@
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
-			app:layout_constraintTop_toTopOf="parent" />
+			app:layout_constraintTop_toTopOf="parent"/>
 
 		<Button
-			android:id="@id/left_split"
+			android:id="@id/left_side"
 			android:layout_width="80dp"
 			android:layout_height="150dp"
 			android:layout_marginLeft="30dp"
 			android:background="@null"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@id/mobile" />
+			app:layout_constraintTop_toTopOf="@id/mobile"/>
 
 		<Button
-			android:id="@id/right_split"
+			android:id="@id/right_side"
 			android:layout_width="80dp"
 			android:layout_height="150dp"
 			android:layout_marginRight="30dp"
 			android:background="@null"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@id/mobile" />
+			app:layout_constraintTop_toTopOf="@id/mobile"/>
 
 		<Button
-			android:id="@id/bottom_split"
+			android:id="@id/bottom_side"
 			android:layout_width="150dp"
 			android:layout_height="80dp"
 			android:layout_marginBottom="30dp"
 			android:background="@null"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
-			app:layout_constraintRight_toRightOf="@id/mobile" />
+			app:layout_constraintRight_toRightOf="@id/mobile"/>
 
 		<Button
-			android:id="@id/top_split"
+			android:id="@id/top_side"
 			android:layout_width="150dp"
 			android:layout_height="80dp"
 			android:layout_marginTop="30dp"
 			android:background="@null"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@id/mobile" />
+			app:layout_constraintTop_toTopOf="@id/mobile"/>
 
 		<View
 			android:id="@id/bottom"
@@ -106,7 +106,7 @@
 			android:onClick="onEdgeClick"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
-			app:layout_constraintRight_toRightOf="@id/mobile" />
+			app:layout_constraintRight_toRightOf="@id/mobile"/>
 
 		<View
 			android:id="@id/top"
@@ -117,7 +117,7 @@
 			android:onClick="onEdgeClick"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@id/mobile" />
+			app:layout_constraintTop_toTopOf="@id/mobile"/>
 
 		<View
 			android:id="@id/left"
@@ -128,7 +128,7 @@
 			android:onClick="onEdgeClick"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintLeft_toLeftOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@id/mobile" />
+			app:layout_constraintTop_toTopOf="@id/mobile"/>
 
 		<View
 			android:id="@id/right"
@@ -139,7 +139,7 @@
 			android:onClick="onEdgeClick"
 			app:layout_constraintBottom_toBottomOf="@id/mobile"
 			app:layout_constraintRight_toRightOf="@id/mobile"
-			app:layout_constraintTop_toTopOf="@id/mobile" />
+			app:layout_constraintTop_toTopOf="@id/mobile"/>
 
 		<LinearLayout
 			android:id="@id/bottom2"
@@ -158,14 +158,14 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/bottom2_right"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -185,14 +185,14 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/top2_right"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -212,14 +212,14 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/left2_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -239,14 +239,14 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/right2_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -266,21 +266,21 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/bottom3_center"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/bottom3_right"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -300,21 +300,21 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/top3_center"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/top3_right"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -334,21 +334,21 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/left3_center"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/left3_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -368,21 +368,21 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/right3_center"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/right3_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -402,28 +402,28 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/bottom4_cleft"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/bottom4_cright"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/bottom4_right"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -443,28 +443,28 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/top4_cleft"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/top4_cright"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/top4_right"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -484,28 +484,28 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/left4_ctop"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/left4_cbottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/left4_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 
 		<LinearLayout
@@ -525,28 +525,28 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/right4_ctop"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/right4_cbottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 
 			<View
 				android:id="@id/right4_bottom"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_weight="1"
-				android:onClick="onEdgeClick" />
+				android:onClick="onEdgeClick"/>
 		</LinearLayout>
 	</androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

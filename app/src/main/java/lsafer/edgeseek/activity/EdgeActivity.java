@@ -17,19 +17,17 @@ package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.MultiSelectListPreference;
 import androidx.preference.PreferenceDataStore;
-
-import java.util.Objects;
-
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.EdgeData;
 import lsafer.edgeseek.util.Position;
 import lsafer.edgeseek.util.UserPackagesUtil;
+
+import java.util.Objects;
 
 /**
  * An activity that customize the edge it focuses on.
@@ -45,17 +43,17 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 	private int position;
 
 	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
-		return R.xml.fragment_edge_data;
-	}
-
-	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
 		//data store
 		Objects.requireNonNull(fragment, "fragment");
 		return App.data.edges.get(this.position).store;
+	}
+
+	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//fragment layout
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_edge_data;
 	}
 
 	@Override
@@ -70,12 +68,6 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_fragment);
-
-		//fragment instance
-		this.getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.fragment, new SimplePreferenceFragment())
-				.commit();
 	}
 
 	@Override
@@ -86,7 +78,7 @@ final public class EdgeActivity extends AppCompatActivity implements SimplePrefe
 
 		//title
 		fragment.findPreference("title")
-				.setTitle(Position.getEdgeTitle(this.position));
+				.setTitle(Position.edge.getTitle(this.position));
 
 		//set the installed application's list
 		MultiSelectListPreference preference = fragment.findPreference(EdgeData.BLACK_LIST);

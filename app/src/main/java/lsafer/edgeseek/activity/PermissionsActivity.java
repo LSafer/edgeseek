@@ -17,16 +17,14 @@ package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceDataStore;
-
-import java.util.Objects;
-
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
+
+import java.util.Objects;
 
 /**
  * Activity to manage permissions.
@@ -37,13 +35,6 @@ import lsafer.edgeseek.R;
  */
 final public class PermissionsActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
-		return R.xml.fragment_permissions;
-	}
-
-	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
 		//data store
 		Objects.requireNonNull(fragment, "fragment");
@@ -51,19 +42,17 @@ final public class PermissionsActivity extends AppCompatActivity implements Simp
 	}
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		//transparent status-bar
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//layout resources
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_permissions;
+	}
 
-		//initial
+	@Override
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_fragment);
-
-		//fragment instance
-		this.getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.fragment, new SimplePreferenceFragment())
-				.commit();
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 	}
 }

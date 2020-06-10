@@ -2,27 +2,27 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 	<Preference
 		app:layout="@layout/header"
-		app:title="@string/permissions" />
+		app:title="@string/permissions"/>
 	<PreferenceCategory app:title="@string/mandatory">
 		<CheckBoxPreference
 			app:key="android.permission.SYSTEM_ALERT_WINDOW"
 			app:summary="@string/_des_perm_SYSTEM_ALERT_WINDOW"
-			app:title="@string/_tit_perm_SYSTEM_ALERT_WINDOW" />
+			app:title="@string/_tit_perm_SYSTEM_ALERT_WINDOW"/>
 		<CheckBoxPreference
 			app:key="android.permission.WRITE_SETTINGS"
 			app:summary="@string/_des_perm_WRITE_SETTINGS"
-			app:title="@string/_tit_perm_WRITE_SETTINGS" />
+			app:title="@string/_tit_perm_WRITE_SETTINGS"/>
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/additional">
 		<CheckBoxPreference
 			app:key="android.permission.BIND_ACCESSIBILITY_SERVICE"
 			app:summary="@string/_des_perm_BIND_ACCESSBILITY_SERVICE"
-			app:title="@string/_tit_perm_BIND_ACCESSBILITY_SERVICE" />
+			app:title="@string/_tit_perm_BIND_ACCESSBILITY_SERVICE"/>
 		<CheckBoxPreference
 			app:key="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
 			app:summary="@string/_des_perm_IGNORE_BATTERY_OPTIMIZATIONS"
-			app:title="@string/_tit_perm_IGNORE_BATTERY_OPTIMIZATIONS" />
+			app:title="@string/_tit_perm_IGNORE_BATTERY_OPTIMIZATIONS"/>
 	</PreferenceCategory>
 	<!-- to add a gap between the bottom of the list and the screen -->
-	<Preference />
+	<Preference/>
 </PreferenceScreen>

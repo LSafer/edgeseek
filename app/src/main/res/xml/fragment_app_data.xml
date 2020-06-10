@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 	<Preference
 		app:layout="@layout/header"
-		app:title="@string/app_name" />
+		app:title="@string/app_name"/>
 	<PreferenceCategory app:title="@string/application">
 		<SwitchPreference
 			app:key="activated"
 			app:summary="@string/_des_pref_APP_ACTIVATION"
-			app:title="@string/_tit_pref_APP_ACTIVATION" />
+			app:title="@string/_tit_pref_APP_ACTIVATION"/>
 		<ListPreference
 			app:entries="@array/themes"
 			app:entryValues="@array/_themes"
 			app:key="theme"
 			app:summary="@string/_des_pref_APP_THEME"
-			app:title="@string/_tit_pref_APP_THEME" />
+			app:title="@string/_tit_pref_APP_THEME"/>
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/job">
 		<Preference
@@ -22,16 +22,16 @@
 			app:title="@string/_tit_pref_APP_EDGES">
 			<intent
 				android:targetClass="lsafer.edgeseek.activity.EdgesActivity"
-				android:targetPackage="lsafer.edgeseek" />
+				android:targetPackage="lsafer.edgeseek"/>
 		</Preference>
 		<SwitchPreference
 			app:key="auto_boot"
 			app:summary="@string/_des_pref_APP_AUTO_BOOT"
-			app:title="@string/_tit_pref_APP_AUTO_BOOT" />
+			app:title="@string/_tit_pref_APP_AUTO_BOOT"/>
 		<SwitchPreference
 			app:key="auto_brightness"
 			app:summary="@string/_des_pref_APP_AUTO_BRIGHTNESS"
-			app:title="@string/_tit_pref_APP_AUTO_BRIGHTNESS" />
+			app:title="@string/_tit_pref_APP_AUTO_BRIGHTNESS"/>
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/misc">
 		<Preference
@@ -39,16 +39,16 @@
 			app:title="@string/_tit_pref_APP_PERMISSIONS">
 			<intent
 				android:targetClass="lsafer.edgeseek.activity.PermissionsActivity"
-				android:targetPackage="lsafer.edgeseek" />
+				android:targetPackage="lsafer.edgeseek"/>
 		</Preference>
 		<Preference
 			app:summary="@string/_des_pref_APP_ABOUT"
 			app:title="@string/_tit_pref_APP_ABOUT">
 			<intent
 				android:targetClass="lsafer.edgeseek.activity.AboutActivity"
-				android:targetPackage="lsafer.edgeseek" />
+				android:targetPackage="lsafer.edgeseek"/>
 		</Preference>
 	</PreferenceCategory>
 	<!-- to add a gap between the bottom of the list and the screen -->
-	<Preference />
+	<Preference/>
 </PreferenceScreen>

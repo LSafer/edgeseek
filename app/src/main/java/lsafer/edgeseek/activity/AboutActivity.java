@@ -17,19 +17,17 @@ package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceDataStore;
-
-import java.util.HashMap;
-import java.util.Objects;
-
 import cufyx.perference.MapDataStore;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.BuildConfig;
 import lsafer.edgeseek.R;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * An activity that shows the user information about the application.
@@ -40,17 +38,17 @@ import lsafer.edgeseek.R;
  */
 final public class AboutActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
-		return R.xml.fragment_about;
-	}
-
-	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
 		//data store
 		Objects.requireNonNull(fragment, "fragment");
 		return new MapDataStore(new HashMap());
+	}
+
+	@Override
+	public int getPreferenceResources(SimplePreferenceFragment fragment) {
+		//fragment layout
+		Objects.requireNonNull(fragment, "fragment");
+		return R.xml.fragment_about;
 	}
 
 	@Override
@@ -62,12 +60,6 @@ final public class AboutActivity extends AppCompatActivity implements SimplePref
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_fragment);
-
-		//fragment instance
-		this.getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.fragment, new SimplePreferenceFragment())
-				.commit();
 	}
 
 	@Override

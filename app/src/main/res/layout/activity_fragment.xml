@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:paddingTop="50dp"
-	android:paddingBottom="50dp"
-	android:background="@drawable/background_blur"
-	android:orientation="vertical">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/background_blur"
+              android:orientation="vertical"
+              android:paddingTop="50dp"
+              android:paddingBottom="50dp">
 
-	<androidx.fragment.app.FragmentContainerView
+	<fragment
 		android:id="@+id/fragment"
+		android:name="cufyx.perference.SimplePreferenceFragment"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent" />
+		android:layout_height="match_parent"
+		tools:ignore="FragmentTagUsage"/>
 </LinearLayout>

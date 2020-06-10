@@ -17,7 +17,6 @@ package lsafer.edgeseek.util;
 
 import android.graphics.Point;
 import android.view.Display;
-
 import androidx.arch.core.util.Function;
 
 import java.util.List;
@@ -34,14 +33,14 @@ final public class Util {
 	/**
 	 * Compute the given inputs.
 	 *
-	 * @param axis0       the previous axis
-	 * @param axis1       the new axis
-	 * @param sensitivity the sensitivity
-	 * @param current     the current value
-	 * @param factor      the sensitivity factor
-	 * @param maximum     maximum value
-	 * @param minimum     minimum value
-	 * @return computed value from the given input
+	 * @param axis0       the previous axis.
+	 * @param axis1       the new axis.
+	 * @param sensitivity the sensitivity.
+	 * @param current     the current value.
+	 * @param factor      the sensitivity factors.
+	 * @param maximum     maximum value.
+	 * @param minimum     minimum value.
+	 * @return computed value from the given input.
 	 */
 	public static int compute(Float axis0, Float axis1, float sensitivity, float factor, int current, int maximum, int minimum) {
 		float c = axis0 == null || axis1 == null ? 0 : (axis0 - axis1) * (sensitivity / factor);
@@ -74,9 +73,9 @@ final public class Util {
 	/**
 	 * Get the height of the given display.
 	 *
-	 * @param display to get the height of
-	 * @return the height of the given display
-	 * @throws NullPointerException if the given 'display' is null
+	 * @param display to get the height of.
+	 * @return the height of the given display.
+	 * @throws NullPointerException if the given 'display' is null.
 	 */
 	public static float getHeight(Display display) {
 		Objects.requireNonNull(display, "display");
@@ -88,9 +87,9 @@ final public class Util {
 	/**
 	 * Get the width of the given display.
 	 *
-	 * @param display to get the width of
-	 * @return the width of the given display
-	 * @throws NullPointerException if the given 'display' is null
+	 * @param display to get the width of.
+	 * @return the width of the given display.
+	 * @throws NullPointerException if the given 'display' is null.
 	 */
 	public static float getWidth(Display display) {
 		Objects.requireNonNull(display, "display");

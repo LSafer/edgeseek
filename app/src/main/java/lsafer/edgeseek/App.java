@@ -19,15 +19,16 @@ import android.app.Application;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
+import cufyx.perference.MapDataStore;
+import lsafer.edgeseek.data.AppData;
+import lsafer.edgeseek.data.EdgeData;
+import lsafer.edgeseek.data.SideData;
+import lsafer.edgeseek.service.MainService;
 
 import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
-
-import cufyx.perference.MapDataStore;
-import lsafer.edgeseek.data.AppData;
-import lsafer.edgeseek.service.MainService;
 
 /**
  * The application class of this application.
@@ -51,9 +52,9 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 	/**
 	 * Register the given listener to be called when a new configuration occurs.
 	 *
-	 * @param listener to be registered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given 'listener' already registered
+	 * @param listener to be registered.
+	 * @throws NullPointerException     if the given 'listener' is null.
+	 * @throws IllegalArgumentException if the given 'listener' already registered.
 	 */
 	public static void registerOnConfigurationChangeListener(OnConfigurationChangeListener listener) {
 		Objects.requireNonNull(listener, "listener");
@@ -66,9 +67,9 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 	/**
 	 * Unregister the given listener from the listeners list.
 	 *
-	 * @param listener to be unregistered
-	 * @throws NullPointerException     if the given 'listener' is null
-	 * @throws IllegalArgumentException if the given 'listener' isn't registered
+	 * @param listener to be unregistered.
+	 * @throws NullPointerException     if the given 'listener' is null.
+	 * @throws IllegalArgumentException if the given 'listener' isn't registered.
 	 */
 	public static void unregisterOnConfigurationChangeListener(OnConfigurationChangeListener listener) {
 		Objects.requireNonNull(listener, "listener");
@@ -88,8 +89,10 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 
 		//listener
 		App.data.store.registerOnDataChangeListener(this);
-		App.data.edges.forEach(edge -> edge.store.registerOnDataChangeListener(this));
-		App.data.sides.forEach(side -> side.store.registerOnDataChangeListener(this));
+		for (EdgeData edge : App.data.edges)
+			edge.store.registerOnDataChangeListener(this);
+		for (SideData side : App.data.sides)
+			side.store.registerOnDataChangeListener(this);
 
 		this.setTheme(App.data.getTheme());
 	}
@@ -100,7 +103,10 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 
 		//remove listener
 		App.data.store.unregisterOnDataChangeListener(this);
-		App.data.edges.forEach(edge -> edge.store.registerOnDataChangeListener(this));
+		for (EdgeData edge : App.data.edges)
+			edge.store.registerOnDataChangeListener(this);
+		for (SideData side : App.data.sides)
+			side.store.unregisterOnDataChangeListener(this);
 	}
 
 	@Override
@@ -108,7 +114,8 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 		super.onConfigurationChanged(newConfig);
 
 		//notify listeners
-		App.listeners.forEach(l -> l.onConfigurationChanged(newConfig));
+		for (OnConfigurationChangeListener listener : App.listeners)
+			listener.onConfigurationChanged(newConfig);
 	}
 
 	@Override
@@ -145,7 +152,7 @@ final public class App extends Application implements MapDataStore.OnDataChangeL
 		/**
 		 * Called when a new configuration occurred.
 		 *
-		 * @param newConfig the new configuration
+		 * @param newConfig the new configuration.
 		 */
 		void onConfigurationChanged(Configuration newConfig);
 	}
