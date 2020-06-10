@@ -8,7 +8,7 @@ android {
 	buildToolsVersion "29.0.2"
 	defaultConfig {
 		applicationId "lsafer.edgeseek"
-		minSdkVersion 26
+		minSdkVersion 23
 		targetSdkVersion 29
 		versionCode 7
 		versionName "0.1.5-beta02"
@@ -29,7 +29,7 @@ android {
 dependencies {
 	//thanks a lot for `cufy` for there good work, lol
 	implementation 'org.cufy:framework:0.1.5-beta7'
-	implementation 'org.cufyx:support:0.1.5-beta2'
+	implementation 'org.cufyx:support:0.1.5-beta3'
 
 	//thanks to `jaredrummler` for the color-picker
 	implementation 'com.jaredrummler:colorpicker:1.1.0'
