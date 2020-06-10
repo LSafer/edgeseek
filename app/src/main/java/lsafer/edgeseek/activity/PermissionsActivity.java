@@ -24,8 +24,6 @@ import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 
-import java.util.Objects;
-
 /**
  * Activity to manage permissions.
  *
@@ -36,15 +34,11 @@ import java.util.Objects;
 final public class PermissionsActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
 		return App.data.permissions.store;
 	}
 
 	@Override
 	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//layout resources
-		Objects.requireNonNull(fragment, "fragment");
 		return R.xml.fragment_permissions;
 	}
 

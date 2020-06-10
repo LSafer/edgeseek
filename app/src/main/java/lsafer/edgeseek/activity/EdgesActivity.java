@@ -39,18 +39,16 @@ import java.util.Objects;
 final public class EdgesActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		//transparent status-bar
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-		//initial
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_edges);
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-		this.findViewById(R.id.bottom_side).setOnLongClickListener(this::onSplitLongClick);
-		this.findViewById(R.id.left_side).setOnLongClickListener(this::onSplitLongClick);
-		this.findViewById(R.id.top_side).setOnLongClickListener(this::onSplitLongClick);
-		this.findViewById(R.id.right_side).setOnLongClickListener(this::onSplitLongClick);
+		//layout setup
+		this.findViewById(R.id.bottom_side).setOnLongClickListener(this::onSideLongClick);
+		this.findViewById(R.id.left_side).setOnLongClickListener(this::onSideLongClick);
+		this.findViewById(R.id.top_side).setOnLongClickListener(this::onSideLongClick);
+		this.findViewById(R.id.right_side).setOnLongClickListener(this::onSideLongClick);
 	}
 
 	@Override
@@ -110,7 +108,7 @@ final public class EdgesActivity extends AppCompatActivity {
 	 * @return true if the callback consumed the long click, false otherwise.
 	 * @throws NullPointerException if the given 'view' is null.
 	 */
-	public boolean onSplitLongClick(View view) {
+	public boolean onSideLongClick(View view) {
 		Objects.requireNonNull(view, "view");
 
 		Intent intent = new Intent(this, SideActivity.class);

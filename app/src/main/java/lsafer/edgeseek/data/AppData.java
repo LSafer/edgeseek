@@ -86,6 +86,10 @@ final public class AppData extends AbstractBean implements FileLoadable, FormatL
 	final public static String THEME_WHITE = "white";
 
 	/**
+	 * Data about this application.
+	 */
+	final public AboutData about = new AboutData();
+	/**
 	 * The data of the permissions of this application.
 	 * <br>
 	 * Note: this data isn't stored in a file.

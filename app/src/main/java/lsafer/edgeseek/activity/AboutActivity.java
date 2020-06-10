@@ -20,14 +20,9 @@ import android.view.WindowManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceDataStore;
-import cufyx.perference.MapDataStore;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
-import lsafer.edgeseek.BuildConfig;
 import lsafer.edgeseek.R;
-
-import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * An activity that shows the user information about the application.
@@ -39,37 +34,19 @@ import java.util.Objects;
 final public class AboutActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
 	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
-		return new MapDataStore(new HashMap());
+		return App.data.about.store;
 	}
 
 	@Override
 	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
 		return R.xml.fragment_about;
 	}
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		//transparent status-bar
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-		//activity
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_fragment);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		SimplePreferenceFragment fragment = (SimplePreferenceFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment);
-
-		fragment.findPreference("version")
-				.setSummary(this.getString(R.string._des_pref_ABOUT_VERSION, BuildConfig.VERSION_NAME));
-		fragment.findPreference("version_code")
-				.setSummary(this.getString(R.string._des_pref_ABOUT_VERSION_CODE, String.valueOf(BuildConfig.VERSION_CODE)));
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 	}
 }

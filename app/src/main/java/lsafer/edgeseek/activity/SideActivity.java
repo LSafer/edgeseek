@@ -25,8 +25,6 @@ import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.util.Position;
 
-import java.util.Objects;
-
 /**
  * An activity that manages the data of a side.
  *
@@ -35,22 +33,13 @@ import java.util.Objects;
  * @since 08-Jun-20
  */
 final public class SideActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
-	/**
-	 * The side this activity is targeting.
-	 */
-	private int position;
-
 	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data.sides.get(this.position).store;
+		return App.data.sides.get(this.getIntent().getIntExtra("side", -1)).store;
 	}
 
 	@Override
 	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//layout resources
-		Objects.requireNonNull(fragment, "fragment");
 		return R.xml.fragment_side_data;
 	}
 
@@ -61,18 +50,10 @@ final public class SideActivity extends AppCompatActivity implements SimplePrefe
 		this.setContentView(R.layout.activity_fragment);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-		//data
-		this.position = this.getIntent().getIntExtra("side", -1);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		//title
+		//fragment setup
 		((SimplePreferenceFragment) this.getSupportFragmentManager()
 				.findFragmentById(R.id.fragment))
 				.findPreference("title")
-				.setTitle(Position.side.getTitle(this.position));
+				.setTitle(Position.side.getTitle(this.getIntent().getIntExtra("side", -1)));
 	}
 }

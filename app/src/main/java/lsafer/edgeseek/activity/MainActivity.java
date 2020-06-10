@@ -26,6 +26,7 @@ import cufyx.perference.MapDataStore;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
+import lsafer.edgeseek.data.AppData;
 import lsafer.edgeseek.service.MainService;
 
 import java.util.Objects;
@@ -40,15 +41,11 @@ import java.util.Objects;
 final public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
 	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
 		return App.data.store;
 	}
 
 	@Override
 	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//layout resources
-		Objects.requireNonNull(fragment, "fragment");
 		return R.xml.fragment_app_data;
 	}
 
@@ -60,7 +57,7 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 			//ignore useless calls
 
 			switch (key) {
-				case "theme":
+				case AppData.THEME:
 					this.startActivity(new Intent(this, MainActivity.class));
 					this.finish();
 					break;
@@ -101,3 +98,4 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 			this.startActivity(new Intent(this, PermissionsActivity.class));
 	}
 }
+ 

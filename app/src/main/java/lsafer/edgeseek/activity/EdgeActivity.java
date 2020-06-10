@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.MultiSelectListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceDataStore;
 import cufyx.perference.SimplePreferenceFragment;
 import lsafer.edgeseek.App;
@@ -26,8 +27,6 @@ import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.EdgeData;
 import lsafer.edgeseek.util.Position;
 import lsafer.edgeseek.util.UserPackagesUtil;
-
-import java.util.Objects;
 
 /**
  * An activity that customize the edge it focuses on.
@@ -37,52 +36,29 @@ import java.util.Objects;
  * @since 27-May-20
  */
 final public class EdgeActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
-	/**
-	 * The target edge-position by this activity.
-	 */
-	private int position;
-
 	@Override
 	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		//data store
-		Objects.requireNonNull(fragment, "fragment");
-		return App.data.edges.get(this.position).store;
+		return App.data.edges.get(this.getIntent().getIntExtra("edge", -1)).store;
 	}
 
 	@Override
 	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		//fragment layout
-		Objects.requireNonNull(fragment, "fragment");
 		return R.xml.fragment_edge_data;
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//transparent status-bar
-		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-		//data
-		this.position = this.getIntent().getIntExtra("edge", -1);
-
-		//initial
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
 		this.setContentView(R.layout.activity_fragment);
-	}
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-
+		//fragment setup
 		SimplePreferenceFragment fragment = (SimplePreferenceFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment);
-
-		//title
-		fragment.findPreference("title")
-				.setTitle(Position.edge.getTitle(this.position));
-
-		//set the installed application's list
-		MultiSelectListPreference preference = fragment.findPreference(EdgeData.BLACK_LIST);
-		preference.setEntries(UserPackagesUtil.getLabels(this.getPackageManager()));
-		preference.setEntryValues(UserPackagesUtil.getPackagesNames(this.getPackageManager()));
+		MultiSelectListPreference blackList = fragment.findPreference(EdgeData.BLACK_LIST);
+		Preference title = fragment.findPreference("title");
+		title.setTitle(Position.edge.getTitle(this.getIntent().getIntExtra("edge", -1)));
+		blackList.setEntries(UserPackagesUtil.getLabels(this.getPackageManager()));
+		blackList.setEntryValues(UserPackagesUtil.getPackagesNames(this.getPackageManager()));
 	}
 }

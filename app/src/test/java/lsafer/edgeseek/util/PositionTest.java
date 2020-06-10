@@ -239,31 +239,31 @@ public class PositionTest {
 	}
 
 	public static class split {
-		public void ao(int f, int s, int r) {
+		public void ao(int s, int f, int r) {
 			Assert.assertSame("factor: " + f + " side:" + s, r, Position.split.inSide(s, f));
 		}
 
 		@Test
-		public void ofFactor() {
-			ao(Position.factor.FULL, Position.side.BOTTOM, Position.split.BOTTOM);
-			ao(Position.factor.FULL, Position.side.LEFT, Position.split.LEFT);
-			ao(Position.factor.FULL, Position.side.TOP, Position.split.TOP);
-			ao(Position.factor.FULL, Position.side.RIGHT, Position.split.RIGHT);
+		public void inSide() {
+			ao(Position.side.BOTTOM, Position.factor.FULL, Position.split.BOTTOM);
+			ao(Position.side.LEFT, Position.factor.FULL, Position.split.LEFT);
+			ao(Position.side.TOP, Position.factor.FULL, Position.split.TOP);
+			ao(Position.side.RIGHT, Position.factor.FULL, Position.split.RIGHT);
 
-			ao(Position.factor.HALF, Position.side.BOTTOM, Position.split.BOTTOM2);
-			ao(Position.factor.HALF, Position.side.LEFT, Position.split.LEFT2);
-			ao(Position.factor.HALF, Position.side.TOP, Position.split.TOP2);
-			ao(Position.factor.HALF, Position.side.RIGHT, Position.split.RIGHT2);
+			ao(Position.side.BOTTOM, Position.factor.HALF, Position.split.BOTTOM2);
+			ao(Position.side.LEFT, Position.factor.HALF, Position.split.LEFT2);
+			ao(Position.side.TOP, Position.factor.HALF, Position.split.TOP2);
+			ao(Position.side.RIGHT, Position.factor.HALF, Position.split.RIGHT2);
 
-			ao(Position.factor.THIRD, Position.side.BOTTOM, Position.split.BOTTOM3);
-			ao(Position.factor.THIRD, Position.side.LEFT, Position.split.LEFT3);
-			ao(Position.factor.THIRD, Position.side.TOP, Position.split.TOP3);
-			ao(Position.factor.THIRD, Position.side.RIGHT, Position.split.RIGHT3);
+			ao(Position.side.BOTTOM, Position.factor.THIRD, Position.split.BOTTOM3);
+			ao(Position.side.LEFT, Position.factor.THIRD, Position.split.LEFT3);
+			ao(Position.side.TOP, Position.factor.THIRD, Position.split.TOP3);
+			ao(Position.side.RIGHT, Position.factor.THIRD, Position.split.RIGHT3);
 
-			ao(Position.factor.QUARTER, Position.side.BOTTOM, Position.split.BOTTOM4);
-			ao(Position.factor.QUARTER, Position.side.LEFT, Position.split.LEFT4);
-			ao(Position.factor.QUARTER, Position.side.TOP, Position.split.TOP4);
-			ao(Position.factor.QUARTER, Position.side.RIGHT, Position.split.RIGHT4);
+			ao(Position.side.BOTTOM, Position.factor.QUARTER, Position.split.BOTTOM4);
+			ao(Position.side.LEFT, Position.factor.QUARTER, Position.split.LEFT4);
+			ao(Position.side.TOP, Position.factor.QUARTER, Position.split.TOP4);
+			ao(Position.side.RIGHT, Position.factor.QUARTER, Position.split.RIGHT4);
 		}
 	}
 }
