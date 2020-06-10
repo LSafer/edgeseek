@@ -49,6 +49,6 @@
 				android:targetPackage="lsafer.edgeseek"/>
 		</Preference>
 	</PreferenceCategory>
-	<!-- to add a gap between the bottom of the list and the screen -->
+	<!-- to add a gap between the bottom of the list, and the screen -->
 	<Preference/>
 </PreferenceScreen>

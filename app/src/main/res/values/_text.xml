@@ -6,7 +6,7 @@
 	<string name="_tit_noti_MAIN_SERVICE_CHANNEL">Running In Background</string>
 	<!-- des noti -->
 	<string name="_des_noti_MAIN_SERVICE">The screen\'s edges are ready to receive touch events</string>
-	<string name="_des_noti_MAIN_SERVICE_CHANNEL">Allows the application to work in background. Recommended to disable this notification since it has
+	<string name="_des_noti_MAIN_SERVICE_CHANNEL">Allows the application to work in background. Recommended disabling this notification since it has
 		no real value
 	</string>
 	<!-- erro -->
@@ -42,7 +42,7 @@
 	<string name="_des_pref_APP_ACTIVATION">Toggle to activate or deactivate the application</string>
 	<string name="_des_pref_APP_PERMISSIONS">Manage application\'s permissions</string>
 	<string name="_des_pref_APP_EDGES">Customize the edges</string>
-	<string name="_des_pref_APP_AUTO_BOOT">Auto boot the service every time the device booted-up</string>
+	<string name="_des_pref_APP_AUTO_BOOT">Auto-boot the service every time the device booted-up</string>
 	<string name="_des_pref_APP_AUTO_BRIGHTNESS">Turn on auto brightness each time the device turn on to sleep</string>
 	<string name="_des_pref_APP_THEME">%s</string>
 	<string name="_des_pref_APP_ABOUT">Information about this application</string>
