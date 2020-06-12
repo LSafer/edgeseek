@@ -20,10 +20,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.WindowManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceDataStore;
 import cufyx.perference.MapDataStore;
-import cufyx.perference.SimplePreferenceFragment;
+import cufyx.perference.SimplePreferenceActivity;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.AppData;
@@ -38,17 +36,7 @@ import java.util.Objects;
  * @version 0.1.5
  * @since 19-May-2020
  */
-final public class MainActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity, MapDataStore.OnDataChangeListener {
-	@Override
-	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		return App.data.store;
-	}
-
-	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		return R.xml.fragment_app_data;
-	}
-
+final public class MainActivity extends SimplePreferenceActivity implements MapDataStore.OnDataChangeListener {
 	@Override
 	public void onDataChange(MapDataStore data, String key, Object oldValue, Object newValue) {
 		//change listeners
@@ -69,24 +57,21 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
-		this.setContentView(R.layout.activity_fragment);
+		this.setPreferenceDataStore(App.data.store);
+		this.setPreferenceLayout(R.xml.preference_app);
+		this.setContentView(R.layout.activity_preference);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
 		//register listener
 		App.data.store.registerOnDataChangeListener(this);
-
-		//start main-service
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-			this.startForegroundService(new Intent(this, MainService.class));
-		else this.startService(new Intent(this, MainService.class));
 	}
 
 	@Override
 	protected void onDestroy() {
+		super.onDestroy();
+
 		//remove listeners
 		App.data.store.unregisterOnDataChangeListener(this);
-
-		super.onDestroy();
 	}
 
 	@Override
@@ -94,8 +79,13 @@ final public class MainActivity extends AppCompatActivity implements SimplePrefe
 		super.onResume();
 
 		//don't run unless permission granted
-		if (!Settings.System.canWrite(this) || !Settings.canDrawOverlays(this))
+		if (!Settings.System.canWrite(this) || !Settings.canDrawOverlays(this)) {
 			this.startActivity(new Intent(this, PermissionsActivity.class));
+		} else {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+				this.startForegroundService(new Intent(this, MainService.class));
+			else this.startService(new Intent(this, MainService.class));
+		}
 	}
 }
  

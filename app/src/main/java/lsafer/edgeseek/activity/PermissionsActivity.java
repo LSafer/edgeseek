@@ -18,9 +18,7 @@ package lsafer.edgeseek.activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceDataStore;
-import cufyx.perference.SimplePreferenceFragment;
+import cufyx.perference.SimplePreferenceActivity;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 
@@ -31,22 +29,14 @@ import lsafer.edgeseek.R;
  * @version 0.1.5
  * @since 02-Jun-20
  */
-final public class PermissionsActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
-	@Override
-	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		return App.data.permissions.store;
-	}
-
-	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		return R.xml.fragment_permissions;
-	}
-
+final public class PermissionsActivity extends SimplePreferenceActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
-		this.setContentView(R.layout.activity_fragment);
+		this.setPreferenceDataStore(App.data.permissions.store);
+		this.setPreferenceLayout(R.xml.preference_permissions);
+		this.setContentView(R.layout.activity_preference);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 	}
 }

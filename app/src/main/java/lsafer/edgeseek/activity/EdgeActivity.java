@@ -17,11 +17,8 @@ package lsafer.edgeseek.activity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.MultiSelectListPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceDataStore;
-import cufyx.perference.SimplePreferenceFragment;
+import cufyx.perference.SimplePreferenceActivity;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.data.EdgeData;
@@ -35,29 +32,22 @@ import lsafer.edgeseek.util.UserPackagesUtil;
  * @version 0.1.5
  * @since 27-May-20
  */
-final public class EdgeActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
-	@Override
-	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		return App.data.edges.get(this.getIntent().getIntExtra("edge", -1)).store;
-	}
-
-	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		return R.xml.fragment_edge_data;
-	}
-
+final public class EdgeActivity extends SimplePreferenceActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		int position = this.getIntent().getIntExtra("edge", -1);
+
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
-		this.setContentView(R.layout.activity_fragment);
+		this.setPreferenceDataStore(App.data.edges.get(position).store);
+		this.setPreferenceLayout(R.xml.preference_edge);
+		this.setContentView(R.layout.activity_preference);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
 		//fragment setup
-		SimplePreferenceFragment fragment = (SimplePreferenceFragment) this.getSupportFragmentManager().findFragmentById(R.id.fragment);
-		MultiSelectListPreference blackList = fragment.findPreference(EdgeData.BLACK_LIST);
-		Preference title = fragment.findPreference("title");
-		title.setTitle(Position.edge.getTitle(this.getIntent().getIntExtra("edge", -1)));
+		this.findPreferenceByKey(R.id.fragment, "title")
+				.setTitle(Position.edge.getTitle(position));
+		MultiSelectListPreference blackList = this.findPreferenceByKey(R.id.fragment, EdgeData.BLACK_LIST);
 		blackList.setEntries(UserPackagesUtil.getLabels(this.getPackageManager()));
 		blackList.setEntryValues(UserPackagesUtil.getPackagesNames(this.getPackageManager()));
 	}

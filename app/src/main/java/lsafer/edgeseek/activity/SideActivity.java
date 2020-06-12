@@ -18,9 +18,7 @@ package lsafer.edgeseek.activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.PreferenceDataStore;
-import cufyx.perference.SimplePreferenceFragment;
+import cufyx.perference.SimplePreferenceActivity;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
 import lsafer.edgeseek.util.Position;
@@ -32,28 +30,20 @@ import lsafer.edgeseek.util.Position;
  * @version 0.1.5
  * @since 08-Jun-20
  */
-final public class SideActivity extends AppCompatActivity implements SimplePreferenceFragment.OwnerActivity {
-	@Override
-	public PreferenceDataStore getPreferenceDataStore(SimplePreferenceFragment fragment) {
-		return App.data.sides.get(this.getIntent().getIntExtra("side", -1)).store;
-	}
-
-	@Override
-	public int getPreferenceResources(SimplePreferenceFragment fragment) {
-		return R.xml.fragment_side_data;
-	}
-
+final public class SideActivity extends SimplePreferenceActivity {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		int position = this.getIntent().getIntExtra("side", -1);
+
 		super.onCreate(savedInstanceState);
 		this.setTheme(App.data.getTheme());
-		this.setContentView(R.layout.activity_fragment);
+		this.setPreferenceDataStore(App.data.sides.get(position).store);
+		this.setPreferenceLayout(R.xml.preference_side);
+		this.setContentView(R.layout.activity_preference);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
 		//fragment setup
-		((SimplePreferenceFragment) this.getSupportFragmentManager()
-				.findFragmentById(R.id.fragment))
-				.findPreference("title")
-				.setTitle(Position.side.getTitle(this.getIntent().getIntExtra("side", -1)));
+		this.findPreferenceByKey(R.id.fragment, "title")
+				.setTitle(Position.side.getTitle(position));
 	}
 }
