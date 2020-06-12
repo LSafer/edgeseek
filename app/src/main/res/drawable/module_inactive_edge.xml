@@ -6,7 +6,6 @@
 			        android:color="?moduleMobileButtonColor"
 			        android:dashWidth="5dp"
 			        android:dashGap="5dp"/>
-			<!--			<corners android:radius="5dp"/>-->
 		</shape>
 	</item>
 </selector>

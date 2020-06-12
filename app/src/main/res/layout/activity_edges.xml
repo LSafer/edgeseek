@@ -100,7 +100,7 @@
 		<View
 			android:id="@id/bottom"
 			android:layout_width="match_parent"
-			android:layout_height="15dp"
+			android:layout_height="20dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:onClick="onEdgeClick"
@@ -111,7 +111,7 @@
 		<View
 			android:id="@id/top"
 			android:layout_width="match_parent"
-			android:layout_height="15dp"
+			android:layout_height="20dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:onClick="onEdgeClick"
@@ -121,7 +121,7 @@
 
 		<View
 			android:id="@id/left"
-			android:layout_width="15dp"
+			android:layout_width="20dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
@@ -132,7 +132,7 @@
 
 		<View
 			android:id="@id/right"
-			android:layout_width="15dp"
+			android:layout_width="20dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
@@ -144,7 +144,7 @@
 		<LinearLayout
 			android:id="@id/bottom2"
 			android:layout_width="match_parent"
-			android:layout_height="15dp"
+			android:layout_height="20dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
@@ -171,7 +171,7 @@
 		<LinearLayout
 			android:id="@id/top2"
 			android:layout_width="match_parent"
-			android:layout_height="15dp"
+			android:layout_height="20dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
@@ -197,7 +197,7 @@
 
 		<LinearLayout
 			android:id="@id/left2"
-			android:layout_width="15dp"
+			android:layout_width="20dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
@@ -224,7 +224,7 @@
 
 		<LinearLayout
 			android:id="@id/right2"
-			android:layout_width="15dp"
+			android:layout_width="20dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
@@ -252,7 +252,7 @@
 		<LinearLayout
 			android:id="@id/bottom3"
 			android:layout_width="match_parent"
-			android:layout_height="15dp"
+			android:layout_height="20dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
@@ -286,7 +286,7 @@
 		<LinearLayout
 			android:id="@id/top3"
 			android:layout_width="match_parent"
-			android:layout_height="15dp"
+			android:layout_height="20dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
@@ -319,7 +319,7 @@
 
 		<LinearLayout
 			android:id="@id/left3"
-			android:layout_width="15dp"
+			android:layout_width="20dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
@@ -353,7 +353,7 @@
 
 		<LinearLayout
 			android:id="@id/right3"
-			android:layout_width="15dp"
+			android:layout_width="20dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
@@ -388,7 +388,7 @@
 		<LinearLayout
 			android:id="@id/bottom4"
 			android:layout_width="match_parent"
-			android:layout_height="15dp"
+			android:layout_height="20dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
@@ -429,7 +429,7 @@
 		<LinearLayout
 			android:id="@id/top4"
 			android:layout_width="match_parent"
-			android:layout_height="15dp"
+			android:layout_height="20dp"
 			android:layout_marginLeft="60dp"
 			android:layout_marginRight="60dp"
 			android:orientation="horizontal"
@@ -469,7 +469,7 @@
 
 		<LinearLayout
 			android:id="@id/left4"
-			android:layout_width="15dp"
+			android:layout_width="20dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"
@@ -510,7 +510,7 @@
 
 		<LinearLayout
 			android:id="@id/right4"
-			android:layout_width="15dp"
+			android:layout_width="20dp"
 			android:layout_height="match_parent"
 			android:layout_marginTop="50dp"
 			android:layout_marginBottom="50dp"

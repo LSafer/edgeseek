@@ -79,7 +79,7 @@ final public class EdgesActivity extends AppCompatActivity {
 			View view = this.findViewById(Position.edge.getId(data.position));
 
 			if (data.activated)
-				view.setBackgroundColor(Color.argb(150,
+				view.setBackgroundColor(Color.argb(100,
 						Color.red(data.color),
 						Color.green(data.color),
 						Color.blue(data.color)));
