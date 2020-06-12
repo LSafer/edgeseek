@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import cufyx.perference.SimplePreferenceActivity;
 import lsafer.edgeseek.App;
 import lsafer.edgeseek.R;
+import lsafer.edgeseek.data.AboutData;
 
 /**
  * An activity that shows the user information about the application.
@@ -38,5 +39,11 @@ final public class AboutActivity extends SimplePreferenceActivity {
 		this.setPreferenceLayout(R.xml.preference_about);
 		this.setContentView(R.layout.activity_preference);
 		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+		//setup fragment (temporary solution)
+		this.findPreferenceByKey(R.id.fragment, AboutData.VERSION)
+				.setSummary(App.data.about.version);
+		this.findPreferenceByKey(R.id.fragment, AboutData.VERSION_CODE)
+				.setSummary(String.valueOf(App.data.about.versionCode));
 	}
 }

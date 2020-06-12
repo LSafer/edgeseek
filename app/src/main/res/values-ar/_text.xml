@@ -55,7 +55,7 @@
 	<string name="_tit_pref_ABOUT_GITHUB">التطبيق في القت هب</string>
 	<!-- des pref ABOUT -->
 	<string name="_des_pref_ABOUT_VERSION">%s</string>
-	<string name="_des_pref_ABOUT_VERSION_CODE">%s</string>
+	<string name="_des_pref_ABOUT_VERSION_CODE">%d</string>
 	<string name="_des_pref_ABOUT_AUTHOR">التطبيق مبني من قبل لسيفر</string>
 	<string name="_des_pref_ABOUT_WEBSITE">كل النسخ</string>
 	<string name="_des_pref_ABOUT_GOOGLE_PLAY">التحديثات الرسمية فقط</string>

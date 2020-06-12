@@ -11,6 +11,7 @@
 	</PreferenceCategory>
 	<PreferenceCategory app:title="@string/versions">
 		<Preference
+			app:enableCopying="true"
 			app:key="version"
 			app:summary="@string/_des_pref_ABOUT_VERSION"
 			app:title="@string/_tit_pref_ABOUT_VERSION"/>
