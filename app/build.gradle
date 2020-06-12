@@ -10,8 +10,8 @@ android {
 		applicationId "lsafer.edgeseek"
 		minSdkVersion 23
 		targetSdkVersion 29
-		versionCode 8
-		versionName "0.1.5-beta03"
+		versionCode 9
+		versionName "0.1.5-beta04"
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 	}
 	buildTypes {
@@ -29,7 +29,7 @@ android {
 dependencies {
 	//thanks a lot for `cufy` for there good work, lol
 	implementation 'org.cufy:framework:0.1.5-beta7'
-	implementation 'org.cufyx:support:0.1.5-beta3'
+	implementation 'org.cufyx:support:0.1.5-beta4'
 
 	//thanks to `jaredrummler` for the color-picker
 	implementation 'com.jaredrummler:colorpicker:1.1.0'
