@@ -91,14 +91,14 @@ fun PermissionsScreenContent() {
             title = "Display Over Other Apps",
             summary = "Allow this application to draw views floating on your screen"
         )
-        PreferenceDivider()
-        PreferenceSection(title = "Additional")
         SwitchPreference(
             checked = canWriteSystemSettings,
             onCheckedChange = { requestWriteSystemSettings() },
             title = "Write System Settings",
             summary = "Allow this application to edit settings such as brightness level and music volume"
         )
+        PreferenceDivider()
+        PreferenceSection(title = "Additional")
         SwitchPreference(
             checked = isIgnoreBatteryOptimizations,
             onCheckedChange = { requestIgnoreBatteryOptimizations() },
