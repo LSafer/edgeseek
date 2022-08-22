@@ -43,7 +43,81 @@ fun PresetsScreenContent() {
     Column(Modifier.verticalScroll(rememberScrollState())) {
         PreferenceHeader(title = "Presets", summary = "Preset configurations")
         PreferenceSection(title = "Presets")
-        Preference(title = "LSafer's choice", summary = "Whatever LSafer likes", {
+        Preference(title = "Standard", summary = "Control music audio left and brightness right", {
+            data = data.copy(edges = listOf(
+                EdgeData(
+                    id = "left",
+                    activated = true,
+                    side = EdgeSide.Left,
+                    seekTask = EdgeSeekTask.ControlMusic
+                ),
+                EdgeData(
+                    id = "right",
+                    activated = true,
+                    side = EdgeSide.Right,
+                    seekTask = EdgeSeekTask.ControlBrightness
+                ),
+            ))
+        })
+        Preference(title = "Standard (Centered)", summary = "Same as Standard but with centered bars", {
+            data = data.copy(edges = listOf(
+                EdgeData(
+                    id = "left",
+                    activated = true,
+                    side = EdgeSide.Left,
+                    ratio = .6f,
+                    offset = .2f,
+                    seekTask = EdgeSeekTask.ControlMusic
+                ),
+                EdgeData(
+                    id = "right",
+                    activated = true,
+                    side = EdgeSide.Right,
+                    ratio = .6f,
+                    offset = .2f,
+                    seekTask = EdgeSeekTask.ControlBrightness
+                ),
+            ))
+        })
+        Preference(title = "Brightness Only", summary = "Only control brightness from the right", {
+            data = data.copy(edges = listOf(
+                EdgeData(
+                    id = "right",
+                    activated = true,
+                    side = EdgeSide.Right,
+                    seekTask = EdgeSeekTask.ControlBrightness
+                ),
+            ))
+        })
+        Preference(title = "Brightness Only (Centered)", summary = "Same as Brightness Only but with centered bars", {
+            data = data.copy(edges = listOf(
+                EdgeData(
+                    id = "right",
+                    activated = true,
+                    side = EdgeSide.Right,
+                    ratio = .6f,
+                    offset = .2f,
+                    seekTask = EdgeSeekTask.ControlBrightness
+                ),
+            ))
+        })
+        Preference(title = "Double Brightness", summary = "Control brightness from both sides", {
+            data = data.copy(edges = listOf(
+                EdgeData(
+                    id = "left",
+                    activated = true,
+                    side = EdgeSide.Left,
+                    seekTask = EdgeSeekTask.ControlBrightness
+                ),
+                EdgeData(
+                    id = "right",
+                    activated = true,
+                    side = EdgeSide.Right,
+                    seekTask = EdgeSeekTask.ControlBrightness
+                ),
+            ))
+        })
+        Preference(title = "Double Brightness (Centered)", summary = "Same as Double Brightness but with centered bars", {
             data = data.copy(edges = listOf(
                 EdgeData(
                     id = "left",
