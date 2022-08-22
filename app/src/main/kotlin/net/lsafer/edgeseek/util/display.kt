@@ -7,7 +7,7 @@ fun WindowManager.windowSize(): Pair<Int, Int> {
     val point = Point()
     @Suppress("DEPRECATION")
     defaultDisplay.getRealSize(point)
-    return point.x to point.y
+    return point.y to point.x
 }
 
 fun WindowManager.windowRotation(): Int {
