@@ -19,6 +19,7 @@ fun MainLayout() {
             composable(MainScreenRoute) { MainScreen() }
             composable(EdgesScreenRoute) { EdgesScreen() }
             composable(PermissionsScreenRoute) { PermissionsScreen() }
+            composable(PresetsScreenRoute) { PresetsScreen() }
             composable(AboutScreenRoute) { AboutScreen() }
             composable(EdgeScreenRoute) {
                 EdgeScreen(id = it.arguments?.getString("id", null) ?: UUID.randomUUID().toString())

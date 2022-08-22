@@ -102,6 +102,15 @@ fun MainScreenContent() {
             }
         )
         Preference(
+            title = "Presets",
+            summary = "Choose a set of configurations",
+            onClick = {
+                coroutineScope.launch {
+                    navController.navigate(PresetsScreenRoute)
+                }
+            }
+        )
+        Preference(
             title = "About",
             summary = "Information about this application",
             onClick = {
