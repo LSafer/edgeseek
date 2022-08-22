@@ -1,5 +1,7 @@
 package net.lsafer.edgeseek
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -31,6 +33,14 @@ class MainActivity : ComponentActivity() {
         }
 
         EventBus.getDefault().register(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            startForegroundService(Intent(this, MainService::class.java))
+        else
+            startService(Intent(this, MainService::class.java))
     }
 
     override fun onDestroy() {

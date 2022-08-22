@@ -7,9 +7,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.os.Build
-import android.os.Bundle
 import android.os.IBinder
-import android.view.WindowManager
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,38 +25,85 @@ class MainService : Service() {
     val edges: MutableList<Edge> = mutableListOf()
 
     override fun onBind(intent: Intent?): IBinder? = null
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int = START_STICKY
 
     override fun onCreate() {
         super.onCreate()
         startForeground()
-        updateAppData()
-        detectDeactivation()
         observeAppData()
-        createEdges()
-        registerBroadcastReceivers()
-    }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        updateAppData()
-        detectDeactivation()
-        return START_STICKY
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        destroyEdges()
-        unregisterBroadcastReceivers()
+        shutdownSequence()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        updateEdges()
+        updateSequence()
     }
 
     fun onDataChange() {
-        updateAppData()
-        detectDeactivation()
-        updateEdges()
+        updateSequence()
+    }
+
+    fun updateSequence() {
+        data = applicationData().value
+
+        if (!data.activated) {
+            shutdownSequence()
+        } else {
+            startupSequence()
+        }
+    }
+
+    fun startupSequence() {
+        registerBroadcastReceivers()
+        createEdges()
+    }
+
+    fun shutdownSequence() {
+        unregisterBroadcastReceivers()
+        destroyEdges()
+    }
+
+    fun createEdges() {
+        val context = this
+
+        CoroutineScope(Dispatchers.Main).launch {
+            edges -= edges
+                .filter { edge -> data.edges.none { edge.data.id == it.id } }
+                .onEach { it.stop() }
+                .toSet()
+
+            edges += data.edges
+                .filter { edges.none { edge -> edge.data.id == it.id } }
+                .map { Edge(context, it) }
+                .onEach { it.start() }
+
+            data.edges
+                .associateWith { edges.firstOrNull { edge -> edge.data.id == it.id } }
+                .filterValues { it != null }
+                .forEach { (data, edge) -> edge!!.update(data) }
+        }
+    }
+
+    fun destroyEdges() {
+        CoroutineScope(Dispatchers.Main).launch {
+            Log.d("LALA_LAND", "Destroying Edges ${edges.size}")
+            edges.forEach { it.stop() }
+            edges.clear()
+        }
+    }
+
+    fun registerBroadcastReceivers() {
+        registerReceiver(ScreenOffBroadCastReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
+    }
+
+    fun unregisterBroadcastReceivers() {
+        runCatching {
+            unregisterReceiver(ScreenOffBroadCastReceiver)
+        }
     }
 
     fun startForeground() {
@@ -85,71 +131,5 @@ class MainService : Service() {
         appDataStore.data
             .onEach { onDataChange() }
             .launchIn(CoroutineScope(Dispatchers.IO))
-    }
-
-    fun detectDeactivation() {
-        if (!data.activated) {
-            stopSelf()
-        }
-    }
-
-    fun updateAppData() {
-        data = applicationData().value
-    }
-
-    fun createEdges() {
-        val manager = getSystemService(WindowManager::class.java)
-        val context = when {
-            false && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-                createWindowContext(
-                    manager.defaultDisplay,
-                    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-                    Bundle()
-                )
-            }
-            else -> this
-        }
-
-        CoroutineScope(Dispatchers.Main).launch {
-            edges.clear()
-            edges += data.edges.map { Edge(context, it) }
-            edges.forEach { it.start() }
-        }
-    }
-
-    fun updateEdges() {
-        val context = this
-
-        CoroutineScope(Dispatchers.Main).launch {
-            edges -= edges
-                .filter { edge -> data.edges.none { edge.data.id == it.id } }
-                .onEach { it.stop() }
-                .toSet()
-
-            edges += data.edges
-                .filter { edges.none { edge -> edge.data.id == it.id } }
-                .map { Edge(context, it) }
-                .onEach { it.start() }
-
-            data.edges
-                .associateWith { edges.firstOrNull { edge -> edge.data.id == it.id } }
-                .filterValues { it != null }
-                .forEach { (data, edge) -> edge!!.update(data) }
-        }
-    }
-
-    fun destroyEdges() {
-        CoroutineScope(Dispatchers.Main).launch {
-            edges.forEach { it.stop() }
-            edges.clear()
-        }
-    }
-
-    fun registerBroadcastReceivers() {
-        registerReceiver(ScreenOffBroadCastReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
-    }
-
-    fun unregisterBroadcastReceivers() {
-        unregisterReceiver(ScreenOffBroadCastReceiver)
     }
 }
