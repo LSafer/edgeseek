@@ -4,7 +4,6 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.lsafer.edgeseek.LocalNavController
@@ -59,10 +58,12 @@ fun IntroductionScreenWrapper(
         top = StatusBarPadding,
         bottom = NavigationBarPadding
     )) {
-        Box(Modifier.fillMaxSize()) {
-            content()
+        Column(Modifier.fillMaxSize()) {
+            Box(Modifier.fillMaxSize().weight(1f)) {
+                content()
+            }
 
-            Surface(Modifier.fillMaxWidth().align(Alignment.BottomCenter)) {
+            Surface(Modifier.fillMaxWidth()) {
                 Row(Modifier.padding(vertical = 5.dp, horizontal = 75.dp)) {
                     TextButton(onClick = { onCancel() }) {
                         Text("Back")

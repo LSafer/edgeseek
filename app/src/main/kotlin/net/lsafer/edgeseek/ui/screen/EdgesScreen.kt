@@ -90,7 +90,6 @@ fun EdgesScreenContent() {
             summary = "Toggle the configuration display from graphical style to list style"
         )
         PreferenceDivider()
-
         Crossfade(graphical) {
             when (it) {
                 true -> GraphicalEdgeList(
@@ -107,6 +106,7 @@ fun EdgesScreenContent() {
                 )
             }
         }
+        Spacer(Modifier.height(50.dp))
     }
 }
 

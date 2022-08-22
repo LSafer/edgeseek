@@ -1,6 +1,8 @@
 package net.lsafer.edgeseek.ui.screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -11,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.unit.dp
 import net.lsafer.edgeseek.model.EdgeData
 import net.lsafer.edgeseek.model.EdgeSeekTask
 import net.lsafer.edgeseek.model.EdgeSide
@@ -148,6 +151,6 @@ fun PresetsScreenContent() {
                 it.copy(color = Color(it.color).copy(alpha = 0f).toArgb())
             })
         })
-
+        Spacer(Modifier.height(50.dp))
     }
 }
