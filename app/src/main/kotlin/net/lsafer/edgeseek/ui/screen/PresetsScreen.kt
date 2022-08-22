@@ -117,7 +117,7 @@ fun PresetsScreenContent() {
                 ),
             ))
         })
-        Preference(title = "Double Brightness (Centered)", summary = "Same as Double Brightness but with centered bars", {
+        Preference(title = "Double Brightness (Centered)", summary = "Same as Double Brightness but with centered bars (LSafer's choice)", {
             data = data.copy(edges = listOf(
                 EdgeData(
                     id = "left",
