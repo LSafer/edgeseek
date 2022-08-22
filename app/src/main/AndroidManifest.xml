@@ -1,55 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="lsafer.edgeseek">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="net.lsafer.edgeseek">
 
 	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 	<uses-permission android:name="android.permission.VIBRATE"/>
-	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+	<uses-permission android:name="android.permission.WRITE_SETTINGS"
+	                 tools:ignore="ProtectedPermissions"/>
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 	<uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
 
 	<application
-		android:name="lsafer.edgeseek.App"
+		android:name=".EdgeSeekApplication"
 		android:allowBackup="true"
-		android:fullBackupContent="true"
+		android:dataExtractionRules="@xml/data_extraction_rules"
+		android:fullBackupContent="@xml/backup_rules"
 		android:icon="@drawable/ic_launcher"
 		android:label="@string/app_name"
 		android:supportsRtl="true"
-		android:theme="@style/Light">
-		<activity android:name="lsafer.edgeseek.activity.MainActivity">
+		android:theme="@style/Theme.Edgeseek"
+		tools:targetApi="32">
+		<activity
+			android:name=".MainActivity"
+			android:screenOrientation="portrait"
+			android:exported="true"
+			android:theme="@style/Theme.Edgeseek"
+			tools:ignore="LockedOrientationActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
+
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<activity android:name=".activity.EdgeActivity"/>
-		<activity
-			android:name=".activity.EdgesActivity"
-			android:screenOrientation="portrait"/>
-		<activity android:name=".activity.PermissionsActivity"/>
-		<activity android:name=".activity.AboutActivity"/>
-		<activity android:name=".activity.SideActivity"/>
-
-		<service android:name=".service.MainService"></service>
-		<service
-			android:name=".service.CallbackService"
-			android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
-			<intent-filter>
-				<action android:name="android.accessibilityservice.AccessibilityService"/>
-			</intent-filter>
-			<meta-data
-				android:name="android.accessibilityservice"
-				android:resource="@xml/service_callback"/>
-		</service>
-
-		<receiver android:name=".receiver.BootCompleteBroadcastReceiver">
+		<service android:name=".MainService"/>
+		<receiver android:name=".receiver.BootCompleteBroadcastReceiver" android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.BOOT_COMPLETED"/>
 			</intent-filter>
 		</receiver>
-		<receiver android:name=".receiver.ScreenOffBroadCastReceiver">
+		<receiver android:name=".receiver.ScreenOffBroadCastReceiver" android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.SCREEN_OFF"/>
 			</intent-filter>
