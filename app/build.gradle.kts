@@ -13,8 +13,8 @@ android {
         applicationId = "net.lsafer.edgeseek"
         minSdk = 24
         targetSdk = 32
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 10
+        versionName = "0.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
