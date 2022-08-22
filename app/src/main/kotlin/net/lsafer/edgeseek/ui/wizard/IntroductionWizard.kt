@@ -43,7 +43,7 @@ fun IntroductionWizard() {
         )
         2 -> LaunchedEffect(Unit) {
             data = data.copy(introduced = true)
-            while (navController.navigateUp());
+            while (navController.popBackStack());
             navController.navigate(MainScreenRoute)
         }
     }

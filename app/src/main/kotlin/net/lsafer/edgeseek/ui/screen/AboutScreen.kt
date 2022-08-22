@@ -79,7 +79,7 @@ fun AboutScreenContent() {
             summary = "Run the introduction wizard",
             onClick = {
                 coroutineScope.launch {
-                    while (navController.navigateUp());
+                    while (navController.popBackStack());
                     navController.navigate(IntroductionWizardRoute)
                 }
             }

@@ -19,7 +19,7 @@ fun MainLayout() {
     val data by rememberApplicationData()
 
     LaunchedEffect(Unit) {
-        while (navController.navigateUp());
+        while (navController.popBackStack());
         navController.navigate(when {
             data.introduced -> MainScreenRoute
             else -> IntroductionWizardRoute
