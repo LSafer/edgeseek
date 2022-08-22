@@ -24,6 +24,7 @@ enum class AppTheme {
 @Serializable
 data class AppData(
     val activated: Boolean = false,
+    val introduced: Boolean = false,
     val autoBoot: Boolean = true,
     val autoBrightness: Boolean = true,
     val edges: List<EdgeData> = listOf(),
@@ -33,7 +34,9 @@ data class AppData(
 @Composable
 fun rememberApplicationData(): MutableState<AppData> {
     val context = LocalContext.current
-    return context.appDataStore.observeJsonPreference("appData") { AppData() }
+    return context.appDataStore.observeJsonPreference("appData") {
+        context.applicationData().value
+    }
 }
 
 fun Context.applicationData(): MutableState<AppData> {
