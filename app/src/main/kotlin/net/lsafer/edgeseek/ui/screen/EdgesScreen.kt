@@ -140,9 +140,13 @@ fun EdgeItemPreference(
     onConfigure: () -> Unit,
     onDelete: () -> Unit
 ) {
+    val idTruncated = when {
+        edge.id.length > 10 -> edge.id.take(10) + "..." + edge.id.take(10)
+        else -> edge.id
+    }
     Preference(
         title = edge.side.name,
-        summary = "Click here to configure:\n" + edge.id.take(10) + "..." + edge.id.takeLast(10),
+        summary = "Click here to configure:\n${idTruncated}",
         onClick = { onConfigure() },
         action = {
             IconButton(onClick = { onDelete() }) {
