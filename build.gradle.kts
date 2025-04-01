@@ -1,26 +1,30 @@
-buildscript {
-	repositories {
-		google()
-		mavenCentral()
-	}
-	dependencies {
-		classpath(Dependencies.Kotlin.gradle_plugin)
-		classpath(Dependencies.Kotlin.serialization)
-		classpath(Dependencies.Android.gradle_build_tools)
-	}
+import org.jetbrains.kotlin.gradle.plugin.extraProperties
+
+plugins {
+    // this is necessary to avoid the plugins to be loaded multiple times
+    // in each subproject's classloader
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.compose) apply false
+    alias(libs.plugins.jetbrains.compose) apply false
+    alias(libs.plugins.android.application) apply false
 }
 
-allprojects {
-	repositories {
-		google()
-		mavenCentral()
-		mavenLocal()
-		maven {
-			url = uri("https://jitpack.io")
-		}
-	}
+group = "net.lsafer.edgeseek"
+version = "0.3-pre.0"
+project.extraProperties.set("version_code", 14)
+
+tasks.wrapper {
+    gradleVersion = "8.9"
 }
 
-tasks.register("clean", Delete::class) {
-	delete(rootProject.buildDir)
+subprojects {
+    version = rootProject.version
+    group = buildString {
+        append(rootProject.group)
+        generateSequence(project.parent) { it.parent }
+            .forEach {
+                append(".")
+                append(it.name)
+            }
+    }
 }
