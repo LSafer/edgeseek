@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<lint>
-    <issue id="UnusedMaterialScaffoldPaddingParameter" severity="ignore" />
-    <issue id="UnusedCrossfadeTargetStateParameter" severity="ignore" />
-</lint>
