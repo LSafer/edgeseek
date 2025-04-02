@@ -1,0 +1,4 @@
+Control the audio and/or brightness by sliding your fingers alongside
+the edges of your screen. Each edge can be configured separately.
+Use the 'Control Brightness with Dimmer' feature to go below zero when
+controlling the brightness.

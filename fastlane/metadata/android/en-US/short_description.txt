@@ -1,0 +1,1 @@
+Control audio and brightness by sliding on edges
