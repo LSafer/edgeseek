@@ -103,7 +103,7 @@ android {
         baseline = file("lint-baseline.xml")
     }
     defaultConfig {
-        applicationId = "lsafer.edgeseek"
+        applicationId = rootProject.extraProperties["application_id"].toString()
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = rootProject.extraProperties["version_code"].toString().toInt()

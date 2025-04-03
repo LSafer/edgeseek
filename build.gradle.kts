@@ -10,8 +10,9 @@ plugins {
 }
 
 group = "net.lsafer.edgeseek"
-version = "0.3-pre.0"
-project.extraProperties.set("version_code", 14)
+version = "0.3-pre.1"
+project.extraProperties.set("version_code", 15)
+project.extraProperties.set("application_id", "lsafer.edgeseek")
 
 tasks.wrapper {
     gradleVersion = "8.9"
