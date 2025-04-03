@@ -19,14 +19,21 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
+import co.touchlab.kermit.Logger
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import net.lsafer.edgeseek.app.MainApplication.Companion.globalLocal
 import net.lsafer.edgeseek.app.PK_FLAG_BRIGHTNESS_RESET
+import net.lsafer.edgeseek.app.impl.ImplLocal
 import net.lsafer.sundry.storage.select
 
-open class ScreenOffBroadCastReceiver : BroadcastReceiver() {
-    companion object : ScreenOffBroadCastReceiver()
+// Used @JvmOverloads afraid android **might** try instantiating it
+open class ScreenOffBroadCastReceiver @JvmOverloads constructor(
+    private val implLocal: ImplLocal? = null,
+) : BroadcastReceiver() {
+    companion object {
+        private val logger = Logger.withTag(ScreenOffBroadCastReceiver::class.qualifiedName!!)
+    }
 
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == Intent.ACTION_SCREEN_OFF) {
@@ -38,11 +45,16 @@ open class ScreenOffBroadCastReceiver : BroadcastReceiver() {
                 if (brightnessReset == null || !brightnessReset)
                     return@launch
 
-                Settings.System.putInt(
-                    context.contentResolver,
-                    Settings.System.SCREEN_BRIGHTNESS_MODE,
-                    Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
-                )
+                try {
+                    Settings.System.putInt(
+                        context.contentResolver,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE,
+                        Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
+                    )
+                    implLocal?.dimmer?.update(0)
+                } catch (e: Exception) {
+                    logger.e("Couldn't toggle auto brightness", e)
+                }
             }
         }
     }

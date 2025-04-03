@@ -71,7 +71,7 @@ class MainService : Service() {
                 return@launch
             }
 
-            registerReceiver(ScreenOffBroadCastReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
+            launchReceiverJob()
             launchEdgeViewJobsSubJobsCleanupSubJob()
             launchEdgeViewJobsSubJob()
             launchSelfStopSubJob()
@@ -81,7 +81,6 @@ class MainService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         implLocal.defaultScope.cancel()
-        runCatching { unregisterReceiver(ScreenOffBroadCastReceiver) }
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -136,6 +135,16 @@ class MainService : Service() {
             .select<Boolean>(PK_FLAG_ACTIVATED)
             .onEach { if (it == null || !it) stopSelf() }
             .launchIn(implLocal.defaultScope)
+    }
+
+    private fun launchReceiverJob() {
+        val screenOffReceiver = ScreenOffBroadCastReceiver(implLocal)
+
+        registerReceiver(screenOffReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
+
+        implLocal.defaultScope.coroutineContext.job.invokeOnCompletion {
+            unregisterReceiver(screenOffReceiver)
+        }
     }
 
     private fun startForeground() {

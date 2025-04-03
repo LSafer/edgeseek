@@ -54,6 +54,7 @@ sealed class SeekFeatureImpl {
                     Settings.System.SCREEN_BRIGHTNESS,
                     newSystemValue,
                 )
+                implLocal.dimmer.update(0)
                 return newSystemValue
             } catch (e: Exception) {
                 logger.e("Couldn't update brightness level", e)
