@@ -33,7 +33,7 @@ open class BootCompleteBroadcastReceiver : BroadcastReceiver() {
                     .select<Boolean>(PK_FLAG_AUTO_BOOT)
                     .firstOrNull()
 
-                if (autoBoot == null || !autoBoot)
+                if (autoBoot == false)
                     return@launch
 
                 globalLocal.eventbus.emit(UniEvent.StartService)

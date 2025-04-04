@@ -42,7 +42,7 @@ open class ScreenOffBroadCastReceiver @JvmOverloads constructor(
                     .select<Boolean>(PK_FLAG_BRIGHTNESS_RESET)
                     .firstOrNull()
 
-                if (brightnessReset == null || !brightnessReset)
+                if (brightnessReset == false)
                     return@launch
 
                 try {

@@ -81,7 +81,7 @@ fun HomePage_ListItem_auto_boot(
     local: Local,
     modifier: Modifier = Modifier,
 ) {
-    val value by produceState(false) {
+    val value by produceState(true) {
         local.dataStore
             .select<Boolean>(PK_FLAG_AUTO_BOOT)
             .filterNotNull()
@@ -106,7 +106,7 @@ fun HomePage_ListItem_brightness_reset(
     local: Local,
     modifier: Modifier = Modifier,
 ) {
-    val value by produceState(false) {
+    val value by produceState(true) {
         local.dataStore
             .select<Boolean>(PK_FLAG_BRIGHTNESS_RESET)
             .filterNotNull()
