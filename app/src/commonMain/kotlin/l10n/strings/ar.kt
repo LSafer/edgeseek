@@ -34,6 +34,7 @@ val Strings_ar = Strings(
         exit_application_qm = "إغلاق التطبيق؟",
         welcome_phrase = "أهلا",
         all_setup_phrase = "التطبيق جاهز!",
+        mandatory_permissions_not_met = "لم يتم إعطاء الصلاحيات الإلزامية",
 
         page_edge_list_headline = "الحواف",
         page_edge_list_supporting = "تعديل الحواف",

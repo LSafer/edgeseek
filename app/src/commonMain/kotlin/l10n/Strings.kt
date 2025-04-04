@@ -42,6 +42,7 @@ data class Strings(
         val exit_application_qm: String = "Exit the application?",
         val welcome_phrase: String = "Welcome",
         val all_setup_phrase: String = "All Set Up!",
+        val mandatory_permissions_not_met: String = "Mandatory Permissions are not met",
 
         // Pages
         val page_edge_list_headline: String = "Edges",

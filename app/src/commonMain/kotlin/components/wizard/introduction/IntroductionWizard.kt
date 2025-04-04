@@ -15,17 +15,20 @@
  */
 package net.lsafer.edgeseek.app.components.wizard.introduction
 
+import android.provider.Settings
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import net.lsafer.edgeseek.app.Local
-import net.lsafer.edgeseek.app.PK_WIZ_INTRO
-import net.lsafer.edgeseek.app.UniRoute
+import kotlinx.coroutines.launch
+import net.lsafer.edgeseek.app.*
 import net.lsafer.edgeseek.app.components.page.permissions.PermissionsPageContent
 import net.lsafer.edgeseek.app.components.page.presets.PresetsPageContent
+import net.lsafer.edgeseek.app.l10n.LocalStrings
 import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.storage.edit
 import org.cufy.json.set
@@ -36,6 +39,9 @@ fun IntroductionWizard(
     route: UniRoute.IntroductionWizard,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+    val strings = LocalStrings.current
+    val coroutineScope = rememberCoroutineScope()
     val steps = UniRoute.IntroductionWizard.Step.entries
 
     val onStepCancel: () -> Unit = {
@@ -47,6 +53,23 @@ fun IntroductionWizard(
 
         if (i <= steps.size)
             local.navController.push(route.copy(step = steps[i]))
+    }
+
+    val onPermissionsStepConfirm: () -> Unit = {
+        if (
+            !Settings.canDrawOverlays(context) ||
+            !Settings.System.canWrite(context)
+        ) {
+            coroutineScope.launch {
+                local.snackbar.showSnackbar(
+                    strings.stmt.mandatory_permissions_not_met,
+                )
+            }
+        } else {
+            local.dataStore.edit { it[PK_FLAG_ACTIVATED] = true }
+            coroutineScope.launch { local.eventbus.emit(UniEvent.StartService) }
+            onStepConfirm()
+        }
     }
 
     val onComplete: () -> Unit = {
@@ -72,7 +95,7 @@ fun IntroductionWizard(
         UniRoute.IntroductionWizard.Step.Permissions ->
             IntroductionWizardWrapper(
                 local = local,
-                onConfirm = onStepConfirm,
+                onConfirm = onPermissionsStepConfirm,
                 onCancel = onStepCancel,
                 modifier = modifier,
                 content = { PermissionsPageContent(local) }
