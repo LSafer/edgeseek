@@ -149,19 +149,17 @@ class MainService : Service() {
 
     private fun startForeground() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val title = "Running In Background"
-            val description = """
-                Allows the application to work in background.
-                Recommended disabling this notification since it has no real value
-            """.trimIndent()
+            val strings = implLocal.local.l10nState.value.strings
+            val title = strings.stmt.foreground_noti_title
+            val description = strings.stmt.foreground_noti_text
 
             val channel = NotificationChannel("main", title, NotificationManager.IMPORTANCE_MIN)
             channel.description = description
             this.getSystemService(NotificationManager::class.java)
                 .createNotificationChannel(channel)
             val notification = NotificationCompat.Builder(this, channel.id)
-                .setContentTitle(title)
-                .setContentText(description)
+                .setContentTitle(strings.stmt.foreground_noti_title)
+                .setContentText(strings.stmt.foreground_noti_text)
                 .setSmallIcon(R.drawable.ic_sync)
                 .build()
             this.startForeground(1, notification)

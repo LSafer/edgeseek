@@ -33,6 +33,7 @@ import net.lsafer.edgeseek.app.components.common.clearAndSetEdgeDataList
 import net.lsafer.edgeseek.app.components.common.editEachEdgeData
 import net.lsafer.edgeseek.app.components.lib.ListHeader
 import net.lsafer.edgeseek.app.components.lib.ListSectionTitle
+import net.lsafer.edgeseek.app.l10n.strings
 
 @Composable
 fun PresetsPage(
@@ -63,46 +64,49 @@ fun PresetsPageContent(
             .verticalScroll(rememberScrollState())
             .then(modifier),
     ) {
-        ListHeader(title = "Presets", summary = "Preset configurations")
-        ListSectionTitle(title = "Presets")
+        ListHeader(
+            title = strings.stmt.page_presets_heading,
+            summary = strings.stmt.page_presets_summary,
+        )
+        ListSectionTitle(title = strings.label.presets)
         ListItem(
             modifier = Modifier
                 .clickable { local.clearAndSetEdgeDataList(PRESET_STANDARD) },
-            headlineContent = { Text("Standard") },
-            supportingContent = { Text("Control music audio left and brightness right") }
+            headlineContent = { Text(strings.stmt.preset_standard_headline) },
+            supportingContent = { Text(strings.stmt.preset_standard_supporting) }
         )
         ListItem(
             modifier = Modifier
                 .clickable { local.clearAndSetEdgeDataList(PRESET_STANDARD_CENTERED) },
-            headlineContent = { Text("Standard (Centered)") },
-            supportingContent = { Text("Same as Standard but with centered bars") }
+            headlineContent = { Text(strings.stmt.preset_standard_c_headline) },
+            supportingContent = { Text(strings.stmt.preset_standard_c_supporting) }
         )
         ListItem(
             modifier = Modifier
                 .clickable { local.clearAndSetEdgeDataList(PRESET_BRIGHTNESS_ONLY) },
-            headlineContent = { Text("Brightness Only") },
-            supportingContent = { Text("Only control brightness from the right") }
+            headlineContent = { Text(strings.stmt.preset_brightness_headline) },
+            supportingContent = { Text(strings.stmt.preset_brightness_supporting) }
         )
         ListItem(
             modifier = Modifier
                 .clickable { local.clearAndSetEdgeDataList(PRESET_BRIGHTNESS_ONLY_CENTERED) },
-            headlineContent = { Text("Brightness Only (Centered)") },
-            supportingContent = { Text("Same as Brightness Only but with centered bars") }
+            headlineContent = { Text(strings.stmt.preset_brightness_c_headline) },
+            supportingContent = { Text(strings.stmt.preset_brightness_c_supporting) }
         )
         ListItem(
             modifier = Modifier
                 .clickable { local.clearAndSetEdgeDataList(PRESET_DOUBLE_BRIGHTNESS) },
-            headlineContent = { Text("Double Brightness") },
-            supportingContent = { Text("Control brightness from both sides") }
+            headlineContent = { Text(strings.stmt.preset_brightness_d_headline) },
+            supportingContent = { Text(strings.stmt.preset_brightness_d_supporting) }
         )
         ListItem(
             modifier = Modifier
                 .clickable { local.clearAndSetEdgeDataList(PRESET_DOUBLE_BRIGHTNESS_CENTERED) },
-            headlineContent = { Text("Double Brightness (Centered)") },
-            supportingContent = { Text("Same as Double Brightness but with centered bars (LSafer's choice)") }
+            headlineContent = { Text(strings.stmt.preset_brightness_dc_headline) },
+            supportingContent = { Text(strings.stmt.preset_brightness_dc_supporting) }
         )
 
-        ListSectionTitle(title = "Utility")
+        ListSectionTitle(title = strings.label.utility)
         ListItem(
             modifier = Modifier
                 .clickable {
@@ -110,8 +114,8 @@ fun PresetsPageContent(
                         it.copy(color = Color(it.color).copy(alpha = 1f).toArgb())
                     }
                 },
-            headlineContent = { Text("Show All") },
-            supportingContent = { Text("Increase the opacity of all edges") }
+            headlineContent = { Text(strings.stmt.show_all_headline) },
+            supportingContent = { Text(strings.stmt.show_all_supporting) }
         )
         ListItem(
             modifier = Modifier
@@ -120,8 +124,8 @@ fun PresetsPageContent(
                         it.copy(color = Color(it.color).copy(alpha = 0f).toArgb())
                     }
                 },
-            headlineContent = { Text("Hide All") },
-            supportingContent = { Text("Decrease the opacity of all edges") }
+            headlineContent = { Text(strings.stmt.hide_all_headline) },
+            supportingContent = { Text(strings.stmt.hide_all_supporting) }
         )
         ListItem(
             modifier = Modifier
@@ -130,8 +134,8 @@ fun PresetsPageContent(
                         it.copy(color = Color(it.color).copy(alpha = .01f).toArgb())
                     }
                 },
-            headlineContent = { Text("Stealth All") },
-            supportingContent = { Text("Decrease the opacity of all edges (Compatibility Mode)") }
+            headlineContent = { Text(strings.stmt.stealth_all_headline) },
+            supportingContent = { Text(strings.stmt.stealth_all_supporting) }
         )
 
         Spacer(Modifier.height(50.dp))

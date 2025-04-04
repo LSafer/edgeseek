@@ -45,6 +45,7 @@ import net.lsafer.edgeseek.app.data.settings.EdgeData
 import net.lsafer.edgeseek.app.data.settings.EdgePos
 import net.lsafer.edgeseek.app.data.settings.EdgeSide
 import net.lsafer.edgeseek.app.data.settings.calculateLengthPct
+import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.storage.select
 
 @Composable
@@ -75,13 +76,13 @@ fun EdgeListPageContent(
         Spacer(Modifier.height(50.dp))
 
         Text(
-            text = "Choose Edge",
+            text = strings.stmt.page_edge_list_heading,
             color = MaterialTheme.colorScheme.secondary,
             fontSize = 30.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
         Text(
-            text = "Touch an edge to customize it",
+            text = strings.stmt.page_edge_list_summary,
             fontSize = 15.sp,
             color = MaterialTheme.colorScheme.onBackground.copy(.5f),
             modifier = Modifier.align(Alignment.CenterHorizontally),

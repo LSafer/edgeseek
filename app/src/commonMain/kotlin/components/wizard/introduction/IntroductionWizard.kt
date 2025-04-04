@@ -26,6 +26,7 @@ import net.lsafer.edgeseek.app.PK_WIZ_INTRO
 import net.lsafer.edgeseek.app.UniRoute
 import net.lsafer.edgeseek.app.components.page.permissions.PermissionsPageContent
 import net.lsafer.edgeseek.app.components.page.presets.PresetsPageContent
+import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.storage.edit
 import org.cufy.json.set
 
@@ -63,7 +64,7 @@ fun IntroductionWizard(
                 modifier = modifier,
             ) {
                 Box(Modifier.fillMaxSize(), Alignment.Center) {
-                    Text("Welcome")
+                    Text(strings.stmt.welcome_phrase)
                 }
             }
         }
@@ -94,7 +95,7 @@ fun IntroductionWizard(
                 modifier = modifier,
             ) {
                 Box(Modifier.fillMaxSize(), Alignment.Center) {
-                    Text("All Set Up!")
+                    Text(strings.stmt.all_setup_phrase)
                 }
             }
         }
@@ -130,7 +131,7 @@ fun IntroductionWizardWrapper(
             Surface(Modifier.fillMaxWidth()) {
                 Row(Modifier.padding(vertical = 5.dp, horizontal = 75.dp)) {
                     TextButton(onClick = { onCancel() }) {
-                        Text("Back")
+                        Text(strings.label.back)
                     }
                     Spacer(
                         Modifier
@@ -138,7 +139,7 @@ fun IntroductionWizardWrapper(
                             .weight(1f)
                     )
                     TextButton({ onConfirm() }) {
-                        Text("Next", color = MaterialTheme.colorScheme.secondary)
+                        Text(strings.label.next, color = MaterialTheme.colorScheme.secondary)
                     }
                 }
             }

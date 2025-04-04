@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import net.lsafer.edgeseek.app.*
 import net.lsafer.edgeseek.app.components.lib.SingleSelectPreferenceListItem
 import net.lsafer.edgeseek.app.components.lib.SwitchPreferenceListItem
+import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.storage.edit
 import net.lsafer.sundry.storage.select
 import org.cufy.json.set
@@ -38,8 +39,8 @@ fun HomePage_ListItem_activation(
     SwitchPreferenceListItem(
         value = value,
         onChange = handleOnChange,
-        headline = "Activation",
-        supporting = "Toggle to activate or deactivate the application",
+        headline = strings.stmt.app_activation_headline,
+        supporting = strings.stmt.app_activation_supporting,
         modifier = modifier,
     )
 }
@@ -63,13 +64,13 @@ fun HomePage_ListItem_ui_colors(
     SingleSelectPreferenceListItem(
         value = value,
         onChange = handleOnChange,
-        headline = "Change Theme",
+        headline = strings.stmt.app_colors_headline,
         items = mapOf(
-            UI_COLORS_SYSTEM to "System",
-            UI_COLORS_BLACK to "Black",
-            UI_COLORS_DARK to "Dark",
-            UI_COLORS_LIGHT to "Light",
-            UI_COLORS_WHITE to "White",
+            UI_COLORS_SYSTEM to strings.stmt.app_colors_value_system,
+            UI_COLORS_BLACK to strings.stmt.app_colors_value_black,
+            UI_COLORS_DARK to strings.stmt.app_colors_value_dark,
+            UI_COLORS_LIGHT to strings.stmt.app_colors_value_light,
+            UI_COLORS_WHITE to strings.stmt.app_colors_value_white,
         ),
         modifier = modifier,
     )
@@ -94,8 +95,8 @@ fun HomePage_ListItem_auto_boot(
     SwitchPreferenceListItem(
         value = value,
         onChange = handleOnChange,
-        headline = "Auto Boot",
-        supporting = "Auto boot the service every time the device booted-up",
+        headline = strings.stmt.app_auto_boot_headline,
+        supporting = strings.stmt.app_auto_boot_supporting,
         modifier = modifier,
     )
 }
@@ -119,8 +120,8 @@ fun HomePage_ListItem_brightness_reset(
     SwitchPreferenceListItem(
         value = value,
         onChange = handleOnChange,
-        headline = "Brightness Reset",
-        supporting = "Turn on auto brightness each time the device turn on to sleep",
+        headline = strings.stmt.app_brightness_reset_headline,
+        supporting = strings.stmt.app_brightness_reset_supporting,
         modifier = modifier,
     )
 }

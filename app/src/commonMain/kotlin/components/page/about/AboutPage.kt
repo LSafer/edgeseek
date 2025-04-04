@@ -35,6 +35,7 @@ import net.lsafer.edgeseek.app.UniRoute
 import net.lsafer.edgeseek.app.components.lib.ListDivider
 import net.lsafer.edgeseek.app.components.lib.ListHeader
 import net.lsafer.edgeseek.app.components.lib.ListSectionTitle
+import net.lsafer.edgeseek.app.l10n.strings
 
 @Composable
 fun AboutPage(
@@ -78,58 +79,52 @@ fun AboutPageContent(
             .verticalScroll(rememberScrollState())
             .then(modifier)
     ) {
-        ListHeader(title = "About")
-        ListSectionTitle(title = "Credits")
+        ListHeader(title = strings.stmt.page_about_heading)
+        ListSectionTitle(title = strings.label.credits)
         ListItem(
-            headlineContent = { Text("Author") },
+            headlineContent = { Text(strings.label.author) },
             supportingContent = { Text("LSafer") }
         )
 
         ListDivider()
-        ListSectionTitle(title = "Versions")
+        ListSectionTitle(title = strings.label.version)
         ListItem(
-            headlineContent = { Text("Version Name") },
+            headlineContent = { Text(strings.label.version_name) },
             supportingContent = { Text(BuildConfig.VERSION) },
         )
         ListItem(
-            headlineContent = { Text("Version Code") },
+            headlineContent = { Text(strings.label.version_code) },
             supportingContent = { Text(BuildConfig.VERSION_CODE.toString()) },
         )
 
         ListDivider()
-        ListSectionTitle(title = "Links")
+        ListSectionTitle(title = strings.label.links)
         ListItem(
             modifier = Modifier
                 .clickable { openUrl("https://lsafer.net/edgeseek") },
-            headlineContent = { Text("Website") },
-            supportingContent = { Text("The official EdgeSeek website") },
-        )
-        ListItem(
-            modifier = Modifier
-                .clickable { openUrl("https://play.google.com/store/apps/details?id=lsafer.edgeseek") },
-            headlineContent = { Text("Google Play") },
-            supportingContent = { Text("Stable releases only") }
+            headlineContent = { Text(strings.stmt.about_website_headline) },
+            supportingContent = { Text(strings.stmt.about_website_supporting) },
         )
         ListItem(
             modifier = Modifier
                 .clickable { openUrl("https://github.com/lsafer/edgeseek") },
-            headlineContent = { Text("GitHub") },
-            supportingContent = { Text("The application source code") }
+            headlineContent = { Text(strings.stmt.about_source_code_headline) },
+            supportingContent = { Text(strings.stmt.about_source_code_supporting) }
         )
 
         ListDivider()
-        ListSectionTitle(title = "Misc")
+        ListSectionTitle(title = strings.label.misc)
         ListItem(
             modifier = Modifier
                 .clickable { openIntroductionWizard() },
-            headlineContent = { Text("Re-introduce") },
-            supportingContent = { Text("Run the introduction wizard") },
+            headlineContent = { Text(strings.stmt.about_reintroduce_headline) },
+            supportingContent = { Text(strings.stmt.about_reintroduce_supporting) },
         )
         ListItem(
             modifier = Modifier
                 .clickable { local.navController.push(UniRoute.LogPage) },
-            headlineContent = { Text("Logs") },
-            supportingContent = { Text("Open log file") },
+            headlineContent = { Text(strings.stmt.page_log_headline) },
+            supportingContent = { Text(strings.stmt.page_log_supporting) },
         )
 
         Spacer(Modifier.height(50.dp))

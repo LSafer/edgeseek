@@ -31,6 +31,7 @@ import net.lsafer.edgeseek.app.UniRoute
 import net.lsafer.edgeseek.app.components.lib.ListDivider
 import net.lsafer.edgeseek.app.components.lib.ListHeader
 import net.lsafer.edgeseek.app.components.lib.ListSectionTitle
+import net.lsafer.edgeseek.app.l10n.strings
 
 @Composable
 fun HomePage(
@@ -61,42 +62,42 @@ fun MainPageContent(
             .verticalScroll(rememberScrollState())
             .then(modifier),
     ) {
-        ListHeader(title = "Edge Seek")
+        ListHeader(title = strings.branding.app_name)
 
-        ListSectionTitle(title = "Application")
+        ListSectionTitle(title = strings.label.application)
         HomePage_ListItem_activation(local)
         HomePage_ListItem_ui_colors(local)
 
         ListDivider()
-        ListSectionTitle(title = "Job")
+        ListSectionTitle(title = strings.label.job)
         ListItem(
             modifier = Modifier
                 .clickable { local.navController.push(UniRoute.EdgeListPage) },
-            headlineContent = { Text("Edges") },
-            supportingContent = { Text("Customize the edges") },
+            headlineContent = { Text(strings.stmt.page_edge_list_heading) },
+            supportingContent = { Text(strings.stmt.page_edge_list_supporting) },
         )
         HomePage_ListItem_auto_boot(local)
         HomePage_ListItem_brightness_reset(local)
 
         ListDivider()
-        ListSectionTitle(title = "Misc")
+        ListSectionTitle(title = strings.label.misc)
         ListItem(
             modifier = Modifier
                 .clickable { local.navController.push(UniRoute.PermissionsPage) },
-            headlineContent = { Text("Permissions") },
-            supportingContent = { Text("Manage application's permissions") },
+            headlineContent = { Text(strings.stmt.page_permissions_headline) },
+            supportingContent = { Text(strings.stmt.page_permissions_supporting) },
         )
         ListItem(
             modifier = Modifier
                 .clickable { local.navController.push(UniRoute.PresetsPage) },
-            headlineContent = { Text("Presets") },
-            supportingContent = { Text("Choose a set of configurations") },
+            headlineContent = { Text(strings.stmt.page_presets_headline) },
+            supportingContent = { Text(strings.stmt.page_presets_supporting) },
         )
         ListItem(
             modifier = Modifier
                 .clickable { local.navController.push(UniRoute.AboutPage) },
-            headlineContent = { Text("About") },
-            supportingContent = { Text("Information about this application") },
+            headlineContent = { Text(strings.stmt.page_about_headline) },
+            supportingContent = { Text(strings.stmt.page_about_supporting) },
         )
 
         Spacer(Modifier.height(50.dp))

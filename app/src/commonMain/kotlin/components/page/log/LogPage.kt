@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import net.lsafer.edgeseek.app.Local
 import net.lsafer.edgeseek.app.UniEvent
 import net.lsafer.edgeseek.app.UniRoute
+import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.compose.util.SubscribeEffect
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,7 +48,7 @@ fun LogPage(
         },
         topBar = {
             TopAppBar(
-                title = { Text("Logs") },
+                title = { Text(strings.stmt.page_log_heading) },
                 actions = {
                     IconButton({
                         local.ioScope.launch {
@@ -55,7 +56,7 @@ fun LogPage(
                             local.eventbus.emit(UniEvent.ClearLog)
                         }
                     }) {
-                        Icon(Icons.Default.ClearAll, "Clear Log")
+                        Icon(Icons.Default.ClearAll, strings.label.clear_log)
                     }
                 }
             )

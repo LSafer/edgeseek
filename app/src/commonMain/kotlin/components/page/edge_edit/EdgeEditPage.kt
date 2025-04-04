@@ -34,6 +34,7 @@ import net.lsafer.edgeseek.app.components.lib.*
 import net.lsafer.edgeseek.app.data.settings.EdgeData
 import net.lsafer.edgeseek.app.data.settings.EdgePos
 import net.lsafer.edgeseek.app.data.settings.EdgeSeekFeature
+import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.storage.select
 
 @Composable
@@ -79,80 +80,80 @@ fun EdgeEditPageContent(
             .then(modifier)
     ) {
         ListHeader(
-            title = "Edge Configuration",
+            title = strings.stmt.page_edge_edit_heading,
             summary = pos.key,
         )
 
-        ListSectionTitle(title = "Job")
+        ListSectionTitle(title = strings.label.job)
         SwitchPreferenceListItem(
             value = data.activated,
             onChange = { newValue -> edit { it.copy(activated = newValue) } },
-            headline = "Activation",
-            supporting = "Toggle to activate or deactivate this edge",
+            headline = strings.stmt.edge_activation_headline,
+            supporting = strings.stmt.edge_activation_supporting,
         )
         SingleSelectPreferenceListItem(
             value = data.seekFeature,
             onChange = { newValue -> edit { data.copy(seekFeature = newValue) } },
-            headline = "Seek Task",
+            headline = strings.stmt.edge_seek_task_headline,
             items = mapOf(
-                EdgeSeekFeature.Nothing to "Nothing",
-                EdgeSeekFeature.ControlBrightness to "Control Brightness",
-                EdgeSeekFeature.ControlBrightnessWithDimmer to "Control Brightness with Dimmer",
-                EdgeSeekFeature.ControlAlarm to "Control Alarm",
-                EdgeSeekFeature.ControlMusic to "Control Music",
-                EdgeSeekFeature.ControlRing to "Control Ring",
-                EdgeSeekFeature.ControlSystem to "Control System",
+                EdgeSeekFeature.Nothing to strings.stmt.edge_seek_task_value_nothing,
+                EdgeSeekFeature.ControlBrightness to strings.stmt.edge_seek_task_value_control_brightness,
+                EdgeSeekFeature.ControlBrightnessWithDimmer to strings.stmt.edge_seek_task_value_control_brightness_dimmer,
+                EdgeSeekFeature.ControlAlarm to strings.stmt.edge_seek_task_value_control_alarm,
+                EdgeSeekFeature.ControlMusic to strings.stmt.edge_seek_task_value_control_music,
+                EdgeSeekFeature.ControlRing to strings.stmt.edge_seek_task_value_control_ring,
+                EdgeSeekFeature.ControlSystem to strings.stmt.edge_seek_task_value_control_system,
             )
         )
 
         ListDivider()
-        ListSectionTitle(title = "Input")
+        ListSectionTitle(title = strings.label.input)
         SliderPreferenceListItem(
             value = data.sensitivity,
             onChange = { newValue -> edit { data.copy(sensitivity = newValue) } },
-            headline = "Sensitivity",
-            supporting = "How much you want the edge to be sensitive",
+            headline = strings.stmt.edge_sensitivity_headline,
+            supporting = strings.stmt.edge_sensitivity_supporting,
             valueRange = 5..100,
         )
 
         ListDivider()
-        ListSectionTitle(title = "Dimensions")
+        ListSectionTitle(title = strings.label.dimensions)
         SliderPreferenceListItem(
             value = data.thickness,
             onChange = { newValue -> edit { data.copy(thickness = newValue) } },
-            headline = "Thickness",
-            supporting = "The thickness of the edge",
+            headline = strings.stmt.edge_thickness_headline,
+            supporting = strings.stmt.edge_thickness_supporting,
             valueRange = 0..100,
         )
 
         ListDivider()
-        ListSectionTitle(title = "Appearance")
+        ListSectionTitle(title = strings.label.appearance)
         ColorPreferenceListItem(
             value = data.color,
             onChange = { newValue -> edit { data.copy(color = newValue) } },
-            headline = "Color",
-            supporting = "The color of the edge.",
+            headline = strings.stmt.edge_color_headline,
+            supporting = strings.stmt.edge_color_supporting,
         )
 
         ListDivider()
-        ListSectionTitle(title = "Misc")
+        ListSectionTitle(title = strings.label.misc)
         SwitchPreferenceListItem(
             value = data.seekToast,
             onChange = { newValue -> edit { data.copy(seekToast = newValue) } },
-            headline = "Toast",
-            supporting = "Display a message with the current volume when seeking",
+            headline = strings.stmt.edge_seek_toast_headline,
+            supporting = strings.stmt.edge_seek_toast_supporting,
         )
         SwitchPreferenceListItem(
             value = data.seekSteps,
             onChange = { newValue -> edit { data.copy(seekSteps = newValue) } },
-            headline = "Step on pivot",
-            supporting = "Limit seeking range around pivot points",
+            headline = strings.stmt.edge_seek_steps_headline,
+            supporting = strings.stmt.edge_seek_steps_supporting,
         )
         SliderPreferenceListItem(
             value = data.seekVibrate,
             onChange = { newValue -> edit { data.copy(seekVibrate = newValue) } },
-            headline = "Vibrate",
-            supporting = "The strength of vibration when the edge is touched",
+            headline = strings.stmt.edge_seek_vibrate_headline,
+            supporting = strings.stmt.edge_seek_vibrate_supporting,
             valueRange = 0..100,
         )
 
