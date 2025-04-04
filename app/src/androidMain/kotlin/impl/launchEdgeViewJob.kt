@@ -10,7 +10,10 @@ import android.view.WindowManager.LayoutParams
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
-import net.lsafer.edgeseek.app.data.settings.*
+import net.lsafer.edgeseek.app.data.settings.EdgeCorner
+import net.lsafer.edgeseek.app.data.settings.EdgeData
+import net.lsafer.edgeseek.app.data.settings.EdgeSeekFeature
+import net.lsafer.edgeseek.app.data.settings.EdgeSide
 import kotlin.math.roundToInt
 
 private val logger = Logger.withTag("net.lsafer.edgeseek.app.impl.launchEdgeViewJob")
@@ -36,10 +39,8 @@ fun CoroutineScope.launchEdgeViewJob(
     }
     @Suppress("DEPRECATION")
     windowParams.flags = LayoutParams.FLAG_NOT_FOCUSABLE or
-            LayoutParams.FLAG_LAYOUT_IN_SCREEN or
-            LayoutParams.FLAG_LAYOUT_NO_LIMITS or
             LayoutParams.FLAG_NOT_TOUCH_MODAL or
-            LayoutParams.FLAG_SHOW_WHEN_LOCKED
+            LayoutParams.FLAG_SHOW_WHEN_LOCKED // <-- this doesn't work for some reason
 
     val job = launch {
         dataFlow.collect { data ->
@@ -49,47 +50,44 @@ fun CoroutineScope.launchEdgeViewJob(
                     return@withContext
                 }
 
-                val side = data.pos.side.rotate(displayRotation)
+                val sideRotated = data.pos.side.rotate(displayRotation)
+                val cornerRotated = data.pos.corner.rotate(displayRotation)
 
-                val windowLength = when (side) {
+                val lengthPct = when (data.pos.side) {
+                    EdgeSide.Bottom, EdgeSide.Top -> .5f
+                    EdgeSide.Left, EdgeSide.Right -> 0.33333334f
+                }
+                val windowLength = when (sideRotated) {
                     EdgeSide.Left, EdgeSide.Right -> displayHeight
                     EdgeSide.Top, EdgeSide.Bottom -> displayWidth
                 }
 
-                val lengthPct = data.pos.calculateLengthPct()
                 val length = (lengthPct * windowLength).roundToInt()
 
-                val offsetPct = data.pos.calculateRotationalOffsetPct()
-                val offset = (offsetPct * windowLength).roundToInt()
-
-                windowParams.height = when (side) {
+                windowParams.height = when (sideRotated) {
                     EdgeSide.Left, EdgeSide.Right -> length
                     EdgeSide.Top, EdgeSide.Bottom -> data.thickness
                 }
-                windowParams.width = when (side) {
+                windowParams.width = when (sideRotated) {
                     EdgeSide.Left, EdgeSide.Right -> data.thickness
                     EdgeSide.Top, EdgeSide.Bottom -> length
                 }
-                windowParams.x = when (side) {
-                    EdgeSide.Top, EdgeSide.Bottom -> offset
-                    EdgeSide.Left, EdgeSide.Right -> 0
-                }
-                windowParams.y = when (side) {
-                    EdgeSide.Left, EdgeSide.Right -> offset
-                    EdgeSide.Top, EdgeSide.Bottom -> 0
-                }
-                windowParams.gravity = when (side) {
-                    EdgeSide.Bottom -> Gravity.BOTTOM or Gravity.RIGHT
-                    EdgeSide.Left -> Gravity.LEFT or Gravity.BOTTOM
-                    EdgeSide.Top -> Gravity.TOP or Gravity.LEFT
-                    EdgeSide.Right -> Gravity.RIGHT or Gravity.TOP
+                windowParams.gravity = when (cornerRotated) {
+                    EdgeCorner.BottomRight -> Gravity.BOTTOM or Gravity.RIGHT
+                    EdgeCorner.Bottom -> Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+                    EdgeCorner.BottomLeft -> Gravity.BOTTOM or Gravity.LEFT
+                    EdgeCorner.Left -> Gravity.LEFT or Gravity.CENTER_VERTICAL
+                    EdgeCorner.TopLeft -> Gravity.TOP or Gravity.LEFT
+                    EdgeCorner.Top -> Gravity.TOP or Gravity.CENTER_HORIZONTAL
+                    EdgeCorner.TopRight -> Gravity.TOP or Gravity.RIGHT
+                    EdgeCorner.Right -> Gravity.RIGHT or Gravity.CENTER_VERTICAL
                 }
                 windowParams.alpha = Color.alpha(data.color) / 255f
 
                 view.setBackgroundColor(data.color)
                 view.alpha = Color.alpha(data.color) / 255f
 
-                view.setOnTouchListener(createSeekFeatureTouchListener(implLocal, data, side))
+                view.setOnTouchListener(createSeekFeatureTouchListener(implLocal, data, sideRotated))
 
                 runCatching { windowManager.removeView(view) }
                 runCatching { windowManager.addView(view, windowParams) }

@@ -44,7 +44,6 @@ import net.lsafer.edgeseek.app.components.lib.MobileModel
 import net.lsafer.edgeseek.app.data.settings.EdgeData
 import net.lsafer.edgeseek.app.data.settings.EdgePos
 import net.lsafer.edgeseek.app.data.settings.EdgeSide
-import net.lsafer.edgeseek.app.data.settings.calculateLengthPct
 import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.storage.select
 
@@ -127,7 +126,10 @@ private fun BoxScope.Item(
     }
 
     val thickness = 24.dp
-    val lengthPct = pos.calculateLengthPct()
+    val lengthPct = when (data.pos.side) {
+        EdgeSide.Bottom, EdgeSide.Top -> .5f
+        EdgeSide.Left, EdgeSide.Right -> 0.33333334f
+    }
 
     val alignModifier = when (pos) {
         EdgePos.BottomLeft -> Modifier.align(Alignment.BottomStart)

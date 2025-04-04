@@ -23,45 +23,34 @@ enum class EdgeSide {
     Bottom, Left, Top, Right;
 
     fun rotate(rotation: Int) =
-        entries[(rotation * 3 + ordinal) % 4]
+        entries[(8 + ordinal - (rotation % 4) * 1) % 4]
 }
 
 @Serializable
-enum class EdgePos(val key: String, val side: EdgeSide) {
-    BottomRight("bottom_right", EdgeSide.Bottom),
-    BottomLeft("bottom_left", EdgeSide.Bottom),
-    LeftBottom("left_bottom", EdgeSide.Left),
-    LeftCenter("left_center", EdgeSide.Left),
-    LeftTop("left_top", EdgeSide.Left),
-    TopLeft("top_left", EdgeSide.Top),
-    TopRight("top_right", EdgeSide.Top),
-    RightTop("right_top", EdgeSide.Right),
-    RightCenter("right_center", EdgeSide.Right),
-    RightBottom("right_bottom", EdgeSide.Right),
+enum class EdgeCorner {
+    BottomRight, Bottom, BottomLeft, Left,
+    TopLeft, Top, TopRight, Right;
+
+    fun rotate(rotation: Int) =
+        entries[(16 + ordinal - (rotation % 8) * 2) % 8]
 }
 
-fun EdgePos.calculateRotationalOffsetPct(): Float {
-    return when (this) {
-        EdgePos.BottomRight -> 0f
-        EdgePos.BottomLeft -> 0.5f
-        EdgePos.LeftBottom -> 0f
-        EdgePos.LeftCenter -> 0.33333334f
-        EdgePos.LeftTop -> 0.6666667f
-        EdgePos.TopLeft -> 0f
-        EdgePos.TopRight -> 0.5f
-        EdgePos.RightTop -> 0f
-        EdgePos.RightCenter -> 0.33333334f
-        EdgePos.RightBottom -> 0.6666667f
-    }
-}
-
-fun EdgePos.calculateLengthPct(): Float {
-    return when (this) {
-        EdgePos.BottomRight, EdgePos.BottomLeft -> 0.5f
-        EdgePos.LeftBottom, EdgePos.LeftCenter, EdgePos.LeftTop -> 0.33333334f
-        EdgePos.TopLeft, EdgePos.TopRight -> 0.5f
-        EdgePos.RightTop, EdgePos.RightCenter, EdgePos.RightBottom -> 0.33333334f
-    }
+@Serializable
+enum class EdgePos(
+    val key: String,
+    val side: EdgeSide,
+    val corner: EdgeCorner,
+) {
+    BottomRight("bottom_right", EdgeSide.Bottom, EdgeCorner.BottomRight),
+    BottomLeft("bottom_left", EdgeSide.Bottom, EdgeCorner.BottomLeft),
+    LeftBottom("left_bottom", EdgeSide.Left, EdgeCorner.BottomLeft),
+    LeftCenter("left_center", EdgeSide.Left, EdgeCorner.Left),
+    LeftTop("left_top", EdgeSide.Left, EdgeCorner.TopLeft),
+    TopLeft("top_left", EdgeSide.Top, EdgeCorner.TopLeft),
+    TopRight("top_right", EdgeSide.Top, EdgeCorner.TopRight),
+    RightTop("right_top", EdgeSide.Right, EdgeCorner.TopRight),
+    RightCenter("right_center", EdgeSide.Right, EdgeCorner.Right),
+    RightBottom("right_bottom", EdgeSide.Right, EdgeCorner.BottomRight),
 }
 
 @Serializable

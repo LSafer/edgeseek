@@ -88,14 +88,30 @@ class MainService : Service() {
         launchEdgeViewJobsSubJob()
     }
 
+    @Suppress("DEPRECATION")
     private fun launchEdgeViewJobsSubJob() {
         val windowManager = getSystemService<WindowManager>()!!
-        @Suppress("DEPRECATION")
         val display = windowManager.defaultDisplay
         val displayRotation = display.rotation
-        val displayRealSize = Point()
-        @Suppress("DEPRECATION")
-        display.getRealSize(displayRealSize)
+
+        var displayHeight: Int
+        var displayWidth: Int
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            displayWidth = windowManager.currentWindowMetrics.bounds.width()
+            displayWidth -= windowManager.currentWindowMetrics.windowInsets.systemWindowInsetLeft
+            displayWidth -= windowManager.currentWindowMetrics.windowInsets.systemWindowInsetRight
+            displayHeight = windowManager.currentWindowMetrics.bounds.height()
+            displayHeight -= windowManager.currentWindowMetrics.windowInsets.systemWindowInsetTop
+            displayHeight -= windowManager.currentWindowMetrics.windowInsets.systemWindowInsetBottom
+        } else {
+            val displayRealSize = Point()
+            @Suppress("DEPRECATION")
+            display.getRealSize(displayRealSize)
+            displayWidth = displayRealSize.x
+            displayHeight = displayRealSize.y
+        }
+
         val subJob = Job(implLocal.defaultScope.coroutineContext.job)
 
         implLocal.defaultScope.launch {
@@ -112,8 +128,8 @@ class MainService : Service() {
                         implLocal = implLocal,
                         windowManager = windowManager,
                         displayRotation = displayRotation,
-                        displayHeight = displayRealSize.y,
-                        displayWidth = displayRealSize.x,
+                        displayHeight = displayHeight,
+                        displayWidth = displayWidth,
                         dataFlow = dataFlow,
                     )
                 }
