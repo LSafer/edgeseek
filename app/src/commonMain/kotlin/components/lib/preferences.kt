@@ -14,8 +14,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.compose.ui.window.Popup
-import androidx.compose.ui.window.PopupProperties
 import com.godaddy.android.colorpicker.ClassicColorPicker
 import com.godaddy.android.colorpicker.toColorInt
 import kotlin.math.roundToInt
@@ -174,10 +172,9 @@ fun <T> SingleSelectPreferenceListItem(
     var isMenuOpen by remember { mutableStateOf(false) }
 
     if (isMenuOpen) {
-        Popup(
-            alignment = Alignment.Center,
+        Dialog(
             onDismissRequest = { isMenuOpen = false },
-            properties = PopupProperties(
+            properties = DialogProperties(
                 usePlatformDefaultWidth = true,
             )
         ) {
