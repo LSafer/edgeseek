@@ -18,6 +18,7 @@ package net.lsafer.edgeseek.app
 import android.app.Application
 import android.content.Intent
 import android.os.Build
+import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,6 +31,7 @@ class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        FirebaseApp.initializeApp(this)
 
         globalLocal = runBlocking {
             createAndroidLocal(this@MainApplication)

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "641950919693",
+    "project_id": "edgeseek-45f33",
+    "storage_bucket": "edgeseek-45f33.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641950919693:android:3f494f689aac292c78f944",
+        "android_client_info": {
+          "package_name": "lsafer.edgeseek"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4JjOCB3OTfSl1Q4a3dVNGL0VEtgLnQq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641950919693:android:aa048f13230acdae78f944",
+        "android_client_info": {
+          "package_name": "lsafer.edgeseek.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4JjOCB3OTfSl1Q4a3dVNGL0VEtgLnQq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

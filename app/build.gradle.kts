@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.android.application)
     alias(libs.plugins.gmazzo.buildConfig)
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 buildConfig {
@@ -39,6 +41,10 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.12.0"))
+            implementation("com.google.firebase:firebase-crashlytics")
+            implementation("com.google.firebase:firebase-analytics")
+
             // ##### Official Dependencies #####
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
