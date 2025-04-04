@@ -73,7 +73,7 @@ fun MainPageContent(
         ListItem(
             modifier = Modifier
                 .clickable { local.navController.push(UniRoute.EdgeListPage) },
-            headlineContent = { Text(strings.stmt.page_edge_list_heading) },
+            headlineContent = { Text(strings.stmt.page_edge_list_headline) },
             supportingContent = { Text(strings.stmt.page_edge_list_supporting) },
         )
         HomePage_ListItem_auto_boot(local)
