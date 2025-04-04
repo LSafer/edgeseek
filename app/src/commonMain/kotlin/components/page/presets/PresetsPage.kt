@@ -121,21 +121,11 @@ fun PresetsPageContent(
             modifier = Modifier
                 .clickable {
                     local.editEachEdgeData {
-                        it.copy(color = Color(it.color).copy(alpha = 0f).toArgb())
+                        it.copy(color = Color(it.color).copy(alpha = .01f).toArgb())
                     }
                 },
             headlineContent = { Text(strings.stmt.hide_all_headline) },
             supportingContent = { Text(strings.stmt.hide_all_supporting) }
-        )
-        ListItem(
-            modifier = Modifier
-                .clickable {
-                    local.editEachEdgeData {
-                        it.copy(color = Color(it.color).copy(alpha = .01f).toArgb())
-                    }
-                },
-            headlineContent = { Text(strings.stmt.stealth_all_headline) },
-            supportingContent = { Text(strings.stmt.stealth_all_supporting) }
         )
 
         Spacer(Modifier.height(50.dp))

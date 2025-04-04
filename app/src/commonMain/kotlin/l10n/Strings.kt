@@ -169,9 +169,6 @@ data class Strings(
         val hide_all_headline: String = "Hide All",
         val hide_all_supporting: String = "Decrease the opacity of all edges",
 
-        val stealth_all_headline: String = "Stealth All",
-        val stealth_all_supporting: String = "Decrease the opacity of all edges (Compatibility Mode)",
-
         // Foreground Service
         val foreground_noti_title: String = "Running In Background",
         val foreground_noti_text: String = """

@@ -92,7 +92,7 @@ data class EdgeData(
     /**
      * The color of the edge. argb
      */
-    val color: Int = Color.argb(0, 255, 0, 0),
+    val color: Int = Color.argb(1, 255, 0, 0),
     /**
      * The sensitivity of this edge.
      */
