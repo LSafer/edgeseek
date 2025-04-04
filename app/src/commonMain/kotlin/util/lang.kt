@@ -30,6 +30,7 @@ fun langIsRTL(languageTag: String): Boolean {
     }
 }
 
+@Deprecated("default is too ambiguous")
 fun langSelect(languages: Collection<String>, ranges: List<String>, default: String): String {
     return langSelect(languages, ranges) ?: default
 }

@@ -11,8 +11,9 @@ val LocalStrings = compositionLocalOf<Strings> {
 
 val strings @Composable get() = LocalStrings.current
 
+val Strings_default = Strings_en
 val Strings_all = mapOf(
-    "en" to Strings_en,
+    "en-US" to Strings_en,
 )
 
 data class UniL10n(

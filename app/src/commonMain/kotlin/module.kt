@@ -17,7 +17,7 @@ const val PK_WIZ_INTRO = "wiz.intro"
 const val PK_UI_LANG = "ui.lang"
 const val PK_UI_COLORS = "ui.colors"
 
-const val UI_LANG_DEFAULT = "ar-SA"
+const val UI_LANG_DEFAULT = "en-US"
 const val UI_LANG_AR_SA = "ar-SA"
 const val UI_LANG_EN_US = "en-US"
 

@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
-import net.lsafer.edgeseek.app.UI_LANG_DEFAULT
 import net.lsafer.edgeseek.app.l10n.Strings_all
+import net.lsafer.edgeseek.app.l10n.Strings_default
 import net.lsafer.edgeseek.app.l10n.UniL10n
 import net.lsafer.edgeseek.app.util.firstShareStateIn
 import net.lsafer.edgeseek.app.util.langIsRTL
@@ -31,8 +31,7 @@ suspend fun createUniL10nState(
                 strings = Strings_all[langSelect(
                     languages = Strings_all.keys,
                     ranges = listOf(it),
-                    default = UI_LANG_DEFAULT,
-                )]!!,
+                )] ?: Strings_default,
             )
         }
         .firstShareStateIn(coroutineScope)
