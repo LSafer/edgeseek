@@ -88,14 +88,14 @@ fun EdgeListPageContent(
             modifier = Modifier.align(Alignment.CenterHorizontally),
         )
 
-        Box(
-            Modifier
-                .fillMaxSize()
-                .padding(40.dp)
-        ) {
-            MobileModel(Modifier.fillMaxSize())
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .padding(40.dp)
+            ) {
+                MobileModel(Modifier.fillMaxSize())
 
-            CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
                 for (pos in EdgePos.entries)
                     Item(local, pos)
             }
