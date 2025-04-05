@@ -89,6 +89,16 @@ fun CoroutineScope.launchEdgeViewJob(
 
                 view.setOnTouchListener(createSeekFeatureTouchListener(implLocal, data, sideRotated))
 
+                // [DRYRUN]
+                logger.i(buildString {
+                    append("DRYRUN ")
+                    append("p: ${data.pos} ")
+                    append("g: ${windowParams.gravity} ")
+                    append("h: ${windowParams.height} ")
+                    append("w: ${windowParams.height} ")
+                })
+                return@withContext
+
                 runCatching { windowManager.removeView(view) }
                 runCatching { windowManager.addView(view, windowParams) }
                     .onFailure { e -> logger.e("failed adding view to window", e) }

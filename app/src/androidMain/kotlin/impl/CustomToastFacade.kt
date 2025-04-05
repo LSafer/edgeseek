@@ -72,6 +72,10 @@ class CustomToastFacade(context: Context) {
     }
 
     fun update(text: String) {
+        // [DRYRUN]
+        logger.i("DRYRUN update($text)")
+        return
+
         CoroutineScope(Dispatchers.Main).launch {
             if (!attached) {
                 runCatching { windowManager.addView(containerView, windowParams) }

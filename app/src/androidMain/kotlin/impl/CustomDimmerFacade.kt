@@ -53,6 +53,10 @@ class CustomDimmerFacade(context: Context) {
     fun update(value: Int) {
         require(value in 0..255) { "Bad alpha value: $value" }
 
+        // [DRY_RUN]
+        logger.i("DRYRUN: update($value)")
+        return
+
         currentValue = value
 
         if (value == 0) {

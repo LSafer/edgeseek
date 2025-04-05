@@ -114,6 +114,9 @@ class MainService : Service() {
 
         val subJob = Job(implLocal.defaultScope.coroutineContext.job)
 
+        // [DRYRUN]
+        moduleLogger.i("DRYRUN dh: $displayHeight dw: $displayWidth")
+
         implLocal.defaultScope.launch {
             launchedEdgeViewJobsSubJobFlow.emit(subJob)
 
