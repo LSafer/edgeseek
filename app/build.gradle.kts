@@ -24,7 +24,7 @@ buildConfig {
     buildConfigField(
         type = "kotlin.Int",
         name = "VERSION_CODE",
-        value = rootProject.extraProperties["version_code"].toString()
+        value = rootProject.extraProperties["version_code"].toString().toInt()
     )
 }
 
@@ -109,7 +109,7 @@ android {
         versionCode = rootProject.extraProperties["version_code"].toString().toInt()
         versionName = version.toString()
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += "/META-INF/LICENSE.md"
             excludes += "/META-INF/LICENSE-notice.md"
