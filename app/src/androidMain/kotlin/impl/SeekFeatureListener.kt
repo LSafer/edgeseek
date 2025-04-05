@@ -49,9 +49,12 @@ class SeekFeatureListener(
             }
 
             else -> {
-                val deltaXOrY = (previousXOrY ?: 0f) - newXOrY
-                val currentValue = impl.fetchValue(implLocal)
-                val newValue = (currentValue + deltaXOrY / 100f * data.sensitivity).toInt()
+                if (previousXOrY == null) {
+                    previousXOrY = newXOrY
+                    return false
+                }
+
+                val deltaXOrY = previousXOrY!! - newXOrY
 
                 if (currentRange == null) {
                     currentRange = if (data.seekSteps)
@@ -60,6 +63,9 @@ class SeekFeatureListener(
                         impl.fetchRange(implLocal)
                 }
 
+                val currentValue = impl.fetchValue(implLocal)
+
+                val newValue = currentValue + (deltaXOrY / 100f * data.sensitivity).toInt()
                 val newValueCoerced = newValue.coerceIn(currentRange!!)
 
                 val value = impl.updateValue(implLocal, newValueCoerced)
