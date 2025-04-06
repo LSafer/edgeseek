@@ -121,7 +121,7 @@ class MainService : Service() {
                 for (pos in EdgePos.entries) {
                     val dataFlow = implLocal.local.dataStore
                         .select<EdgeData>(pos.key)
-                        .filterNotNull()
+                        .map { it ?: EdgeData(pos) }
                         .distinctUntilChanged()
 
                     launchEdgeViewJob(
