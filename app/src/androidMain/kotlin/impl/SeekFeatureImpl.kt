@@ -71,8 +71,8 @@ sealed class SeekFeatureImpl {
             return when {
                 value in 1..255 -> 0..255
                 value in -255..-1 -> -255..0
-                sign == 1 -> 0..255
-                sign == -1 -> -255..0
+                sign > 0 -> 0..255
+                sign < 0 -> -255..0
                 else -> -255..255
             }
         }

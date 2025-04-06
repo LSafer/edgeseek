@@ -8,7 +8,6 @@ import android.view.MotionEvent
 import android.view.View
 import net.lsafer.edgeseek.app.data.settings.EdgeData
 import net.lsafer.edgeseek.app.data.settings.EdgeSide
-import kotlin.math.sign
 
 class SeekFeatureListener(
     private val implLocal: ImplLocal,
@@ -17,7 +16,8 @@ class SeekFeatureListener(
     private val impl: SeekFeatureImpl,
 ) : View.OnTouchListener {
     private var currentRange: IntRange? = null
-    private var previousXOrY: Float? = null
+    private var currentOriginXOrY: Float? = null
+    private var currentOriginValue: Int? = null
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(view: View, event: MotionEvent): Boolean {
@@ -28,8 +28,9 @@ class SeekFeatureListener(
 
         return when (event.action) {
             MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_DOWN, MotionEvent.ACTION_UP -> {
-                previousXOrY = newXOrY
                 currentRange = null
+                currentOriginXOrY = null
+                currentOriginValue = null
 
                 if (data.seekVibrate > 0) {
                     val vibrator = implLocal.context.getSystemService(Vibrator::class.java)
@@ -45,27 +46,33 @@ class SeekFeatureListener(
                         @Suppress("DEPRECATION")
                         vibrator.vibrate(data.seekVibrate.toLong())
                 }
+                if (data.seekToast) {
+                    val value = impl.fetchValue(implLocal)
+                    implLocal.toast.update("$value")
+                }
                 false
             }
 
             else -> {
-                if (previousXOrY == null) {
-                    previousXOrY = newXOrY
+                if (currentOriginValue == null) {
+                    currentOriginValue = impl.fetchValue(implLocal)
+                }
+                if (currentOriginXOrY == null) {
+                    currentOriginXOrY = newXOrY
                     return false
                 }
 
-                val deltaXOrY = previousXOrY!! - newXOrY
+                val deltaXOrY = currentOriginXOrY!! - newXOrY
 
                 if (currentRange == null) {
                     currentRange = if (data.seekSteps)
-                        impl.fetchStepRange(implLocal, deltaXOrY.sign.toInt())
+                        impl.fetchStepRange(implLocal, deltaXOrY.toInt())
                     else
                         impl.fetchRange(implLocal)
                 }
 
-                val currentValue = impl.fetchValue(implLocal)
-
-                val newValue = currentValue + (deltaXOrY / 100f * data.sensitivity).toInt()
+                val factor = 20_000f / (currentRange!!.last - currentRange!!.first)
+                val newValue = currentOriginValue!! + (deltaXOrY / factor * data.sensitivity).toInt()
                 val newValueCoerced = newValue.coerceIn(currentRange!!)
 
                 val value = impl.updateValue(implLocal, newValueCoerced)
@@ -74,7 +81,6 @@ class SeekFeatureListener(
                     implLocal.toast.update("$value")
                 }
 
-                previousXOrY = newXOrY
                 false
             }
         }
