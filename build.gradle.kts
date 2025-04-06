@@ -10,8 +10,8 @@ plugins {
 }
 
 group = "net.lsafer.edgeseek"
-version = "0.3-pre.3"
-project.extraProperties.set("version_code", 17)
+version = "0.3-pre.4"
+project.extraProperties.set("version_code", 18)
 project.extraProperties.set("application_id", "lsafer.edgeseek")
 
 tasks.wrapper {
