@@ -8,7 +8,6 @@ sealed interface UniEvent {
     data object StartService : UniEvent
     data object RefreshRequest : UniEvent
     data object FocusRequest : UniEvent
-    data object ClearLog : UniEvent
 
     data class OpenUrlRequest(
         val url: String,

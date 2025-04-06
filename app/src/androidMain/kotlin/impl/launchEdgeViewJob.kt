@@ -97,7 +97,8 @@ fun CoroutineScope.launchEdgeViewJob(
     }
 
     job.invokeOnCompletion { e ->
-        logger.e("failure while executing job", e)
+        if (e !is CancellationException)
+            logger.e("failure while executing job", e)
 
         launch(Dispatchers.Main + NonCancellable) {
             runCatching { windowManager.removeView(view) }

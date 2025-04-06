@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ClearAll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
@@ -18,9 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.launch
 import net.lsafer.edgeseek.app.Local
-import net.lsafer.edgeseek.app.UniEvent
 import net.lsafer.edgeseek.app.UniRoute
 import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.compose.util.SubscribeEffect
@@ -48,17 +44,7 @@ fun LogPage(
         },
         topBar = {
             TopAppBar(
-                title = { Text(strings.stmt.page_log_heading) },
-                actions = {
-                    IconButton({
-                        local.ioScope.launch {
-                            logs.clear()
-                            local.eventbus.emit(UniEvent.ClearLog)
-                        }
-                    }) {
-                        Icon(Icons.Default.ClearAll, strings.label.clear_log)
-                    }
-                }
+                title = { Text(strings.stmt.page_log_heading) }
             )
         }
     ) { innerPadding ->
