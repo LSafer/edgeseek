@@ -35,6 +35,8 @@ val Strings_ar = Strings(
         welcome_phrase = "أهلا",
         all_setup_phrase = "التطبيق جاهز!",
         mandatory_permissions_not_met = "لم يتم إعطاء الصلاحيات الإلزامية",
+        watch_tutorial = "مشاهدة شرح",
+        open_settings = "فتح الإعدادات",
 
         page_edge_list_headline = "الحواف",
         page_edge_list_supporting = "تعديل الحواف",
@@ -59,6 +61,11 @@ val Strings_ar = Strings(
         page_log_headline = "السجل",
         page_log_supporting = "فتح ملف السجلات",
         page_log_heading = "السجل",
+
+        restricted_permissions_headline =
+            "السماح بالإعدادات المحظورة",
+        restricted_permissions_supporting =
+            "في نسخ أندرويد 13 فما فوق, التطبيقات المثبتة خارج جوجل بلاي تحتاج أن يسمح لها باستخدام 'الإعدادات المحظورة' يدويا",
 
         display_over_other_apps_headline = "إظهار على التطبيقات الأخرى",
         display_over_other_apps_supporting = "السماح لهذا التطبيق برسم مناظر عائمة على شاشتك",

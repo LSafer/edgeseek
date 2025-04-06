@@ -46,6 +46,11 @@ fun PermissionsPageContent(
     ) {
         ListHeader(title = strings.stmt.page_permissions_heading)
         ListSectionTitle(title = strings.label.mandatory)
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            PermissionsPage_ListItem_allow_restricted_permissions()
+        }
+
         PermissionsPage_ListItem_display_over_other_apps()
         PermissionsPage_ListItem_write_system_settings()
 

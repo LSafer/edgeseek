@@ -43,6 +43,8 @@ data class Strings(
         val welcome_phrase: String = "Welcome",
         val all_setup_phrase: String = "All Set Up!",
         val mandatory_permissions_not_met: String = "Mandatory Permissions are not met",
+        val watch_tutorial: String = "Watch Tutorial",
+        val open_settings: String = "Open Settings",
 
         // Pages
         val page_edge_list_headline: String = "Edges",
@@ -70,6 +72,11 @@ data class Strings(
         val page_log_heading: String = "Logs",
 
         // Permissions
+        val restricted_permissions_headline: String =
+            "Allow Restricted Permissions",
+        val restricted_permissions_supporting: String =
+            "In Android 13 and later, applications installed outside Google Play need to be allowed 'Restricted Permissions' explicitly.",
+
         val display_over_other_apps_headline: String =
             "Display Over Other Apps",
         val display_over_other_apps_supporting: String =

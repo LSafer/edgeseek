@@ -5,14 +5,59 @@ import android.content.Intent
 import android.net.Uri
 import android.os.PowerManager
 import android.provider.Settings
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import net.lsafer.edgeseek.app.components.lib.SwitchPreferenceListItem
 import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.edgeseek.app.util.observeAsState
+
+@Composable
+fun PermissionsPage_ListItem_allow_restricted_permissions(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+
+    val handleOnClick: () -> Unit = {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        intent.data = Uri.parse("package:${context.packageName}")
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
+    }
+    val handleOnOpenTutorial: () -> Unit = {
+        val uri = Uri.parse("https://www.youtube.com/watch?v=28TomZ9tztw")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        context.startActivity(intent)
+    }
+
+    ListItem(
+        modifier = Modifier
+            .clickable(onClick = handleOnClick)
+            .then(modifier),
+        headlineContent = { Text(strings.stmt.restricted_permissions_headline) },
+        trailingContent = {
+            IconButton(handleOnClick) {
+                Icon(Icons.Default.Settings, strings.stmt.open_settings)
+            }
+        },
+        supportingContent = {
+            Column {
+                Text(strings.stmt.restricted_permissions_supporting)
+
+                OutlinedButton(handleOnOpenTutorial, Modifier.padding(8.dp)) {
+                    Text(strings.stmt.watch_tutorial)
+                }
+            }
+        }
+    )
+}
 
 @Composable
 fun PermissionsPage_ListItem_display_over_other_apps(modifier: Modifier = Modifier) {
