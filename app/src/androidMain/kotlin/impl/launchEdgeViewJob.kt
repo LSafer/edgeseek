@@ -4,30 +4,34 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.view.Gravity
-import android.view.View
 import android.view.WindowManager
 import android.view.WindowManager.LayoutParams
+import androidx.cardview.widget.CardView
 import co.touchlab.kermit.Logger
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import net.lsafer.edgeseek.app.data.settings.EdgeCorner
-import net.lsafer.edgeseek.app.data.settings.EdgeData
-import net.lsafer.edgeseek.app.data.settings.EdgeSeekFeature
+import net.lsafer.edgeseek.app.data.settings.EdgePosData
 import net.lsafer.edgeseek.app.data.settings.EdgeSide
+import net.lsafer.edgeseek.app.data.settings.EdgeSideData
 import kotlin.math.roundToInt
 
 private val logger = Logger.withTag("net.lsafer.edgeseek.app.impl.launchEdgeViewJob")
 
-@SuppressLint("RtlHardcoded")
+@SuppressLint("RtlHardcoded", "ClickableViewAccessibility")
 fun CoroutineScope.launchEdgeViewJob(
     implLocal: ImplLocal,
     windowManager: WindowManager,
     displayRotation: Int,
     displayHeight: Int,
     displayWidth: Int,
-    dataFlow: Flow<EdgeData>,
+    sideDataFlow: Flow<EdgeSideData>,
+    posDataFlow: Flow<EdgePosData>,
 ): Job {
-    val view = View(implLocal.context)
+    val view = CardView(implLocal.context)
     val windowParams = LayoutParams()
     @Suppress("DEPRECATION")
     windowParams.type = when {
@@ -42,59 +46,71 @@ fun CoroutineScope.launchEdgeViewJob(
             LayoutParams.FLAG_NOT_TOUCH_MODAL or
             LayoutParams.FLAG_SHOW_WHEN_LOCKED // <-- this doesn't work for some reason
 
-    val job = launch {
-        dataFlow.collect { data ->
-            withContext(Dispatchers.Main) {
-                if (!data.activated) {
-                    runCatching { windowManager.removeView(view) }
-                    return@withContext
-                }
-
-                val sideRotated = data.pos.side.rotate(displayRotation)
-                val cornerRotated = data.pos.corner.rotate(displayRotation)
-
-                val lengthPct = when (data.pos.side) {
-                    EdgeSide.Bottom, EdgeSide.Top -> .5f
-                    EdgeSide.Left, EdgeSide.Right -> 0.33333334f
-                }
-                val windowLength = when (sideRotated) {
-                    EdgeSide.Left, EdgeSide.Right -> displayHeight
-                    EdgeSide.Top, EdgeSide.Bottom -> displayWidth
-                }
-
-                val length = (lengthPct * windowLength).roundToInt()
-
-                windowParams.height = when (sideRotated) {
-                    EdgeSide.Left, EdgeSide.Right -> length
-                    EdgeSide.Top, EdgeSide.Bottom -> data.thickness
-                }
-                windowParams.width = when (sideRotated) {
-                    EdgeSide.Left, EdgeSide.Right -> data.thickness
-                    EdgeSide.Top, EdgeSide.Bottom -> length
-                }
-                windowParams.gravity = when (cornerRotated) {
-                    EdgeCorner.BottomRight -> Gravity.BOTTOM or Gravity.RIGHT
-                    EdgeCorner.Bottom -> Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
-                    EdgeCorner.BottomLeft -> Gravity.BOTTOM or Gravity.LEFT
-                    EdgeCorner.Left -> Gravity.LEFT or Gravity.CENTER_VERTICAL
-                    EdgeCorner.TopLeft -> Gravity.TOP or Gravity.LEFT
-                    EdgeCorner.Top -> Gravity.TOP or Gravity.CENTER_HORIZONTAL
-                    EdgeCorner.TopRight -> Gravity.TOP or Gravity.RIGHT
-                    EdgeCorner.Right -> Gravity.RIGHT or Gravity.CENTER_VERTICAL
-                }
-                windowParams.alpha = Color.alpha(data.color) / 255f
-
-                view.setBackgroundColor(data.color)
-                view.alpha = Color.alpha(data.color) / 255f
-
-                view.setOnTouchListener(createSeekFeatureTouchListener(implLocal, data, sideRotated))
-
+    val job = combine(sideDataFlow, posDataFlow) { a, b -> a to b }
+        .onEach { (sideData, posData) ->
+            if (
+                !posData.activated ||
+                !posData.pos.isIncludedWhenSegmented(sideData.nSegments) ||
+                !posData.orientationFilter.test(displayRotation)
+            ) {
                 runCatching { windowManager.removeView(view) }
-                runCatching { windowManager.addView(view, windowParams) }
-                    .onFailure { e -> logger.e("failed adding view to window", e) }
+                return@onEach
             }
+
+            val sideRotated = posData.pos.side.rotate(displayRotation)
+            val cornerRotated = posData.pos.corner.rotate(displayRotation)
+
+            val lengthPct = 1f / sideData.nSegments
+            val windowLength = when (sideRotated) {
+                EdgeSide.Left, EdgeSide.Right -> displayHeight
+                EdgeSide.Top, EdgeSide.Bottom -> displayWidth
+            }
+
+            val length = (lengthPct * windowLength).roundToInt()
+
+            windowParams.height = when (sideRotated) {
+                EdgeSide.Left, EdgeSide.Right -> length
+                EdgeSide.Top, EdgeSide.Bottom -> posData.thickness
+            }
+            windowParams.width = when (sideRotated) {
+                EdgeSide.Left, EdgeSide.Right -> posData.thickness
+                EdgeSide.Top, EdgeSide.Bottom -> length
+            }
+            windowParams.gravity = when (cornerRotated) {
+                EdgeCorner.BottomRight -> Gravity.BOTTOM or Gravity.RIGHT
+                EdgeCorner.Bottom -> Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
+                EdgeCorner.BottomLeft -> Gravity.BOTTOM or Gravity.LEFT
+                EdgeCorner.Left -> Gravity.LEFT or Gravity.CENTER_VERTICAL
+                EdgeCorner.TopLeft -> Gravity.TOP or Gravity.LEFT
+                EdgeCorner.Top -> Gravity.TOP or Gravity.CENTER_HORIZONTAL
+                EdgeCorner.TopRight -> Gravity.TOP or Gravity.RIGHT
+                EdgeCorner.Right -> Gravity.RIGHT or Gravity.CENTER_VERTICAL
+            }
+            windowParams.alpha = Color.alpha(posData.color) / 255f
+
+            view.setCardBackgroundColor(posData.color)
+            view.alpha = Color.alpha(posData.color) / 255f
+
+            view.setOnTouchListener(
+                EdgeTouchListener(
+                    implLocal = implLocal,
+                    edgePosData = posData,
+                    edgeSide = sideRotated,
+                    onSeekImpl = ControlFeatureImpl.from(posData.onSeek),
+                    onLongClick = ActionFeatureImpl.from(posData.onLongClick),
+                    onDoubleClick = ActionFeatureImpl.from(posData.onDoubleClick),
+                    onSwipeUp = ActionFeatureImpl.from(posData.onSwipeUp),
+                    onSwipeDown = ActionFeatureImpl.from(posData.onSwipeDown),
+                    onSwipeLeft = ActionFeatureImpl.from(posData.onSwipeLeft),
+                    onSwipeRight = ActionFeatureImpl.from(posData.onSwipeRight),
+                )
+            )
+
+            runCatching { windowManager.removeView(view) }
+            runCatching { windowManager.addView(view, windowParams) }
+                .onFailure { e -> logger.e("failed adding view to window", e) }
         }
-    }
+        .launchIn(scope = this + Dispatchers.Main)
 
     job.invokeOnCompletion { e ->
         if (e !is CancellationException)
@@ -106,34 +122,4 @@ fun CoroutineScope.launchEdgeViewJob(
     }
 
     return job
-}
-
-@SuppressLint("ClickableViewAccessibility")
-private fun createSeekFeatureTouchListener(
-    implLocal: ImplLocal,
-    data: EdgeData,
-    side: EdgeSide,
-): View.OnTouchListener {
-    return when (data.seekFeature) {
-        EdgeSeekFeature.Nothing ->
-            View.OnTouchListener { _, _ -> false }
-
-        EdgeSeekFeature.ControlBrightness ->
-            SeekFeatureListener(implLocal, data, side, SeekFeatureImpl.ControlBrightness)
-
-        EdgeSeekFeature.ControlBrightnessWithDimmer ->
-            SeekFeatureListener(implLocal, data, side, SeekFeatureImpl.ControlBrightnessWithDimmer)
-
-        EdgeSeekFeature.ControlMusic ->
-            SeekFeatureListener(implLocal, data, side, SeekFeatureImpl.ControlAudio.Music)
-
-        EdgeSeekFeature.ControlAlarm ->
-            SeekFeatureListener(implLocal, data, side, SeekFeatureImpl.ControlAudio.Alarm)
-
-        EdgeSeekFeature.ControlSystem ->
-            SeekFeatureListener(implLocal, data, side, SeekFeatureImpl.ControlAudio.System)
-
-        EdgeSeekFeature.ControlRing ->
-            SeekFeatureListener(implLocal, data, side, SeekFeatureImpl.ControlAudio.Ring)
-    }
 }

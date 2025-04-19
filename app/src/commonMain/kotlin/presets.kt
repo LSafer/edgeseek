@@ -1,132 +1,80 @@
 package net.lsafer.edgeseek.app
 
-import net.lsafer.edgeseek.app.data.settings.EdgeData
-import net.lsafer.edgeseek.app.data.settings.EdgePos
-import net.lsafer.edgeseek.app.data.settings.EdgeSeekFeature
+import net.lsafer.edgeseek.app.data.settings.*
 
-val PRESET_STANDARD = listOf(
-    // Left
-    EdgeData(
-        pos = EdgePos.LeftTop,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlMusic
+val PRESET_SIDE_STANDARD = listOf(
+    EdgeSideData(
+        side = EdgeSide.Top,
+        nSegments = 1,
     ),
-    EdgeData(
+    EdgeSideData(
+        side = EdgeSide.Bottom,
+        nSegments = 1,
+    ),
+    EdgeSideData(
+        side = EdgeSide.Left,
+        nSegments = 1,
+    ),
+    EdgeSideData(
+        side = EdgeSide.Right,
+        nSegments = 1,
+    ),
+)
+
+val PRESET_SIDE_CENTERED = listOf(
+    EdgeSideData(
+        side = EdgeSide.Top,
+        nSegments = 1,
+    ),
+    EdgeSideData(
+        side = EdgeSide.Bottom,
+        nSegments = 1,
+    ),
+    EdgeSideData(
+        side = EdgeSide.Left,
+        nSegments = 3,
+    ),
+    EdgeSideData(
+        side = EdgeSide.Right,
+        nSegments = 3,
+    ),
+)
+
+val PRESET_POS_STANDARD = listOf(
+    // Left
+    EdgePosData(
         pos = EdgePos.LeftCenter,
         activated = true,
-        seekFeature = EdgeSeekFeature.ControlMusic
-    ),
-    EdgeData(
-        pos = EdgePos.LeftBottom,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlMusic
+        onSeek = ControlFeature.Music
     ),
     // Right
-    EdgeData(
-        pos = EdgePos.RightTop,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    EdgeData(
+    EdgePosData(
         pos = EdgePos.RightCenter,
         activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    EdgeData(
-        pos = EdgePos.RightBottom,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
+        onSeek = ControlFeature.Brightness
     ),
 )
 
-val PRESET_STANDARD_CENTERED = listOf(
+val PRESET_POS_BRIGHTNESS_ONLY = listOf(
+    // Right
+    EdgePosData(
+        pos = EdgePos.RightCenter,
+        activated = true,
+        onSeek = ControlFeature.Brightness
+    ),
+)
+
+val PRESET_POS_DOUBLE_BRIGHTNESS = listOf(
     // Left
-    EdgeData(
+    EdgePosData(
         pos = EdgePos.LeftCenter,
         activated = true,
-        seekFeature = EdgeSeekFeature.ControlMusic
+        onSeek = ControlFeature.Brightness
     ),
     // Right
-    EdgeData(
+    EdgePosData(
         pos = EdgePos.RightCenter,
         activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-)
-
-val PRESET_BRIGHTNESS_ONLY = listOf(
-    // Right
-    EdgeData(
-        pos = EdgePos.RightTop,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    EdgeData(
-        pos = EdgePos.RightCenter,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    EdgeData(
-        pos = EdgePos.RightBottom,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-)
-
-val PRESET_BRIGHTNESS_ONLY_CENTERED = listOf(
-    EdgeData(
-        pos = EdgePos.RightCenter,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-)
-
-val PRESET_DOUBLE_BRIGHTNESS = listOf(
-    // Left
-    EdgeData(
-        pos = EdgePos.LeftTop,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    EdgeData(
-        pos = EdgePos.LeftCenter,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    EdgeData(
-        pos = EdgePos.LeftBottom,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    // Right
-    EdgeData(
-        pos = EdgePos.RightTop,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    EdgeData(
-        pos = EdgePos.RightCenter,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    EdgeData(
-        pos = EdgePos.RightBottom,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-)
-
-val PRESET_DOUBLE_BRIGHTNESS_CENTERED = listOf(
-    // Left
-    EdgeData(
-        pos = EdgePos.LeftCenter,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
-    ),
-    // Right
-    EdgeData(
-        pos = EdgePos.RightCenter,
-        activated = true,
-        seekFeature = EdgeSeekFeature.ControlBrightness
+        onSeek = ControlFeature.Brightness
     ),
 )

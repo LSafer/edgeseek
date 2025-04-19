@@ -96,13 +96,23 @@ val Strings_ar = Strings(
         edge_activation_supporting = "إختر لفتعيل أو تعطيل الحافة",
 
         edge_seek_task_headline = "وظيفة السحب",
-        edge_seek_task_value_nothing = "لا شيء",
-        edge_seek_task_value_control_brightness = "التحكم بالسطوع",
-        edge_seek_task_value_control_brightness_dimmer = "التحكم بالسطوع مع إمكانية خفض السطوع أكثر",
-        edge_seek_task_value_control_alarm = "التحكم بصوت المنبه",
-        edge_seek_task_value_control_music = "التحكم بصوت الوسائط",
-        edge_seek_task_value_control_ring = "التحكم بصوت الرنين",
-        edge_seek_task_value_control_system = "التحكم بأصوات النظام",
+        edge_long_click_task_headline = "وظيفة الضغط مطولا",
+        edge_double_click_task_headline = "وظيفة الضغط المزدوج",
+        edge_swipe_up_task_headline = "وظيفة السحب للأعلى",
+        edge_swipe_down_task_headline = "وظيفة السحب للأسفل",
+        edge_swipe_left_task_headline = "وظيفة السحب لليسار",
+        edge_swipe_right_task_headline = "وظيفة السحب لليمين",
+
+        control_feature_nothing = "لا شيء",
+        control_feature_brightness = "التحكم بالسطوع",
+        control_feature_brightness_dimmer = "التحكم بالسطوع مع إمكانية خفض السطوع أكثر",
+        control_feature_alarm = "التحكم بصوت المنبه",
+        control_feature_music = "التحكم بصوت الوسائط",
+        control_feature_ring = "التحكم بصوت الرنين",
+        control_feature_system = "التحكم بأصوات النظام",
+
+        action_feature_nothing = "لا شيء",
+        action_feature_expand_status_bar = "فتح شريط الحالة",
 
         edge_sensitivity_headline = "الحساسية",
         edge_sensitivity_supporting = "تغيير حساسية الحافة",
@@ -113,14 +123,25 @@ val Strings_ar = Strings(
         edge_color_headline = "اللون",
         edge_color_supporting = "تغيير لون الحافة",
 
-        edge_seek_toast_headline = "الرقم الحالي",
-        edge_seek_toast_supporting = "عن إظهار الرقم الحالي كرسالة صغيرة عند السحب",
+        edge_feedback_toast_headline = "الرقم الحالي",
+        edge_feedback_toast_supporting = "إظهار الرقم الحالي كرسالة صغيرة عند السحب",
+
+        edge_feedback_system_panel_headline = "الرقم الحالي (النظام)",
+        edge_feedback_system_panel_supporting = "إظهار شريط النظام عند تغيير الرقم الحالي",
 
         edge_seek_steps_headline = "الوقوف عند الصفر",
         edge_seek_steps_supporting = "توقف عن السحب عند الوصول إلى الصفر",
 
-        edge_seek_vibrate_headline = "الإهتزاز",
-        edge_seek_vibrate_supporting = "قوة الإهتزاز عند لمس الحافة",
+        edge_seek_acceleration_headline = "التغير المتسارع",
+        edge_seek_acceleration_supporting = "زيادة تسارع التغيير عند الإستمرار بالسحب",
+
+        edge_feedback_vibration_headline = "الإهتزاز",
+        edge_feedback_vibration_supporting = "قوة الإهتزاز عند لمس الحافة",
+
+        edge_orientation_filter_headline = "وضع دوران الجهاز",
+        edge_orientation_filter_value_all = "عمودي وأفقي",
+        edge_orientation_filter_value_portrait_only = "عمودي فقط",
+        edge_orientation_filter_value_landscape_only = "أفقي فقط",
 
         about_website_headline = "الموقع الإلكتروني",
         about_website_supporting = "الموقع الرسمي لهذا التطبيق",

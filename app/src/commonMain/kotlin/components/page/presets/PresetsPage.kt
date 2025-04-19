@@ -71,37 +71,37 @@ fun PresetsPageContent(
         ListSectionTitle(title = strings.label.presets)
         ListItem(
             modifier = Modifier
-                .clickable { local.clearAndSetEdgeDataList(PRESET_STANDARD) },
+                .clickable { local.clearAndSetEdgeDataList(PRESET_POS_STANDARD, PRESET_SIDE_STANDARD) },
             headlineContent = { Text(strings.stmt.preset_standard_headline) },
             supportingContent = { Text(strings.stmt.preset_standard_supporting) }
         )
         ListItem(
             modifier = Modifier
-                .clickable { local.clearAndSetEdgeDataList(PRESET_STANDARD_CENTERED) },
+                .clickable { local.clearAndSetEdgeDataList(PRESET_POS_STANDARD, PRESET_SIDE_CENTERED) },
             headlineContent = { Text(strings.stmt.preset_standard_c_headline) },
             supportingContent = { Text(strings.stmt.preset_standard_c_supporting) }
         )
         ListItem(
             modifier = Modifier
-                .clickable { local.clearAndSetEdgeDataList(PRESET_BRIGHTNESS_ONLY) },
+                .clickable { local.clearAndSetEdgeDataList(PRESET_POS_BRIGHTNESS_ONLY, PRESET_SIDE_STANDARD) },
             headlineContent = { Text(strings.stmt.preset_brightness_headline) },
             supportingContent = { Text(strings.stmt.preset_brightness_supporting) }
         )
         ListItem(
             modifier = Modifier
-                .clickable { local.clearAndSetEdgeDataList(PRESET_BRIGHTNESS_ONLY_CENTERED) },
+                .clickable { local.clearAndSetEdgeDataList(PRESET_POS_BRIGHTNESS_ONLY, PRESET_SIDE_CENTERED) },
             headlineContent = { Text(strings.stmt.preset_brightness_c_headline) },
             supportingContent = { Text(strings.stmt.preset_brightness_c_supporting) }
         )
         ListItem(
             modifier = Modifier
-                .clickable { local.clearAndSetEdgeDataList(PRESET_DOUBLE_BRIGHTNESS) },
+                .clickable { local.clearAndSetEdgeDataList(PRESET_POS_DOUBLE_BRIGHTNESS, PRESET_SIDE_STANDARD) },
             headlineContent = { Text(strings.stmt.preset_brightness_d_headline) },
             supportingContent = { Text(strings.stmt.preset_brightness_d_supporting) }
         )
         ListItem(
             modifier = Modifier
-                .clickable { local.clearAndSetEdgeDataList(PRESET_DOUBLE_BRIGHTNESS_CENTERED) },
+                .clickable { local.clearAndSetEdgeDataList(PRESET_POS_DOUBLE_BRIGHTNESS, PRESET_SIDE_CENTERED) },
             headlineContent = { Text(strings.stmt.preset_brightness_dc_headline) },
             supportingContent = { Text(strings.stmt.preset_brightness_dc_supporting) }
         )

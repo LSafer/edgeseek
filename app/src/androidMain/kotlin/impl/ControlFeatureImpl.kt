@@ -19,18 +19,31 @@ import android.media.AudioManager
 import android.provider.Settings
 import androidx.core.content.getSystemService
 import co.touchlab.kermit.Logger
+import net.lsafer.edgeseek.app.data.settings.ControlFeature
 
-sealed class SeekFeatureImpl {
+sealed class ControlFeatureImpl {
     companion object {
-        private val logger = Logger.withTag(SeekFeatureImpl::class.qualifiedName!!)
+        private val logger = Logger.withTag(ControlFeatureImpl::class.qualifiedName!!)
+
+        fun from(feature: ControlFeature): ControlFeatureImpl? {
+            return when (feature) {
+                ControlFeature.Nothing -> null
+                ControlFeature.Brightness -> Brightness
+                ControlFeature.BrightnessWithDimmer -> BrightnessWithDimmer
+                ControlFeature.Music -> Audio.Music
+                ControlFeature.Alarm -> Audio.Alarm
+                ControlFeature.System -> Audio.System
+                ControlFeature.Ring -> Audio.Ring
+            }
+        }
     }
 
     abstract fun fetchRange(implLocal: ImplLocal): IntRange
     open fun fetchStepRange(implLocal: ImplLocal, sign: Int) = fetchRange(implLocal)
     abstract fun fetchValue(implLocal: ImplLocal): Int
-    abstract fun updateValue(implLocal: ImplLocal, newValue: Int): Int
+    abstract fun updateValue(implLocal: ImplLocal, newValue: Int, showSystemPanel: Boolean): Int
 
-    data object ControlBrightness : SeekFeatureImpl() {
+    data object Brightness : ControlFeatureImpl() {
         override fun fetchRange(implLocal: ImplLocal) = 0..255
 
         override fun fetchValue(implLocal: ImplLocal): Int {
@@ -40,7 +53,7 @@ sealed class SeekFeatureImpl {
             )
         }
 
-        override fun updateValue(implLocal: ImplLocal, newValue: Int): Int {
+        override fun updateValue(implLocal: ImplLocal, newValue: Int, showSystemPanel: Boolean): Int {
             val newSystemValue = newValue.coerceIn(0..255)
 
             try {
@@ -63,7 +76,7 @@ sealed class SeekFeatureImpl {
         }
     }
 
-    data object ControlBrightnessWithDimmer : SeekFeatureImpl() {
+    data object BrightnessWithDimmer : ControlFeatureImpl() {
         override fun fetchRange(implLocal: ImplLocal) = -255..255
 
         override fun fetchStepRange(implLocal: ImplLocal, sign: Int): IntRange {
@@ -86,7 +99,7 @@ sealed class SeekFeatureImpl {
             return currentSystemValue - currentDimmerValue
         }
 
-        override fun updateValue(implLocal: ImplLocal, newValue: Int): Int {
+        override fun updateValue(implLocal: ImplLocal, newValue: Int, showSystemPanel: Boolean): Int {
             val newSystemValue = newValue.coerceIn(0..255)
             val newDimmerValue = -newValue.coerceIn(-255..0)
 
@@ -110,11 +123,11 @@ sealed class SeekFeatureImpl {
         }
     }
 
-    sealed class ControlAudio(private val streamType: Int) : SeekFeatureImpl() {
-        data object Music : ControlAudio(AudioManager.STREAM_MUSIC)
-        data object System : ControlAudio(AudioManager.STREAM_SYSTEM)
-        data object Alarm : ControlAudio(AudioManager.STREAM_ALARM)
-        data object Ring : ControlAudio(AudioManager.STREAM_RING)
+    sealed class Audio(private val streamType: Int) : ControlFeatureImpl() {
+        data object Alarm : Audio(AudioManager.STREAM_ALARM)
+        data object Music : Audio(AudioManager.STREAM_MUSIC)
+        data object Ring : Audio(AudioManager.STREAM_RING)
+        data object System : Audio(AudioManager.STREAM_SYSTEM)
 
         override fun fetchRange(implLocal: ImplLocal): IntRange {
             val manager = implLocal.context.getSystemService<AudioManager>()!!
@@ -127,7 +140,7 @@ sealed class SeekFeatureImpl {
             return manager.getStreamVolume(streamType)
         }
 
-        override fun updateValue(implLocal: ImplLocal, newValue: Int): Int {
+        override fun updateValue(implLocal: ImplLocal, newValue: Int, showSystemPanel: Boolean): Int {
             val manager = implLocal.context.getSystemService(AudioManager::class.java)
             val maximumValue = manager.getStreamMaxVolume(streamType)
             val newSystemValue = newValue.coerceIn(0..maximumValue)
@@ -136,7 +149,10 @@ sealed class SeekFeatureImpl {
                 manager.setStreamVolume(
                     streamType,
                     newSystemValue,
-                    AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE,
+                    if (showSystemPanel)
+                        AudioManager.FLAG_SHOW_UI
+                    else
+                        AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE,
                 )
                 return newSystemValue
             } catch (e: Exception) {
