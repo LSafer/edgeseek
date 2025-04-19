@@ -21,7 +21,7 @@ const val UI_LANG_DEFAULT = "en-US"
 const val UI_LANG_AR_SA = "ar-SA"
 const val UI_LANG_EN_US = "en-US"
 
-const val UI_COLORS_DEFAULT = "light"
+const val UI_COLORS_DEFAULT = "system"
 const val UI_COLORS_SYSTEM = "system"
 const val UI_COLORS_BLACK = "black"
 const val UI_COLORS_DARK = "dark"
