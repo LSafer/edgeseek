@@ -32,6 +32,9 @@ fun CoroutineScope.launchEdgeViewJob(
     posDataFlow: Flow<EdgePosData>,
 ): Job {
     val view = CardView(implLocal.context)
+    view.radius = 25f
+    view.elevation = 1f
+
     val windowParams = LayoutParams()
     @Suppress("DEPRECATION")
     windowParams.type = when {
