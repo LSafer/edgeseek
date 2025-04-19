@@ -30,8 +30,10 @@ import androidx.core.content.getSystemService
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import net.lsafer.edgeseek.app.MainApplication.Companion.globalLocal
-import net.lsafer.edgeseek.app.data.settings.EdgeData
 import net.lsafer.edgeseek.app.data.settings.EdgePos
+import net.lsafer.edgeseek.app.data.settings.EdgePosData
+import net.lsafer.edgeseek.app.data.settings.EdgeSide
+import net.lsafer.edgeseek.app.data.settings.EdgeSideData
 import net.lsafer.edgeseek.app.impl.CustomDimmerFacade
 import net.lsafer.edgeseek.app.impl.CustomToastFacade
 import net.lsafer.edgeseek.app.impl.ImplLocal
@@ -118,20 +120,28 @@ class MainService : Service() {
             launchedEdgeViewJobsSubJobFlow.emit(subJob)
 
             launch(subJob) {
-                for (pos in EdgePos.entries) {
-                    val dataFlow = implLocal.local.dataStore
-                        .select<EdgeData>(pos.key)
-                        .map { it ?: EdgeData(pos) }
+                for (side in EdgeSide.entries) {
+                    val sideDataFlow = implLocal.local.dataStore
+                        .select<EdgeSideData>(side.key)
+                        .map { it ?: EdgeSideData(side) }
                         .distinctUntilChanged()
 
-                    launchEdgeViewJob(
-                        implLocal = implLocal,
-                        windowManager = windowManager,
-                        displayRotation = displayRotation,
-                        displayHeight = displayHeight,
-                        displayWidth = displayWidth,
-                        dataFlow = dataFlow,
-                    )
+                    for (pos in EdgePos.entries.filter { it.side == side }) {
+                        val posDataFlow = implLocal.local.dataStore
+                            .select<EdgePosData>(pos.key)
+                            .map { it ?: EdgePosData(pos) }
+                            .distinctUntilChanged()
+
+                        launchEdgeViewJob(
+                            implLocal = implLocal,
+                            windowManager = windowManager,
+                            displayRotation = displayRotation,
+                            displayHeight = displayHeight,
+                            displayWidth = displayWidth,
+                            sideDataFlow = sideDataFlow,
+                            posDataFlow = posDataFlow,
+                        )
+                    }
                 }
             }
         }

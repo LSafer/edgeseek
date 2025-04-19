@@ -31,9 +31,10 @@ import net.lsafer.edgeseek.app.Local
 import net.lsafer.edgeseek.app.UniRoute
 import net.lsafer.edgeseek.app.components.common.editEdgeData
 import net.lsafer.edgeseek.app.components.lib.*
-import net.lsafer.edgeseek.app.data.settings.EdgeData
 import net.lsafer.edgeseek.app.data.settings.EdgePos
-import net.lsafer.edgeseek.app.data.settings.EdgeSeekFeature
+import net.lsafer.edgeseek.app.data.settings.EdgePosData
+import net.lsafer.edgeseek.app.data.settings.EdgeSide
+import net.lsafer.edgeseek.app.data.settings.OrientationFilter
 import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.storage.select
 
@@ -62,15 +63,15 @@ fun EdgeEditPageContent(
     pos: EdgePos,
     modifier: Modifier = Modifier,
 ) {
-    val data by produceState(EdgeData(pos), pos, local) {
+    val data by produceState(EdgePosData(pos), pos, local) {
         local.dataStore
-            .select<EdgeData>(pos.key)
+            .select<EdgePosData>(pos.key)
             .filterNotNull()
             .distinctUntilChanged()
             .collect { value = it }
     }
 
-    fun edit(block: (EdgeData) -> EdgeData) {
+    fun edit(block: (EdgePosData) -> EdgePosData) {
         local.editEdgeData(pos, block)
     }
 
@@ -91,19 +92,40 @@ fun EdgeEditPageContent(
             headline = strings.stmt.edge_activation_headline,
             supporting = strings.stmt.edge_activation_supporting,
         )
-        SingleSelectPreferenceListItem(
-            value = data.seekFeature,
-            onChange = { newValue -> edit { data.copy(seekFeature = newValue) } },
+        ControlFeaturePreferenceListItem(
+            value = data.onSeek,
+            onChange = { newValue -> edit { data.copy(onSeek = newValue) } },
             headline = strings.stmt.edge_seek_task_headline,
-            items = mapOf(
-                EdgeSeekFeature.Nothing to strings.stmt.edge_seek_task_value_nothing,
-                EdgeSeekFeature.ControlBrightness to strings.stmt.edge_seek_task_value_control_brightness,
-                EdgeSeekFeature.ControlBrightnessWithDimmer to strings.stmt.edge_seek_task_value_control_brightness_dimmer,
-                EdgeSeekFeature.ControlAlarm to strings.stmt.edge_seek_task_value_control_alarm,
-                EdgeSeekFeature.ControlMusic to strings.stmt.edge_seek_task_value_control_music,
-                EdgeSeekFeature.ControlRing to strings.stmt.edge_seek_task_value_control_ring,
-                EdgeSeekFeature.ControlSystem to strings.stmt.edge_seek_task_value_control_system,
-            )
+        )
+        ActionFeaturePreferenceListItem(
+            value = data.onLongClick,
+            onChange = { newValue -> edit { data.copy(onLongClick = newValue) } },
+            headline = strings.stmt.edge_long_click_task_headline,
+        )
+        ActionFeaturePreferenceListItem(
+            value = data.onDoubleClick,
+            onChange = { newValue -> edit { data.copy(onDoubleClick = newValue) } },
+            headline = strings.stmt.edge_double_click_task_headline,
+        )
+        if (pos.side != EdgeSide.Top) ActionFeaturePreferenceListItem(
+            value = data.onSwipeUp,
+            onChange = { newValue -> edit { data.copy(onSwipeUp = newValue) } },
+            headline = strings.stmt.edge_swipe_up_task_headline,
+        )
+        if (pos.side != EdgeSide.Bottom) ActionFeaturePreferenceListItem(
+            value = data.onSwipeDown,
+            onChange = { newValue -> edit { data.copy(onSwipeDown = newValue) } },
+            headline = strings.stmt.edge_swipe_down_task_headline,
+        )
+        if (pos.side != EdgeSide.Left) ActionFeaturePreferenceListItem(
+            value = data.onSwipeLeft,
+            onChange = { newValue -> edit { data.copy(onSwipeLeft = newValue) } },
+            headline = strings.stmt.edge_swipe_left_task_headline,
+        )
+        if (pos.side != EdgeSide.Right) ActionFeaturePreferenceListItem(
+            value = data.onSwipeRight,
+            onChange = { newValue -> edit { data.copy(onSwipeRight = newValue) } },
+            headline = strings.stmt.edge_swipe_right_task_headline,
         )
 
         ListDivider()
@@ -138,22 +160,44 @@ fun EdgeEditPageContent(
         ListDivider()
         ListSectionTitle(title = strings.label.misc)
         SwitchPreferenceListItem(
-            value = data.seekToast,
-            onChange = { newValue -> edit { data.copy(seekToast = newValue) } },
-            headline = strings.stmt.edge_seek_toast_headline,
-            supporting = strings.stmt.edge_seek_toast_supporting,
-        )
-        SwitchPreferenceListItem(
             value = data.seekSteps,
             onChange = { newValue -> edit { data.copy(seekSteps = newValue) } },
             headline = strings.stmt.edge_seek_steps_headline,
             supporting = strings.stmt.edge_seek_steps_supporting,
         )
+        SwitchPreferenceListItem(
+            value = data.seekAcceleration,
+            onChange = { newValue -> edit { data.copy(seekAcceleration = newValue) } },
+            headline = strings.stmt.edge_seek_acceleration_headline,
+            supporting = strings.stmt.edge_seek_acceleration_supporting,
+        )
+        SwitchPreferenceListItem(
+            value = data.feedbackToast,
+            onChange = { newValue -> edit { data.copy(feedbackToast = newValue) } },
+            headline = strings.stmt.edge_feedback_toast_headline,
+            supporting = strings.stmt.edge_feedback_toast_supporting,
+        )
+        SwitchPreferenceListItem(
+            value = data.feedbackSystemPanel,
+            onChange = { newValue -> edit { data.copy(feedbackSystemPanel = newValue) } },
+            headline = strings.stmt.edge_feedback_system_panel_headline,
+            supporting = strings.stmt.edge_feedback_system_panel_supporting,
+        )
+        SingleSelectPreferenceListItem(
+            value = data.orientationFilter,
+            onChange = { newValue -> edit { it.copy(orientationFilter = newValue) } },
+            headline = strings.stmt.edge_orientation_filter_headline,
+            items = mapOf(
+                OrientationFilter.All to strings.stmt.edge_orientation_filter_value_all,
+                OrientationFilter.PortraitOnly to strings.stmt.edge_orientation_filter_value_portrait_only,
+                OrientationFilter.LandscapeOnly to strings.stmt.edge_orientation_filter_value_landscape_only,
+            )
+        )
         SliderPreferenceListItem(
-            value = data.seekVibrate,
-            onChange = { newValue -> edit { data.copy(seekVibrate = newValue) } },
-            headline = strings.stmt.edge_seek_vibrate_headline,
-            supporting = strings.stmt.edge_seek_vibrate_supporting,
+            value = data.feedbackVibration,
+            onChange = { newValue -> edit { data.copy(feedbackVibration = newValue) } },
+            headline = strings.stmt.edge_feedback_vibration_headline,
+            supporting = strings.stmt.edge_feedback_vibration_supporting,
             valueRange = 0..100,
         )
 

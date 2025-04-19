@@ -23,10 +23,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,10 +37,12 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 import net.lsafer.edgeseek.app.Local
 import net.lsafer.edgeseek.app.UniRoute
+import net.lsafer.edgeseek.app.components.common.editEdgeSideData
 import net.lsafer.edgeseek.app.components.lib.MobileModel
-import net.lsafer.edgeseek.app.data.settings.EdgeData
 import net.lsafer.edgeseek.app.data.settings.EdgePos
+import net.lsafer.edgeseek.app.data.settings.EdgePosData
 import net.lsafer.edgeseek.app.data.settings.EdgeSide
+import net.lsafer.edgeseek.app.data.settings.EdgeSideData
 import net.lsafer.edgeseek.app.l10n.strings
 import net.lsafer.sundry.storage.select
 
@@ -95,20 +94,66 @@ fun EdgeListPageContent(
             ) {
                 MobileModel(Modifier.fillMaxSize())
 
-                for (pos in EdgePos.entries)
-                    Item(local, pos)
+                for (side in EdgeSide.entries) {
+                    val sideData by produceState(EdgeSideData(side)) {
+                        local.dataStore
+                            .select<EdgeSideData>(side.key)
+                            .filterNotNull()
+                            .distinctUntilChanged()
+                            .collect { value = it }
+                    }
+
+                    EdgeSideItem(local, sideData)
+
+                    for (pos in EdgePos.entries.filter { it.side == side })
+                        EdgeItem(local, pos, sideData)
+                }
             }
         }
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun BoxScope.Item(
+private fun BoxScope.EdgeSideItem(
     local: Local,
-    pos: EdgePos,
+    sideData: EdgeSideData,
     modifier: Modifier = Modifier,
 ) {
+    fun edit(block: (EdgeSideData) -> EdgeSideData) {
+        local.editEdgeSideData(sideData.side, block)
+    }
+
+    val alignModifier = when (sideData.side) {
+        EdgeSide.Bottom -> Modifier.align(Alignment.BottomCenter)
+        EdgeSide.Top -> Modifier.align(Alignment.TopCenter)
+        EdgeSide.Left -> Modifier.align(Alignment.CenterStart)
+        EdgeSide.Right -> Modifier.align(Alignment.CenterEnd)
+    }
+
+    IconButton(
+        modifier = Modifier
+            .padding(24.dp)
+            .then(alignModifier)
+            .then(modifier),
+        onClick = {
+            edit { it.copy(nSegments = it.nSegments % 3 + 1) }
+        }
+    ) {
+        Text("${sideData.nSegments}")
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun BoxScope.EdgeItem(
+    local: Local,
+    pos: EdgePos,
+    sideData: EdgeSideData,
+    modifier: Modifier = Modifier,
+) {
+    if (!pos.isIncludedWhenSegmented(sideData.nSegments))
+        return
+
     val coroutineScope = rememberCoroutineScope()
 
     val handleOnClick: () -> Unit = {
@@ -117,24 +162,26 @@ private fun BoxScope.Item(
         }
     }
 
-    val data by produceState(EdgeData(pos)) {
+    val data by produceState(EdgePosData(pos)) {
         local.dataStore
-            .select<EdgeData>(pos.key)
+            .select<EdgePosData>(pos.key)
             .filterNotNull()
             .distinctUntilChanged()
             .collect { value = it }
     }
 
     val thickness = 24.dp
-    val lengthPct = when (data.pos.side) {
-        EdgeSide.Bottom, EdgeSide.Top -> .5f
-        EdgeSide.Left, EdgeSide.Right -> 0.33333334f
+    val lengthPct = when (sideData.nSegments) {
+        1 -> .9f // <-- idk why, when single, it ignores padding!
+        else -> 1f / sideData.nSegments
     }
 
     val alignModifier = when (pos) {
         EdgePos.BottomLeft -> Modifier.align(Alignment.BottomStart)
+        EdgePos.BottomCenter -> Modifier.align(Alignment.BottomCenter)
         EdgePos.BottomRight -> Modifier.align(Alignment.BottomEnd)
         EdgePos.TopLeft -> Modifier.align(Alignment.TopStart)
+        EdgePos.TopCenter -> Modifier.align(Alignment.TopCenter)
         EdgePos.TopRight -> Modifier.align(Alignment.TopEnd)
         EdgePos.LeftBottom -> Modifier.align(Alignment.BottomStart)
         EdgePos.LeftCenter -> Modifier.align(Alignment.CenterStart)

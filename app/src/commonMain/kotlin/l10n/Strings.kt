@@ -114,13 +114,23 @@ data class Strings(
         val edge_activation_supporting: String = "Toggle to activate or deactivate this edge",
 
         val edge_seek_task_headline: String = "Seek Task",
-        val edge_seek_task_value_nothing: String = "Nothing",
-        val edge_seek_task_value_control_brightness: String = "Control Brightness",
-        val edge_seek_task_value_control_brightness_dimmer: String = "Control Brightness with Dimmer",
-        val edge_seek_task_value_control_alarm: String = "Control Alarm",
-        val edge_seek_task_value_control_music: String = "Control Music",
-        val edge_seek_task_value_control_ring: String = "Control Ring",
-        val edge_seek_task_value_control_system: String = "Control System",
+        val edge_long_click_task_headline: String = "Long Click Task",
+        val edge_double_click_task_headline: String = "Double Click Task",
+        val edge_swipe_up_task_headline: String = "Swipe Up Task",
+        val edge_swipe_down_task_headline: String = "Swipe Down Task",
+        val edge_swipe_left_task_headline: String = "Swipe Left Task",
+        val edge_swipe_right_task_headline: String = "Swipe Right Task",
+
+        val control_feature_nothing: String = "Nothing",
+        val control_feature_brightness: String = "Control Brightness",
+        val control_feature_brightness_dimmer: String = "Control Brightness with Dimmer",
+        val control_feature_alarm: String = "Control Alarm",
+        val control_feature_music: String = "Control Music",
+        val control_feature_ring: String = "Control Ring",
+        val control_feature_system: String = "Control System",
+
+        val action_feature_nothing: String = "Nothing",
+        val action_feature_expand_status_bar: String = "Expand Status Bar",
 
         val edge_sensitivity_headline: String = "Sensitivity",
         val edge_sensitivity_supporting: String = "How much you want the edge to be sensitive",
@@ -131,14 +141,25 @@ data class Strings(
         val edge_color_headline: String = "Color",
         val edge_color_supporting: String = "The color of the edge.",
 
-        val edge_seek_toast_headline: String = "Toast",
-        val edge_seek_toast_supporting: String = "Display a message with the current volume when seeking",
+        val edge_feedback_toast_headline: String = "Toast",
+        val edge_feedback_toast_supporting: String = "Display a message with the current volume when seeking",
+
+        val edge_feedback_system_panel_headline: String = "System Panel",
+        val edge_feedback_system_panel_supporting: String = "Open system panel when controling volume.",
 
         val edge_seek_steps_headline: String = "Step on pivot",
         val edge_seek_steps_supporting: String = "Limit seeking range around pivot points",
 
-        val edge_seek_vibrate_headline: String = "Vibrate",
-        val edge_seek_vibrate_supporting: String = "The strength of vibration when the edge is touched",
+        val edge_seek_acceleration_headline: String = "Seek Acceleration",
+        val edge_seek_acceleration_supporting: String = "Increase change rate when seeking more",
+
+        val edge_feedback_vibration_headline: String = "Vibrate",
+        val edge_feedback_vibration_supporting: String = "The strength of vibration when the edge is touched",
+
+        val edge_orientation_filter_headline: String = "Orientation filter",
+        val edge_orientation_filter_value_all: String = "Portrait and Landscape",
+        val edge_orientation_filter_value_portrait_only: String = "Portrait Only",
+        val edge_orientation_filter_value_landscape_only: String = "Landscape Only",
 
         // About
         val about_website_headline: String = "Website",
