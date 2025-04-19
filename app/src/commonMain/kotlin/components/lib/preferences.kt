@@ -5,11 +5,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -56,21 +59,36 @@ fun ColorPreferenceListItem(
 
                     Spacer(Modifier.height(8.dp))
 
-                    OutlinedCard {
-                        Row(
-                            Modifier.padding(8.dp),
-                            Arrangement.spacedBy(8.dp),
-                            Alignment.CenterVertically,
+                    Row(Modifier.height(IntrinsicSize.Max)) {
+                        IconButton({
+                            localValueString = Color(localValueInt ?: value)
+                                .copy(alpha = 0.01f)
+                                .toArgb()
+                                .toHexString()
+                        }) {
+                            Icon(Icons.Default.VisibilityOff, "Fix transparency")
+                        }
+
+                        OutlinedCard(
+                            Modifier.fillMaxHeight()
                         ) {
-                            Text("#")
-                            BasicTextField(
-                                value = localValueString,
-                                onValueChange = { localValueString = it },
-                                modifier = Modifier.fillMaxWidth(),
-                                textStyle = LocalTextStyle.current.copy(
-                                    color = MaterialTheme.colorScheme.onSurface,
+                            Row(
+                                Modifier
+                                    .padding(8.dp)
+                                    .fillMaxHeight(),
+                                Arrangement.spacedBy(8.dp),
+                                Alignment.CenterVertically,
+                            ) {
+                                Text("#")
+                                BasicTextField(
+                                    value = localValueString,
+                                    onValueChange = { localValueString = it },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    textStyle = LocalTextStyle.current.copy(
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                    )
                                 )
-                            )
+                            }
                         }
                     }
                 }
