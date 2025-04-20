@@ -99,6 +99,12 @@ android {
     namespace = "net.lsafer.edgeseek.app"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
+    }
     lint {
         baseline = file("lint-baseline.xml")
     }
