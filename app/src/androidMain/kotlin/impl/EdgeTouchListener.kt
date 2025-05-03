@@ -47,7 +47,7 @@ class EdgeTouchListener(
     private var mCurrentSeekOrigin: Int? = null
 
     private var mIsScrolling: Boolean = false
-    private var mIsVibrateOnUp: Boolean = true
+    private var mIsDone: Boolean = false
 
     init {
         detector.setIsLongpressEnabled(onLongClick != null)
@@ -57,15 +57,14 @@ class EdgeTouchListener(
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         return detector.onTouchEvent(event).also {
             if (event.action == MotionEvent.ACTION_UP) {
-                if (mIsVibrateOnUp)
-                    doFeedbackVibration()
+                if (!mIsDone) doFeedbackVibration()
             }
         }
     }
 
     override fun onDown(e: MotionEvent): Boolean {
         mIsScrolling = false
-        mIsVibrateOnUp = true
+        mIsDone = false
         mCurrentSeekRange = null
         mCurrentSeekOrigin = null
         mCurrentOriginXOrY = when (edgeSide) {
@@ -88,7 +87,7 @@ class EdgeTouchListener(
 
     override fun onDoubleTap(e: MotionEvent): Boolean {
         if (onDoubleClick != null) {
-            mIsVibrateOnUp = false
+            mIsDone = true
             doFeedbackVibration()
             onDoubleClick.execute(implLocal)
             return true
@@ -99,7 +98,7 @@ class EdgeTouchListener(
 
     override fun onLongPress(e: MotionEvent) {
         if (onLongClick != null) {
-            mIsVibrateOnUp = false
+            mIsDone = true
             doFeedbackVibration()
             onLongClick.execute(implLocal)
         }
@@ -121,6 +120,7 @@ class EdgeTouchListener(
     ): Boolean {
         e1 ?: return false
         onSeekImpl ?: return false
+        if (mIsDone) return false
 
         if (!mIsScrolling) {
             val now = SystemClock.uptimeMillis()
@@ -180,25 +180,25 @@ class EdgeTouchListener(
         val isSkipRight = !isHFling || onSwipeRight == null || velocityX < 0
 
         if (!isSkipUp && (isVLeaning || isSkipLeft && isSkipRight)) {
-            mIsVibrateOnUp = false
+            mIsDone = true
             doFeedbackVibration()
             onSwipeUp!!.execute(implLocal)
             return true
         }
         if (!isSkipDown && (isVLeaning || isSkipLeft && isSkipRight)) {
-            mIsVibrateOnUp = false
+            mIsDone = true
             doFeedbackVibration()
             onSwipeDown!!.execute(implLocal)
             return true
         }
         if (!isSkipLeft /* && (!isVerticalLeaning || isSkipUp && isSkipDown) */) {
-            mIsVibrateOnUp = false
+            mIsDone = true
             doFeedbackVibration()
             onSwipeLeft!!.execute(implLocal)
             return true
         }
         if (!isSkipRight /* && (!isVerticalLeaning || isSkipUp && isSkipDown) */) {
-            mIsVibrateOnUp = false
+            mIsDone = true
             doFeedbackVibration()
             onSwipeRight!!.execute(implLocal)
             return true
