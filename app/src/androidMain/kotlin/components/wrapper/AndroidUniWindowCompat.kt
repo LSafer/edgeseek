@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 import net.lsafer.edgeseek.app.*
 import net.lsafer.edgeseek.app.l10n.LocalStrings
+import net.lsafer.sundry.compose.simplenav.InMemorySimpleNavController
 import net.lsafer.sundry.compose.util.SubscribeEffect
 import net.lsafer.sundry.storage.select
 
@@ -54,8 +55,12 @@ fun AndroidUniWindowCompat(
     }
 
     BackHandler {
-        if (!local.navController.back())
+        val nc = local.navController as InMemorySimpleNavController
+
+        if (nc.state.value.position == 0)
             onLeaveRequest()
+        else
+            local.navController.back()
     }
 
     SubscribeEffect(local.eventbus) { event ->

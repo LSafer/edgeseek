@@ -8,7 +8,7 @@ compose = "1.7.0"
 
 extkt = "0.1.3"
 
-lsafer-sundry = "5095abd9a0"
+lsafer-sundry = "285d879ab5"
 
 # ANDROID
 agp = "8.7.3"
