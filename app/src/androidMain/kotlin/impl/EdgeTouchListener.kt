@@ -2,6 +2,7 @@ package net.lsafer.edgeseek.app.impl
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.os.SystemClock
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.view.GestureDetector
@@ -119,9 +120,19 @@ class EdgeTouchListener(
         distanceY: Float,
     ): Boolean {
         e1 ?: return false
+        onSeekImpl ?: return false
 
-        if (onSeekImpl == null || !mIsScrolling)
-            return false
+        if (!mIsScrolling) {
+            val now = SystemClock.uptimeMillis()
+
+            if (now - e2.downTime > 300L) {
+                mIsScrolling = true
+                doFeedbackVibration()
+                doFeedbackToast()
+            } else {
+                return false
+            }
+        }
 
         val deltaXOrY = when (edgeSide) {
             EdgeSide.Left, EdgeSide.Right -> e1.y - e2.y
