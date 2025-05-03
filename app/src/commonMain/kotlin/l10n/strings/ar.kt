@@ -76,6 +76,11 @@ val Strings_ar = Strings(
         ignore_battery_optimizations_headline = "تجاهل تحسينات البطارية",
         ignore_battery_optimizations_supporting = "اجعل هذا التطبيق خاليًا من تحسينات بطارية النظام.",
 
+        accessibility_service_headline = "خدمات تسهيل الوصول",
+        accessibility_service_supporting =
+            "التطبيق يستخدم صلاحيات تسهيل الوصول ليستطيع التوقف عن العمل في التطبيقات المحددة " +
+                    "إضافة إلى ذلك, بعض أجهزة OnePlus/Oppo تحتاج صلاحية تسهيل الوصول لتعديل مستوى الصوت في الخلفية",
+
         app_activation_headline = "التفعيل",
         app_activation_supporting = "إختر لتفعيل أو تعطيل التطبيق",
 

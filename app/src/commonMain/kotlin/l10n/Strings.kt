@@ -92,6 +92,12 @@ data class Strings(
         val ignore_battery_optimizations_supporting: String =
             "Make this application free from the system battery optimizations.",
 
+        val accessibility_service_headline: String =
+            "Accessibility Service",
+        val accessibility_service_supporting: String =
+            "Allows the app to enforce a per-application whitelist/blacklist. " +
+                    "Additionally, some Oppo/OnePlus devices require this permission for Controlling audio in the background.",
+
         // App
         val app_activation_headline: String = "Activation",
         val app_activation_supporting: String = "Toggle to activate or deactivate the application",
