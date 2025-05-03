@@ -15,6 +15,7 @@
  */
 package net.lsafer.edgeseek.app
 
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -36,7 +37,8 @@ class MainActivity : ComponentActivity() {
             val local = globalLocal
             val activity = this@MainActivity
 
-            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+                window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
             AndroidUniLocaleProvider(local) {
                 AndroidUniWindowCompat(local, activity) {
