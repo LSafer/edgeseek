@@ -15,6 +15,7 @@ class EdgeTouchListener(
     private val implLocal: ImplLocal,
     private val edgePosData: EdgePosData,
     private val edgeSide: EdgeSide,
+    private val dpi: Int,
 
     private val onLongClick: ActionFeatureImpl?,
     private val onDoubleClick: ActionFeatureImpl?,
@@ -27,8 +28,10 @@ class EdgeTouchListener(
 ) : View.OnTouchListener, GestureDetector.SimpleOnGestureListener() {
     private val detector = GestureDetector(implLocal.context, this)
 
-    private val xSeekSensitivityFactor = 80_000f
-    private val xSwipeThresholdDistant = 5_000f
+    private val xSeekSensitivityFactor = 155f * dpi
+    private val xSwipeThresholdDistant = 10f * dpi
+//    private val xSeekSensitivityFactor = 80_000f
+//    private val xSwipeThresholdDistant = 5_000f
 
     private val xSwipeEnabled =
         onSwipeUp != null ||

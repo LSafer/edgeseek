@@ -28,6 +28,7 @@ fun CoroutineScope.launchEdgeViewJob(
     displayRotation: Int,
     displayHeight: Int,
     displayWidth: Int,
+    displayDensityDpi: Int,
     sideDataFlow: Flow<EdgeSideData>,
     posDataFlow: Flow<EdgePosData>,
 ): Job {
@@ -99,6 +100,7 @@ fun CoroutineScope.launchEdgeViewJob(
                     implLocal = implLocal,
                     edgePosData = posData,
                     edgeSide = sideRotated,
+                    dpi = displayDensityDpi,
                     onSeekImpl = ControlFeatureImpl.from(posData.onSeek),
                     onLongClick = ActionFeatureImpl.from(posData.onLongClick),
                     onDoubleClick = ActionFeatureImpl.from(posData.onDoubleClick),

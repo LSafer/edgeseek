@@ -95,6 +95,7 @@ class MainService : Service() {
         val windowManager = getSystemService<WindowManager>()!!
         val display = windowManager.defaultDisplay
         val displayRotation = display.rotation
+        val displayDensityDpi = resources.displayMetrics.densityDpi
 
         var displayHeight: Int
         var displayWidth: Int
@@ -138,6 +139,7 @@ class MainService : Service() {
                             displayRotation = displayRotation,
                             displayHeight = displayHeight,
                             displayWidth = displayWidth,
+                            displayDensityDpi = displayDensityDpi,
                             sideDataFlow = sideDataFlow,
                             posDataFlow = posDataFlow,
                         )
