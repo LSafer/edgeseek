@@ -46,8 +46,8 @@ class CustomDimmerFacade(context: Context) {
         val windowSize = Point()
         @Suppress("DEPRECATION")
         windowManager.defaultDisplay.getSize(windowSize)
-        windowParams.height = windowSize.y * 2
-        windowParams.width = windowSize.x * 2
+        windowParams.height = windowSize.y * 3
+        windowParams.width = windowSize.x * 3
     }
 
     fun update(value: Int) {
