@@ -166,6 +166,48 @@ sealed class ControlFeatureImpl {
             val maximumValue = manager.getStreamMaxVolume(streamType)
             val newSystemValue = newValue.coerceIn(0..maximumValue)
 
+            // Check if we're on a OnePlus/Oppo/Realme device that needs special handling
+            if (DeviceHelper.requiresVolumeWorkaround()) {
+                return updateValueForOnePlus(ctx, newSystemValue, showSystemPanel)
+            }
+
+            // Standard path for other devices
+            return updateValueViaAudioManager(manager, newSystemValue, showSystemPanel)
+        }
+
+        private fun updateValueForOnePlus(ctx: Context, newSystemValue: Int, showSystemPanel: Boolean): Int {
+            // On OnePlus devices, we can't set volume directly in background.
+            // Instead, we just show the native volume panel with a small adjustment.
+            // This lets the user see and control volume from the native UI.
+            val manager = ctx.getSystemService(AudioManager::class.java)
+            val currentVolume = manager.getStreamVolume(streamType)
+            
+            // Calculate direction of change
+            val direction = when {
+                newSystemValue > currentVolume -> AudioManager.ADJUST_RAISE
+                newSystemValue < currentVolume -> AudioManager.ADJUST_LOWER
+                else -> AudioManager.ADJUST_SAME
+            }
+            
+            try {
+                // Use adjustStreamVolume which works better on OnePlus
+                // FLAG_SHOW_UI will show the native volume panel
+                manager.adjustStreamVolume(
+                    streamType,
+                    direction,
+                    AudioManager.FLAG_SHOW_UI
+                )
+                Log.d(TAG, "Volume adjusted via native UI (direction: $direction)")
+                return manager.getStreamVolume(streamType)
+            } catch (e: Exception) {
+                Log.e(TAG, "adjustStreamVolume failed", e)
+            }
+            
+            // Return current volume since direct setting doesn't work
+            return currentVolume
+        }
+
+        private fun updateValueViaAudioManager(manager: AudioManager, newSystemValue: Int, showSystemPanel: Boolean): Int {
             try {
                 manager.setStreamVolume(
                     streamType,
@@ -178,8 +220,10 @@ sealed class ControlFeatureImpl {
                 return newSystemValue
             } catch (e: Exception) {
                 Log.e(TAG, "Couldn't update stream volume of type: $streamType", e)
-                return fetchValue()
+                val currentVolume = manager.getStreamVolume(streamType)
+                return currentVolume
             }
         }
     }
 }
+
