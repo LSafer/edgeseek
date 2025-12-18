@@ -1,0 +1,244 @@
+<resources>
+    <string name="exit_application_qm">
+        退出应用？
+    </string>
+    <string name="welcome_phrase">欢迎</string>
+    <string name="all_setup_phrase">已全部设置完成！</string>
+    <string name="mandatory_permissions_not_met">
+        未满足必要的权限
+    </string>
+    <string name="watch_tutorial">观看教程</string>
+    <string name="open_settings">打开设置</string>
+
+    <!-- Pages -->
+    <string name="page_edge_list_headline">边缘</string>
+    <string name="page_edge_list_supporting">自定义边缘</string>
+    <string name="page_edge_list_heading">选择边缘</string>
+    <string name="page_edge_list_summary">点击一个边缘进行自定义</string>
+
+    <string name="page_edge_edit_heading">边缘配置</string>
+
+    <string name="page_permissions_headline">权限</string>
+    <string name="page_permissions_supporting">管理应用的权限</string>
+    <string name="page_permissions_heading">权限</string>
+
+    <string name="page_presets_headline">预设</string>
+    <string name="page_presets_supporting">选择一组配置方案</string>
+    <string name="page_presets_heading">预设</string>
+    <string name="page_presets_summary">预设配置</string>
+
+    <string name="page_about_headline">关于</string>
+    <string name="page_about_supporting">关于此应用的信息</string>
+    <string name="page_about_heading">关于</string>
+
+    <string name="page_log_headline">日志</string>
+    <string name="page_log_supporting">打开日志文件</string>
+    <string name="page_log_heading">日志</string>
+
+    <!-- Permissions -->
+    <string name="restricted_permissions_headline">
+    允许受限权限
+    </string>
+    <string name="restricted_permissions_supporting">
+    在 Android 13 及更高版本中，非通过 Google Play 安装的应用
+    需要显式允许“受限权限”。
+    </string>
+
+    <string name="display_over_other_apps_headline">
+    显示在其他应用之上
+    </string>
+    <string name="display_over_other_apps_supporting">
+    允许此应用在屏幕上绘制悬浮视图
+    </string>
+
+    <string name="write_system_settings_headline">
+    写入系统设置
+    </string>
+    <string name="write_system_settings_supporting">
+    允许此应用修改亮度级别、音乐音量等系统设置
+    </string>
+
+    <string name="ignore_battery_optimizations_headline">
+    忽略电池优化
+    </string>
+    <string name="ignore_battery_optimizations_supporting">
+    使此应用不受系统电池优化的限制。
+    </string>
+
+    <string name="accessibility_service_headline">
+    无障碍服务
+    </string>
+    <string name="accessibility_service_supporting">
+    允许应用执行按应用的白名单/黑名单控制。\n
+    此外，部分 Oppo / OnePlus 设备需要该权限才能在后台控制音频。
+    </string>
+
+    <!-- App -->
+    <string name="app_activation_headline">启用</string>
+    <string name="app_activation_supporting">
+    切换以启用或停用应用
+    </string>
+
+    <string name="app_colors_headline">更改主题</string>
+    <string name="app_colors_value_system">跟随系统</string>
+    <string name="app_colors_value_black">黑色</string>
+    <string name="app_colors_value_dark">深色</string>
+    <string name="app_colors_value_light">浅色</string>
+    <string name="app_colors_value_white">白色</string>
+
+    <string name="app_auto_boot_headline">自动启动</string>
+    <string name="app_auto_boot_supporting">
+    每次设备启动时自动启动服务
+    </string>
+
+    <string name="app_brightness_reset_headline">亮度重置</string>
+    <string name="app_brightness_reset_supporting">
+    每次设备进入休眠时开启自动亮度
+    </string>
+
+    <string name="app_rotate_edges_headline">旋转边缘</string>
+    <string name="app_rotate_edges_supporting">
+    随屏幕旋转同步旋转边缘
+    </string>
+
+    <!-- Edge -->
+    <string name="edge_activation_headline">启用</string>
+    <string name="edge_activation_supporting">
+    切换以启用或停用此边缘
+    </string>
+
+    <string name="edge_seek_task_headline">滑动调节任务</string>
+    <string name="edge_long_click_task_headline">长按任务</string>
+    <string name="edge_double_click_task_headline">双击任务</string>
+    <string name="edge_swipe_up_task_headline">向上滑动任务</string>
+    <string name="edge_swipe_down_task_headline">向下滑动任务</string>
+    <string name="edge_swipe_left_task_headline">向左滑动任务</string>
+    <string name="edge_swipe_right_task_headline">向右滑动任务</string>
+
+    <string name="control_feature_nothing">无</string>
+    <string name="control_feature_brightness">控制亮度</string>
+    <string name="control_feature_brightness_dimmer">通过调暗控制亮度</string>
+    <string name="control_feature_alarm">控制闹钟音量</string>
+    <string name="control_feature_music">控制媒体音量</string>
+    <string name="control_feature_ring">控制铃声音量</string>
+    <string name="control_feature_system">控制系统音量</string>
+
+    <string name="action_feature_nothing">无</string>
+    <string name="action_feature_expand_status_bar">展开状态栏</string>
+
+    <string name="edge_sensitivity_headline">灵敏度</string>
+    <string name="edge_sensitivity_supporting">
+    设置边缘的灵敏程度
+    </string>
+
+    <string name="edge_thickness_headline">厚度</string>
+    <string name="edge_thickness_supporting">边缘的厚度</string>
+
+    <string name="edge_color_headline">颜色</string>
+    <string name="edge_color_supporting">边缘的颜色。</string>
+
+    <string name="edge_feedback_toast_headline">提示</string>
+    <string name="edge_feedback_toast_supporting">
+    在滑动调节时显示当前音量的提示信息
+    </string>
+
+    <string name="edge_feedback_system_panel_headline">系统面板</string>
+    <string name="edge_feedback_system_panel_supporting">
+    在控制音量时打开系统面板。
+    </string>
+
+    <string name="edge_seek_steps_headline">基准步进</string>
+    <string name="edge_seek_steps_supporting">
+    限制围绕基准点的滑动调节范围
+    </string>
+
+    <string name="edge_seek_reverse_headline">反向调节</string>
+    <string name="edge_seek_reverse_supporting">
+    反转滑动调节方向。
+    </string>
+
+    <string name="edge_seek_relate_to_screen_headline">相对屏幕调节</string>
+    <string name="edge_seek_relate_to_screen_supporting">
+    基于相对屏幕距离进行调节。
+    </string>
+
+    <string name="edge_seek_acceleration_headline">调节加速</string>
+    <string name="edge_seek_acceleration_supporting">
+    滑动幅度越大，变化速度越快
+    </string>
+
+    <string name="edge_feedback_vibration_headline">振动</string>
+    <string name="edge_feedback_vibration_supporting">
+    触碰边缘时的振动强度
+    </string>
+
+    <string name="edge_orientation_filter_headline">方向过滤</string>
+    <string name="edge_orientation_filter_value_all">竖屏和横屏</string>
+    <string name="edge_orientation_filter_value_portrait_only">仅竖屏</string>
+    <string name="edge_orientation_filter_value_landscape_only">仅横屏</string>
+
+    <!-- About -->
+    <string name="about_website_headline">网站</string>
+    <string name="about_website_supporting">
+    EdgeSeek 官方网站
+    </string>
+
+    <string name="about_source_code_headline">源代码</string>
+    <string name="about_source_code_supporting">
+    应用的源代码
+    </string>
+
+    <string name="about_reintroduce_headline">重新介绍</string>
+    <string name="about_reintroduce_supporting">
+    重新运行介绍向导
+    </string>
+
+    <!-- Presets -->
+    <string name="preset_standard_headline">标准</string>
+    <string name="preset_standard_supporting">
+    左侧控制音乐音频，右侧控制亮度
+    </string>
+
+    <string name="preset_standard_c_headline">标准（居中）</string>
+    <string name="preset_standard_c_supporting">
+    与标准模式相同，但使用居中的控制条
+    </string>
+
+    <string name="preset_brightness_headline">仅亮度</string>
+    <string name="preset_brightness_supporting">
+    仅通过右侧控制亮度
+    </string>
+
+    <string name="preset_brightness_c_headline">仅亮度（居中）</string>
+    <string name="preset_brightness_c_supporting">
+    与仅亮度模式相同，但使用居中的控制条
+    </string>
+
+    <string name="preset_brightness_d_headline">双亮度</string>
+    <string name="preset_brightness_d_supporting">
+    从两侧同时控制亮度
+    </string>
+
+    <string name="preset_brightness_dc_headline">双亮度（居中）</string>
+    <string name="preset_brightness_dc_supporting">
+    与双亮度模式相同，但使用居中的控制条（LSafer 的选择）
+    </string>
+
+    <!-- Preset Util -->
+    <string name="show_all_headline">全部显示</string>
+    <string name="show_all_supporting">
+    提高所有边缘的透明度
+    </string>
+
+    <string name="hide_all_headline">全部隐藏</string>
+    <string name="hide_all_supporting">
+    降低所有边缘的透明度
+    </string>
+
+    <!-- Foreground Service -->
+    <string name="foreground_noti_title">后台运行中</string>
+    <string name="foreground_noti_text">
+    允许应用在后台运行。
+    建议关闭此通知，因为它并没有实际作用。
+    </string>
+</resources>

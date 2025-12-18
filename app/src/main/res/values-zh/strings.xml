@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Edge Seek</string>
+    <string name="accessibility_service_description">
+        该应用使用辅助功能服务来屏蔽应用。
+
+        此外，部分 Oppo/OnePlus 设备需要此权限才能在后台控制音频。
+    </string>
+</resources>

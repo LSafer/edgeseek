@@ -1,0 +1,24 @@
+<resources>
+    <string name="additional">附加</string>
+    <string name="appearance">外观</string>
+    <string name="application">应用</string>
+    <string name="author">作者</string>
+    <string name="back">后退</string>
+    <string name="cancel">取消</string>
+    <string name="clear_log">清除日志</string>
+    <string name="confirm">确认</string>
+    <string name="credits">鸣谢</string>
+    <string name="dimensions">维度</string>
+    <string name="input">输入</string>
+    <string name="job">任务</string>
+    <string name="links">链接</string>
+    <string name="mandatory">强制</string>
+    <string name="misc">杂项</string>
+    <string name="next">下一步</string>
+    <string name="presets">预设</string>
+    <string name="utility">辅助</string>
+    <string name="version">版本</string>
+    <string name="version_code">版本号</string>
+    <string name="version_name">版本名</string>
+    <string name="yes">是</string>
+</resources>
