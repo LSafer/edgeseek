@@ -154,6 +154,9 @@
         عكس إتجاه السحب
     </string>
 
+    <string name="edge_seek_relate_to_screen_supporting">
+        البحث يعتمد على المسافة النسبية بين الشاشة والشاشة.
+    </string>
     <string name="edge_seek_acceleration_headline">التغير المتسارع</string>
     <string name="edge_seek_acceleration_supporting">
         زيادة تسارع التغيير عند الإستمرار بالسحب
@@ -233,4 +236,5 @@
             تسمح هذه الرسالة للتطبيق بالعمل بالخلفية.
             ننصح بتعطيل هذه الرسالة
     </string>
+    <string name="edge_seek_relate_to_screen_headline">البحث عن علاقة بالشاشة</string>
 </resources>

@@ -157,6 +157,11 @@
         Reverse the seek direction.
     </string>
 
+    <string name="edge_seek_relate_to_screen_headline">Screen Relate Seek</string>
+    <string name="edge_seek_relate_to_screen_supporting">
+        Seek based on relative screen distance.
+    </string>
+
     <string name="edge_seek_acceleration_headline">Seek Acceleration</string>
     <string name="edge_seek_acceleration_supporting">
         Increase change rate when seeking more

@@ -9,6 +9,7 @@ import android.os.Vibrator
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
+import android.view.WindowManager
 import net.lsafer.edgeseek.app.Local
 import net.lsafer.edgeseek.app.data.settings.EdgeData
 import net.lsafer.edgeseek.app.data.settings.EdgeSide
@@ -61,6 +62,27 @@ class EdgeTouchListener(
                 if (!mIsDone) doFeedbackVibration()
             }
         }
+    }
+
+    fun getScreenSize(): Pair<Int, Int> {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val windowManager = ctx.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val metrics = windowManager.currentWindowMetrics
+            val bounds = metrics.bounds
+            bounds.width() to bounds.height()
+        } else {
+            val dm = ctx.resources.displayMetrics
+            dm.widthPixels to dm.heightPixels
+        }
+    }
+
+    fun percentToRange(
+        percent: Float,
+        min: Int,
+        max: Int
+    ): Float {
+        val p = percent.coerceIn(0f, 100f)
+        return min + (p / 100f) * (max - min)
     }
 
     override fun onDown(e: MotionEvent): Boolean {
@@ -157,7 +179,22 @@ class EdgeTouchListener(
         val factor = xSeekSensitivityFactor / (mCurrentSeekRange!!.last - mCurrentSeekRange!!.first)
         val accBoost = if (data.pos.seekAcceleration) abs(deltaXOrY / factor) else 1f
         val newValue = mCurrentSeekOrigin!! + ((deltaXOrY * accBoost) / factor * data.pos.sensitivity).toInt()
-        val newValueCoerced = newValue.coerceIn(mCurrentSeekRange!!)
+        var newValueCoerced = newValue.coerceIn(mCurrentSeekRange!!)
+
+        if (data.pos.seekRelateToScreen) {
+            val screen = getScreenSize()
+            var scrOffset = when (targetSide) {
+                EdgeSide.Left, EdgeSide.Right -> (e2.rawY / screen.second.toFloat())
+                EdgeSide.Top, EdgeSide.Bottom -> (e2.rawX / screen.first.toFloat())
+            }
+            if (data.pos.seekReverse) {
+                scrOffset = 1 - scrOffset
+            }
+            val percent = scrOffset.coerceIn(0f, 1f) * 100f
+
+            newValueCoerced =
+                percentToRange(percent, mCurrentSeekRange!!.first, mCurrentSeekRange!!.last).toInt()
+        }
 
         val value = onSeekImpl.updateValue(newValueCoerced, data.pos.feedbackSystemPanel)
 

@@ -55,5 +55,6 @@ data class EdgePosData(
      */
     val seekReverse: Boolean = false,
     val seekAcceleration: Boolean = false,
+    val seekRelateToScreen: Boolean = false,
     val orientationFilter: OrientationFilter = OrientationFilter.All,
 )

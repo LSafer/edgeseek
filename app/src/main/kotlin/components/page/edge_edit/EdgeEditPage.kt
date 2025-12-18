@@ -163,6 +163,12 @@ fun EdgeEditPageContent(
             supporting = stringResource(R.string.edge_seek_reverse_supporting),
         )
         SwitchPreferenceListItem(
+            value = data.seekRelateToScreen,
+            onChange = { newValue -> edit { data.copy(seekRelateToScreen = newValue) } },
+            headline = stringResource(R.string.edge_seek_relate_to_screen_headline),
+            supporting = stringResource(R.string.edge_seek_relate_to_screen_supporting),
+        )
+        SwitchPreferenceListItem(
             value = data.seekAcceleration,
             onChange = { newValue -> edit { data.copy(seekAcceleration = newValue) } },
             headline = stringResource(R.string.edge_seek_acceleration_headline),
